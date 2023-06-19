@@ -1,0 +1,13 @@
+# Ignore everything
+*
+
+# Allow specific files
+!Dockerfile
+!docker-compose.yml
+!.env
+!dist
+!package.json
+!package-lock.json
+
+# 취향에 따라 갈리기는 하는데, 모든걸 ignore하고 필요한 부분만
+# 가져오는 방식으로 작성되어 있다.
