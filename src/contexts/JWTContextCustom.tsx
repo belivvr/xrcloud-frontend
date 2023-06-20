@@ -25,11 +25,17 @@ const initialState: InitialLoginContextProps = {
     user: null
 }
 
+const user = {
+    email: 'admin@admin.com',
+    role: 'admin'
+}
+
 const verifyToken: (st: string) => boolean = (serviceToken) => {
     if (!serviceToken) {
         return false
     }
     const decoded: KeyedObject = jwtDecode(serviceToken)
+    console.log(decoded.exp > Date.now() / 1000)
     /**
      * Property 'exp' does not exist on type '<T = unknown>(token: string, options?: JwtDecodeOptions | undefined) => T'.
      */
@@ -58,10 +64,10 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         const init = async () => {
             try {
                 const serviceToken = window.localStorage.getItem('serviceToken')
+                const refreshToken = window.localStorage.getItem('refreshToken')
+
                 if (serviceToken && verifyToken(serviceToken)) {
-                    setSession(serviceToken)
-                    const response = await axios.get('/api/account/me')
-                    const { user } = response.data
+                    setSession(serviceToken, refreshToken)
                     dispatch({
                         type: LOGIN,
                         payload: {
@@ -75,7 +81,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                     })
                 }
             } catch (err) {
-                console.error(err)
                 dispatch({
                     type: LOGOUT
                 })
@@ -86,16 +91,17 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     }, [])
 
     const login = async (email: string, password: string) => {
-        // const response = await axios.post('/api/account/login', { email, password });
-        // const { accessToken, user } = response.data;
-        /** LOGIN API */
-        setSession(
+        /** TODO: LOGIN API
+         * 1. call login api (/api/auth/login)
+         * 2. get access token and refresh token
+         * 3. set session
+         */
+
+        const accessToken =
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzQ4MDczNjAwLCJpYXQiOjE1MTYyMzkwMjJ9.oL57RAuF2Z5-puMjPWNWbjZ-JQZizmfTv-bTEDV9XrU'
-        )
-        const user = {
-            email,
-            role: 'admin'
-        }
+        const refreshToken =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzQ4MDczNjAwLCJpYXQiOjE1MTYyMzkwMjJ9.oL57RAuF2Z5-puMjPWNWbjZ-JQZizmfTv-bTEDV9XrU'
+        setSession(accessToken, refreshToken)
         dispatch({
             type: LOGIN,
             payload: {
@@ -106,7 +112,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     }
 
     const register = async (email: string, password: string, firstName: string, lastName: string) => {
-        // todo: this flow need to be recode as it not verified
         const id = chance.bb_pin()
         const response = await axios.post('/api/account/register', {
             id,

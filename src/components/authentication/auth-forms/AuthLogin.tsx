@@ -131,20 +131,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                         )}
                     </FormControl>
 
-                    <Grid container alignItems="center" justifyContent="space-between">
-                        <Grid item>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={checked}
-                                        onChange={(event) => setChecked(event.target.checked)}
-                                        name="checked"
-                                        color="primary"
-                                    />
-                                }
-                                label="Keep me logged in"
-                            />
-                        </Grid>
+                    <Grid container alignItems="center" justifyContent="end">
                         <Grid item>
                             <Typography
                                 variant="subtitle1"
