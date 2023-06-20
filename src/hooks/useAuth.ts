@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useContext } from 'react'
 
 // auth provider
-import AuthContext from 'contexts/JWTContext';
+import AuthContext from 'contexts/JWTContextCustom'
 // import AuthContext from 'contexts/FirebaseContext';
 // import AuthContext from 'contexts/Auth0Context';
 // import AuthContext from 'contexts/AWSCognitoContext';
@@ -9,11 +9,11 @@ import AuthContext from 'contexts/JWTContext';
 // ==============================|| AUTH HOOKS ||============================== //
 
 const useAuth = () => {
-  const context = useContext(AuthContext);
+    const context = useContext(AuthContext)
 
-  if (!context) throw new Error('context must be use inside provider');
+    if (!context) throw new Error('context must be use inside provider')
 
-  return context;
-};
+    return context
+}
 
-export default useAuth;
+export default useAuth

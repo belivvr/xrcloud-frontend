@@ -1,11 +1,11 @@
-import pages from './pages';
-import other from './other';
-import { NavItemType } from 'types';
+import pages from './pages'
+import other from './other'
+import { NavItemType } from 'types'
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems: { items: NavItemType[] } = {
-  items: [pages, other]
-};
+    items: [pages, other]
+}
 
-export default menuItems;
+export default menuItems

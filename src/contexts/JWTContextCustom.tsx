@@ -14,7 +14,7 @@ import accountReducer from 'store/accountReducer'
 import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
-import { JWTContextType } from 'types/auth'
+import { JWTContextCustomType } from 'types/auth'
 
 const chance = new Chance()
 
@@ -36,18 +36,20 @@ const verifyToken: (st: string) => boolean = (serviceToken) => {
     return decoded.exp > Date.now() / 1000
 }
 
-const setSession = (serviceToken?: string | null) => {
-    if (serviceToken) {
+const setSession = (serviceToken?: string | null, refreshToken?: string | null) => {
+    if (serviceToken && refreshToken) {
         localStorage.setItem('serviceToken', serviceToken)
+        localStorage.setItem('refreshToken', refreshToken)
         axios.defaults.headers.common.Authorization = `Bearer ${serviceToken}`
     } else {
         localStorage.removeItem('serviceToken')
+        localStorage.removeItem('refreshToken')
         delete axios.defaults.headers.common.Authorization
     }
 }
 
 // ==============================|| JWT CONTEXT & PROVIDER ||============================== //
-const JWTContext = createContext<JWTContextType | null>(null)
+const JWTContextCustom = createContext<JWTContextCustomType | null>(null)
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
@@ -84,9 +86,16 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     }, [])
 
     const login = async (email: string, password: string) => {
-        const response = await axios.post('/api/account/login', { email, password })
-        const { serviceToken, user } = response.data
-        setSession(serviceToken)
+        // const response = await axios.post('/api/account/login', { email, password });
+        // const { accessToken, user } = response.data;
+        /** LOGIN API */
+        setSession(
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzQ4MDczNjAwLCJpYXQiOjE1MTYyMzkwMjJ9.oL57RAuF2Z5-puMjPWNWbjZ-JQZizmfTv-bTEDV9XrU'
+        )
+        const user = {
+            email,
+            role: 'admin'
+        }
         dispatch({
             type: LOGIN,
             payload: {
@@ -137,7 +146,11 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         return <Loader />
     }
 
-    return <JWTContext.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>{children}</JWTContext.Provider>
+    return (
+        <JWTContextCustom.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>
+            {children}
+        </JWTContextCustom.Provider>
+    )
 }
 
-export default JWTContext
+export default JWTContextCustom

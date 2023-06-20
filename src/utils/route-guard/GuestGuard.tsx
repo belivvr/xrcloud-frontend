@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 // project imports
-import useAuth from 'hooks/useAuth';
-import { DASHBOARD_PATH } from 'config';
-import { GuardProps } from 'types';
-import Loader from 'components/ui-component/Loader';
+import useAuth from 'hooks/useAuth'
+import { DASHBOARD_PATH } from 'config'
+import { GuardProps } from 'types'
+import Loader from 'components/ui-component/Loader'
 
 // ==============================|| GUEST GUARD ||============================== //
 
@@ -15,19 +15,19 @@ import Loader from 'components/ui-component/Loader';
  */
 
 const GuestGuard = ({ children }: GuardProps) => {
-  const { isLoggedIn } = useAuth();
-  const router = useRouter();
+    const { isLoggedIn } = useAuth()
+    const router = useRouter()
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push(DASHBOARD_PATH);
-    }
-    // eslint-disable-next-line
-  }, [isLoggedIn]);
+    useEffect(() => {
+        if (isLoggedIn) {
+            router.push(DASHBOARD_PATH)
+        }
+        // eslint-disable-next-line
+    }, [isLoggedIn])
 
-  if (isLoggedIn) return <Loader />;
+    if (isLoggedIn) return <Loader />
 
-  return children;
-};
+    return children
+}
 
-export default GuestGuard;
+export default GuestGuard

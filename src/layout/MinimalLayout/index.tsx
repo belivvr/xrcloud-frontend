@@ -1,11 +1,11 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react'
 
 interface Props {
-  children: ReactNode;
+    children: ReactNode
 }
 
 // ==============================|| MINIMAL LAYOUT ||============================== //
 
-const MinimalLayout: FC<Props> = ({ children }) => <>{children}</>;
+const MinimalLayout: FC<Props> = ({ children }) => <>{children}</>
 
-export default MinimalLayout;
+export default MinimalLayout

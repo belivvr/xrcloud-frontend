@@ -1,20 +1,20 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react'
 // project imports
-import GuestGuard from 'utils/route-guard/GuestGuard';
-import NavMotion from './NavMotion';
+import GuestGuard from 'utils/route-guard/GuestGuard'
+import NavMotion from './NavMotion'
 
 interface Props {
-  children: ReactNode;
+    children: ReactNode
 }
 
 // ==============================|| MINIMAL LAYOUT ||============================== //
 
 const MinimalLayout: FC<Props> = ({ children }) => (
-  <NavMotion>
-    <GuestGuard>
-      <>{children}</>
-    </GuestGuard>
-  </NavMotion>
-);
+    <NavMotion>
+        <GuestGuard>
+            <>{children}</>
+        </GuestGuard>
+    </NavMotion>
+)
 
-export default MinimalLayout;
+export default MinimalLayout
