@@ -3,12 +3,7 @@ import React, { createContext, useEffect, useReducer } from 'react'
 // third-party
 import { Chance } from 'chance'
 import jwtDecode from 'jwt-decode'
-import jwt from 'jsonwebtoken'
-import { JWT_API } from 'config'
-import { JWTCustomContextType, JWTData } from 'types/auth'
-// constant
-const JWT_SECRET = JWT_API.secret
-const JWT_EXPIRES_TIME = JWT_API.timeout
+import { JWTCustomContextType } from 'types/auth'
 // reducer - state management
 import { LOGIN, LOGOUT } from 'store/actions'
 import accountReducer from 'store/accountReducer'
@@ -17,36 +12,12 @@ import accountReducer from 'store/accountReducer'
 import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
-import { JWTContextType } from 'types/auth'
-import { NextRouter, useRouter } from 'next/router'
-
-const chance = new Chance()
+import { useRouter } from 'next/router'
 
 const initialState: InitialLoginContextProps = {
     isLoggedIn: false,
     isInitialized: false,
     user: null
-}
-
-const verifyToken: (st: string, rt: string) => Promise<boolean> = async (serviceToken, refreshToken) => {
-    if (!serviceToken) {
-        return false
-    }
-    const decoded: KeyedObject = jwtDecode(serviceToken)
-
-    if (decoded.exp < Date.now() / 1000) {
-        try {
-            /**
-             * TODO: Refresh token
-             * */
-        } catch (err) {
-            console.log(err)
-            throw err
-        }
-        return true
-    }
-
-    return decoded.exp > Date.now() / 1000
 }
 
 const setSession = (serviceToken?: string | null) => {

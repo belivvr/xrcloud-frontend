@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import Link from 'Link'
 
@@ -7,17 +6,14 @@ import { useTheme } from '@mui/material/styles'
 import {
     Box,
     Button,
-    Checkbox,
     FormControl,
-    FormControlLabel,
     FormHelperText,
     IconButton,
     InputAdornment,
     InputLabel,
     OutlinedInput,
     Stack,
-    Typography,
-    useMediaQuery
+    Typography
 } from '@mui/material'
 
 // third party
@@ -25,18 +21,16 @@ import * as Yup from 'yup'
 import { Formik } from 'formik'
 
 // project imports
-import useConfig from 'hooks/useConfig'
 import useAuth from 'hooks/useAuth'
-import useScriptRef from 'hooks/useScriptRef'
 import AnimateButton from 'ui-component/extended/AnimateButton'
 
 // assets
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
-// ============================|| FIREBASE - LOGIN ||============================ //
+// ============================|| JWT - LOGIN ||============================ //
 
-const FirebaseLogin = ({ ...others }) => {
+const JWTLogin = ({ ...others }) => {
     const theme = useTheme()
     const [showPassword, setShowPassword] = React.useState(false)
     const { login } = useAuth()
@@ -138,17 +132,6 @@ const FirebaseLogin = ({ ...others }) => {
                             )}
                         </FormControl>
                         <Stack direction="row" alignItems="center" justifyContent="end" spacing={1}>
-                            {/* <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={checked}
-                                        onChange={(event) => setChecked(event.target.checked)}
-                                        name="checked"
-                                        color="primary"
-                                    />
-                                }
-                                label="Remember me"
-                            /> */}
                             <Typography
                                 variant="subtitle1"
                                 component={Link}
@@ -187,4 +170,4 @@ const FirebaseLogin = ({ ...others }) => {
     )
 }
 
-export default FirebaseLogin
+export default JWTLogin
