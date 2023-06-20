@@ -208,7 +208,7 @@ const NavGroup = ({ item, lastItem, remItems, lastItemId }: NavGroupProps) => {
                     </List>
 
                     {/* group divider */}
-                    {drawerOpen && <Divider sx={{ mt: 0.25, mb: 1.25 }} />}
+                    {/* {drawerOpen && <Divider sx={{ mt: 0.25, mb: 1.25 }} />} */}
                 </>
             ) : (
                 <List>

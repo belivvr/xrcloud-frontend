@@ -20,30 +20,28 @@ const other: NavItemType = {
     type: 'group',
     children: [
         {
-            id: 'sample-page',
-            title: <FormattedMessage id="sample-page" />,
+            id: 'scenes',
+            title: <FormattedMessage id="scenes" />,
             type: 'item',
-            url: '/sample-page',
+            url: '/scenes',
             icon: icons.IconBrandChrome,
             breadcrumbs: false
         },
         {
-            id: 'documentation',
-            title: <FormattedMessage id="documentation" />,
+            id: 'rooms',
+            title: <FormattedMessage id="rooms" />,
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/berry/',
+            url: '/rooms',
             icon: icons.IconHelp,
-            external: true,
-            target: true
+            breadcrumbs: false
         },
         {
-            id: 'roadmap',
-            title: <FormattedMessage id="roadmap" />,
+            id: 'permissions',
+            title: <FormattedMessage id="permissions" />,
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/berry/roadmap',
+            url: '/permissions',
             icon: icons.IconSitemap,
-            external: true,
-            target: true
+            breadcrumbs: false
         }
     ]
 }
