@@ -16,7 +16,7 @@ const AuthGuard = ({ children }: GuardProps) => {
     const router = useRouter()
     useEffect(() => {
         if (!isLoggedIn) {
-            router.push('/login')
+            // router.push('/login')
         }
         // eslint-disable-next-line
     }, [isLoggedIn])

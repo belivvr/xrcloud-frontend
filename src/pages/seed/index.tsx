@@ -3,14 +3,14 @@ import { useEffect, useState, ReactElement } from 'react'
 // project imports
 import Layout from 'layout'
 import Page from 'ui-component/Page'
+import { useModel } from './model'
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Seed = () => {
-    const [isLoading, setLoading] = useState(true)
-    useEffect(() => {
-        setLoading(false)
-    }, [])
+    const { loading } = useModel()
+
+    if (loading) return <Page title="Default Seed">Loading...</Page>
 
     return <Page title="Default Seed">Seed</Page>
 }

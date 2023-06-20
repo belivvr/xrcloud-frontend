@@ -19,7 +19,7 @@ import RTLLayout from 'ui-component/RTLLayout'
 import Locales from 'ui-component/Locales'
 import { ConfigProvider } from '../contexts/ConfigContext'
 import Snackbar from 'ui-component/extended/Snackbar'
-import { FirebaseProvider as AuthProvider } from '../contexts/FirebaseContext'
+import { JWTProvider as AuthProvider } from '../contexts/JWTContextCustom'
 
 // types
 type LayoutProps = NextPage & {
@@ -40,10 +40,12 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                     <RTLLayout>
                         <Locales>
                             <NavigationScroll>
-                                <>
-                                    {getLayout(<Component {...pageProps} />)}
-                                    <Snackbar />
-                                </>
+                                <AuthProvider>
+                                    <>
+                                        {getLayout(<Component {...pageProps} />)}
+                                        <Snackbar />
+                                    </>
+                                </AuthProvider>
                             </NavigationScroll>
                         </Locales>
                     </RTLLayout>

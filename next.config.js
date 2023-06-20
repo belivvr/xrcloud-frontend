@@ -2,9 +2,7 @@
 
 const withTM = require('next-transpile-modules')(['@babel/preset-react'])
 
-const nextConfig = withTM({
-    reactStrictMode: true
-})
+const nextConfig = withTM({})
 
 module.exports = {
     ...nextConfig,

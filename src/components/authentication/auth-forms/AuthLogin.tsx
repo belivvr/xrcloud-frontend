@@ -8,11 +8,9 @@ import {
     Box,
     Button,
     Checkbox,
-    Divider,
     FormControl,
     FormControlLabel,
     FormHelperText,
-    Grid,
     IconButton,
     InputAdornment,
     InputLabel,
@@ -36,27 +34,13 @@ import AnimateButton from 'ui-component/extended/AnimateButton'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
-const Google = '/assets/images/icons/google.svg'
-
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
     const theme = useTheme()
-    const scriptedRef = useScriptRef()
-    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
-    const { borderRadius } = useConfig()
-    const [checked, setChecked] = React.useState(true)
-
-    const { firebaseEmailPasswordSignIn, firebaseGoogleSignIn } = useAuth()
-    const googleHandler = async () => {
-        try {
-            await firebaseGoogleSignIn()
-        } catch (err) {
-            console.error(err)
-        }
-    }
-
     const [showPassword, setShowPassword] = React.useState(false)
+    const { login } = useAuth()
+
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
     }
@@ -67,68 +51,6 @@ const FirebaseLogin = ({ ...others }) => {
 
     return (
         <>
-            <Grid container direction="column" justifyContent="center" spacing={2}>
-                <Grid item xs={12}>
-                    <AnimateButton>
-                        <Button
-                            disableElevation
-                            fullWidth
-                            onClick={googleHandler}
-                            size="large"
-                            variant="outlined"
-                            sx={{
-                                color: 'grey.700',
-                                backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.grey[50],
-                                borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.light + 20 : theme.palette.grey[100]
-                            }}
-                        >
-                            <Box sx={{ display: 'flex', mr: { xs: 1, sm: 2 }, width: 20, height: 20, marginRight: matchDownSM ? 8 : 16 }}>
-                                <Image src={Google} alt="Berry Dashboard" layout="intrinsic" width={'16px'} height={'16px'} />
-                            </Box>
-                            Sign in with Google
-                        </Button>
-                    </AnimateButton>
-                </Grid>
-                <Grid item xs={12}>
-                    <Box
-                        sx={{
-                            alignItems: 'center',
-                            display: 'flex'
-                        }}
-                    >
-                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-
-                        <Button
-                            variant="outlined"
-                            sx={{
-                                cursor: 'unset',
-                                m: 2,
-                                py: 0.5,
-                                px: 7,
-                                borderColor:
-                                    theme.palette.mode === 'dark'
-                                        ? `${theme.palette.dark.light + 20} !important`
-                                        : `${theme.palette.grey[100]} !important`,
-                                color: `${theme.palette.grey[900]}!important`,
-                                fontWeight: 500,
-                                borderRadius: `${borderRadius}px`
-                            }}
-                            disableRipple
-                            disabled
-                        >
-                            OR
-                        </Button>
-
-                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-                    </Box>
-                </Grid>
-                <Grid item xs={12} container alignItems="center" justifyContent="center">
-                    <Box sx={{ mb: 2 }}>
-                        <Typography variant="subtitle1">Sign in with Email address</Typography>
-                    </Box>
-                </Grid>
-            </Grid>
-
             <Formik
                 initialValues={{
                     email: 'info@codedthemes.com',
@@ -141,28 +63,21 @@ const FirebaseLogin = ({ ...others }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
-                        await firebaseEmailPasswordSignIn(values.email, values.password).then(
-                            () => {
-                                // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
-                                // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
-                                // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-                                // github issue: https://github.com/formium/formik/issues/2430
-                            },
-                            (err: any) => {
-                                if (scriptedRef.current) {
-                                    setStatus({ success: false })
-                                    setErrors({ submit: err.message })
-                                    setSubmitting(false)
-                                }
-                            }
+                        /**
+                         * TODO: LOGIN API CALL
+                         */
+                        await login(
+                            values.email,
+                            values.password,
+                            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
                         )
                     } catch (err: any) {
-                        console.error(err)
-                        if (scriptedRef.current) {
-                            setStatus({ success: false })
-                            setErrors({ submit: err.message })
-                            setSubmitting(false)
-                        }
+                        /**
+                         * TODO: ERROR HANDLING
+                         */
+                        setStatus({ success: false })
+                        setErrors({ submit: 'Email or Password is incorrect. Please try again.' })
+                        setSubmitting(false)
                     }
                 }}
             >
@@ -222,8 +137,8 @@ const FirebaseLogin = ({ ...others }) => {
                                 </FormHelperText>
                             )}
                         </FormControl>
-                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-                            <FormControlLabel
+                        <Stack direction="row" alignItems="center" justifyContent="end" spacing={1}>
+                            {/* <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={checked}
@@ -233,7 +148,7 @@ const FirebaseLogin = ({ ...others }) => {
                                     />
                                 }
                                 label="Remember me"
-                            />
+                            /> */}
                             <Typography
                                 variant="subtitle1"
                                 component={Link}

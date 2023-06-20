@@ -1,5 +1,6 @@
 // third-party
 import firebase from 'firebase/compat/app'
+import { NextRouter } from 'next/router'
 
 // project imports
 import { UserProfile } from 'types/user-profile'
@@ -40,6 +41,17 @@ export type JWTContextType = {
     register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>
     resetPassword: (email: string) => void
     updateProfile: VoidFunction
+}
+
+export type JWTCustomContextType = {
+    isLoggedIn: boolean
+    isInitialized?: boolean
+    user?: UserProfile | null | undefined
+    logout: () => void
+    login: (id: string, email: string, token: string) => Promise<void>
+    register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>
+    resetPassword: (email: string) => void
+    updateProfile: (router: NextRouter) => Promise<void>
 }
 
 export type AWSCognitoContextType = {
