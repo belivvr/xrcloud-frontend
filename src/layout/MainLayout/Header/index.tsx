@@ -42,8 +42,19 @@ const Header = () => {
                     }
                 }}
             >
-                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-                    <LogoSection />
+                <Box
+                    component="span"
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        fontSize: '24px',
+                        fontWeight: '700',
+                        marginRight: '1em'
+                    }}
+                >
+                    {/* <LogoSection /> */}
+                    XRCloud
                 </Box>
                 {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || (layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && matchDownMd)) && (
                     <Avatar
@@ -68,23 +79,16 @@ const Header = () => {
                 )}
             </Box>
 
-            {/* header search */}
-            <SearchSection />
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ flexGrow: 1 }} />
-
-            {/* mega-menu */}
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <MegaMenuSection />
-            </Box>
 
             {/* live customization & localization */}
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Box sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '24px' }}>
                 <LocalizationSection />
             </Box>
 
-            {/* notification & profile */}
-            <NotificationSection />
+            {/* profile */}
+
             <ProfileSection />
 
             {/* mobile header */}
