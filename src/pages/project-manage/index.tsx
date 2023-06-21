@@ -7,8 +7,8 @@ import MainCard from 'ui-component/cards/MainCard'
 import ProjectManages from 'custom/manage'
 
 const ProjectManage = () => (
-    <Page title="Project-Manage">
-        <MainCard title="Project-Manage">
+    <Page title="Project Manage">
+        <MainCard title="Project Manage">
             <ProjectManages />
         </MainCard>
     </Page>
