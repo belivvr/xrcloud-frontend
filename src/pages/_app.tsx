@@ -23,6 +23,7 @@ import Snackbar from 'ui-component/extended/Snackbar'
 
 // auth provider
 import { JWTProvider as AuthProvider } from 'contexts/XRCloudAuthContext'
+import { ProjectContextProvider } from 'contexts/ProjectContext'
 // import { FirebaseProvider as AuthProvider } from 'contexts/FirebaseContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
@@ -47,10 +48,12 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                 <Locales>
                     <NavigationScroll>
                         <AuthProvider>
-                            <>
-                                {getLayout(<Component {...pageProps} />)}
-                                <Snackbar />
-                            </>
+                            <ProjectContextProvider>
+                                <>
+                                    {getLayout(<Component {...pageProps} />)}
+                                    <Snackbar />
+                                </>
+                            </ProjectContextProvider>
                         </AuthProvider>
                     </NavigationScroll>
                 </Locales>
