@@ -9,8 +9,6 @@ import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import RoomList from 'custom/rooms/roomList'
 
-// ==============================|| SAMPLE PAGE ||============================== //
-
 const Rooms = () => (
     <Page title="Rooms">
         <MainCard title="Rooms">

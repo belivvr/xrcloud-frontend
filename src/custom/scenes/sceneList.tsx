@@ -1,7 +1,7 @@
 import React from 'react'
 import { EnterServiceButton, StyledAddIcon } from 'custom/styles/styled'
 
-const RoomList = () => {
+const SceneList = () => {
     return (
         <EnterServiceButton>
             <StyledAddIcon />
@@ -9,4 +9,4 @@ const RoomList = () => {
     )
 }
 
-export default RoomList
+export default SceneList
