@@ -4,8 +4,9 @@ import { NavItemType } from 'types'
 
 // ==============================|| MENU ITEMS ||============================== //
 
-const menuItems: { items: NavItemType[] } = {
-    items: [pages, other]
+const menuItems: { items: NavItemType[]; item: NavItemType[] } = {
+    items: [pages, other],
+    item: [pages]
 }
 
 export default menuItems

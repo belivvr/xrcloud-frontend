@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -21,9 +21,15 @@ import { drawerWidth } from 'store/constant'
 import { useDispatch, useSelector } from 'store'
 import { openDrawer } from 'store/slices/menu'
 
+import MenuOnly from '../Menu'
+
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
-const Sidebar = () => {
+interface SidebarProps {
+    isProject: boolean
+}
+
+const Sidebar = ({ isProject }: SidebarProps) => {
     const theme = useTheme()
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'))
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
@@ -44,13 +50,8 @@ const Sidebar = () => {
 
     const drawerContent = (
         <>
+            {/* {isProject === false ? <MenuList /> : <MenuOnly />} */}
             <MenuList />
-            {/* {layout === LAYOUT_CONST.VERTICAL_LAYOUT && drawerOpen && <MenuCard />} */}
-            {/* {layout === LAYOUT_CONST.VERTICAL_LAYOUT && drawerOpen && (
-                <Stack direction="row" justifyContent="center" sx={{ mb: 2, backgroundColor: 'red' }}>
-                    <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
-                </Stack>
-            )} */}
         </>
     )
 

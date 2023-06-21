@@ -2,13 +2,13 @@
 import { FormattedMessage } from 'react-intl'
 
 // assets
-import { IconKey, IconBug } from '@tabler/icons'
+import { IconKey, IconSitemap } from '@tabler/icons'
 import { NavItemType } from 'types'
 
 // constant
 const icons = {
     IconKey,
-    IconBug
+    IconSitemap
 }
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -20,11 +20,11 @@ const pages: NavItemType = {
     type: 'group',
     children: [
         {
-            id: 'project-manage',
-            title: <FormattedMessage id="project-manage" />,
+            id: 'Projects',
+            title: <FormattedMessage id="projects" />,
             type: 'item',
-            url: '/project-manage',
-            icon: icons.IconBug,
+            url: '/projects',
+            icon: icons.IconSitemap,
             breadcrumbs: false,
             children: []
         }
