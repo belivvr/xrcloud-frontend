@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
 // auth provider
-import AuthContext from 'contexts/JWTContextCustom'
+import AuthContext from 'contexts/XRCloudAuthContext'
 // import AuthContext from 'contexts/FirebaseContext';
 // import AuthContext from 'contexts/Auth0Context';
 // import AuthContext from 'contexts/AWSCognitoContext';

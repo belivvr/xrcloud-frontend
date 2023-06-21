@@ -22,7 +22,7 @@ import Locales from 'ui-component/Locales'
 import Snackbar from 'ui-component/extended/Snackbar'
 
 // auth provider
-import { JWTProvider as AuthProvider } from 'contexts/JWTContextCustom'
+import { JWTProvider as AuthProvider } from 'contexts/XRCloudAuthContext'
 // import { FirebaseProvider as AuthProvider } from 'contexts/FirebaseContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';

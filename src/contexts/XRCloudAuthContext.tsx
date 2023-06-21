@@ -14,7 +14,7 @@ import accountReducer from 'store/accountReducer'
 import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
-import { JWTContextCustomType } from 'types/auth'
+import { XRCloudAuthContextType } from 'types/auth'
 
 const chance = new Chance()
 
@@ -35,7 +35,6 @@ const verifyToken: (st: string) => boolean = (serviceToken) => {
         return false
     }
     const decoded: KeyedObject = jwtDecode(serviceToken)
-    console.log(decoded.exp > Date.now() / 1000)
     /**
      * Property 'exp' does not exist on type '<T = unknown>(token: string, options?: JwtDecodeOptions | undefined) => T'.
      */
@@ -55,7 +54,7 @@ const setSession = (serviceToken?: string | null, refreshToken?: string | null) 
 }
 
 // ==============================|| JWT CONTEXT & PROVIDER ||============================== //
-const JWTContextCustom = createContext<JWTContextCustomType | null>(null)
+const XRCloudAuthContext = createContext<XRCloudAuthContextType | null>(null)
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
@@ -152,10 +151,10 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     }
 
     return (
-        <JWTContextCustom.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>
+        <XRCloudAuthContext.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>
             {children}
-        </JWTContextCustom.Provider>
+        </XRCloudAuthContext.Provider>
     )
 }
 
-export default JWTContextCustom
+export default XRCloudAuthContext
