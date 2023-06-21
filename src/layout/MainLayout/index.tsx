@@ -1,4 +1,4 @@
-import { useEffect, useMemo, FC, ReactNode } from 'react'
+import { useEffect, useMemo, FC, ReactNode, useState } from 'react'
 
 // material-ui
 import { styled, useTheme, Theme } from '@mui/material/styles'
@@ -91,6 +91,7 @@ const MainLayout: FC<Props> = ({ children }) => {
     const dispatch = useDispatch()
     const { drawerOpen } = useSelector((state) => state.menu)
     const { drawerType, container, layout } = useConfig()
+    const [isProject, setIsProject] = useState(false)
 
     useEffect(() => {
         if (drawerType === LAYOUT_CONST.DEFAULT_DRAWER) {
@@ -140,7 +141,7 @@ const MainLayout: FC<Props> = ({ children }) => {
                 {layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && !matchDownMd && <HorizontalBar />}
 
                 {/* drawer */}
-                {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || matchDownMd) && <Sidebar />}
+                {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || matchDownMd) && <Sidebar isProject={isProject} />}
 
                 {/* main content */}
                 <Main theme={theme} open={drawerOpen} layout={layout}>

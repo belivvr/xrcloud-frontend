@@ -9,8 +9,25 @@ import Logo from 'ui-component/Logo'
 // ==============================|| MAIN LOGO ||============================== //
 
 const LogoSection = () => (
-    <MuiLink component={Link} href={DASHBOARD_PATH} aria-label="theme-logo">
-        <Logo />
+    <MuiLink
+        component={Link}
+        href={DASHBOARD_PATH}
+        aria-label="theme-logo"
+        style={{
+            textDecoration: 'none',
+            color: 'black',
+            display: 'flex',
+            justifyContent: 'flex-start',
+
+            alignItems: 'flex-end',
+            fontSize: '24px',
+            fontWeight: '700',
+            marginRight: '1em',
+            marginTop: '1em'
+        }}
+    >
+        {/* <Logo /> */}
+        XRCloud
     </MuiLink>
 )
 

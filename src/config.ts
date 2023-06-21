@@ -5,9 +5,9 @@ import { ConfigProps } from 'types/config'
 
 // basename: only at build time to set, and Don't add '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,
 // like '/berry-material-react/react/default'
-export const BASE_PATH = '/project-manage'
+export const BASE_PATH = '/projects'
 
-export const DASHBOARD_PATH = '/project-manage'
+export const DASHBOARD_PATH = '/projects'
 export const HORIZONTAL_MAX_ITEM = 6
 
 const config: ConfigProps = {
