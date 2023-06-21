@@ -50,6 +50,7 @@ export type OverrideIcon =
     | React.ComponentClass<any>
     | FunctionComponent<any>
     | TablerIcon
+    | undefined
 
 export interface EnhancedTableHeadProps extends TableCellProps {
     onSelectAllClick: (e: React.ChangeEvent<HTMLInputElement>) => void
