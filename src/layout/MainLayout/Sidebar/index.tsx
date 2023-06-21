@@ -50,7 +50,7 @@ const Sidebar = ({ isProject }: SidebarProps) => {
 
     const drawerContent = (
         <>
-            {/* {isProject === false ? <MenuList /> : <MenuOnly />} */}
+            {/* {isProject === true ? <MenuList /> : <MenuOnly />} */}
             <MenuList />
         </>
     )
