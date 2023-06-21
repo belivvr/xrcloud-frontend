@@ -16,7 +16,7 @@ export type JWTContextType = {
     updateProfile: VoidFunction
 }
 
-export type JWTContextCustomType = {
+export type XRCloudAuthContextType = {
     isLoggedIn: boolean
     isInitialized?: boolean
     user?: UserProfile | null | undefined
