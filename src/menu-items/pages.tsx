@@ -1,6 +1,8 @@
 // third-party
 import { FormattedMessage } from 'react-intl'
 
+import { Icon } from '@mui/material'
+
 // assets
 import { IconKey, IconSitemap } from '@tabler/icons'
 import { NavItemType } from 'types'
@@ -15,7 +17,7 @@ const icons = {
 
 const pages: NavItemType = {
     id: 'pages',
-    title: <FormattedMessage id=" " />,
+    title: <FormattedMessage id="blank" />,
     icon: icons.IconKey,
     type: 'group',
     children: [
