@@ -15,6 +15,9 @@ import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
 import { XRCloudAuthContextType } from 'types/auth'
+import { Tokens, useRefresh } from 'hooks/useRefresh'
+
+type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
 
 const chance = new Chance()
 
@@ -30,24 +33,33 @@ const user = {
     role: 'admin'
 }
 
-const verifyToken: (st: string) => boolean = (serviceToken) => {
-    if (!serviceToken) {
+const verifyToken: VerifyToken = async (accessToken, renewToken) => {
+    if (!accessToken) {
         return false
     }
-    const decoded: KeyedObject = jwtDecode(serviceToken)
+    const decoded: KeyedObject = jwtDecode(accessToken)
     /**
      * Property 'exp' does not exist on type '<T = unknown>(token: string, options?: JwtDecodeOptions | undefined) => T'.
      */
-    return decoded.exp > Date.now() / 1000
+    if (decoded.exp > Date.now() / 1000) {
+        return true
+    } else {
+        try {
+            await renewToken()
+            return true
+        } catch (err) {
+            return false
+        }
+    }
 }
 
-const setSession = (serviceToken?: string | null, refreshToken?: string | null) => {
-    if (serviceToken && refreshToken) {
-        localStorage.setItem('serviceToken', serviceToken)
+const setSession = (accessToken?: string | null, refreshToken?: string | null) => {
+    if (accessToken && refreshToken) {
+        localStorage.setItem('accessToken', accessToken)
         localStorage.setItem('refreshToken', refreshToken)
-        axios.defaults.headers.common.Authorization = `Bearer ${serviceToken}`
+        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`
     } else {
-        localStorage.removeItem('serviceToken')
+        localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
         delete axios.defaults.headers.common.Authorization
     }
@@ -58,15 +70,20 @@ const XRCloudAuthContext = createContext<XRCloudAuthContextType | null>(null)
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
+    const { renewTokens } = useRefresh()
 
     useEffect(() => {
         const init = async () => {
             try {
-                const serviceToken = window.localStorage.getItem('serviceToken')
-                const refreshToken = window.localStorage.getItem('refreshToken')
+                const checkToken = window.localStorage.getItem('accessToken')
 
-                if (serviceToken && verifyToken(serviceToken)) {
-                    setSession(serviceToken, refreshToken)
+                if (checkToken) {
+                    const isTokenValid = await verifyToken(checkToken, renewTokens)
+                    if (!isTokenValid) throw new Error('Invalid token')
+                    const accessToken = window.localStorage.getItem('accessToken')
+                    const refreshToken = window.localStorage.getItem('refreshToken')
+
+                    setSession(accessToken, refreshToken)
                     dispatch({
                         type: LOGIN,
                         payload: {

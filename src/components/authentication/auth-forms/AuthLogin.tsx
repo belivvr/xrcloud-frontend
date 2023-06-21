@@ -6,9 +6,7 @@ import { useTheme } from '@mui/material/styles'
 import {
     Box,
     Button,
-    Checkbox,
     FormControl,
-    FormControlLabel,
     FormHelperText,
     Grid,
     IconButton,
@@ -38,8 +36,6 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
 
     const { login } = useAuth()
     const scriptedRef = useScriptRef()
-
-    const [checked, setChecked] = React.useState(true)
 
     const [showPassword, setShowPassword] = React.useState(false)
     const handleClickShowPassword = () => {
