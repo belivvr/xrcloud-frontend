@@ -27,6 +27,11 @@ export type XRCloudAuthContextType = {
     updateProfile: VoidFunction
 }
 
+export type ProjectContextType = {
+    projects: any[] | null
+    loading: boolean
+}
+
 export interface InitialLoginContextProps {
     isLoggedIn: boolean
     isInitialized?: boolean

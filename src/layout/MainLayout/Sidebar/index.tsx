@@ -2,17 +2,15 @@ import { memo, useEffect, useMemo, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Box, Drawer, Stack, useMediaQuery } from '@mui/material'
+import { Box, Drawer, useMediaQuery } from '@mui/material'
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // project imports
-import MenuCard from './MenuCard'
 import MenuList from '../MenuList'
 import LogoSection from '../LogoSection'
 import MiniDrawerStyled from './MiniDrawerStyled'
-import Chip from 'ui-component/extended/Chip'
 
 import { LAYOUT_CONST } from 'constant'
 import useConfig from 'hooks/useConfig'
@@ -22,20 +20,18 @@ import { useDispatch, useSelector } from 'store'
 import { openDrawer } from 'store/slices/menu'
 
 import MenuOnly from '../Menu'
+import useProjects from 'hooks/useProjects'
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
-interface SidebarProps {
-    isProject: boolean
-}
-
-const Sidebar = ({ isProject }: SidebarProps) => {
+const Sidebar = () => {
     const theme = useTheme()
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'))
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
 
     const dispatch = useDispatch()
     const { drawerOpen } = useSelector((state) => state.menu)
+    const { projects, loading } = useProjects()
 
     const { layout, drawerType } = useConfig()
 
@@ -48,12 +44,7 @@ const Sidebar = ({ isProject }: SidebarProps) => {
         []
     )
 
-    const drawerContent = (
-        <>
-            {/* {isProject === false ? <MenuList /> : <MenuOnly />} */}
-            <MenuList />
-        </>
-    )
+    const drawerContent = <>{projects && projects.length > 0 ? <MenuList /> : <MenuOnly />}</>
 
     const drawerSX = {
         paddingLeft: drawerOpen ? '16px' : 0,
@@ -80,7 +71,7 @@ const Sidebar = ({ isProject }: SidebarProps) => {
             </>
         ),
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [matchUpMd, drawerOpen, drawerType]
+        [matchUpMd, drawerOpen, drawerType, projects]
     )
 
     return (

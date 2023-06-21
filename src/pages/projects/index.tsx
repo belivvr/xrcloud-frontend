@@ -8,6 +8,7 @@ import ProjectManages from 'custom/projectList'
 
 const Projects = () => {
     const [isProject, setIsProject] = useState(false)
+
     return (
         <Page title="projects">
             <MainCard title="Projects">

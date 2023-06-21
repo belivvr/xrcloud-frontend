@@ -2,14 +2,15 @@
 import { FormattedMessage } from 'react-intl'
 
 // assets
-import { IconBrandChrome, IconHelp, IconAccessible } from '@tabler/icons'
+import { IconBrandChrome, IconHelp, IconAccessible, IconSitemap } from '@tabler/icons'
 import { NavItemType } from 'types'
 
 // constant
 const icons = {
     IconBrandChrome,
     IconHelp,
-    IconAccessible
+    IconAccessible,
+    IconSitemap
 }
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
