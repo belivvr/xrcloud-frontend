@@ -1,24 +1,27 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { Button } from '@mui/material'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openDrawer } from 'store/slices/menu'
 import { ProjectListStyle } from 'custom/styles/styled'
-import { ProjectContext } from 'custom/ProjectContext'
+import { selectProjectList } from 'store/slices/project'
+import { useRouter } from 'next/router'
 
-interface ProjectProps {
-    isProject: boolean
-    setIsProject: React.Dispatch<React.SetStateAction<boolean>>
+interface ProjectName {
+    id: number
+    name: string
 }
 
-const ProjectManages = ({ isProject, setIsProject }: ProjectProps) => {
+const ProjectList = () => {
     const dispatch = useDispatch()
-    // const [projectList, setProjectList] = useState<Array<{ id: number; name: string }>>([])
-    const { projectList, setProjectList } = useContext(ProjectContext)
+    const router = useRouter()
+    const projectList = useSelector(selectProjectList)
     const handleClick = () => {
         dispatch(openDrawer(true))
-        setIsProject(true)
-        const newProject = { id: projectList.length + 1, name: `프로젝트 ${projectList.length + 1}` }
-        setProjectList([...projectList, newProject])
+        router.push(`/addproject`)
+    }
+
+    const handleProjectClick = (projectId: number | string) => {
+        router.push(`/updateproject?id=${projectId}`)
     }
 
     return (
@@ -26,11 +29,14 @@ const ProjectManages = ({ isProject, setIsProject }: ProjectProps) => {
             <Button variant="contained" color="primary" onClick={handleClick}>
                 프로젝트 추가
             </Button>
-            {projectList.map((project) => (
-                <ProjectListStyle key={project.id}>{project.name}</ProjectListStyle>
+            {projectList.map((project: ProjectName) => (
+                //handleProjectClick 에 id 값 추가해야해..
+                <ProjectListStyle key={project.id} onClick={() => handleProjectClick(project.id)}>
+                    {project.name}
+                </ProjectListStyle>
             ))}
         </div>
     )
 }
 
-export default ProjectManages
+export default ProjectList
