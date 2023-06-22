@@ -1,9 +1,12 @@
 import React from 'react'
 import { EnterServiceButton, StyledAddIcon } from 'custom/styles/styled'
+import { useRouter } from 'next/router'
 
 const RoomList = () => {
+    const router = useRouter()
+
     return (
-        <EnterServiceButton>
+        <EnterServiceButton onClick={() => router.push('/room')}>
             <StyledAddIcon />
         </EnterServiceButton>
     )
