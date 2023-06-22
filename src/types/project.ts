@@ -1,28 +1,38 @@
-export interface XRCloudProject {
+export interface Project {
     id: string
-    product: 'hub'
-    title: string
-    favicon: URL
-    logo: URL
+    name: string
     createdAt: Date
     updatedAt: Date
-    scenes: Scene[]
-    rooms: Room[]
+    projectId: string
+    projectKey: string
+    logoUrl: URL
+    faviconUrl: URL
 }
 
 export interface Scene {
     id: string
-    thumbnail: URL
+    sceneUrl: URL
+    thumbnailUrl: URL
 }
 
 export interface Room {
     id: string
     sceneId: string
-    title: string
+    createdAt: Date
+    updatedAt: Date
+    name: string
     customData: any
-    size: number
+    roomSize: number
     autoScale: boolean
-    thumbnail: URL
+    roomUrl: URL
+    thumbnailUrl: URL
+}
+
+export interface RoomField {
+    title: string
+    id: string
+    label: string
+    isDisabled: boolean
 }
 
 export type URL = string
