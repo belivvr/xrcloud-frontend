@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useState } from 'react'
+import { ProjectContext, Project } from 'custom/ProjectContext'
 
 // global styles
 import '../styles/globals.css'
@@ -39,6 +40,8 @@ interface Props {
 
 function MyApp({ Component, pageProps }: AppProps & Props) {
     const getLayout = Component.getLayout ?? ((page: any) => page)
+
+    const [projectList, setProjectList] = useState<Project[]>([])
 
     return (
         <Provider store={store}>
