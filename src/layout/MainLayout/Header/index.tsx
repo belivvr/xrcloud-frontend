@@ -56,6 +56,7 @@ const Header = () => {
                     {/* <LogoSection /> */}
                     XRCloud
                 </Box>
+                {layout === LAYOUT_CONST.VERTICAL_LAYOUT}
                 {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || (layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && matchDownMd)) && (
                     <Avatar
                         variant="rounded"
