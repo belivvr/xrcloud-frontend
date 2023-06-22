@@ -1,18 +1,16 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 
 // project imports
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import ProjectManages from 'custom/projectList'
+import ProjectList from 'custom/projectList'
 
 const Projects = () => {
-    const [isProject, setIsProject] = useState(false)
-
     return (
         <Page title="projects">
             <MainCard title="Projects">
-                <ProjectManages setIsProject={setIsProject} isProject={isProject} />
+                <ProjectList />
             </MainCard>
         </Page>
     )

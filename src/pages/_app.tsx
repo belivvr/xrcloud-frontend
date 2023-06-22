@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useState } from 'react'
+// import { ProjectContext, Project } from 'custom/ProjectContext'
 
 // global styles
 import '../styles/globals.css'
@@ -40,6 +41,8 @@ interface Props {
 function MyApp({ Component, pageProps }: AppProps & Props) {
     const getLayout = Component.getLayout ?? ((page: any) => page)
 
+    // const [projectList, setProjectList] = useState<Project[]>([])
+
     return (
         <Provider store={store}>
             {/* <ConfigProvider> */}
@@ -48,12 +51,12 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                 <Locales>
                     <NavigationScroll>
                         <AuthProvider>
-                            <ProjectContextProvider>
-                                <>
-                                    {getLayout(<Component {...pageProps} />)}
-                                    <Snackbar />
-                                </>
-                            </ProjectContextProvider>
+                            <>
+                                {/* <ProjectContext.Provider value={{ projectList, setProjectList }}> */}
+                                {getLayout(<Component {...pageProps} />)}
+                                <Snackbar />
+                                {/* </ProjectContext.Provider> */}
+                            </>
                         </AuthProvider>
                     </NavigationScroll>
                 </Locales>
