@@ -1,8 +1,10 @@
+import { buttonGroupClasses, popoverClasses } from '@mui/material'
+import { IconButterfly } from '@tabler/icons'
 import { LAYOUT_CONST } from 'constant'
 
 // types
 import { ConfigProps } from 'types/config'
-import { Room, RoomField, Scene } from 'types/project'
+import { Room, RoomField, Scene, Permission, PermissionCheckField } from 'types/project'
 import { v4 } from 'uuid'
 
 // basename: only at build time to set, and Don't add '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,
@@ -69,6 +71,39 @@ export const roomFields: RoomField[] = [
     { title: 'projects.hubs.rooms.name', id: 'name', label: 'Name', isDisabled: false },
     { title: 'projects.hubs.rooms.customData', id: 'customData', label: 'Custom Data', isDisabled: false },
     { title: 'projects.hubs.rooms.roomSize', id: 'roomSize', label: 'Room Size', isDisabled: false }
+]
+
+export const mockPermission: Permission = {
+    id: v4(),
+    sceneId: v4(),
+    name: 'BTS',
+    customData: 'Room 1 test',
+    object: true,
+    flight: true,
+    dropout: true,
+    userMute: true,
+    audioAmp: false,
+    mediaCreateMove: true,
+    penDraw: true,
+    cameraCreate: false,
+    emojiCreate: false
+}
+
+export const permissionFields: RoomField[] = [
+    { title: '이름', id: 'name', label: '이름', isDisabled: false },
+    { title: 'projects.hubs.permissions.custom-data', id: 'custom-data', label: 'projects.hubs.permissions.custom-data', isDisabled: false }
+]
+
+export const permissionCheckFields: PermissionCheckField[] = [
+    { title: '오브젝트 고정', id: 'object' },
+    { title: '비행', id: 'flight' },
+    { title: '강퇴', id: 'dropout' },
+    { title: '유저 음소거', id: 'userMute' },
+    { title: '오디오 증폭', id: 'audioAmp' },
+    { title: '미디어 생성 및 이동', id: 'mediaCreateMove' },
+    { title: '펜그리기', id: 'penDraw' },
+    { title: '카메라 생성', id: 'cameraCreate' },
+    { title: '이모지 생성', id: 'emojiCreate' }
 ]
 
 export default config
