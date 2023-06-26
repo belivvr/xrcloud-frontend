@@ -4,7 +4,7 @@ const withTM = require('next-transpile-modules')(['@babel/preset-react'])
 
 const nextConfig = withTM({
     images: {
-        domains: ['flagcdn.com']
+        domains: ['flagcdn.com', 'kr.object.ncloudstorage.com']
     },
     env: {
         REACT_APP_VERSION: process.env.REACT_APP_VERSION,

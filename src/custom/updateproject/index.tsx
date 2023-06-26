@@ -1,23 +1,63 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TableCell, TableRow, Table, TableBody, TextField, Button } from '@mui/material'
 import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
 import FaviconUploader from 'custom/common/FaviconFileUploader'
 import LogoUploader from 'custom/common/LogoFileUploader'
-import axios from 'axios'
 import { Project } from 'types/project'
+import { createRequestOptions } from 'utils/createRequestOptions'
+import { useRefresh } from 'hooks/useRefresh'
+import router from 'next/router'
 
-const ProjectPage = () => {
-    const [projectData, setProjectData] = useState<Project>()
+interface Props {
+    project: Project
+}
+
+const ProjectPage = ({ project }: Props) => {
+    const [projectName, setProjectName] = useState('')
+
     const [faviconPreview, setFaviconPreview] = useState('')
     const [faviconFile, setFaviconFile] = useState<File | undefined>(undefined)
     const [faviconFileList, setFaviconFileList] = useState<FileList>()
+
     const [logoPreview, setLogoPreview] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
     const [logoFileList, setLogoFileList] = useState<FileList>()
-    const [projectName, setProjectName] = useState('')
-    const [accessKeyValue, setAccessKeyValue] = useState('')
-    const [createAt, setCreateAt] = useState('')
-    const [lastUpdateAt, setLastUpdateAt] = useState('')
+
+    const accessToken = localStorage.getItem('accessToken')
+    const { renewTokens } = useRefresh()
+
+    const handleUpdateProject = async () => {
+        const formData = new FormData()
+        formData.append('projectId', project.id)
+        formData.append('projectName', projectName)
+
+        if (faviconFile) {
+            formData.append('favicon', faviconFile)
+        }
+
+        if (logoFile) {
+            formData.append('logo', logoFile)
+        }
+
+        let requestOptions = createRequestOptions('PATCH', accessToken, formData)
+
+        const data = await fetch('/api/projects/update', requestOptions)
+        if (data.status === 401) {
+            const retoken = await renewTokens()
+            requestOptions = createRequestOptions('PATCH', retoken.accessToken, formData)
+            await fetch('/api/projects/update', requestOptions)
+        }
+
+        router.push(`/projects`)
+    }
+
+    useEffect(() => {
+        if (project) {
+            setProjectName(project.name)
+            setLogoPreview(project.logoUrl)
+            setFaviconPreview(project.faviconUrl)
+        }
+    }, [project])
 
     return (
         <Table>
@@ -25,14 +65,14 @@ const ProjectPage = () => {
                 <TableRow>
                     <TableCell>프로젝트이름</TableCell>
                     <TableCell>
-                        <TextField fullWidth />
+                        <TextField onChange={(e) => setProjectName(e.target.value)} value={projectName} fullWidth />
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell>파비콘</TableCell>
                     <TableCell>
                         <ThumbnailBox>
-                            <ImagePreview src={faviconPreview} alt="Favicon Preview" />
+                            <ImagePreview src={faviconPreview} alt={faviconPreview} />
 
                             <FaviconUploader
                                 setFaviconPreview={setFaviconPreview}
@@ -48,7 +88,7 @@ const ProjectPage = () => {
                     <TableCell>로고</TableCell>
                     <TableCell>
                         <ThumbnailBox>
-                            <ImagePreview src={logoPreview} alt="Logo Preview" />
+                            <ImagePreview src={logoPreview} alt={logoPreview} />
 
                             <LogoUploader
                                 setLogoPreview={setLogoPreview}
@@ -63,25 +103,25 @@ const ProjectPage = () => {
                 <TableRow>
                     <TableCell>AccessKey</TableCell>
                     <TableCell>
-                        <TextField fullWidth />
+                        <TextField disabled value={project.projectKey} fullWidth />
                     </TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>생성</TableCell>
+                    <TableCell>생성 일자</TableCell>
                     <TableCell>
-                        <TextField fullWidth />
+                        <TextField disabled value={project.createdAt} fullWidth />
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell>마지막 업데이트</TableCell>
                     <TableCell>
-                        <TextField fullWidth />
+                        <TextField disabled value={project.updatedAt} fullWidth />
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell sx={{ borderBottom: 'none', textAlign: 'center' }} colSpan={2}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-                            <Button variant="contained" color="primary">
+                            <Button onClick={handleUpdateProject} variant="contained" color="primary">
                                 업데이트
                             </Button>
                             <Button variant="contained" color="error">

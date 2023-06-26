@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import AddIcon from '@mui/icons-material/Add'
+import { Button } from '@mui/material'
 
 export const EnterServiceButton = styled.button`
     display: flex;
@@ -22,21 +23,24 @@ export const StyledAddIcon = styled(AddIcon)`
     height: 300px;
 `
 
-export const ProjectListStyle = styled.button`
+export const ProjectListStyle = styled(Button)`
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     border: none;
     width: 100%;
-    height: 100px;
-    background-color: white;
+    padding: 16px;
+    min-height: 100px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    &:hover {
-        background-color: #f5f5f5;
-        cursor: pointer;
-    }
     margin-top: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+
+    :hover {
+        background-color: #fff;
+    }
 `
 export const ThumbnailContainer = styled.div`
     display: flex;

@@ -1,20 +1,19 @@
 import React from 'react'
 import { Button } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { openDrawer } from 'store/slices/menu'
 import { ProjectListStyle } from 'custom/styles/styled'
-import { selectProjectList } from 'store/slices/project'
 import { useRouter } from 'next/router'
+import { Project } from 'types/project'
+import Image from 'next/image'
 
-interface ProjectName {
-    id: number
-    name: string
+interface Props {
+    projectList: Project[] | undefined
 }
 
-const ProjectList = () => {
+const ProjectList = ({ projectList }: Props) => {
     const dispatch = useDispatch()
     const router = useRouter()
-    const projectList = useSelector(selectProjectList)
     const handleClick = () => {
         dispatch(openDrawer(true))
         router.push(`/addproject`)
@@ -29,8 +28,16 @@ const ProjectList = () => {
             <Button variant="contained" color="primary" onClick={handleClick}>
                 프로젝트 추가
             </Button>
-            {projectList.map((project: ProjectName) => (
+
+            {projectList?.map((project: Project) => (
                 <ProjectListStyle key={project.id} onClick={() => handleProjectClick(project.id)}>
+                    <Image
+                        width={50}
+                        height={50}
+                        style={{ objectFit: 'contain', marginRight: '16px' }}
+                        src={project.faviconUrl}
+                        alt={project.faviconUrl}
+                    />
                     {project.name}
                 </ProjectListStyle>
             ))}

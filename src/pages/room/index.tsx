@@ -8,10 +8,10 @@ import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import { mockRoom, mockSceneList, roomFields } from 'config'
 import { Room as RoomType, Scene } from 'types/project'
-import BringRoomData from 'custom/room/BringRoomData'
 import { SelectChangeEvent } from '@mui/material'
 import Contents from 'custom/room/Contents'
 import Buttons from 'custom/room/Buttons'
+import Loading from 'custom/common/Loading'
 
 const Room = () => {
     const [room, setRoom] = useState<RoomType | null>()
@@ -35,7 +35,7 @@ const Room = () => {
     }, [])
 
     if (!room) {
-        return <BringRoomData />
+        return <Loading title="Room" />
     }
 
     return (

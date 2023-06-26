@@ -20,15 +20,17 @@ const Projects = () => {
             }
         })
             .then((res) => {
-                setProjectList([])
+                setProjectList(res.items)
             })
-            .catch((e) => {})
-    }, [])
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [accessToken, get])
 
     return (
         <Page title="projects">
             <MainCard title="Projects">
-                <ProjectList />
+                <ProjectList projectList={projectList} />
             </MainCard>
         </Page>
     )

@@ -3,10 +3,14 @@ import React from 'react'
 import MainCard from 'ui-component/cards/MainCard'
 import Page from 'ui-component/Page'
 
-export default function BringRoomData() {
+interface Props {
+    title: string
+}
+
+export default function Loading({ title }: Props) {
     return (
-        <Page title="Room">
-            <MainCard title="Room">
+        <Page title={title}>
+            <MainCard title={title}>
                 <div
                     style={{
                         width: '100%',

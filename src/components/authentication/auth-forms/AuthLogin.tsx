@@ -127,24 +127,6 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                         )}
                     </FormControl>
 
-                    <Grid container alignItems="center" justifyContent="end">
-                        <Grid item>
-                            <Typography
-                                variant="subtitle1"
-                                component={Link}
-                                href={
-                                    loginProp
-                                        ? `/pages/authentication/auth${loginProp}/forgot-password`
-                                        : '/pages/authentication/auth3/forgot-password'
-                                }
-                                color="secondary"
-                                sx={{ textDecoration: 'none' }}
-                            >
-                                Forgot Password?
-                            </Typography>
-                        </Grid>
-                    </Grid>
-
                     {errors.submit && (
                         <Box sx={{ mt: 3 }}>
                             <FormHelperText error>{errors.submit}</FormHelperText>
