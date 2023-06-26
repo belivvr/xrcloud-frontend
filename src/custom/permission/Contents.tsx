@@ -12,7 +12,7 @@ interface permissionFields {
 }
 
 interface Props {
-    permission: Permission
+    permission: Permission | undefined
     fields: permissionFields[]
     checkfields: PermissionCheckField[]
 }
