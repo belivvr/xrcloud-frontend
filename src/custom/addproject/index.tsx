@@ -16,6 +16,9 @@ import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
 import FaviconUploader from 'custom/common/FaviconFileUploader'
 import LogoUploader from 'custom/common/LogoFileUploader'
 import { useRequest } from 'hooks/useRequest'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProject, selectProjectList } from 'store/slices/project'
+import { useRouter } from 'next/router'
 
 const AddProjectPage = () => {
     const [productName, setProductName] = useState<string>('')
@@ -32,6 +35,10 @@ const AddProjectPage = () => {
     const accessToken = localStorage.getItem('accessToken')
 
     const { post } = useRequest()
+
+    const dispatch = useDispatch()
+    const projectList = useSelector(selectProjectList)
+    const router = useRouter()
 
     const handleSelectProduct = (event: SelectChangeEvent) => {
         setProductName(event.target.value)
@@ -57,6 +64,10 @@ const AddProjectPage = () => {
         }
 
         const data = await fetch('/api/projects/create', requestOptions)
+
+        const newProject = { id: projectList.length + 1, name: projectName }
+        dispatch(addProject(newProject))
+        router.push(`/projects`)
         console.log(data)
     }
 

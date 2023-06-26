@@ -3,7 +3,6 @@ export interface Project {
     name: string
     createdAt: Date
     updatedAt: Date
-    projectId: string
     projectKey: string
     logoUrl: URL
     faviconUrl: URL
