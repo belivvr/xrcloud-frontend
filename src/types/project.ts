@@ -36,3 +36,24 @@ export interface RoomField {
 }
 
 export type URL = string
+
+export interface Permission {
+    id: string
+    sceneId: string
+    name: string
+    customData: any
+    object: boolean
+    flight: boolean
+    dropout: boolean
+    userMute: boolean
+    audioAmp: boolean
+    mediaCreateMove: boolean
+    penDraw: boolean
+    cameraCreate: boolean
+    emojiCreate: boolean
+}
+
+export interface PermissionCheckField {
+    title: string
+    id: string
+}

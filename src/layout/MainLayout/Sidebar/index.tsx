@@ -31,7 +31,7 @@ const Sidebar = () => {
 
     const dispatch = useDispatch()
     const { drawerOpen } = useSelector((state) => state.menu)
-    const { projects, loading } = useProjects()
+    // const { projects, loading } = useProjects()
 
     const { layout, drawerType } = useConfig()
 
@@ -44,7 +44,11 @@ const Sidebar = () => {
         []
     )
 
-    const drawerContent = <>{projects && projects.length > 0 ? <MenuList /> : <MenuOnly />}</>
+    const drawerContent = (
+        <>
+            <MenuList />
+        </>
+    )
 
     const drawerSX = {
         paddingLeft: drawerOpen ? '16px' : 0,
@@ -71,7 +75,7 @@ const Sidebar = () => {
             </>
         ),
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [matchUpMd, drawerOpen, drawerType, projects]
+        [matchUpMd, drawerOpen, drawerType]
     )
 
     return (

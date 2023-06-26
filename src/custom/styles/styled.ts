@@ -132,3 +132,16 @@ export const FindFileBox = styled.div`
 
     margin-left: 4px;
 `
+
+export const Content = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+`
+
+export const ContentTitle = styled.div`
+    min-width: 300px;
+    margin-right: 20%;
+`
