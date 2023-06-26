@@ -6,7 +6,7 @@ import MainCard from 'ui-component/cards/MainCard'
 import { CircularProgress } from '@mui/material'
 import PermissionContents from 'custom/permission/Contents'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
-import { Permission as PermissionType, PermissionCheckField } from 'types/project'
+import { Permission as PermissionType } from 'types/project'
 import { mockPermission, permissionFields, permissionCheckFields } from 'config'
 
 const currencies = [
@@ -15,7 +15,7 @@ const currencies = [
 ]
 
 const Permission = () => {
-    const [permission, setPermission] = useState<PermissionType | null>()
+    const [permission, setPermission] = useState<PermissionType | undefined>()
 
     useEffect(() => {
         setPermission(mockPermission)
@@ -30,11 +30,7 @@ const Permission = () => {
                     </div>
                 }
             >
-                {!permission ? (
-                    <CircularProgress size={100} />
-                ) : (
-                    <PermissionContents permission={permission} fields={permissionFields} checkfields={permissionCheckFields} />
-                )}
+                <PermissionContents permission={permission} fields={permissionFields} checkfields={permissionCheckFields} />
             </MainCard>
         </Page>
     )
