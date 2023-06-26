@@ -12,8 +12,13 @@ export function useRequest() {
         body?: any
     ): Promise<T> {
         try {
-            const response = await axios[method](path, body, init)
-            return response.data
+            if (method === 'get') {
+                const response = await axios[method](path, init)
+                return response.data
+            } else {
+                const response = await axios[method](path, body, init)
+                return response.data
+            }
         } catch (err: any) {
             if (err.response?.status === 401) {
                 const { accessToken } = await renewTokens()
