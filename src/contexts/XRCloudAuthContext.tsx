@@ -14,8 +14,9 @@ import accountReducer from 'store/accountReducer'
 import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
-import { XRCloudAuthContextType } from 'types/auth'
+import { AuthResponseToken, CreateUser, XRCloudAuthContextType } from 'types/auth'
 import { Tokens, useRefresh } from 'hooks/useRefresh'
+import { useRequest } from 'hooks/useRequest'
 
 type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
 
@@ -71,6 +72,7 @@ const XRCloudAuthContext = createContext<XRCloudAuthContextType | null>(null)
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
     const { renewTokens } = useRefresh()
+    const { post } = useRequest()
 
     useEffect(() => {
         const init = async () => {
@@ -107,16 +109,11 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     }, [])
 
     const login = async (email: string, password: string) => {
-        /** TODO: LOGIN API
-         * 1. call login api (/api/auth/login)
-         * 2. get access token and refresh token
-         * 3. set session
-         */
+        const { accessToken, refreshToken } = await post<AuthResponseToken>('/api/auth/login', {
+            email,
+            password
+        })
 
-        const accessToken =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzQ4MDczNjAwLCJpYXQiOjE1MTYyMzkwMjJ9.oL57RAuF2Z5-puMjPWNWbjZ-JQZizmfTv-bTEDV9XrU'
-        const refreshToken =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNzQ4MDczNjAwLCJpYXQiOjE1MTYyMzkwMjJ9.oL57RAuF2Z5-puMjPWNWbjZ-JQZizmfTv-bTEDV9XrU'
         setSession(accessToken, refreshToken)
         dispatch({
             type: LOGIN,
@@ -127,31 +124,13 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         })
     }
 
-    const register = async (email: string, password: string, firstName: string, lastName: string) => {
-        const id = chance.bb_pin()
-        const response = await axios.post('/api/account/register', {
-            id,
+    const register = async (email: string, password: string) => {
+        const data = await post<CreateUser>('/api/admins/creates', {
             email,
-            password,
-            firstName,
-            lastName
+            password
         })
-        let users = response.data
 
-        if (window.localStorage.getItem('users') !== undefined && window.localStorage.getItem('users') !== null) {
-            const localUsers = window.localStorage.getItem('users')
-            users = [
-                ...JSON.parse(localUsers!),
-                {
-                    id,
-                    email,
-                    password,
-                    name: `${firstName} ${lastName}`
-                }
-            ]
-        }
-
-        window.localStorage.setItem('users', JSON.stringify(users))
+        return data
     }
 
     const logout = () => {

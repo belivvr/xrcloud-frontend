@@ -29,38 +29,7 @@ const Register = () => {
                             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
-                                        <Grid item sx={{ mb: 3 }}>
-                                            <Link href="#" aria-label="theme-logo">
-                                                <Logo />
-                                            </Link>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Grid
-                                                container
-                                                direction={matchDownSM ? 'column-reverse' : 'row'}
-                                                alignItems="center"
-                                                justifyContent="center"
-                                            >
-                                                <Grid item>
-                                                    <Stack alignItems="center" justifyContent="center" spacing={1}>
-                                                        <Typography
-                                                            color={theme.palette.secondary.main}
-                                                            gutterBottom
-                                                            variant={matchDownSM ? 'h3' : 'h2'}
-                                                        >
-                                                            Sign up
-                                                        </Typography>
-                                                        <Typography
-                                                            variant="caption"
-                                                            fontSize="16px"
-                                                            textAlign={matchDownSM ? 'center' : 'inherit'}
-                                                        >
-                                                            Enter your credentials to continue
-                                                        </Typography>
-                                                    </Stack>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
+                                        <div style={{ marginTop: '24px', fontSize: '24px', fontWeight: 700, color: '#000' }}>SIGN UP</div>
                                         <Grid item xs={12}>
                                             <AuthRegister />
                                         </Grid>

@@ -5,6 +5,16 @@ export interface JWTData {
     userId: string
 }
 
+export interface AuthResponseToken {
+    accessToken: string
+    refreshToken: string
+}
+
+export type CreateUser = {
+    id: string
+    email: string
+}
+
 export type JWTContextType = {
     isLoggedIn: boolean
     isInitialized?: boolean
@@ -22,7 +32,7 @@ export type XRCloudAuthContextType = {
     user?: UserProfile | null | undefined
     logout: () => void
     login: (email: string, password: string) => Promise<void>
-    register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>
+    register: (email: string, password: string) => Promise<CreateUser>
     resetPassword: (email: string) => void
     updateProfile: VoidFunction
 }
