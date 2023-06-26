@@ -16,9 +16,7 @@ import {
     InputAdornment,
     InputLabel,
     OutlinedInput,
-    TextField,
-    Typography,
-    useMediaQuery
+    Typography
 } from '@mui/material'
 
 // third party
@@ -42,15 +40,13 @@ import { StringColorProps } from 'types'
 const JWTRegister = ({ ...others }) => {
     const theme = useTheme()
     const scriptedRef = useScriptRef()
-    const dispatch = useDispatch()
     const router = useRouter()
-    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
     const [showPassword, setShowPassword] = React.useState(false)
     const [checked, setChecked] = React.useState(true)
 
     const [strength, setStrength] = React.useState(0)
     const [level, setLevel] = React.useState<StringColorProps>()
-    const { register } = useAuth()
+    const { login, register } = useAuth()
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
@@ -66,10 +62,6 @@ const JWTRegister = ({ ...others }) => {
         setLevel(strengthColor(temp))
     }
 
-    useEffect(() => {
-        changePassword('123456')
-    }, [])
-
     return (
         <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
@@ -84,8 +76,6 @@ const JWTRegister = ({ ...others }) => {
                 initialValues={{
                     email: '',
                     password: '',
-                    firstName: '',
-                    lastName: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -94,26 +84,8 @@ const JWTRegister = ({ ...others }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
-                        await register(values.email, values.password, values.firstName, values.lastName)
-                        if (scriptedRef.current) {
-                            setStatus({ success: true })
-                            setSubmitting(false)
-                            dispatch(
-                                openSnackbar({
-                                    open: true,
-                                    message: 'Your registration has been successfully completed.',
-                                    variant: 'alert',
-                                    alert: {
-                                        color: 'success'
-                                    },
-                                    close: false
-                                })
-                            )
-
-                            setTimeout(() => {
-                                router.push('/login')
-                            }, 1500)
-                        }
+                        await register(values.email, values.password)
+                        await login(values.email, values.password)
                     } catch (err: any) {
                         console.error(err)
                         if (scriptedRef.current) {
@@ -126,36 +98,8 @@ const JWTRegister = ({ ...others }) => {
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
-                        <Grid container spacing={matchDownSM ? 0 : 2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    fullWidth
-                                    label="First Name"
-                                    margin="normal"
-                                    name="firstName"
-                                    type="text"
-                                    value={values.firstName}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    sx={{ ...theme.typography.customInput }}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Last Name"
-                                    margin="normal"
-                                    name="lastName"
-                                    type="text"
-                                    value={values.lastName}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    sx={{ ...theme.typography.customInput }}
-                                />
-                            </Grid>
-                        </Grid>
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                            <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-email-register">Email Address</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-register"
                                 type="email"

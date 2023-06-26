@@ -3,9 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        console.log(`${process.env.NODE_LOCAL_SERVER}/auth/login`)
         try {
-            const data = await axios.post(`${process.env.NODE_LOCAL_SERVER}/auth/login`, {
+            const data = await axios.post(`${process.env.NODE_LOCAL_SERVER}/admins`, {
                 email: req.body.email,
                 password: req.body.password
             })
