@@ -1,24 +1,73 @@
-import axios from 'axios'
-import { NextApiRequest, NextApiResponse } from 'next'
+import formidable from 'formidable'
+import FormData from 'form-data'
+import fs from 'fs'
+import fetch from 'node-fetch'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export const config = {
+    api: {
+        bodyParser: false
+    }
+}
+
+export default async function handler(req: any, res: any) {
     if (req.method === 'POST') {
-        try {
-            const data = await axios.post(
-                `${process.env.NODE_LOCAL_SERVER}/projects`,
-                {
-                    name: req.body.name,
-                    description: req.body.description
-                },
-                {
-                    headers: {
-                        Authorization: req.headers.authorization
-                    }
-                }
-            )
-            res.status(data.status).send(data.data)
-        } catch (e: any) {
-            res.status(e.response.data.statusCode).send(e.response.data.message)
+        const fileData: any = await new Promise((resolve, reject) => {
+            const form = new formidable.IncomingForm({
+                multiples: true,
+                maxFileSize: 200 * 1024 * 1024,
+                keepExtensions: true
+            })
+            form.parse(req, (err, fields, files) => {
+                if (err) return reject(err)
+
+                let data: any = {}
+                const name = fields.projectName as string
+                const favicon = files.favicon as any
+                const logo = files.logo as any
+
+                data.name = name
+                data.favicon = favicon
+                data.logo = logo
+
+                return resolve(data)
+            })
+        })
+
+        const formData = new FormData()
+
+        const name = fileData.name
+        const favicon = fileData.favicon
+        const logo = fileData.logo
+
+        formData.append('name', name)
+
+        const faviconFilepath = favicon.filepath
+        const faviconStats = fs.statSync(faviconFilepath)
+        const faviconFileSizeInBytes = faviconStats.size
+        const faviconFileStream = fs.createReadStream(faviconFilepath)
+        formData.append(`favicon`, faviconFileStream, { knownLength: faviconFileSizeInBytes })
+
+        const logoFilepath = logo.filepath
+        const logoStats = fs.statSync(logoFilepath)
+        const logoFileSizeInBytes = logoStats.size
+        const logoFileStream = fs.createReadStream(logoFilepath)
+        formData.append(`logo`, logoFileStream, { knownLength: logoFileSizeInBytes })
+
+        const api = await fetch(`${process.env.NODE_LOCAL_SERVER}/projects`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                authorization: req.headers.authorization || ''
+            }
+        })
+
+        const status = api.status
+        const data = (await api.json()) as any
+
+        if (status === 201) {
+            return res.status(status).json({ success: true })
+        } else {
+            throw res.status(status).json(data)
         }
     } else {
         res.status(500).send('Wrong method')
