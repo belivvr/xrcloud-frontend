@@ -30,7 +30,6 @@ const ProjectList = () => {
                 프로젝트 추가
             </Button>
             {projectList.map((project: ProjectName) => (
-                //handleProjectClick 에 id 값 추가해야해..
                 <ProjectListStyle key={project.id} onClick={() => handleProjectClick(project.id)}>
                     {project.name}
                 </ProjectListStyle>

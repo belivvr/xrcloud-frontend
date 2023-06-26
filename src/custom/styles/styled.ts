@@ -46,7 +46,6 @@ export const ThumbnailContainer = styled.div`
     height: 420px;
     border: 2px solid gray;
     border-radius: 8px;
-    // background-color: green;
 `
 
 export const ThumbnailBox = styled.div`
@@ -70,8 +69,7 @@ export const ThumbnailInputBox = styled.div<{ htmlFor?: string }>`
 `
 
 export const ImagePreview = styled.img<{ src?: string }>`
-    width: 30%;
-    height: 200px;
+    height: 100%;
     backgroundcolor: yellow;
     object-fit: contain;
     position: relative;
