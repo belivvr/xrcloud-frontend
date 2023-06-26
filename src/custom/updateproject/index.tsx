@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TableCell, TableRow, Table, TableBody, TextField, Button } from '@mui/material'
 import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
 import FaviconUploader from 'custom/common/FaviconFileUploader'
 import LogoUploader from 'custom/common/LogoFileUploader'
+import axios from 'axios'
+import { Project } from 'types/project'
 
 const ProjectPage = () => {
+    const [projectData, setProjectData] = useState<Project>()
     const [faviconPreview, setFaviconPreview] = useState('')
     const [faviconFile, setFaviconFile] = useState<File | undefined>(undefined)
     const [faviconFileList, setFaviconFileList] = useState<FileList>()
     const [logoPreview, setLogoPreview] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
     const [logoFileList, setLogoFileList] = useState<FileList>()
+    const [projectName, setProjectName] = useState('')
+    const [accessKeyValue, setAccessKeyValue] = useState('')
+    const [createAt, setCreateAt] = useState('')
+    const [lastUpdateAt, setLastUpdateAt] = useState('')
+
     return (
         <Table>
             <TableBody>
@@ -54,12 +62,6 @@ const ProjectPage = () => {
                 </TableRow>
                 <TableRow>
                     <TableCell>AccessKey</TableCell>
-                    <TableCell>
-                        <TextField fullWidth />
-                    </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>토큰</TableCell>
                     <TableCell>
                         <TextField fullWidth />
                     </TableCell>
