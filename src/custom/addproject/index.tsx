@@ -101,7 +101,6 @@ const AddProjectPage = () => {
                     <TableCell>
                         <ThumbnailBox>
                             <ImagePreview src={faviconPreview} alt="Favicon Preview" />
-
                             <FaviconUploader
                                 setFaviconPreview={setFaviconPreview}
                                 faviconPreview={faviconPreview}
@@ -117,7 +116,6 @@ const AddProjectPage = () => {
                     <TableCell>
                         <ThumbnailBox>
                             <ImagePreview src={logoPreview} alt="Logo Preview" />
-
                             <LogoUploader
                                 setLogoPreview={setLogoPreview}
                                 logoPreview={logoPreview}
