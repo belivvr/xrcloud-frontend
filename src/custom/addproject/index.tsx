@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Table,
     TableBody,
@@ -15,10 +15,9 @@ import {
 import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
 import FaviconUploader from 'custom/common/FaviconFileUploader'
 import LogoUploader from 'custom/common/LogoFileUploader'
-import { useRequest } from 'hooks/useRequest'
-import { useDispatch, useSelector } from 'react-redux'
-import { addProject, selectProjectList } from 'store/slices/project'
-import { useRouter } from 'next/router'
+import { useRefresh } from 'hooks/useRefresh'
+import { createRequestOptions } from 'utils/createRequestOptions'
+import router from 'next/router'
 
 const AddProjectPage = () => {
     const [productName, setProductName] = useState<string>('')
@@ -33,12 +32,7 @@ const AddProjectPage = () => {
     const [logoFileList, setLogoFileList] = useState<FileList>()
 
     const accessToken = localStorage.getItem('accessToken')
-
-    const { post } = useRequest()
-
-    const dispatch = useDispatch()
-    const projectList = useSelector(selectProjectList)
-    const router = useRouter()
+    const { renewTokens } = useRefresh()
 
     const handleSelectProduct = (event: SelectChangeEvent) => {
         setProductName(event.target.value)
@@ -53,22 +47,16 @@ const AddProjectPage = () => {
         formData.append('favicon', faviconFile)
         formData.append('logo', logoFile)
 
-        const requestOptions: RequestInit = {
-            method: 'POST',
-            headers: {
-                accept: 'application/json, text/plain, */*',
-                'accept-encoding': 'gzip, compress, deflate, br',
-                Authorization: `Bearer ${accessToken}`
-            },
-            body: formData
-        }
+        let requestOptions = createRequestOptions('POST', accessToken, formData)
 
         const data = await fetch('/api/projects/create', requestOptions)
+        if (data.status === 401) {
+            const retoken = await renewTokens()
+            requestOptions = createRequestOptions('POST', retoken.accessToken, formData)
+            await fetch('/api/projects/create', requestOptions)
+        }
 
-        const newProject = { id: projectList.length + 1, name: projectName }
-        dispatch(addProject(newProject))
         router.push(`/projects`)
-        console.log(data)
     }
 
     return (

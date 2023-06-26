@@ -19,16 +19,17 @@ export default async function handler(req: any, res: any) {
             })
             form.parse(req, (err, fields, files) => {
                 if (err) return reject(err)
-                let data: any = {}
-                const projectId = fields.projectId as string
-                const name = fields.name as string
-                const description = fields.description as string
-                const favicon = fields.favicon as any
-                const logo = fields.logo as any
 
-                data.projectId = projectId
+                console.log(fields, files)
+
+                let data: any = {}
+                const id = fields.projectId as string
+                const name = fields.projectName as string
+                const favicon = files.favicon as any
+                const logo = files.logo as any
+
+                data.id = id
                 data.name = name
-                data.description = description
                 data.favicon = favicon
                 data.logo = logo
 
@@ -38,28 +39,30 @@ export default async function handler(req: any, res: any) {
 
         const formData = new FormData()
 
-        const projectId = fileData.projectId
+        const id = fileData.id
         const name = fileData.name
-        const description = fileData.description
         const favicon = fileData.favicon
         const logo = fileData.logo
 
         formData.append('name', name)
-        formData.append('description', description)
 
-        const faviconFilepath = favicon.filepath
-        const faviconStats = fs.statSync(faviconFilepath)
-        const faviconFileSizeInBytes = faviconStats.size
-        const faviconFileStream = fs.createReadStream(faviconFilepath)
-        formData.append(`favicon`, faviconFileStream, { knownLength: faviconFileSizeInBytes })
+        if (favicon) {
+            const faviconFilepath = favicon.filepath
+            const faviconStats = fs.statSync(faviconFilepath)
+            const faviconFileSizeInBytes = faviconStats.size
+            const faviconFileStream = fs.createReadStream(faviconFilepath)
+            formData.append(`favicon`, faviconFileStream, { knownLength: faviconFileSizeInBytes })
+        }
 
-        const logoFilepath = logo.filepath
-        const logoStats = fs.statSync(logoFilepath)
-        const logoFileSizeInBytes = logoStats.size
-        const logoFileStream = fs.createReadStream(logoFilepath)
-        formData.append(`logo`, logoFileStream, { knownLength: logoFileSizeInBytes })
+        if (logo) {
+            const logoFilepath = logo.filepath
+            const logoStats = fs.statSync(logoFilepath)
+            const logoFileSizeInBytes = logoStats.size
+            const logoFileStream = fs.createReadStream(logoFilepath)
+            formData.append(`logo`, logoFileStream, { knownLength: logoFileSizeInBytes })
+        }
 
-        const api = await fetch(`${process.env.NODE_PRODUCTION_SERVER}/projects/${projectId}`, {
+        const api = await fetch(`${process.env.NODE_LOCAL_SERVER}/projects/${id}`, {
             method: 'PATCH',
             body: formData,
             headers: {
@@ -70,11 +73,10 @@ export default async function handler(req: any, res: any) {
         const status = api.status
         const data = (await api.json()) as any
 
-        // 성공시, 실패시
-        if (status === 201) {
+        if (status === 200) {
             return res.status(status).json({ success: true })
         } else {
-            throw res.status(data.statusCode).json(data)
+            throw res.status(status).json(data)
         }
     } else {
         res.status(500).send('Wrong method')
