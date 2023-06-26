@@ -13,8 +13,6 @@ const currencies = [
 ]
 
 const Rooms = () => {
-    const [choiceProject, setChoiceProject] = useState(false)
-
     return (
         <Page title="Rooms">
             <MainCard
@@ -25,7 +23,6 @@ const Rooms = () => {
                     </div>
                 }
             >
-                {/* {choiceProject ? <RoomList /> : null} */}
                 <RoomList />
             </MainCard>
         </Page>

@@ -30,9 +30,9 @@ const PermissionContents = ({ permission, fields, checkfields }: Props) => {
                     <ContentTextField disabled={field.isDisabled} id="outlined-required" label={field.label} defaultValue={field.label} />
                 </Content>
             ))}
-            {checkfields.map((field) => (
-                <Content key={field.id}>
-                    <ContentTitle>{field.title}</ContentTitle>
+            {checkfields.map((check) => (
+                <Content key={check.id}>
+                    <ContentTitle>{check.title}</ContentTitle>
                     <div
                         style={{
                             width: '100%',
