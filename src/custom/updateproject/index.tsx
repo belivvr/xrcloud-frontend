@@ -4,16 +4,21 @@ import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
 import FaviconUploader from 'custom/common/FaviconFileUploader'
 import LogoUploader from 'custom/common/LogoFileUploader'
 import { Project } from 'types/project'
-import { createRequestOptions } from 'utils/createRequestOptions'
-import { useRefresh } from 'hooks/useRefresh'
-import router from 'next/router'
-import { useRequest } from 'hooks/useRequest'
 
 interface Props {
     project: Project
+    setProject: React.Dispatch<React.SetStateAction<Project | undefined>>
+    handleUpdateProject: (
+        projectId: string,
+        projectName: string,
+        faviconFile: File | undefined,
+        logoFile: File | undefined
+    ) => Promise<void>
+    handleDeleteProject: (projectId: string) => Promise<void>
+    handleGetProjectKey: (projectId: string) => Promise<Project | undefined>
 }
 
-const ProjectPage = ({ project }: Props) => {
+const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeleteProject, handleGetProjectKey }: Props) => {
     const [projectName, setProjectName] = useState('')
 
     const [faviconPreview, setFaviconPreview] = useState('')
@@ -23,51 +28,6 @@ const ProjectPage = ({ project }: Props) => {
     const [logoPreview, setLogoPreview] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
     const [logoFileList, setLogoFileList] = useState<FileList>()
-
-    const accessToken = localStorage.getItem('accessToken')
-    const { renewTokens } = useRefresh()
-    const { deleteRequest } = useRequest()
-
-    const handleUpdateProject = async () => {
-        const formData = new FormData()
-        formData.append('projectId', project.id)
-        formData.append('projectName', projectName)
-
-        if (faviconFile) {
-            formData.append('favicon', faviconFile)
-        }
-
-        if (logoFile) {
-            formData.append('logo', logoFile)
-        }
-
-        let requestOptions = createRequestOptions('PATCH', accessToken, formData)
-
-        const data = await fetch('/api/projects/update', requestOptions)
-        if (data.status === 401) {
-            const retoken = await renewTokens()
-            requestOptions = createRequestOptions('PATCH', retoken.accessToken, formData)
-            await fetch('/api/projects/update', requestOptions)
-        }
-
-        router.push(`/projects`)
-    }
-
-    const handleDeleteProject = async () => {
-        try {
-            await deleteRequest('/api/projects/delete', {
-                params: {
-                    projectId: project.id
-                },
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            })
-            router.push('/projects')
-        } catch (err) {
-            console.log(err)
-        }
-    }
 
     useEffect(() => {
         if (project) {
@@ -120,8 +80,19 @@ const ProjectPage = ({ project }: Props) => {
                 </TableRow>
                 <TableRow>
                     <TableCell>Project Key</TableCell>
-                    <TableCell>
+                    <TableCell style={{ display: 'flex', gap: '16px' }}>
                         <TextField disabled value={project.projectKey} fullWidth />
+                        <Button
+                            variant="outlined"
+                            onClick={async () => {
+                                const response = await handleGetProjectKey(project.id)
+
+                                setProject(response)
+                            }}
+                            style={{ minWidth: '200px', backgroundColor: '#fff', fontSize: '18px', fontWeight: '600' }}
+                        >
+                            발급 받기
+                        </Button>
                     </TableCell>
                 </TableRow>
                 <TableRow>
@@ -139,10 +110,20 @@ const ProjectPage = ({ project }: Props) => {
                 <TableRow>
                     <TableCell sx={{ borderBottom: 'none', textAlign: 'center' }} colSpan={2}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-                            <Button onClick={handleUpdateProject} variant="contained" color="primary">
+                            <Button
+                                onClick={() => handleUpdateProject(project.id, projectName, faviconFile, logoFile)}
+                                variant="contained"
+                                color="primary"
+                            >
                                 업데이트
                             </Button>
-                            <Button onClick={handleDeleteProject} variant="contained" color="error">
+                            <Button
+                                onClick={async () => {
+                                    await handleDeleteProject(project.id)
+                                }}
+                                variant="contained"
+                                color="error"
+                            >
                                 삭제
                             </Button>
                         </div>

@@ -1,12 +1,26 @@
-import ProjectContext from 'contexts/ProjectContext'
-import { useContext } from 'react'
+import { useEffect, useState } from 'react'
+import { Project } from 'types/project'
+import { useRequest } from './useRequest'
 
-const useProjects = () => {
-    const context = useContext(ProjectContext)
+export function useProjects() {
+    const [projectList, setProjectList] = useState<Project[]>()
 
-    if (!context) throw new Error('context must be use inside provider')
+    const { get } = useRequest()
+    const accessToken = localStorage.getItem('accessToken')
 
-    return context
+    useEffect(() => {
+        get<{ items: Project[] }>('/api/projects/findAll', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+            .then((res) => {
+                setProjectList(res.items)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [accessToken, get])
+
+    return { projectList }
 }
-
-export default useProjects

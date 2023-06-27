@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
@@ -5,7 +6,6 @@ import { openDrawer } from 'store/slices/menu'
 import { ProjectListStyle } from 'custom/styles/styled'
 import { useRouter } from 'next/router'
 import { Project } from 'types/project'
-import Image from 'next/image'
 
 interface Props {
     projectList: Project[] | undefined
@@ -30,11 +30,16 @@ const ProjectList = ({ projectList }: Props) => {
             </Button>
 
             {projectList?.map((project: Project) => (
-                <ProjectListStyle key={project.id} onClick={() => handleProjectClick(project.id)}>
-                    <Image
-                        width={50}
-                        height={50}
-                        style={{ objectFit: 'contain', marginRight: '16px' }}
+                <ProjectListStyle
+                    key={project.id}
+                    onClick={() =>
+                        setTimeout(() => {
+                            handleProjectClick(project.id)
+                        }, 300)
+                    }
+                >
+                    <img
+                        style={{ width: '50px', height: '50px', objectFit: 'contain', marginRight: '16px' }}
                         src={project.faviconUrl}
                         alt={project.faviconUrl}
                     />

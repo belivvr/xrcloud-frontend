@@ -20,7 +20,6 @@ import { useDispatch, useSelector } from 'store'
 import { openDrawer } from 'store/slices/menu'
 
 import MenuOnly from '../Menu'
-import useProjects from 'hooks/useProjects'
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -31,7 +30,6 @@ const Sidebar = () => {
 
     const dispatch = useDispatch()
     const { drawerOpen } = useSelector((state) => state.menu)
-    // const { projects, loading } = useProjects()
 
     const { layout, drawerType } = useConfig()
 
