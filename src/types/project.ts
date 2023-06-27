@@ -56,3 +56,9 @@ export interface PermissionCheckField {
     title: string
     id: string
 }
+
+export interface UploaderProps {
+    htmlFor: string
+    setFile: React.Dispatch<React.SetStateAction<File | undefined>>
+    setThumbnailUrl: React.Dispatch<React.SetStateAction<string>>
+}

@@ -1,18 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Page from 'ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import ProjectPage from 'components/custom/updateproject'
+import { UpdateProjectForm } from 'components/custom/updateproject/UpdateProjectForm'
 import Layout from 'layout'
 import { useRouter } from 'next/router'
-import Loading from 'components/custom/common/Loading'
 import { useProject } from 'hooks/useProject'
 import { Project } from 'types/project'
+import { Loading } from 'components/custom/common'
 
 const UpdateProject = () => {
     const [project, setProject] = useState<Project>()
 
     const router = useRouter()
-    const { findById, handleUpdateProject, handleDeleteProject, handleGetProjectKey } = useProject()
+    const { findById, updateProject, deleteProject, getProjectKey } = useProject()
 
     useEffect(() => {
         const projectId = router.query.id
@@ -28,12 +28,12 @@ const UpdateProject = () => {
     return (
         <Page title="Project">
             <MainCard title="Project">
-                <ProjectPage
+                <UpdateProjectForm
                     project={project}
                     setProject={setProject}
-                    handleUpdateProject={handleUpdateProject}
-                    handleDeleteProject={handleDeleteProject}
-                    handleGetProjectKey={handleGetProjectKey}
+                    updateProject={updateProject}
+                    deleteProject={deleteProject}
+                    getProjectKey={getProjectKey}
                 />
             </MainCard>
         </Page>
