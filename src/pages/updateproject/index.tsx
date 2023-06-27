@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Page from 'ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import ProjectPage from 'components/custom/updateproject'
+import { UpdateProjectForm } from 'components/custom/updateproject/UpdateProjectForm'
 import Layout from 'layout'
 import { useRouter } from 'next/router'
 import { useProject } from 'hooks/useProject'
@@ -28,7 +28,7 @@ const UpdateProject = () => {
     return (
         <Page title="Project">
             <MainCard title="Project">
-                <ProjectPage
+                <UpdateProjectForm
                     project={project}
                     setProject={setProject}
                     updateProject={updateProject}
