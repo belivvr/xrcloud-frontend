@@ -7,6 +7,7 @@ import { Project } from 'types/project'
 import { createRequestOptions } from 'utils/createRequestOptions'
 import { useRefresh } from 'hooks/useRefresh'
 import router from 'next/router'
+import { useRequest } from 'hooks/useRequest'
 
 interface Props {
     project: Project
@@ -25,6 +26,7 @@ const ProjectPage = ({ project }: Props) => {
 
     const accessToken = localStorage.getItem('accessToken')
     const { renewTokens } = useRefresh()
+    const { deleteRequest } = useRequest()
 
     const handleUpdateProject = async () => {
         const formData = new FormData()
@@ -49,6 +51,22 @@ const ProjectPage = ({ project }: Props) => {
         }
 
         router.push(`/projects`)
+    }
+
+    const handleDeleteProject = async () => {
+        try {
+            await deleteRequest('/api/projects/delete', {
+                params: {
+                    projectId: project.id
+                },
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+            router.push('/projects')
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     useEffect(() => {
@@ -101,7 +119,7 @@ const ProjectPage = ({ project }: Props) => {
                     </TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>AccessKey</TableCell>
+                    <TableCell>Project Key</TableCell>
                     <TableCell>
                         <TextField disabled value={project.projectKey} fullWidth />
                     </TableCell>
@@ -124,7 +142,7 @@ const ProjectPage = ({ project }: Props) => {
                             <Button onClick={handleUpdateProject} variant="contained" color="primary">
                                 업데이트
                             </Button>
-                            <Button variant="contained" color="error">
+                            <Button onClick={handleDeleteProject} variant="contained" color="error">
                                 삭제
                             </Button>
                         </div>

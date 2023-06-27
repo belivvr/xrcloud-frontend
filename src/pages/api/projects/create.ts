@@ -65,9 +65,9 @@ export default async function handler(req: any, res: any) {
         const data = (await api.json()) as any
 
         if (status === 201) {
-            return res.status(status).json({ success: true })
+            return res.status(status).send(data)
         } else {
-            throw res.status(status).json(data)
+            throw res.status(status).send(data)
         }
     } else {
         res.status(500).send('Wrong method')
