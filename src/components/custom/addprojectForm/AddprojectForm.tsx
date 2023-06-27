@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Table, TableBody, TableRow, TableCell, SelectChangeEvent } from '@mui/material'
 import { useProject } from 'hooks/useProject'
-import { SelectProducts, InputName, InputFiles } from '.'
+import { SelectProducts } from '.'
 import router from 'next/router'
 import { CancelButton } from '../common/CancelButton'
 import { DefaultButton } from '../common/DefaultButton'
+import { InputFiles, InputName } from '../common'
 
 export const AddProjectForm = () => {
     const [productName, setProductName] = useState<string>('')
