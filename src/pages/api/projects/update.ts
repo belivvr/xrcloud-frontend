@@ -20,8 +20,6 @@ export default async function handler(req: any, res: any) {
             form.parse(req, (err, fields, files) => {
                 if (err) return reject(err)
 
-                console.log(fields, files)
-
                 let data: any = {}
                 const id = fields.projectId as string
                 const name = fields.projectName as string

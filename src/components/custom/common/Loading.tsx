@@ -7,7 +7,7 @@ interface Props {
     title: string
 }
 
-export default function Loading({ title }: Props) {
+export function Loading({ title }: Props) {
     return (
         <Page title={title}>
             <MainCard title={title}>
