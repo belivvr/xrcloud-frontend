@@ -56,6 +56,9 @@ const AddProjectPage = () => {
             await fetch('/api/projects/create', requestOptions)
         }
 
+        const { projectKey } = await data.json()
+        localStorage.setItem('projectKey', projectKey)
+
         router.push(`/projects`)
     }
 

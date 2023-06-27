@@ -16,7 +16,7 @@ import { Provider } from 'react-redux'
 import { store } from '../store'
 import ThemeCustomization from '../themes'
 import NavigationScroll from '../layout/NavigationScroll'
-// import { ConfigProvider } from '../contexts/ConfigContext';
+import { ConfigProvider } from '../contexts/ConfigContext'
 
 // import RTLLayout from 'ui-component/RTLLayout';
 import Locales from 'ui-component/Locales'
@@ -24,7 +24,7 @@ import Snackbar from 'ui-component/extended/Snackbar'
 
 // auth provider
 import { JWTProvider as AuthProvider } from 'contexts/XRCloudAuthContext'
-import { ProjectContextProvider } from 'contexts/ProjectContext'
+import { ProjectChoicedProjectProvider } from 'contexts/ProjectChoicedProjectContext'
 // import { FirebaseProvider as AuthProvider } from 'contexts/FirebaseContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
@@ -51,12 +51,12 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                 <Locales>
                     <NavigationScroll>
                         <AuthProvider>
-                            <>
-                                {/* <ProjectContext.Provider value={{ projectList, setProjectList }}> */}
-                                {getLayout(<Component {...pageProps} />)}
-                                <Snackbar />
-                                {/* </ProjectContext.Provider> */}
-                            </>
+                            <ProjectChoicedProjectProvider>
+                                <>
+                                    {getLayout(<Component {...pageProps} />)}
+                                    <Snackbar />
+                                </>
+                            </ProjectChoicedProjectProvider>
                         </AuthProvider>
                     </NavigationScroll>
                 </Locales>

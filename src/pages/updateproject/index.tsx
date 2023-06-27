@@ -4,32 +4,20 @@ import MainCard from 'ui-component/cards/MainCard'
 import ProjectPage from 'custom/updateproject'
 import Layout from 'layout'
 import { useRouter } from 'next/router'
-import { useRequest } from 'hooks/useRequest'
-import { Project } from 'types/project'
 import Loading from 'custom/common/Loading'
+import { useProject } from 'hooks/useProject'
+import { Project } from 'types/project'
 
 const UpdateProject = () => {
     const [project, setProject] = useState<Project>()
 
     const router = useRouter()
-    const { get } = useRequest()
-    const accessToken = localStorage.getItem('accessToken')
+    const { findById, handleUpdateProject, handleDeleteProject, handleGetProjectKey } = useProject()
 
     useEffect(() => {
         const projectId = router.query.id
-        if (projectId) {
-            get<Project>(`api/projects/findById`, {
-                params: {
-                    projectId
-                },
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            })
-                .then((res) => {
-                    setProject(res)
-                })
-                .catch((e) => {})
+        if (typeof projectId === 'string') {
+            findById(projectId).then((res) => setProject(res))
         }
     }, [router])
 
@@ -40,7 +28,13 @@ const UpdateProject = () => {
     return (
         <Page title="Project">
             <MainCard title="Project">
-                <ProjectPage project={project} />
+                <ProjectPage
+                    project={project}
+                    setProject={setProject}
+                    handleUpdateProject={handleUpdateProject}
+                    handleDeleteProject={handleDeleteProject}
+                    handleGetProjectKey={handleGetProjectKey}
+                />
             </MainCard>
         </Page>
     )

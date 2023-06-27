@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -6,12 +6,15 @@ import { Divider, FormControl, InputAdornment, MenuItem, TextField } from '@mui/
 
 // project imports
 import { GenericCardProps } from 'types'
+import { Project } from 'types/project'
+import { useProject } from 'hooks/useProject'
+import useChoicedProject from 'hooks/useChoicedProject'
 
 // ==============================|| FORM CONTROL SELECT ||============================== //
 
 interface FormControlSelectProps {
     captionLabel?: string
-    currencies?: { value: string; label: string }[]
+    currencies?: Project[] | undefined
     formState?: string
     iconPrimary?: GenericCardProps['iconPrimary']
     iconSecondary?: GenericCardProps['iconPrimary']
@@ -30,6 +33,8 @@ const FormControlSelect = ({
     textPrimary,
     textSecondary
 }: FormControlSelectProps) => {
+    const { setChoicedProject } = useChoicedProject()
+
     const theme = useTheme()
     const IconPrimary = iconPrimary!
     const primaryIcon = iconPrimary ? <IconPrimary fontSize="small" sx={{ color: theme.palette.grey[700] }} /> : null
@@ -41,8 +46,14 @@ const FormControlSelect = ({
     const val = selected || ''
 
     const [currency, setCurrency] = useState(val)
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-        if (event?.target.value) setCurrency(event?.target.value)
+    const { findById } = useProject()
+    const handleChange = async (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+        const projectId = event?.target.value
+        if (typeof projectId === 'string') {
+            setCurrency(projectId)
+            const response = await findById(projectId)
+            setChoicedProject(response)
+        }
     }
 
     return (
@@ -80,8 +91,8 @@ const FormControlSelect = ({
                 }}
             >
                 {currencies?.map((option, index) => (
-                    <MenuItem key={index} value={option.value}>
-                        {option.label}
+                    <MenuItem key={index} value={option.id}>
+                        {option.name}
                     </MenuItem>
                 ))}
             </TextField>
