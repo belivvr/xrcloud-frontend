@@ -6,13 +6,13 @@ export function useRequest() {
     const { renewTokens } = useRefresh()
 
     const request = useCallback(async function <T>(
-        method: 'get' | 'post' | 'patch',
+        method: 'get' | 'post' | 'patch' | 'delete',
         path: string,
         init?: AxiosRequestConfig,
         body?: any
     ): Promise<T> {
         try {
-            if (method === 'get') {
+            if (method === 'get' || method === 'delete') {
                 const response = await axios[method](path, init)
                 return response.data
             } else {
@@ -23,8 +23,13 @@ export function useRequest() {
             if (err.response?.status === 401) {
                 const { accessToken } = await renewTokens()
                 const newParams = Object.assign(init?.params, { accessToken })
-                const response = await axios[method](path, body, { ...init, params: newParams })
-                return response.data
+                if (method === 'get' || method === 'delete') {
+                    const response = await axios[method](path, { ...init, params: newParams })
+                    return response.data
+                } else {
+                    const response = await axios[method](path, body, { ...init, params: newParams })
+                    return response.data
+                }
             }
             throw err
         }
@@ -52,5 +57,12 @@ export function useRequest() {
         [request]
     )
 
-    return { get, post, patch }
+    const deleteRequest = useCallback(
+        async function <T>(path: string, init?: AxiosRequestConfig): Promise<T> {
+            return request('delete', path, init)
+        },
+        [request]
+    )
+
+    return { get, post, patch, deleteRequest }
 }
