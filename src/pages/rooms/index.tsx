@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes, ReactElement, useState } from 'react'
+import React, { ReactElement } from 'react'
 
 // project imports
 import Layout from 'layout'
@@ -6,20 +6,18 @@ import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import RoomList from 'custom/rooms/roomList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
-
-const currencies = [
-    { value: '', label: 'None' },
-    { value: '1', label: '프로젝트1' }
-]
+import { useProjects } from 'hooks/useProjects'
 
 const Rooms = () => {
+    const { projectList } = useProjects()
+
     return (
         <Page title="Rooms">
             <MainCard
                 title="Rooms"
                 secondary={
                     <div style={{ width: '300px' }}>
-                        <FormControlSelect currencies={currencies} captionLabel="ProjectId선택" />
+                        <FormControlSelect currencies={projectList} captionLabel="ProjectId선택" />
                     </div>
                 }
             >

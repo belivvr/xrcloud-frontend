@@ -1,15 +1,12 @@
 import router from 'next/router'
-import { useState } from 'react'
 import { Project } from 'types/project'
 import { createRequestOptions } from 'utils/createRequestOptions'
-import useProjectKey from './useChoicedProject'
 import { useRefresh } from './useRefresh'
 import { useRequest } from './useRequest'
 
 export function useProject() {
     const { get, patch, deleteRequest } = useRequest()
     const { renewTokens } = useRefresh()
-    const { projectKey, setProjectKey } = useProjectKey()
 
     const accessToken = localStorage.getItem('accessToken')
 
@@ -87,7 +84,7 @@ export function useProject() {
                 }
             )
             const response = await findById(projectId)
-            setProjectKey(response.projectKey)
+            localStorage.setItem('projectKey', response.projectKey)
             return response
         } catch (err) {
             console.log(err)
