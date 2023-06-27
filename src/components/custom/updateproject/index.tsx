@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { TableCell, TableRow, Table, TableBody, TextField, Button } from '@mui/material'
-import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
-import FaviconUploader from 'custom/common/FaviconFileUploader'
-import LogoUploader from 'custom/common/LogoFileUploader'
+import { ImagePreview, ThumbnailBox } from 'components/custom/styles/styled'
+import FaviconUploader from 'components/custom/common/FaviconFileUploader'
+import LogoUploader from 'components/custom/common/LogoFileUploader'
 import { Project } from 'types/project'
 
 interface Props {

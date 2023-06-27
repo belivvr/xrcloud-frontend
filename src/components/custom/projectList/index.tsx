@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { openDrawer } from 'store/slices/menu'
-import { ProjectListStyle } from 'custom/styles/styled'
+import { ProjectListStyle } from 'components/custom/styles/styled'
 import { useRouter } from 'next/router'
 import { Project } from 'types/project'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { EnterServiceButton, StyledAddIcon } from 'custom/styles/styled'
+import { EnterServiceButton, StyledAddIcon } from 'components/custom/styles/styled'
 
 const SceneList = () => {
     return (

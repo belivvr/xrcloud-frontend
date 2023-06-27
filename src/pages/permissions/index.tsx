@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import PermissionList from 'custom/permissions/permissionList'
+import PermissionList from 'components/custom/permissions/permissionList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { useProjects } from 'hooks/useProjects'
 

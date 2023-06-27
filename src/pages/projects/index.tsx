@@ -4,7 +4,7 @@ import { ReactElement, useEffect, useState } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import ProjectList from 'custom/projectList'
+import ProjectList from 'components/custom/projectList'
 import { useProjects } from 'hooks/useProjects'
 
 const Projects = () => {

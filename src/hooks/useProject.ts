@@ -53,6 +53,7 @@ export function useProject() {
 
         router.push(`/projects`)
     }
+    // handleUpdateProject -> updateProject
 
     const handleDeleteProject = async (projectId: string) => {
         try {
@@ -69,6 +70,7 @@ export function useProject() {
             console.log(err)
         }
     }
+    // handleDeleteProject -> updateProject
 
     const handleGetProjectKey = async (projectId: string) => {
         try {
@@ -90,6 +92,7 @@ export function useProject() {
             console.log(err)
         }
     }
+    // handleGetProjectKey -> getProjectKey
 
     return { findById, handleUpdateProject, handleDeleteProject, handleGetProjectKey }
 }

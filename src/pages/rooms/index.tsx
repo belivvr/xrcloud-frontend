@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import RoomList from 'custom/rooms/roomList'
+import RoomList from 'components/custom/rooms/roomList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { useProjects } from 'hooks/useProjects'
 

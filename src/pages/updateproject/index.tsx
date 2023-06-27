@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Page from 'ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import ProjectPage from 'custom/updateproject'
+import ProjectPage from 'components/custom/updateproject'
 import Layout from 'layout'
 import { useRouter } from 'next/router'
-import Loading from 'custom/common/Loading'
+import Loading from 'components/custom/common/Loading'
 import { useProject } from 'hooks/useProject'
 import { Project } from 'types/project'
 
