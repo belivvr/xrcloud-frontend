@@ -1,5 +1,6 @@
+import { Button } from '@mui/material'
 import React, { useState } from 'react'
-import { FindFileBox, UploadName, Label, InputFile } from '../styles/styled'
+import { FindFileBox, UploadName, InputFile } from '../styles/styled'
 
 interface PreviewProps {
     faviconFile: File | undefined
@@ -36,7 +37,6 @@ const FaviconUploader: React.FC<PreviewProps> = ({
         <div>
             <FindFileBox>
                 <UploadName type="text" value={thumbnailNamePreview} placeholder="첨부파일" readOnly />
-                <Label htmlFor="faviconFile">파일찾기</Label>
                 <InputFile
                     type="file"
                     name="file"
@@ -45,6 +45,15 @@ const FaviconUploader: React.FC<PreviewProps> = ({
                     style={{ display: 'flex', flexDirection: 'row-reverse' }}
                     onChange={onFaviconChangeHandler}
                 ></InputFile>
+                <Button
+                    component="label"
+                    htmlFor="faviconFile"
+                    variant="contained"
+                    color="secondary"
+                    sx={{ width: '100px', marginLeft: '16px' }}
+                >
+                    파일찾기
+                </Button>
             </FindFileBox>
         </div>
     )

@@ -94,19 +94,6 @@ export const UploadName = styled.input`
     width: 80%;
     color: #546e7a;
 `
-export const Label = styled.label`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background-color: pink;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 120px;
-    height: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
-`
 
 export const InputFile = styled.input`
     position: absolute;

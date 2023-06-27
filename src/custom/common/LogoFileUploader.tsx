@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { FindFileBox, UploadName, Label, InputFile } from '../styles/styled'
+import { Button } from '@mui/material'
+import { FindFileBox, UploadName, InputFile } from '../styles/styled'
 
 interface PreviewProps {
     logoFile: File | undefined
@@ -36,7 +37,6 @@ const LogoUploader: React.FC<PreviewProps> = ({
         <div>
             <FindFileBox>
                 <UploadName type="text" value={thumbnailNamePreview} placeholder="첨부파일" readOnly />
-                <Label htmlFor="logoFile">파일찾기</Label>
                 <InputFile
                     type="file"
                     name="file"
@@ -45,6 +45,15 @@ const LogoUploader: React.FC<PreviewProps> = ({
                     style={{ display: 'flex', flexDirection: 'row-reverse' }}
                     onChange={onLogoChangeHandler}
                 ></InputFile>
+                <Button
+                    component="label"
+                    htmlFor="logoFile"
+                    variant="contained"
+                    color="secondary"
+                    sx={{ width: '100px', marginLeft: '16px' }}
+                >
+                    파일찾기
+                </Button>
             </FindFileBox>
         </div>
     )
