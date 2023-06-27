@@ -12,9 +12,9 @@ import {
     FormControl,
     SelectChangeEvent
 } from '@mui/material'
-import { ImagePreview, ThumbnailBox } from 'custom/styles/styled'
-import FaviconUploader from 'custom/common/FaviconFileUploader'
-import LogoUploader from 'custom/common/LogoFileUploader'
+import { ImagePreview, ThumbnailBox } from 'components/custom/styles/styled'
+import FaviconUploader from 'components/custom/common/FaviconFileUploader'
+import LogoUploader from 'components/custom/common/LogoFileUploader'
 import { useRefresh } from 'hooks/useRefresh'
 import { createRequestOptions } from 'utils/createRequestOptions'
 import router from 'next/router'

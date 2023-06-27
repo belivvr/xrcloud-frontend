@@ -1,4 +1,4 @@
-import ProjectChoicedProjectContext from 'contexts/ProjectChoicedProjectContext'
+import ProjectChoicedProjectContext from 'contexts/ChoicedProjectContext'
 import { useContext } from 'react'
 
 // auth provider

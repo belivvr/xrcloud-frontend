@@ -9,9 +9,9 @@ import MainCard from 'ui-component/cards/MainCard'
 import { mockRoom, mockSceneList, roomFields } from 'config'
 import { Room as RoomType, Scene } from 'types/project'
 import { SelectChangeEvent } from '@mui/material'
-import Contents from 'custom/room/Contents'
-import Buttons from 'custom/room/Buttons'
-import Loading from 'custom/common/Loading'
+import Contents from 'components/custom/room/Contents'
+import Buttons from 'components/custom/room/Buttons'
+import Loading from 'components/custom/common/Loading'
 
 const Room = () => {
     const [room, setRoom] = useState<RoomType | null>()
