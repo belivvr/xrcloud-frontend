@@ -24,12 +24,31 @@ export function useProject() {
         return response
     }
 
-    const handleUpdateProject = async (
-        projectId: string,
-        projectName: string,
-        faviconFile: File | undefined,
-        logoFile: File | undefined
-    ) => {
+    const createsProject = async (faviconFile: File | undefined, logoFile: File | undefined, projectName: string, productName: string) => {
+        if (!faviconFile || !logoFile) return alert('파비콘과 로고를 모두 등록해주세요')
+
+        const formData = new FormData()
+        formData.append('projectName', projectName)
+        formData.append('productName', productName)
+        formData.append('favicon', faviconFile)
+        formData.append('logo', logoFile)
+
+        let requestOptions = createRequestOptions('POST', accessToken, formData)
+
+        const data = await fetch('/api/projects/create', requestOptions)
+        if (data.status === 401) {
+            const retoken = await renewTokens()
+            requestOptions = createRequestOptions('POST', retoken.accessToken, formData)
+            await fetch('/api/projects/create', requestOptions)
+        }
+
+        const { projectKey } = await data.json()
+        localStorage.setItem('projectKey', projectKey)
+
+        router.push(`/projects`)
+    }
+
+    const updateProject = async (projectId: string, projectName: string, faviconFile: File | undefined, logoFile: File | undefined) => {
         const formData = new FormData()
         formData.append('projectId', projectId)
         formData.append('projectName', projectName)
@@ -53,9 +72,8 @@ export function useProject() {
 
         router.push(`/projects`)
     }
-    // handleUpdateProject -> updateProject
 
-    const handleDeleteProject = async (projectId: string) => {
+    const deleteProject = async (projectId: string) => {
         try {
             await deleteRequest('/api/projects/delete', {
                 params: {
@@ -70,9 +88,8 @@ export function useProject() {
             console.log(err)
         }
     }
-    // handleDeleteProject -> updateProject
 
-    const handleGetProjectKey = async (projectId: string) => {
+    const getProjectKey = async (projectId: string) => {
         try {
             await patch(
                 '/api/projects/getIssueKey',
@@ -92,7 +109,6 @@ export function useProject() {
             console.log(err)
         }
     }
-    // handleGetProjectKey -> getProjectKey
 
-    return { findById, handleUpdateProject, handleDeleteProject, handleGetProjectKey }
+    return { findById, createsProject, updateProject, deleteProject, getProjectKey }
 }

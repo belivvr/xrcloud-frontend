@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { TableCell, TableRow, Table, TableBody, TextField, Button } from '@mui/material'
 import { ImagePreview, ThumbnailBox } from 'components/custom/styles/styled'
-import FaviconUploader from 'components/custom/common/FaviconFileUploader'
-import LogoUploader from 'components/custom/common/LogoFileUploader'
 import { Project } from 'types/project'
+import { FileUploader } from '../common/FileUploader'
 
 interface Props {
     project: Project
     setProject: React.Dispatch<React.SetStateAction<Project | undefined>>
-    handleUpdateProject: (
-        projectId: string,
-        projectName: string,
-        faviconFile: File | undefined,
-        logoFile: File | undefined
-    ) => Promise<void>
-    handleDeleteProject: (projectId: string) => Promise<void>
-    handleGetProjectKey: (projectId: string) => Promise<Project | undefined>
+    updateProject: (projectId: string, projectName: string, faviconFile: File | undefined, logoFile: File | undefined) => Promise<void>
+    deleteProject: (projectId: string) => Promise<void>
+    getProjectKey: (projectId: string) => Promise<Project | undefined>
 }
 
-const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeleteProject, handleGetProjectKey }: Props) => {
+const ProjectPage = ({ project, setProject, updateProject, deleteProject, getProjectKey }: Props) => {
     const [projectName, setProjectName] = useState('')
 
     const [faviconPreview, setFaviconPreview] = useState('')
     const [faviconFile, setFaviconFile] = useState<File | undefined>(undefined)
-    const [faviconFileList, setFaviconFileList] = useState<FileList>()
-
     const [logoPreview, setLogoPreview] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
-    const [logoFileList, setLogoFileList] = useState<FileList>()
 
     useEffect(() => {
         if (project) {
@@ -51,14 +42,7 @@ const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeletePro
                     <TableCell>
                         <ThumbnailBox>
                             <ImagePreview src={faviconPreview} alt={faviconPreview} />
-
-                            <FaviconUploader
-                                setFaviconPreview={setFaviconPreview}
-                                faviconPreview={faviconPreview}
-                                faviconFile={faviconFile}
-                                setFaviconFileList={setFaviconFileList}
-                                setFaviconFile={setFaviconFile}
-                            />
+                            <FileUploader htmlFor={'faviconFile'} setFile={setFaviconFile} setThumbnailUrl={setFaviconPreview} />
                         </ThumbnailBox>
                     </TableCell>
                 </TableRow>
@@ -67,14 +51,7 @@ const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeletePro
                     <TableCell>
                         <ThumbnailBox>
                             <ImagePreview src={logoPreview} alt={logoPreview} />
-
-                            <LogoUploader
-                                setLogoPreview={setLogoPreview}
-                                logoPreview={logoPreview}
-                                logoFile={logoFile}
-                                setLogoFileList={setLogoFileList}
-                                setLogoFile={setLogoFile}
-                            />
+                            <FileUploader htmlFor={'logoFile'} setFile={setLogoFile} setThumbnailUrl={setLogoPreview} />
                         </ThumbnailBox>
                     </TableCell>
                 </TableRow>
@@ -85,8 +62,7 @@ const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeletePro
                         <Button
                             variant="outlined"
                             onClick={async () => {
-                                const response = await handleGetProjectKey(project.id)
-
+                                const response = await getProjectKey(project.id)
                                 setProject(response)
                             }}
                             style={{ minWidth: '200px', backgroundColor: '#fff', fontSize: '18px', fontWeight: '600' }}
@@ -111,7 +87,7 @@ const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeletePro
                     <TableCell sx={{ borderBottom: 'none', textAlign: 'center' }} colSpan={2}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
                             <Button
-                                onClick={() => handleUpdateProject(project.id, projectName, faviconFile, logoFile)}
+                                onClick={() => updateProject(project.id, projectName, faviconFile, logoFile)}
                                 variant="contained"
                                 color="primary"
                             >
@@ -119,7 +95,7 @@ const ProjectPage = ({ project, setProject, handleUpdateProject, handleDeletePro
                             </Button>
                             <Button
                                 onClick={async () => {
-                                    await handleDeleteProject(project.id)
+                                    await deleteProject(project.id)
                                 }}
                                 variant="contained"
                                 color="error"

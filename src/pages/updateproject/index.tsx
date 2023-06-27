@@ -4,15 +4,15 @@ import MainCard from 'ui-component/cards/MainCard'
 import ProjectPage from 'components/custom/updateproject'
 import Layout from 'layout'
 import { useRouter } from 'next/router'
-import Loading from 'components/custom/common/Loading'
 import { useProject } from 'hooks/useProject'
 import { Project } from 'types/project'
+import { Loading } from 'components/custom/common'
 
 const UpdateProject = () => {
     const [project, setProject] = useState<Project>()
 
     const router = useRouter()
-    const { findById, handleUpdateProject, handleDeleteProject, handleGetProjectKey } = useProject()
+    const { findById, updateProject, deleteProject, getProjectKey } = useProject()
 
     useEffect(() => {
         const projectId = router.query.id
@@ -31,9 +31,9 @@ const UpdateProject = () => {
                 <ProjectPage
                     project={project}
                     setProject={setProject}
-                    handleUpdateProject={handleUpdateProject}
-                    handleDeleteProject={handleDeleteProject}
-                    handleGetProjectKey={handleGetProjectKey}
+                    updateProject={updateProject}
+                    deleteProject={deleteProject}
+                    getProjectKey={getProjectKey}
                 />
             </MainCard>
         </Page>
