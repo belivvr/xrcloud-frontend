@@ -40,7 +40,7 @@ const ProjectList = ({ projectList }: Props) => {
                 >
                     <img
                         style={{ width: '50px', height: '50px', objectFit: 'contain', marginRight: '16px' }}
-                        src={project.faviconUrl}
+                        src={`${project.faviconUrl}?timestamp=${Date.now()}`}
                         alt={project.faviconUrl}
                     />
                     {project.name}
