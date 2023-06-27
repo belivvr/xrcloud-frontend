@@ -46,7 +46,7 @@ export interface Permission {
     dropout: boolean
     userMute: boolean
     audioAmp: boolean
-    mediaCreateMove: boolean
+    mediaCreationTransfer: boolean
     penDraw: boolean
     cameraCreate: boolean
     emojiCreate: boolean

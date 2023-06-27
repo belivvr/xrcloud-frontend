@@ -157,5 +157,33 @@
     "avatars": "Avatars",
     "emojis": "Emojis",
     "3d-models": "3D-Models",
-    "blank": " "
+    "blank": " ",
+
+    "product": "Product",
+    "project-name": "Project Name",
+    "favicon": "Favicon",
+    "logo": "Logo",
+    "access-key": "Access Key",
+    "creation-date": "Creation Date",
+    "last-update": "Last Update Time",
+
+    "add-project": "Add Project",
+    "browse": "Browse",
+    "add": "ADD",
+    "cancel": "Cancel",
+    "upload": "Upload",
+    "delete": "Delete",
+    "create": "Create",
+    "modify": "Modify",
+
+    "name": "Name",
+    "immutable-object": "Immutable-Object",
+    "flight": "Flight",
+    "ban": "Ban",
+    "user-mute": "User Mute",
+    "audio-amplification": "Audio Amplification",
+    "media-creation-and-transfer": "Media Creation & Transfer",
+    "pen-drawing": "Pen Drawing",
+    "camera-creation": "Camera Creation",
+    "emoji-creation": "Emoji Creation"
 }

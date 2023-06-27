@@ -3,9 +3,39 @@
     "projects": "내 프로젝트",
     "scenes": "씬",
     "rooms": "룸",
-    "permissions": "허가",
+    "permissions": "사용자 권한 설정",
     "avatars": "아바타",
     "emojis": "이모지",
     "3d-models": "3D 모델",
-    "blank": " "
+    "blank": " ",
+
+    "product": "제품",
+    "project-name": "프로젝트 이름",
+    "favicon": "파비콘",
+    "logo": "로고",
+    "access-key": "암호 키",
+    "creation-date": "생성시간",
+    "last-update": "마지막 업데이트",
+
+    "add-project": "프로젝트 추가",
+    "browse": "파일찾기",
+    "add": "확인",
+    "cancel": "취소",
+    "upload": "업로드",
+    "update": "업데이트",
+    "delete": "삭제",
+
+    "create": "생성",
+    "modify": "수정",
+
+    "name": "이름",
+    "immutable-object": "오브젝트 생성",
+    "flight": "비행",
+    "ban": "강퇴",
+    "user-mute": "유저 음소거",
+    "audio-amplification": "오디오 증폭",
+    "media-creation-and-transfer": "미디어 생성 및 이동",
+    "pen-drawing": "펜 그리기",
+    "camera-creation": "카메라 생성",
+    "emoji-creation": "이모지 생성"
 }
