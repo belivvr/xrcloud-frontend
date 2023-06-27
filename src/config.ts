@@ -83,7 +83,7 @@ export const mockPermission: Permission = {
     dropout: true,
     userMute: true,
     audioAmp: false,
-    mediaCreateMove: true,
+    mediaCreationTransfer: true,
     penDraw: true,
     cameraCreate: false,
     emojiCreate: false
