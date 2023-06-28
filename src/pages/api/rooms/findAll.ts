@@ -6,8 +6,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try {
             const data = await axios.get(`${process.env.NODE_LOCAL_SERVER}/rooms`, {
                 headers: {
-                    'X-XRCLOUD-PROJECT-ID': req.headers.projectID,
-                    Authorization: req.headers.projectKey
+                    'X-XRCLOUD-PROJECT-ID': req.headers['x-xrcloud-project-id'],
+                    Authorization: req.headers.authorization
                 }
             })
             res.status(data.status).send(data.data)

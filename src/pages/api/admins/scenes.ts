@@ -4,10 +4,10 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         try {
-            const data = await axios.get(`${process.env.NODE_LOCAL_SERVER}/admins/scenes`, {
+            const data = await axios.get(`${process.env.NODE_LOCAL_SERVER}/admins/scenes/new`, {
                 headers: {
-                    'X-XRCLOUD-PROJECT-ID': req.headers.projectID,
-                    Authorization: req.headers.projectKey
+                    'X-XRCLOUD-PROJECT-ID': req.headers['x-xrcloud-project-id'],
+                    Authorization: req.headers.authorization
                 }
             })
             res.status(data.status).send(data.data)

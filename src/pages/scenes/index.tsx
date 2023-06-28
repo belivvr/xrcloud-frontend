@@ -18,7 +18,7 @@ const Scenes = () => {
     const [sceneList, setSceneList] = useState<Scene[]>()
     const { projectList } = useProjects()
     const { getScenes, createScene, updateScene } = useScenes()
-    const { choicedProject } = useChoicedProject()
+    const { choicedProject, setChoicedProject } = useChoicedProject()
 
     const { locale } = useConfig()
     const localization = useLocalization(locale)
@@ -30,7 +30,8 @@ const Scenes = () => {
                 setSceneList(res.items)
             })
             .catch((err) => {
-                setSceneList([])
+                setSceneList(undefined)
+                setChoicedProject(undefined)
             })
     }, [choicedProject])
 
@@ -50,7 +51,7 @@ const Scenes = () => {
                     </div>
                 }
             >
-                {sceneList?.length ? (
+                {sceneList ? (
                     <SceneList createScene={createScene} updateScene={updateScene} sceneList={sceneList} />
                 ) : (
                     <NeedChoiceProject />

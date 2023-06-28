@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Table, TableBody, TableRow, TableCell, SelectChangeEvent } from '@mui/material'
-import { useProject } from 'hooks/useProject'
+import { useProject } from 'hooks/api/useProject'
 import { SelectProducts } from '.'
 import router from 'next/router'
 import { CancelButton } from '../common/CancelButton'

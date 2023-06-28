@@ -5,7 +5,7 @@ import useConfig from '../useConfig'
 import { useLocalization } from '../useLocalization'
 import { useRequest } from '../useRequest'
 
-export function useScenes() {
+export function useRoom() {
     const { choicedProject } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
@@ -46,5 +46,15 @@ export function useScenes() {
         })
     }
 
-    return { getRooms }
+    const getRoom = async (projectId: string, roomId: string): Promise<{ items: Room }> => {
+        if (!validateProject()) {
+            return Promise.reject(new Error(localization['scene-select-no-project']))
+        }
+
+        return get<{ items: Room }>('/api/rooms/findById', {
+            headers: createHeaders()
+        })
+    }
+
+    return { getRooms, getRoom }
 }

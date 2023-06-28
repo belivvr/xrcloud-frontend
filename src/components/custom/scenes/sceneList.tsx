@@ -2,14 +2,8 @@
 import React from 'react'
 import { EnterServiceButton, StyledAddIcon } from 'components/custom/styles/styled'
 import { Scene } from 'types/project'
-import styled from '@emotion/styled'
-import { BasicContentsButton } from '../common'
-
-const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-`
+import { BasicContentsButton, GridWrapper } from '../common'
+import router from 'next/router'
 
 interface Props {
     sceneList: Scene[] | undefined
@@ -19,18 +13,24 @@ interface Props {
 
 const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
     return (
-        <Wrapper>
+        <GridWrapper>
             {sceneList?.map((scene: Scene) => {
                 return (
-                    <BasicContentsButton key={scene.id}>
-                        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '300px', objectFit: 'cover' }}>
-                            <img style={{ flex: 4 }} src={scene.thumbnailUrl} alt={scene.thumbnailUrl} />
+                    <BasicContentsButton
+                        onClick={async () => {
+                            const response = await updateScene(scene.id)
+                            console.log(response)
+                        }}
+                        key={scene.id}
+                    >
+                        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', objectFit: 'cover' }}>
+                            <img style={{ height: '250px', objectFit: 'cover' }} src={scene.thumbnailUrl} alt={scene.thumbnailUrl} />
                             <div
                                 style={{
-                                    flex: 1,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
+                                    height: '62px',
                                     color: '#333',
                                     borderTop: '1px solid #eee'
                                 }}
@@ -41,10 +41,15 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                     </BasicContentsButton>
                 )
             })}
-            <EnterServiceButton>
+            <EnterServiceButton
+                onClick={async () => {
+                    const { newSceneUrl } = await createScene()
+                    router.push(newSceneUrl)
+                }}
+            >
                 <StyledAddIcon color="inherit" />
             </EnterServiceButton>
-        </Wrapper>
+        </GridWrapper>
     )
 }
 

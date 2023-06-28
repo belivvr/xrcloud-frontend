@@ -20,6 +20,7 @@ export function useRequest() {
                 return response.data
             }
         } catch (err: any) {
+            console.log(err)
             if (err.response?.status === 401) {
                 const { accessToken } = await renewTokens()
                 const newParams = Object.assign(init?.params, { accessToken })

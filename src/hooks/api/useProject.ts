@@ -1,8 +1,8 @@
 import router from 'next/router'
 import { Project } from 'types/project'
 import { createRequestOptions } from 'utils/createRequestOptions'
-import { useRefresh } from './useRefresh'
-import { useRequest } from './useRequest'
+import { useRefresh } from '../useRefresh'
+import { useRequest } from '../useRequest'
 
 export function useProject() {
     const { get, patch, deleteRequest } = useRequest()
@@ -11,7 +11,7 @@ export function useProject() {
     const accessToken = localStorage.getItem('accessToken')
 
     const findById = async (projectId: string) => {
-        const response = await get<Project>(`api/projects/findById`, {
+        const response = await get<Project>(`/api/projects/findById`, {
             params: {
                 projectId
             },
@@ -20,7 +20,7 @@ export function useProject() {
             }
         })
 
-        localStorage.setItem('projectKey', response.projectKey)
+        localStorage.setItem('projectId', response.id)
         return response
     }
 
@@ -42,8 +42,8 @@ export function useProject() {
             await fetch('/api/projects/create', requestOptions)
         }
 
-        const { projectKey } = await data.json()
-        localStorage.setItem('projectKey', projectKey)
+        const { id } = await data.json()
+        localStorage.setItem('projectId', id)
 
         router.push(`/projects`)
     }
@@ -103,7 +103,7 @@ export function useProject() {
                 }
             )
             const response = await findById(projectId)
-            localStorage.setItem('projectKey', response.projectKey)
+            localStorage.setItem('projectId', response.id)
             return response
         } catch (err) {
             console.log(err)

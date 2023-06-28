@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 
 // project imports
 import Layout from 'layout'
@@ -11,13 +11,27 @@ import useChoicedProject from 'hooks/useChoicedProject'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
-
+import { useRoom } from 'hooks/api/useRoom'
+import { Room } from 'types/project'
 
 const Rooms = () => {
+    const [roomList, setRoomList] = useState<Room[]>()
     const { projectList } = useProjects()
     const { choicedProject } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+    const { getRooms } = useRoom()
+
+    useEffect(() => {
+        if (!choicedProject) return
+        getRooms()
+            .then((res) => {
+                setRoomList(res.items)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [choicedProject])
 
     return (
         <Page title="Rooms">
@@ -35,9 +49,7 @@ const Rooms = () => {
                     </div>
                 }
             >
-
-                {choicedProject ? <RoomList /> : <NeedChoiceProject />}
-
+                {choicedProject ? <RoomList roomList={roomList} /> : <NeedChoiceProject />}
             </MainCard>
         </Page>
     )
