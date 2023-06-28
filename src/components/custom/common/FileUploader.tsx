@@ -1,9 +1,11 @@
+import { useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import { UploaderProps } from 'types/project'
 import { FindFileBox, UploadName, Label, InputFile } from '../styles/styled'
 
 export const FileUploader: React.FC<UploaderProps> = ({ htmlFor, setThumbnailUrl, setFile }) => {
     const [thumbnailNamePreview, setThumbnailNamePreview] = useState('')
+    const theme = useTheme()
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -19,7 +21,9 @@ export const FileUploader: React.FC<UploaderProps> = ({ htmlFor, setThumbnailUrl
         <div>
             <FindFileBox>
                 <UploadName type="text" value={thumbnailNamePreview} placeholder="첨부파일" readOnly />
-                <Label htmlFor={htmlFor}>파일찾기</Label>
+                <Label style={{ backgroundColor: theme.palette.primary.main }} htmlFor={htmlFor}>
+                    파일찾기
+                </Label>
                 <InputFile
                     type="file"
                     name="file"

@@ -7,9 +7,11 @@ import MainCard from 'ui-component/cards/MainCard'
 import RoomList from 'components/custom/rooms/roomList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { useProjects } from 'hooks/useProjects'
+import useChoicedProject from 'hooks/useChoicedProject'
 
 const Rooms = () => {
     const { projectList } = useProjects()
+    const { choicedProject } = useChoicedProject()
 
     return (
         <Page title="Rooms">
@@ -17,11 +19,30 @@ const Rooms = () => {
                 title="Rooms"
                 secondary={
                     <div style={{ width: '300px' }}>
-                        <FormControlSelect currencies={projectList} captionLabel="ProjectId선택" />
+                        {projectList && (
+                            <FormControlSelect selected={choicedProject?.id} currencies={projectList} captionLabel="ProjectId선택" />
+                        )}
                     </div>
                 }
             >
-                <RoomList />
+                {choicedProject ? (
+                    <RoomList />
+                ) : (
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 'calc(100vh - 268px)',
+                            fontSize: '60px',
+                            fontWeight: '700',
+                            lineHeight: 1.5,
+                            textAlign: 'center'
+                        }}
+                    >
+                        우측 상단에서 <br /> 프로젝트를 선택해주세요.
+                    </div>
+                )}
             </MainCard>
         </Page>
     )

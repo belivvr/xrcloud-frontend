@@ -33,7 +33,7 @@ const FormControlSelect = ({
     textPrimary,
     textSecondary
 }: FormControlSelectProps) => {
-    const { setChoicedProject } = useChoicedProject()
+    const { choicedProject, setChoicedProject } = useChoicedProject()
 
     const theme = useTheme()
     const IconPrimary = iconPrimary!
@@ -91,7 +91,7 @@ const FormControlSelect = ({
                 }}
             >
                 {currencies?.map((option, index) => (
-                    <MenuItem key={index} value={option.id}>
+                    <MenuItem key={option.id} value={option.id}>
                         {option.name}
                     </MenuItem>
                 ))}

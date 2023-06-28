@@ -32,10 +32,11 @@ const ProjectList = ({ projectList }: Props) => {
             {projectList?.map((project: Project) => (
                 <ProjectListStyle
                     key={project.id}
+                    style={{ textTransform: 'none' }}
                     onClick={() =>
                         setTimeout(() => {
                             handleProjectClick(project.id)
-                        }, 300)
+                        }, 150)
                     }
                 >
                     <img

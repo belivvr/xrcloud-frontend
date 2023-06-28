@@ -11,22 +11,22 @@ import { Room as RoomType, Scene } from 'types/project'
 import { SelectChangeEvent } from '@mui/material'
 import Contents from 'components/custom/room/Contents'
 import Buttons from 'components/custom/room/Buttons'
-import Loading from 'components/custom/common/Loading'
+import { Loading } from 'components/custom/common'
 
-const Room = () => {
+const RoomUpdate = () => {
     const [room, setRoom] = useState<RoomType | null>()
     const [sceneList, setSceneList] = useState<Scene[]>([])
     const [scene, setScene] = useState('')
 
-    const handleChange = (event: SelectChangeEvent) => {
+    const selectChange = (event: SelectChangeEvent) => {
         setScene(event.target.value as string)
     }
 
-    const handleRoomEnter = () => {}
+    const roomEnter = () => {}
 
-    const handleRoomUpdate = () => {}
+    const roomUpdate = () => {}
 
-    const handleRoomDelete = () => {}
+    const roomDelete = () => {}
 
     useEffect(() => {
         setRoom(mockRoom)
@@ -41,15 +41,15 @@ const Room = () => {
     return (
         <Page title="Room">
             <MainCard sx={{ overflow: 'scroll' }} title="Room">
-                <Contents room={room} fields={roomFields} sceneList={sceneList} handleChange={handleChange} />
-                <Buttons handleRoomEnter={handleRoomEnter} handleRoomUpdate={handleRoomUpdate} handleRoomDelete={handleRoomDelete} />
+                <Contents room={room} fields={roomFields} sceneList={sceneList} selectChange={selectChange} />
+                <Buttons roomEnter={roomEnter} roomUpdate={roomUpdate} roomDelete={roomDelete} />
             </MainCard>
         </Page>
     )
 }
 
-Room.getLayout = function getLayout(page: ReactElement) {
+RoomUpdate.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
 }
 
-export default Room
+export default RoomUpdate
