@@ -61,9 +61,9 @@ Props) {
             ))}
 
             <Content>
-                <ContentTitle>{localization.scene}</ContentTitle>
+                <ContentTitle>{localization['change-scene']}</ContentTitle>
                 <FormControl sx={{ m: 1, minWidth: 80, margin: 0 }}>
-                    <InputLabel id="demo-simple-select-autowidth-label">{localization.scene}</InputLabel>
+                    <InputLabel id="demo-simple-select-autowidth-label">{localization['change-scene']}</InputLabel>
                     <Select color="primary" value={room.sceneId} label="Scene" autoWidth onChange={selectChange}>
                         {sceneList.map((scene) => (
                             <MenuItem key={scene.id} value={scene.id}>

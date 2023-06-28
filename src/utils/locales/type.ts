@@ -54,6 +54,6 @@ export interface Localization {
     'date-of-room-update': string
     'room-id': string
     'scene-id': string
-    scene: string
+    'change-scene': string
     enter: string
 }

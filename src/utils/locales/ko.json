@@ -31,7 +31,7 @@
     "create": "생성",
     "modify": "수정",
     "get-issued": "발급받기",
-    "enter": "들어가기",
+    "enter": "방으로 들어가기",
 
     "name": "이름",
     "immutable-object": "오브젝트 생성",
@@ -63,6 +63,6 @@
     "date-of-room-creation": "생성 시간",
     "date-of-room-update": "업데이트 시간",
     "room-id": "아이디",
-    "scene-id": "scene 아이디",
-    "scene": "Scene"
+    "scene-id": "Scene 아이디",
+    "change-scene": "Scene 바꾸기"
 }

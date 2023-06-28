@@ -63,6 +63,6 @@
     "date-of-room-creation": "Date of Room Creation",
     "date-of-room-update": "Date of Room Update",
     "room-id": "Room ID",
-    "scene-id": "scene ID",
-    "scene": "Scene"
+    "scene-id": "Scene ID",
+    "change-scene": "Change Scene"
 }
