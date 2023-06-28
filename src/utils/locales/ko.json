@@ -31,11 +31,12 @@
     "create": "생성",
     "modify": "수정",
     "get-issued": "발급받기",
+    "enter": "들어가기",
 
     "name": "이름",
     "immutable-object": "오브젝트 생성",
     "flight": "비행",
-    "ban": "강퇴",
+    "ban": "강제퇴장",
     "user-mute": "유저 음소거",
     "audio-amplification": "오디오 증폭",
     "media-creation-and-transfer": "미디어 생성 및 이동",
@@ -47,5 +48,21 @@
 
     "click-project": "우측 상단에서\n 프로젝트를 선택해주세요.",
     "select-project-id": "Project ID 선택",
-    "attachment": "첨부파일"
+    "attachment": "첨부파일",
+
+    "scene-selection": "Scene 선택",
+    "room-name": "이름",
+    "custom-data": "커스텀 데이터",
+    "room-size": "사이즈",
+    "auto-scale": "자동 크기 조정",
+
+    "write-room-name": "방 이름을 작성하세요",
+    "write-custom-data": "커스텀 데이터를 작성하세요",
+    "enter-room-size": "방 사이즈를 입력하세요",
+
+    "date-of-room-creation": "생성 시간",
+    "date-of-room-update": "업데이트 시간",
+    "room-id": "아이디",
+    "scene-id": "scene 아이디",
+    "scene": "Scene"
 }
