@@ -39,6 +39,7 @@ export interface Localization {
     'click-project': string
     'select-project-id': string
     'create-project': string
+
     attachment: string
     'get-issued': string
     [key: string]: string
@@ -56,4 +57,8 @@ export interface Localization {
     'scene-id': string
     'change-scene': string
     enter: string
+
+    'scene-select-no-project': string
+    'scene-select-alert-no-key': string
+
 }

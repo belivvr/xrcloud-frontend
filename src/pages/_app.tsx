@@ -28,6 +28,7 @@ import { ProjectChoicedProjectProvider } from 'contexts/ChoicedProjectContext'
 // import { FirebaseProvider as AuthProvider } from 'contexts/FirebaseContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
+import { SnackbarProvider } from 'notistack'
 
 // types
 type LayoutProps = NextPage & {
@@ -49,10 +50,19 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                         <NavigationScroll>
                             <AuthProvider>
                                 <ProjectChoicedProjectProvider>
-                                    <>
-                                        {getLayout(<Component {...pageProps} />)}
-                                        <Snackbar />
-                                    </>
+                                    <SnackbarProvider
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'right'
+                                        }}
+                                        maxSnack={3}
+                                        autoHideDuration={5000}
+                                    >
+                                        <>
+                                            {getLayout(<Component {...pageProps} />)}
+                                            <Snackbar />
+                                        </>
+                                    </SnackbarProvider>
                                 </ProjectChoicedProjectProvider>
                             </AuthProvider>
                         </NavigationScroll>

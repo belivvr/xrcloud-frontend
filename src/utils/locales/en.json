@@ -48,6 +48,7 @@
 
     "click-project": "Please select your\n project in the top right corner.",
     "select-project-id": "Select project ID",
+
     "attachment": "Attachment",
 
     "scene-selection": "Scene Selection",
@@ -65,4 +66,8 @@
     "room-id": "Room ID",
     "scene-id": "Scene ID",
     "change-scene": "Change Scene"
+
+    "scene-select-no-project": "Please select a project",
+    "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project."
+
 }
