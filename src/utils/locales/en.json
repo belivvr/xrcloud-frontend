@@ -65,9 +65,8 @@
     "date-of-room-update": "Date of Room Update",
     "room-id": "Room ID",
     "scene-id": "Scene ID",
-    "change-scene": "Change Scene"
+    "change-scene": "Change Scene",
 
     "scene-select-no-project": "Please select a project",
     "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project."
-
 }
