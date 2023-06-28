@@ -52,11 +52,11 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                                 <ProjectChoicedProjectProvider>
                                     <SnackbarProvider
                                         anchorOrigin={{
-                                            vertical: 'top',
+                                            vertical: 'bottom',
                                             horizontal: 'right'
                                         }}
-                                        // style={{ position: 'absolute', bottom: '-200px' }}
                                         maxSnack={3}
+                                        autoHideDuration={5000}
                                     >
                                         <>
                                             {getLayout(<Component {...pageProps} />)}

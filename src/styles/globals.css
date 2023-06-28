@@ -16,7 +16,5 @@ a {
 }
 
 .notistack-CollapseWrapper {
-    position: absolute;
-    top: 50px;
-    left: -300px;
+    transform: translate(0, 0px) !important;
 }

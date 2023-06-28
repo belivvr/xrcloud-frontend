@@ -2,9 +2,8 @@
 import React from 'react'
 import { EnterServiceButton, StyledAddIcon } from 'components/custom/styles/styled'
 import { Scene } from 'types/project'
-import { Button } from '@mui/material'
 import styled from '@emotion/styled'
-import router from 'next/router'
+import { BasicContentsButton } from '../common'
 
 const Wrapper = styled.div`
     display: grid;
@@ -12,21 +11,18 @@ const Wrapper = styled.div`
     gap: 8px;
 `
 
-const SceneButton = styled(Button)`
-    border: 1px solid #eee;
-    padding: 0;
-`
-
 interface Props {
     sceneList: Scene[] | undefined
+    createScene: () => Promise<any>
+    updateScene: (sceneId: string) => Promise<any>
 }
 
-const SceneList = ({ sceneList }: Props) => {
+const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
     return (
         <Wrapper>
             {sceneList?.map((scene: Scene) => {
                 return (
-                    <SceneButton key={scene.id} onClick={() => router.push(scene.sceneUrl)}>
+                    <BasicContentsButton key={scene.id}>
                         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '300px', objectFit: 'cover' }}>
                             <img style={{ flex: 4 }} src={scene.thumbnailUrl} alt={scene.thumbnailUrl} />
                             <div
@@ -42,7 +38,7 @@ const SceneList = ({ sceneList }: Props) => {
                                 {scene.thumbnailUrl}
                             </div>
                         </div>
-                    </SceneButton>
+                    </BasicContentsButton>
                 )
             })}
             <EnterServiceButton>
