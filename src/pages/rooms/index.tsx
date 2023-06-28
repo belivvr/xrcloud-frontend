@@ -8,6 +8,7 @@ import RoomList from 'components/custom/rooms/roomList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
+import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
 
 const Rooms = () => {
     const { projectList } = useProjects()
@@ -25,24 +26,7 @@ const Rooms = () => {
                     </div>
                 }
             >
-                {choicedProject ? (
-                    <RoomList />
-                ) : (
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: 'calc(100vh - 268px)',
-                            fontSize: '60px',
-                            fontWeight: '700',
-                            lineHeight: 1.5,
-                            textAlign: 'center'
-                        }}
-                    >
-                        우측 상단에서 <br /> 프로젝트를 선택해주세요.
-                    </div>
-                )}
+                {choicedProject ? <RoomList /> : <NeedChoiceProject />}
             </MainCard>
         </Page>
     )

@@ -1,14 +1,21 @@
 import React from 'react'
 import { EnterServiceButton, StyledAddIcon } from 'components/custom/styles/styled'
 import { useRouter } from 'next/router'
+import { Room } from 'types/project'
 
-const RoomList = () => {
+interface Props {
+    roomList: Room[] | undefined
+}
+
+const RoomList = ({ roomList }: Props) => {
     const router = useRouter()
 
     return (
-        <EnterServiceButton onClick={() => router.push('/createRoom')}>
-            <StyledAddIcon />
-        </EnterServiceButton>
+        <>
+            <EnterServiceButton onClick={() => router.push('/createRoom')}>
+                <StyledAddIcon />
+            </EnterServiceButton>
+        </>
     )
 }
 

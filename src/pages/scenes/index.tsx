@@ -10,17 +10,15 @@ import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
-import { useScenes } from 'hooks/useScenes'
-import { useSnackbar } from 'notistack'
+import { useScenes } from 'hooks/api/useScenes'
 import { Scene } from 'types/project'
 import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
 
 const Scenes = () => {
     const [sceneList, setSceneList] = useState<Scene[]>()
     const { projectList } = useProjects()
-    const { getScenes } = useScenes()
+    const { getScenes, createScene, updateScene } = useScenes()
     const { choicedProject } = useChoicedProject()
-    const { enqueueSnackbar } = useSnackbar()
 
     const { locale } = useConfig()
     const localization = useLocalization(locale)
@@ -32,9 +30,7 @@ const Scenes = () => {
                 setSceneList(res.items)
             })
             .catch((err) => {
-                enqueueSnackbar(err.message, {
-                    variant: 'error'
-                })
+                setSceneList([])
             })
     }, [choicedProject])
 
@@ -54,7 +50,11 @@ const Scenes = () => {
                     </div>
                 }
             >
-                {choicedProject ? <SceneList sceneList={sceneList} /> : <NeedChoiceProject />}
+                {sceneList?.length ? (
+                    <SceneList createScene={createScene} updateScene={updateScene} sceneList={sceneList} />
+                ) : (
+                    <NeedChoiceProject />
+                )}
             </MainCard>
         </Page>
     )
