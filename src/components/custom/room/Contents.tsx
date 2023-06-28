@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import { Checkbox, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
 import React from 'react'
 import { Room, Scene } from 'types/project'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 const Content = styled.div`
     display: flex;
@@ -41,9 +43,17 @@ export default function Contents({
     selectChange
 }: //
 Props) {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+    const localizedFields = fields.map((field) => ({
+        ...field,
+        title: localization[field.title] || field.title,
+        label: localization[field.label] || field.label
+    }))
+
     return (
         <>
-            {fields.map((field) => (
+            {localizedFields.map((field) => (
                 <Content key={field.id}>
                     <ContentTitle>{field.title}</ContentTitle>
                     <ContentTextField disabled={field.isDisabled} id="outlined-required" label={field.label} defaultValue={field.label} />
@@ -51,9 +61,9 @@ Props) {
             ))}
 
             <Content>
-                <ContentTitle>projects.hubs.rooms.scene</ContentTitle>
+                <ContentTitle>{localization.scene}</ContentTitle>
                 <FormControl sx={{ m: 1, minWidth: 80, margin: 0 }}>
-                    <InputLabel id="demo-simple-select-autowidth-label">Scene</InputLabel>
+                    <InputLabel id="demo-simple-select-autowidth-label">{localization.scene}</InputLabel>
                     <Select color="primary" value={room.sceneId} label="Scene" autoWidth onChange={selectChange}>
                         {sceneList.map((scene) => (
                             <MenuItem key={scene.id} value={scene.id}>
@@ -65,7 +75,7 @@ Props) {
             </Content>
 
             <Content>
-                <ContentTitle>projects.hubs.rooms.auto-scale</ContentTitle>
+                <ContentTitle>{localization['auto-scale']}</ContentTitle>
                 <Checkbox />
             </Content>
         </>

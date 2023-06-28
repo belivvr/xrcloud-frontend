@@ -42,4 +42,18 @@ export interface Localization {
     attachment: string
     'get-issued': string
     [key: string]: string
+    'scene-selection': string
+    'room-name': string
+    'custom-data': string
+    'room-size': string
+    'auto-scale': string
+    'write-room-name': string
+    'write-custom-data': string
+    'enter-room-size': string
+    'date-of-room-creation': string
+    'date-of-room-update': string
+    'room-id': string
+    'scene-id': string
+    scene: string
+    enter: string
 }

@@ -68,13 +68,13 @@ export const mockSceneList: Scene[] = [
 ]
 
 export const roomFields: RoomField[] = [
-    { title: 'projects.hubs.rooms.created', id: 'createdAt', label: 'Created', isDisabled: true },
-    { title: 'projects.hubs.rooms.updated', id: 'updatedAt', label: 'Updated', isDisabled: true },
-    { title: 'projects.hubs.rooms.id', id: 'id', label: 'ID', isDisabled: true },
-    { title: 'projects.hubs.rooms.scene-id', id: 'sceneId', label: 'sceneID', isDisabled: true },
-    { title: 'projects.hubs.rooms.name', id: 'name', label: 'Name', isDisabled: false },
-    { title: 'projects.hubs.rooms.customData', id: 'customData', label: 'Custom Data', isDisabled: false },
-    { title: 'projects.hubs.rooms.roomSize', id: 'roomSize', label: 'Room Size', isDisabled: false }
+    { title: 'date-of-room-creation', id: 'createdAt', label: 'date-of-room-creation', isDisabled: true },
+    { title: 'date-of-room-update', id: 'updatedAt', label: 'date-of-room-update', isDisabled: true },
+    { title: 'room-id', id: 'id', label: 'room-id', isDisabled: true },
+    { title: 'scene-id', id: 'sceneId', label: 'scene-id', isDisabled: true },
+    { title: 'room-name', id: 'name', label: 'room-name', isDisabled: false },
+    { title: 'custom-data', id: 'customData', label: 'custom-data', isDisabled: false },
+    { title: 'room-size', id: 'roomSize', label: 'room-size', isDisabled: false }
 ]
 
 export const mockPermission: Permission = {
@@ -95,7 +95,7 @@ export const mockPermission: Permission = {
 
 export const permissionFields: RoomField[] = [
     { title: 'name', id: 'name', label: 'name', isDisabled: false },
-    { title: 'projects.hubs.permissions.custom-data', id: 'custom-data', label: 'projects.hubs.permissions.custom-data', isDisabled: false }
+    { title: 'custom-data', id: 'custom-data', label: 'custom-data', isDisabled: false }
 ]
 
 export const permissionCheckFields: PermissionCheckField[] = [
