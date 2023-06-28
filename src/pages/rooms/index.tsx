@@ -10,6 +10,8 @@ import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
+
 
 const Rooms = () => {
     const { projectList } = useProjects()
@@ -33,24 +35,9 @@ const Rooms = () => {
                     </div>
                 }
             >
-                {choicedProject ? (
-                    <RoomList />
-                ) : (
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: 'calc(100vh - 268px)',
-                            fontSize: '60px',
-                            fontWeight: '700',
-                            lineHeight: 1.5,
-                            textAlign: 'center'
-                        }}
-                    >
-                        {localization['click-project']}
-                    </div>
-                )}
+
+                {choicedProject ? <RoomList /> : <NeedChoiceProject />}
+
             </MainCard>
         </Page>
     )
