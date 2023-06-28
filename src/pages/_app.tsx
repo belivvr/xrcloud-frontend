@@ -40,29 +40,26 @@ interface Props {
 
 function MyApp({ Component, pageProps }: AppProps & Props) {
     const getLayout = Component.getLayout ?? ((page: any) => page)
-
-    // const [projectList, setProjectList] = useState<Project[]>([])
-
     return (
         <Provider store={store}>
-            {/* <ConfigProvider> */}
-            <ThemeCustomization>
-                {/* <RTLLayout> */}
-                <Locales>
-                    <NavigationScroll>
-                        <AuthProvider>
-                            <ProjectChoicedProjectProvider>
-                                <>
-                                    {getLayout(<Component {...pageProps} />)}
-                                    <Snackbar />
-                                </>
-                            </ProjectChoicedProjectProvider>
-                        </AuthProvider>
-                    </NavigationScroll>
-                </Locales>
-                {/* </RTLLayout> */}
-            </ThemeCustomization>
-            {/* </ConfigProvider> */}
+            <ConfigProvider>
+                <ThemeCustomization>
+                    {/* <RTLLayout> */}
+                    <Locales>
+                        <NavigationScroll>
+                            <AuthProvider>
+                                <ProjectChoicedProjectProvider>
+                                    <>
+                                        {getLayout(<Component {...pageProps} />)}
+                                        <Snackbar />
+                                    </>
+                                </ProjectChoicedProjectProvider>
+                            </AuthProvider>
+                        </NavigationScroll>
+                    </Locales>
+                    {/* </RTLLayout> */}
+                </ThemeCustomization>
+            </ConfigProvider>
         </Provider>
     )
 }
