@@ -27,7 +27,7 @@ export interface Localization {
     create: string
     modify: string
     name: string
-    'immutable-object': string
+    'create-object': string
     flight: string
     ban: string
     'user-mute': string

@@ -34,7 +34,7 @@
     "enter": "Enter the Room",
 
     "name": "Name",
-    "immutable-object": "Immutable-Object",
+    "create-object": "Create-Object",
     "flight": "Flight",
     "ban": "Ban",
     "user-mute": "User Mute",
