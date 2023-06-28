@@ -65,9 +65,8 @@
     "date-of-room-update": "업데이트 시간",
     "room-id": "아이디",
     "scene-id": "Scene 아이디",
-    "change-scene": "Scene 바꾸기"
+    "change-scene": "Scene 바꾸기",
 
     "scene-select-no-project": "프로젝트를 선택해주세요",
     "scene-select-alert-no-key": "프로젝트의 키가 없습니다. 프로젝트에서 발급 받아주세요."
-
 }
