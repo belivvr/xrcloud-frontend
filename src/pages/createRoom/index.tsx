@@ -8,6 +8,8 @@ import { BasicTableInput } from 'components/custom/common/BasicTableInput'
 import { mockSceneList } from 'config'
 import BasicTableCheckbox from 'components/custom/common/BasicTableCheckbox'
 import { SceneSelect } from 'components/custom/room'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 const CreateRoom = () => {
     const [sceneId, setSceneId] = useState('')
@@ -15,6 +17,9 @@ const CreateRoom = () => {
     const [customData, setCustomData] = useState('')
     const [roomSize, setRoomSize] = useState('')
     const [isAutoScale, setIsAutoScale] = useState(false)
+
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     return (
         <Page title="Create Room">
@@ -24,31 +29,31 @@ const CreateRoom = () => {
                         <SceneSelect sceneId={sceneId} sceneList={mockSceneList} onChange={(e) => setSceneId(e.target.value)} />
                         <BasicTableInput
                             type="text"
-                            title={'방 이름'}
+                            title={localization['room-name']}
                             value={roomName}
-                            placeholder={'방 이름을 작성하세요'}
+                            placeholder={localization['write-room-name']}
                             onChange={(e) => setRoomName(e.target.value)}
                         />
                         <BasicTableInput
                             type="text"
-                            title={'커스텀 데이터'}
+                            title={localization['custom-data']}
                             value={customData}
-                            placeholder={'커스텀 데이터를 작성하세요'}
+                            placeholder={localization['write-custom-data']}
                             onChange={(e) => setCustomData(e.target.value)}
                         />
                         <BasicTableInput
                             type="number"
-                            title={'방 사이즈'}
+                            title={localization['room-size']}
                             value={roomSize}
-                            placeholder={'방 사이즈를 입력하세요'}
+                            placeholder={localization['enter-room-size']}
                             onChange={(e) => setRoomSize(e.target.value)}
                         />
-                        <BasicTableCheckbox title={'오토 스케일'} onChange={(_, checked) => setIsAutoScale(checked)} />
+                        <BasicTableCheckbox title={localization['auto-scale']} onChange={(_, checked) => setIsAutoScale(checked)} />
                     </TableBody>
                 </Table>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Button style={{ minWidth: '300px', height: '48px', marginTop: '24px' }} variant="contained">
-                        생성하기
+                        {localization.create}
                     </Button>
                 </div>
             </MainCard>

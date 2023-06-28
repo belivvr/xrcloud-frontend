@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import { ListItemText, MenuItem, Select, SelectChangeEvent, TableCell, TableRow } from '@mui/material'
 import React from 'react'
 import { Scene } from 'types/project'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 const MenuItemWrapper = styled(Select)`
     div {
@@ -17,9 +19,11 @@ interface Props {
 }
 
 export function SceneSelect({ sceneId, sceneList, onChange }: Props) {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     return (
         <TableRow>
-            <TableCell>Scene 선택</TableCell>
+            <TableCell>{localization['scene-selection']}</TableCell>
             <TableCell>
                 <MenuItemWrapper id="scene" value={sceneId} onChange={onChange}>
                     {sceneList.map(({ id, name, thumbnailUrl }) => {

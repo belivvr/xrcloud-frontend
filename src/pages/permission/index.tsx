@@ -8,10 +8,14 @@ import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { Permission as PermissionType } from 'types/project'
 import { mockPermission, permissionFields, permissionCheckFields } from 'config'
 import { useProjects } from 'hooks/useProjects'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 const Permission = () => {
     const [permission, setPermission] = useState<PermissionType | undefined>()
     const { projectList } = useProjects()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     useEffect(() => {
         setPermission(mockPermission)
@@ -22,7 +26,7 @@ const Permission = () => {
                 title="Permission"
                 secondary={
                     <div style={{ width: '300px' }}>
-                        <FormControlSelect currencies={projectList} captionLabel="ProjectId선택" />
+                        <FormControlSelect currencies={projectList} captionLabel={localization['select-project-id']} />
                     </div>
                 }
             >
