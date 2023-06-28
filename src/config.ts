@@ -37,29 +37,33 @@ export const mockRoom: Room = {
     roomSize: 6,
     autoScale: false,
     roomUrl: 'https://www.google.com',
-    thumbnailUrl: '/images/maintenance/img-slider-layout1.png'
+    thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
 }
 
 export const mockSceneList: Scene[] = [
     {
         id: mockRoom.sceneId,
+        name: 'Creator',
         sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/images/maintenance/img-slider-layout1.png'
+        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
     },
     {
         id: v4(),
+        name: 'Creator',
         sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/images/maintenance/img-slider-layout1.png'
+        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
     },
     {
         id: v4(),
+        name: 'Creator',
         sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/images/maintenance/img-slider-layout1.png'
+        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
     },
     {
         id: v4(),
+        name: 'Creator',
         sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/images/maintenance/img-slider-layout1.png'
+        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
     }
 ]
 

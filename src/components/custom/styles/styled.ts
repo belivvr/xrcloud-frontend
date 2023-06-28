@@ -40,20 +40,14 @@ export const ProjectListStyle = styled(Button)`
     display: flex;
     justify-content: start;
     align-items: center;
-    border: none;
     width: 100%;
     padding: 16px;
     min-height: 100px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-top: 16px;
     font-size: 18px;
     font-weight: 500;
     color: #000;
-
-    :hover {
-        background-color: #fff;
-    }
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `
 export const ThumbnailContainer = styled.div`
     display: flex;
@@ -146,4 +140,17 @@ export const Content = styled.div`
 export const ContentTitle = styled.div`
     min-width: 300px;
     margin-right: 20%;
+`
+
+export const Label = styled.label`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
 `

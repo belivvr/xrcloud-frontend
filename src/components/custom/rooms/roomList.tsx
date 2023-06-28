@@ -6,7 +6,7 @@ const RoomList = () => {
     const router = useRouter()
 
     return (
-        <EnterServiceButton onClick={() => router.push('/room')}>
+        <EnterServiceButton onClick={() => router.push('/createRoom')}>
             <StyledAddIcon />
         </EnterServiceButton>
     )

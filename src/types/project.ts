@@ -10,6 +10,7 @@ export interface Project {
 
 export interface Scene {
     id: string
+    name: string
     sceneUrl: URL
     thumbnailUrl: URL
 }

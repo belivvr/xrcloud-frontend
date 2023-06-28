@@ -2,12 +2,12 @@ import { Button } from '@mui/material'
 import React from 'react'
 
 interface Props {
-    handleRoomEnter: () => void
-    handleRoomUpdate: () => void
-    handleRoomDelete: () => void
+    roomEnter: () => void
+    roomUpdate: () => void
+    roomDelete: () => void
 }
 
-export default function Buttons({ handleRoomEnter, handleRoomUpdate, handleRoomDelete }: Props) {
+export default function Buttons({ roomEnter, roomUpdate, roomDelete }: Props) {
     return (
         <div
             style={{
@@ -18,13 +18,13 @@ export default function Buttons({ handleRoomEnter, handleRoomUpdate, handleRoomD
                 marginTop: '16px'
             }}
         >
-            <Button onClick={handleRoomEnter} variant="contained">
+            <Button onClick={roomEnter} variant="contained">
                 PROJECTS.HUBS.ROOMS.ENTER
             </Button>
-            <Button onClick={handleRoomUpdate} variant="contained">
+            <Button onClick={roomUpdate} variant="contained">
                 수정
             </Button>
-            <Button onClick={handleRoomDelete} variant="contained" sx={{ backgroundColor: '#EA0000' }}>
+            <Button onClick={roomDelete} variant="contained" sx={{ backgroundColor: '#EA0000' }}>
                 삭제
             </Button>
         </div>

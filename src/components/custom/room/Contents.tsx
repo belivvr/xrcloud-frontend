@@ -31,14 +31,14 @@ interface Props {
     room: Room
     fields: Field[]
     sceneList: Scene[]
-    handleChange: (event: SelectChangeEvent) => void
+    selectChange: (event: SelectChangeEvent) => void
 }
 
 export default function Contents({
     room,
     fields,
     sceneList,
-    handleChange
+    selectChange
 }: //
 Props) {
     return (
@@ -54,7 +54,7 @@ Props) {
                 <ContentTitle>projects.hubs.rooms.scene</ContentTitle>
                 <FormControl sx={{ m: 1, minWidth: 80, margin: 0 }}>
                     <InputLabel id="demo-simple-select-autowidth-label">Scene</InputLabel>
-                    <Select color="primary" value={room.sceneId} label="Scene" autoWidth onChange={handleChange}>
+                    <Select color="primary" value={room.sceneId} label="Scene" autoWidth onChange={selectChange}>
                         {sceneList.map((scene) => (
                             <MenuItem key={scene.id} value={scene.id}>
                                 {scene.id}
