@@ -4,7 +4,7 @@ import MainCard from 'ui-component/cards/MainCard'
 import { UpdateProjectForm } from 'components/custom/updateproject/UpdateProjectForm'
 import Layout from 'layout'
 import { useRouter } from 'next/router'
-import { useProject } from 'hooks/useProject'
+import { useProject } from 'hooks/api/useProject'
 import { Project } from 'types/project'
 import { Loading } from 'components/custom/common'
 

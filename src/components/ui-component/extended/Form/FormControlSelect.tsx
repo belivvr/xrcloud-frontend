@@ -7,7 +7,7 @@ import { Divider, FormControl, InputAdornment, MenuItem, TextField } from '@mui/
 // project imports
 import { GenericCardProps } from 'types'
 import { Project } from 'types/project'
-import { useProject } from 'hooks/useProject'
+import { useProject } from 'hooks/api/useProject'
 import useChoicedProject from 'hooks/useChoicedProject'
 
 // ==============================|| FORM CONTROL SELECT ||============================== //

@@ -36,7 +36,6 @@ export function useScenes() {
         if (!validateProject() || !choicedProject) {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
-
         return get<{ items: Scene[] }>('/api/scenes/findAll', {
             headers: createHeaders(choicedProject)
         })
