@@ -8,10 +8,14 @@ import RoomList from 'components/custom/rooms/roomList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 const Rooms = () => {
     const { projectList } = useProjects()
     const { choicedProject } = useChoicedProject()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     return (
         <Page title="Rooms">
@@ -20,7 +24,11 @@ const Rooms = () => {
                 secondary={
                     <div style={{ width: '300px' }}>
                         {projectList && (
-                            <FormControlSelect selected={choicedProject?.id} currencies={projectList} captionLabel="ProjectId선택" />
+                            <FormControlSelect
+                                selected={choicedProject?.id}
+                                currencies={projectList}
+                                captionLabel={localization['select-project-id']}
+                            />
                         )}
                     </div>
                 }
@@ -40,7 +48,7 @@ const Rooms = () => {
                             textAlign: 'center'
                         }}
                     >
-                        우측 상단에서 <br /> 프로젝트를 선택해주세요.
+                        {localization['click-project']}
                     </div>
                 )}
             </MainCard>

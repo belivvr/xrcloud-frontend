@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import { Checkbox, TextField, Button } from '@mui/material'
 import { Content, ContentTitle } from '../styles/styled'
 import { Permission, PermissionCheckField } from 'types/project'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface permissionFields {
     title: string
@@ -22,15 +24,30 @@ const ContentTextField = styled(TextField)`
 `
 
 const PermissionContents = ({ permission, fields, checkfields }: Props) => {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+
+    const localizedFields = fields.map((field) => ({
+        ...field,
+        title: localization[field.title] || field.title,
+        label: localization[field.label] || field.label
+    }))
+
+    const localizedCheckfields = checkfields.map((check) => ({
+        ...check,
+
+        title: localization[check.title] || check.title
+    }))
+
     return (
         <>
-            {fields.map((field) => (
+            {localizedFields.map((field) => (
                 <Content key={field.id}>
                     <ContentTitle>{field.title}</ContentTitle>
                     <ContentTextField disabled={field.isDisabled} id="outlined-required" label={field.label} defaultValue={field.label} />
                 </Content>
             ))}
-            {checkfields.map((check) => (
+            {localizedCheckfields.map((check) => (
                 <Content key={check.id}>
                     <ContentTitle>{check.title}</ContentTitle>
                     <div
@@ -46,7 +63,7 @@ const PermissionContents = ({ permission, fields, checkfields }: Props) => {
                 </Content>
             ))}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '16px' }}>
-                <Button variant="contained">생성</Button>
+                <Button variant="contained">{localization.create}</Button>
             </div>
         </>
     )

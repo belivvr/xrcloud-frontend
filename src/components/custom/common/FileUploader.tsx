@@ -2,8 +2,12 @@ import { useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import { UploaderProps } from 'types/project'
 import { FindFileBox, UploadName, Label, InputFile } from '../styles/styled'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 export const FileUploader: React.FC<UploaderProps> = ({ htmlFor, setThumbnailUrl, setFile }) => {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     const [thumbnailNamePreview, setThumbnailNamePreview] = useState('')
     const theme = useTheme()
 
@@ -20,9 +24,9 @@ export const FileUploader: React.FC<UploaderProps> = ({ htmlFor, setThumbnailUrl
     return (
         <div>
             <FindFileBox>
-                <UploadName type="text" value={thumbnailNamePreview} placeholder="첨부파일" readOnly />
+                <UploadName type="text" value={thumbnailNamePreview} placeholder={localization.attachment} readOnly />
                 <Label style={{ backgroundColor: theme.palette.primary.main }} htmlFor={htmlFor}>
-                    파일찾기
+                    {localization.browse}
                 </Label>
                 <InputFile
                     type="file"

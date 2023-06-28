@@ -13,10 +13,11 @@
     "rooms-cardtitle": "Rooms",
     "permissons-cardtitle": "Permissons",
 
+    "product": "Product",
     "project-name": "Project Name",
     "favicon": "Favicon",
     "logo": "Logo",
-    "access-key": "Access Key",
+    "project-key": "Project Key",
     "creation-date": "Creation Date",
     "last-update": "Last Update Time",
 
@@ -25,9 +26,11 @@
     "add": "ADD",
     "cancel": "Cancel",
     "upload": "Upload",
+    "update": "Update",
     "delete": "Delete",
     "create": "Create",
     "modify": "Modify",
+    "get-issued": "Get Issued",
 
     "name": "Name",
     "immutable-object": "Immutable-Object",
@@ -43,5 +46,6 @@
     "create-project": "Create Project",
 
     "click-project": "Please select your\n project in the top right corner.",
-    "select-project-id": "Select project ID"
+    "select-project-id": "Select project ID",
+    "attachment": "Attachment"
 }

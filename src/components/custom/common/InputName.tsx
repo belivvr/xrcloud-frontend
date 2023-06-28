@@ -1,5 +1,7 @@
 import { TableCell, TableRow, TextField } from '@mui/material'
 import React from 'react'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
     projectName: string
@@ -7,11 +9,19 @@ interface Props {
 }
 
 export function InputName({ projectName, setProjectName }: Props) {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     return (
         <TableRow>
-            <TableCell>프로젝트 이름</TableCell>
+            <TableCell>{localization['project-name']}</TableCell>
             <TableCell>
-                <TextField fullWidth placeholder="프로젝트 이름" value={projectName} onChange={(e) => setProjectName(e.target.value)} />
+                <TextField
+                    fullWidth
+                    id="project-name"
+                    placeholder={localization['project-name']}
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                />
             </TableCell>
         </TableRow>
     )
