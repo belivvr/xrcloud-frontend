@@ -2,20 +2,14 @@ import styled from '@emotion/styled'
 import AddIcon from '@mui/icons-material/Add'
 import { Button } from '@mui/material'
 
-export const EnterServiceButton = styled.button`
+export const EnterServiceButton = styled(Button)`
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
-    width: 300px;
-    height: 300px;
     background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    &:hover {
-        background-color: #f5f5f5;
-        cursor: pointer;
-    }
+    border: 1px solid #eee;
+    color: #000;
 `
 export const Label = styled.label`
     display: flex;
@@ -67,7 +61,6 @@ export const ThumbnailBox = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-right: 8px;
-    // background-color: green;
 `
 export const ThumbnailInputBox = styled.div<{ htmlFor?: string }>`
     height: 90%;
