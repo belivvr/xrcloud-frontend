@@ -141,16 +141,3 @@ export const ContentTitle = styled.div`
     min-width: 300px;
     margin-right: 20%;
 `
-
-export const Label = styled.label`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 120px;
-    height: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
-`

@@ -6,6 +6,8 @@ import { openDrawer } from 'store/slices/menu'
 import { ProjectListStyle } from 'components/custom/styles/styled'
 import { useRouter } from 'next/router'
 import { Project } from 'types/project'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
     projectList: Project[] | undefined
@@ -14,6 +16,9 @@ interface Props {
 const ProjectList = ({ projectList }: Props) => {
     const dispatch = useDispatch()
     const router = useRouter()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+
     const handleClick = () => {
         dispatch(openDrawer(true))
         router.push(`/addproject`)
@@ -26,7 +31,7 @@ const ProjectList = ({ projectList }: Props) => {
     return (
         <div>
             <Button variant="contained" color="primary" onClick={handleClick}>
-                프로젝트 추가
+                {localization['create-project']}
             </Button>
 
             {projectList?.map((project: Project) => (

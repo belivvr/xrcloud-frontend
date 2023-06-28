@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useState } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'

@@ -9,12 +9,6 @@ const loadLocaleData = (locale: string) => {
     switch (locale) {
         case 'ko':
             return import('../../utils/locales/ko.json')
-        case 'fr':
-            return import('../../utils/locales/fr.json')
-        case 'ro':
-            return import('../../utils/locales/ro.json')
-        case 'zh':
-            return import('../../utils/locales/zh.json')
         default:
             return import('../../utils/locales/en.json')
     }

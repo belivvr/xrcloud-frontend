@@ -1,13 +1,17 @@
 {
-    "project-manage": "프로젝트 관리",
-    "projects": "내 프로젝트",
-    "scenes": "씬",
-    "rooms": "룸",
-    "permissions": "사용자 권한 설정",
-    "avatars": "아바타",
-    "emojis": "이모지",
-    "3d-models": "3D 모델",
+    "project-manage": "Projects",
+    "projects": "Projects",
+    "scenes": "Scenes",
+    "rooms": "Rooms",
+    "permissions": "Permissons",
+    "avatars": "Avatars",
+    "emojis": "Emojis",
+    "3d-models": "3D-Models",
     "blank": " ",
+
+    "scene-cardtitle": "Scenes",
+    "rooms-cardtitle": "Rooms",
+    "permissons-cardtitle": "Permissons",
 
     "product": "제품",
     "project-name": "프로젝트 이름",
@@ -24,7 +28,6 @@
     "upload": "업로드",
     "update": "업데이트",
     "delete": "삭제",
-
     "create": "생성",
     "modify": "수정",
 
@@ -37,5 +40,10 @@
     "media-creation-and-transfer": "미디어 생성 및 이동",
     "pen-drawing": "펜 그리기",
     "camera-creation": "카메라 생성",
-    "emoji-creation": "이모지 생성"
+    "emoji-creation": "이모지 생성",
+
+    "create-project": "프로젝트 추가",
+
+    "click-project": "우측 상단에서\n 프로젝트를 선택해주세요.",
+    "select-project-id": "Project ID 선택"
 }

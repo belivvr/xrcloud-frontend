@@ -8,10 +8,14 @@ import SceneList from 'components/custom/scenes/sceneList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 const Scenes = () => {
     const { projectList } = useProjects()
     const { choicedProject } = useChoicedProject()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     return (
         <Page title="Scenes">
@@ -20,7 +24,11 @@ const Scenes = () => {
                 secondary={
                     <div style={{ width: '300px' }}>
                         {projectList && (
-                            <FormControlSelect selected={choicedProject?.id} currencies={projectList} captionLabel="ProjectId선택" />
+                            <FormControlSelect
+                                selected={choicedProject?.id}
+                                currencies={projectList}
+                                captionLabel={localization['select-project-id']}
+                            />
                         )}
                     </div>
                 }
@@ -37,10 +45,11 @@ const Scenes = () => {
                             fontSize: '60px',
                             fontWeight: '700',
                             lineHeight: 1.5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            whiteSpace: 'pre-line'
                         }}
                     >
-                        우측 상단에서 <br /> 프로젝트를 선택해주세요.
+                        {localization['click-project']}
                     </div>
                 )}
             </MainCard>

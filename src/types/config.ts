@@ -8,7 +8,7 @@ export type ConfigProps = {
     outlinedFilled: boolean
     navType: PaletteMode
     presetColor: string
-    locale: string
+    locale: 'ko' | 'en'
     rtlLayout: boolean
     container: boolean
 }
@@ -21,7 +21,7 @@ export type CustomizationProps = {
     outlinedFilled: boolean
     navType: PaletteMode
     presetColor: string
-    locale: string
+    locale: 'ko' | 'en'
     rtlLayout: boolean
     container: boolean
     onChangeLayout: (layout: string) => void
