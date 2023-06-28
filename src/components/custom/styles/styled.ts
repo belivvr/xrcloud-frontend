@@ -17,6 +17,19 @@ export const EnterServiceButton = styled.button`
         cursor: pointer;
     }
 `
+export const Label = styled.label`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #673ab7;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+`
 
 export const StyledAddIcon = styled(AddIcon)`
     width: 300px;
