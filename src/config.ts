@@ -68,13 +68,13 @@ export const mockSceneList: Scene[] = [
 ]
 
 export const roomFields: RoomField[] = [
-    { title: 'projects.hubs.rooms.created', id: 'createdAt', label: 'Created', isDisabled: true },
-    { title: 'projects.hubs.rooms.updated', id: 'updatedAt', label: 'Updated', isDisabled: true },
-    { title: 'projects.hubs.rooms.id', id: 'id', label: 'ID', isDisabled: true },
-    { title: 'projects.hubs.rooms.scene-id', id: 'sceneId', label: 'sceneID', isDisabled: true },
-    { title: 'projects.hubs.rooms.name', id: 'name', label: 'Name', isDisabled: false },
-    { title: 'projects.hubs.rooms.customData', id: 'customData', label: 'Custom Data', isDisabled: false },
-    { title: 'projects.hubs.rooms.roomSize', id: 'roomSize', label: 'Room Size', isDisabled: false }
+    { title: 'date-of-room-creation', id: 'createdAt', label: 'date-of-room-creation', isDisabled: true },
+    { title: 'date-of-room-update', id: 'updatedAt', label: 'date-of-room-update', isDisabled: true },
+    { title: 'room-id', id: 'id', label: 'room-id', isDisabled: true },
+    { title: 'scene-id', id: 'sceneId', label: 'scene-id', isDisabled: true },
+    { title: 'room-name', id: 'name', label: 'room-name', isDisabled: false },
+    { title: 'custom-data', id: 'customData', label: 'custom-data', isDisabled: false },
+    { title: 'room-size', id: 'roomSize', label: 'room-size', isDisabled: false }
 ]
 
 export const mockPermission: Permission = {
@@ -84,7 +84,7 @@ export const mockPermission: Permission = {
     customData: 'Room 1 test',
     object: true,
     flight: true,
-    dropout: true,
+    ban: true,
     userMute: true,
     audioAmp: false,
     mediaCreationTransfer: true,
@@ -94,20 +94,20 @@ export const mockPermission: Permission = {
 }
 
 export const permissionFields: RoomField[] = [
-    { title: '이름', id: 'name', label: '이름', isDisabled: false },
-    { title: 'projects.hubs.permissions.custom-data', id: 'custom-data', label: 'projects.hubs.permissions.custom-data', isDisabled: false }
+    { title: 'name', id: 'name', label: 'name', isDisabled: false },
+    { title: 'custom-data', id: 'custom-data', label: 'custom-data', isDisabled: false }
 ]
 
 export const permissionCheckFields: PermissionCheckField[] = [
-    { title: '오브젝트 고정', id: 'object' },
-    { title: '비행', id: 'flight' },
-    { title: '강퇴', id: 'dropout' },
-    { title: '유저 음소거', id: 'userMute' },
-    { title: '오디오 증폭', id: 'audioAmp' },
-    { title: '미디어 생성 및 이동', id: 'mediaCreateMove' },
-    { title: '펜그리기', id: 'penDraw' },
-    { title: '카메라 생성', id: 'cameraCreate' },
-    { title: '이모지 생성', id: 'emojiCreate' }
+    { title: 'create-object', id: 'object' },
+    { title: 'flight', id: 'flight' },
+    { title: 'ban', id: 'ban' },
+    { title: 'user-mute', id: 'userMute' },
+    { title: 'audio-amplification', id: 'audioAmp' },
+    { title: 'media-creation-and-transfer', id: 'mediaCreateMove' },
+    { title: 'pen-drawing', id: 'penDraw' },
+    { title: 'camera-creation', id: 'cameraCreate' },
+    { title: 'emoji-creation', id: 'emojiCreate' }
 ]
 
 export default config

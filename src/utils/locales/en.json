@@ -13,10 +13,11 @@
     "rooms-cardtitle": "Rooms",
     "permissons-cardtitle": "Permissons",
 
+    "product": "Product",
     "project-name": "Project Name",
     "favicon": "Favicon",
     "logo": "Logo",
-    "access-key": "Access Key",
+    "project-key": "Project Key",
     "creation-date": "Creation Date",
     "last-update": "Last Update Time",
 
@@ -25,12 +26,15 @@
     "add": "ADD",
     "cancel": "Cancel",
     "upload": "Upload",
+    "update": "Update",
     "delete": "Delete",
     "create": "Create",
     "modify": "Modify",
+    "get-issued": "Get Issued",
+    "enter": "Enter the Room",
 
     "name": "Name",
-    "immutable-object": "Immutable-Object",
+    "create-object": "Create-Object",
     "flight": "Flight",
     "ban": "Ban",
     "user-mute": "User Mute",
@@ -44,6 +48,26 @@
 
     "click-project": "Please select your\n project in the top right corner.",
     "select-project-id": "Select project ID",
+
+    "attachment": "Attachment",
+
+    "scene-selection": "Scene Selection",
+    "room-name": "Room Name",
+    "custom-data": "Custom Data",
+    "room-size": "Room Size",
+    "auto-scale": "Auto Scale",
+
+    "write-room-name": "please, write room name",
+    "write-custom-data": "please, write custom data",
+    "enter-room-size": "please, enter room size",
+
+    "date-of-room-creation": "Date of Room Creation",
+    "date-of-room-update": "Date of Room Update",
+    "room-id": "Room ID",
+    "scene-id": "Scene ID",
+    "change-scene": "Change Scene"
+
     "scene-select-no-project": "Please select a project",
     "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project."
+
 }
