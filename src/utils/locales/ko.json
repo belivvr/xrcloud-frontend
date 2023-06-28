@@ -45,5 +45,7 @@
     "create-project": "프로젝트 추가",
 
     "click-project": "우측 상단에서\n 프로젝트를 선택해주세요.",
-    "select-project-id": "Project ID 선택"
+    "select-project-id": "Project ID 선택",
+    "scene-select-no-project": "프로젝트를 선택해주세요",
+    "scene-select-alert-no-key": "프로젝트의 키가 없습니다. 프로젝트에서 발급 받아주세요."
 }

@@ -37,4 +37,6 @@ export interface Localization {
     'click-project': string
     'select-project-id': string
     'create-project': string
+    'scene-select-no-project': string
+    'scene-select-alert-no-key': string
 }
