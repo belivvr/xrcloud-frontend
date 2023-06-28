@@ -44,7 +44,7 @@ export interface Permission {
     customData: any
     object: boolean
     flight: boolean
-    dropout: boolean
+    ban: boolean
     userMute: boolean
     audioAmp: boolean
     mediaCreationTransfer: boolean

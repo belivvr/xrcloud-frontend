@@ -1,5 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TableCell, TableRow } from '@mui/material'
 import React from 'react'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
     productName: string
@@ -7,13 +9,15 @@ interface Props {
 }
 
 export function SelectProducts({ productName, selectProduct }: Props) {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     return (
         <TableRow>
-            <TableCell>제품</TableCell>
+            <TableCell>{localization.product}</TableCell>
             <TableCell>
                 <FormControl sx={{ minWidth: 120 }}>
-                    <InputLabel>제품</InputLabel>
-                    <Select label="제품" value={productName} onChange={selectProduct}>
+                    <InputLabel>{localization.product}</InputLabel>
+                    <Select id="product" label="product" value={productName} onChange={selectProduct}>
                         <MenuItem value={1}>hubs</MenuItem>
                     </Select>
                 </FormControl>

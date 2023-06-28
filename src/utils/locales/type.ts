@@ -1,3 +1,5 @@
+import { string } from 'yup'
+
 export interface Localization {
     'project-manage': string
     projects: string
@@ -12,7 +14,7 @@ export interface Localization {
     'project-name': string
     favicon: string
     logo: string
-    'access-key': string
+    'project-key': string
     'creation-date': string
     'last-update': string
     'add-project': string
@@ -37,4 +39,7 @@ export interface Localization {
     'click-project': string
     'select-project-id': string
     'create-project': string
+    attachment: string
+    'get-issued': string
+    [key: string]: string
 }

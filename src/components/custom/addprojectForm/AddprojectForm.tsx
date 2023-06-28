@@ -6,8 +6,12 @@ import router from 'next/router'
 import { CancelButton } from '../common/CancelButton'
 import { DefaultButton } from '../common/DefaultButton'
 import { InputFiles, InputName } from '../common'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 export const AddProjectForm = () => {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     const [productName, setProductName] = useState<string>('')
     const [projectName, setProjectName] = useState<string>('')
 
@@ -28,14 +32,14 @@ export const AddProjectForm = () => {
                 <SelectProducts productName={productName} selectProduct={selectProduct} />
                 <InputName projectName={projectName} setProjectName={setProjectName} />
                 <InputFiles
-                    tableName={'파비콘'}
+                    tableName={localization.favicon}
                     htmlFor={'faviconFile'}
                     thumbnailUrl={faviconThumbnailUrl}
                     setFile={setFaviconFile}
                     setThumbnailUrl={setFaviconThumbnailUrl}
                 />
                 <InputFiles
-                    tableName={'로고'}
+                    tableName={localization.logo}
                     htmlFor={'logoFile'}
                     thumbnailUrl={logoThumbnailUrl}
                     setFile={setLogoFile}
@@ -44,8 +48,11 @@ export const AddProjectForm = () => {
                 <TableRow>
                     <TableCell sx={{ borderBottom: 'none', textAlign: 'center' }} colSpan={2}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-                            <DefaultButton text={'확인'} onClick={() => createsProject(faviconFile, logoFile, projectName, productName)} />
-                            <CancelButton text={'취소'} onClick={() => router.back()} />
+                            <DefaultButton
+                                text={localization.add}
+                                onClick={() => createsProject(faviconFile, logoFile, projectName, productName)}
+                            />
+                            <CancelButton text={localization.cancel} onClick={() => router.back()} />
                         </div>
                     </TableCell>
                 </TableRow>

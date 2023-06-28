@@ -1,6 +1,8 @@
 import { Button, TableCell, TableRow, TextField } from '@mui/material'
 import React from 'react'
 import { Project } from 'types/project'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
     project: Project
@@ -9,9 +11,11 @@ interface Props {
 }
 
 export function GenerateProjectKey({ project, setProject, getProjectKey }: Props) {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     return (
         <TableRow>
-            <TableCell>Project Key</TableCell>
+            <TableCell>{localization['project-key']}</TableCell>
             <TableCell style={{ display: 'flex', gap: '16px' }}>
                 <TextField disabled value={project.projectKey} fullWidth />
                 <Button
@@ -22,7 +26,7 @@ export function GenerateProjectKey({ project, setProject, getProjectKey }: Props
                     }}
                     style={{ minWidth: '200px', backgroundColor: '#fff', fontSize: '18px', fontWeight: '600' }}
                 >
-                    발급 받기
+                    {localization['get-issued']}
                 </Button>
             </TableCell>
         </TableRow>
