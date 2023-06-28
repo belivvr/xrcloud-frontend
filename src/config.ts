@@ -99,7 +99,7 @@ export const permissionFields: RoomField[] = [
 ]
 
 export const permissionCheckFields: PermissionCheckField[] = [
-    { title: 'immutable-object', id: 'object' },
+    { title: 'create-object', id: 'object' },
     { title: 'flight', id: 'flight' },
     { title: 'ban', id: 'ban' },
     { title: 'user-mute', id: 'userMute' },

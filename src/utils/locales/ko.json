@@ -34,7 +34,7 @@
     "enter": "방으로 들어가기",
 
     "name": "이름",
-    "immutable-object": "오브젝트 생성",
+    "create-object": "오브젝트 생성",
     "flight": "비행",
     "ban": "강제퇴장",
     "user-mute": "유저 음소거",
