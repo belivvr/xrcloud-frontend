@@ -35,6 +35,9 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { StringColorProps } from 'types'
 
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
+
 // ===========================|| JWT - REGISTER ||=========================== //
 
 const JWTRegister = ({ ...others }) => {
@@ -47,6 +50,9 @@ const JWTRegister = ({ ...others }) => {
     const [strength, setStrength] = React.useState(0)
     const [level, setLevel] = React.useState<StringColorProps>()
     const { login, register } = useAuth()
+
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
@@ -67,7 +73,7 @@ const JWTRegister = ({ ...others }) => {
             <Grid container direction="column" justifyContent="center" spacing={2}>
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
                     <Box sx={{ mb: 2 }}>
-                        <Typography variant="subtitle1">Sign up with Email address</Typography>
+                        <Typography variant="subtitle1">{localization['sign-up-with']}</Typography>
                     </Box>
                 </Grid>
             </Grid>
@@ -79,8 +85,8 @@ const JWTRegister = ({ ...others }) => {
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                    password: Yup.string().max(255).required('Password is required')
+                    email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required']),
+                    password: Yup.string().max(255).required(localization['password-required'])
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
@@ -99,7 +105,7 @@ const JWTRegister = ({ ...others }) => {
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                            <InputLabel htmlFor="outlined-adornment-email-register">Email Address</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-email-register">{localization['email-address']}</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-register"
                                 type="email"
@@ -121,13 +127,13 @@ const JWTRegister = ({ ...others }) => {
                             error={Boolean(touched.password && errors.password)}
                             sx={{ ...theme.typography.customInput }}
                         >
-                            <InputLabel htmlFor="outlined-adornment-password-register">Password</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-password-register">{localization.password}</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password-register"
                                 type={showPassword ? 'text' : 'password'}
                                 value={values.password}
                                 name="password"
-                                label="Password"
+                                label={localization.password}
                                 onBlur={handleBlur}
                                 onChange={(e) => {
                                     handleChange(e)
@@ -187,11 +193,8 @@ const JWTRegister = ({ ...others }) => {
                                         />
                                     }
                                     label={
-                                        <Typography variant="subtitle1">
-                                            Agree with &nbsp;
-                                            <Typography variant="subtitle1" component={Link} href="/">
-                                                Terms & Condition.
-                                            </Typography>
+                                        <Typography variant="subtitle1" component={Link} href="/">
+                                            {localization['agree-term']}
                                         </Typography>
                                     }
                                 />
@@ -214,7 +217,7 @@ const JWTRegister = ({ ...others }) => {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Sign up
+                                    {localization['sign-up']}
                                 </Button>
                             </AnimateButton>
                         </Box>

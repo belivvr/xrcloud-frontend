@@ -29,6 +29,9 @@ import useScriptRef from 'hooks/useScriptRef'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
+
 // ===============================|| JWT LOGIN ||=============================== //
 
 const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
@@ -36,6 +39,8 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
 
     const { login } = useAuth()
     const scriptedRef = useScriptRef()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     const [showPassword, setShowPassword] = React.useState(false)
     const handleClickShowPassword = () => {
@@ -54,8 +59,8 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                password: Yup.string().max(255).required('Password is required')
+                email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required']),
+                password: Yup.string().max(255).required(localization['password-required'])
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
@@ -78,7 +83,9 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
                     <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-email-login">
+                            {localization['email-address']} / {localization.username}
+                        </InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-email-login"
                             type="email"
@@ -96,7 +103,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                     </FormControl>
 
                     <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-password-login">{localization.password}</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password-login"
                             type={showPassword ? 'text' : 'password'}
@@ -135,7 +142,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                     <Box sx={{ mt: 2 }}>
                         <AnimateButton>
                             <Button color="secondary" disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained">
-                                Sign In
+                                {localization['sign-in']}
                             </Button>
                         </AnimateButton>
                     </Box>

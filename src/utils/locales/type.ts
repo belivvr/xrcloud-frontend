@@ -61,4 +61,27 @@ export interface Localization {
     'scene-select-no-project': string
     'scene-select-alert-no-key': string
 
+    'sign-in': string
+    logout: string
+    welcome: string
+    'enter-your-credentials': string
+    'email-address': string
+    username: string
+    password: string
+    'dont-account': string
+
+    'valid-email': string
+    'email-required': string
+    'password-required': string
+
+    'sign-up': string
+    'sign-up-with': string
+    'agree-term': string
+    'already-account': string
+
+    'forgot-password': string
+    'reset-otp': string
+    'send-mail': string
+
+    'check-reset-link': string
 }
