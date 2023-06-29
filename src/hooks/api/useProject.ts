@@ -37,6 +37,13 @@ export function useProject() {
             return
         }
 
+        if (!projectName) {
+            enqueueSnackbar(localization['need-project-name'], {
+                variant: 'error'
+            })
+            return
+        }
+
         const formData = new FormData()
         formData.append('projectName', projectName)
         formData.append('productName', productName)

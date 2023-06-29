@@ -57,6 +57,7 @@ export interface Localization {
     enter: string
 
     'need-favicon-logo': string
+    'need-project-name': string
 
     'scene-select-no-project': string
     'scene-select-alert-no-key': string
