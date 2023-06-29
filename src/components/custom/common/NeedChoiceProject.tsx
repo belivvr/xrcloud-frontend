@@ -2,7 +2,11 @@ import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import React from 'react'
 
-export function NeedChoiceProject() {
+interface Props {
+    title?: string
+}
+
+export function NeedChoiceProject({ title }: Props) {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     return (
@@ -19,7 +23,7 @@ export function NeedChoiceProject() {
                 whiteSpace: 'pre-line'
             }}
         >
-            {localization['click-project']}
+            {title || localization['click-project']}
         </div>
     )
 }

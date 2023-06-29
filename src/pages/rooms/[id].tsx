@@ -23,12 +23,10 @@ const RoomUpdate = () => {
     const projectId = localStorage.getItem('projectId')
 
     const router = useRouter()
-    const { getRoom } = useRoom()
+    const { getRoom, deleteRoom } = useRoom()
     const { getScenes } = useScenes()
     const { findById } = useProject()
     const { choicedProject, setChoicedProject } = useChoicedProject()
-
-    const roomDelete = () => {}
 
     useEffect(() => {
         if (!projectId) return
@@ -60,7 +58,7 @@ const RoomUpdate = () => {
         <Page title="Room">
             <MainCard sx={{ overflow: 'scroll' }} title="Room">
                 {sceneList && <Contents room={room} sceneList={sceneList} />}
-                <Buttons roomDelete={roomDelete} />
+                <Buttons roomDelete={deleteRoom} />
             </MainCard>
         </Page>
     )

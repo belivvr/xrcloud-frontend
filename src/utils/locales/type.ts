@@ -36,6 +36,8 @@ export interface Localization {
     'emoji-creation': string
     'click-project': string
     'select-project-id': string
+    'select-scene-id': string
+
     'create-project': string
 
     attachment: string
@@ -91,4 +93,5 @@ export interface Localization {
     'company-number': string
 
     'not-found-rooms': string
+    'room-no-scenes': string
 }
