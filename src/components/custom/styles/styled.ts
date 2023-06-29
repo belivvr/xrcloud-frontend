@@ -73,13 +73,12 @@ export const ThumbnailInputBox = styled.div<{ htmlFor?: string }>`
 `
 
 export const ImagePreview = styled.img<{ src?: string }>`
-    height: 100%;
-    backgroundcolor: yellow;
-    object-fit: contain;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+    object-fit: contain;
     border-radius: 8px;
     margin: 8px;
 `

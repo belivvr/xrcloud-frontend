@@ -22,7 +22,13 @@ export function InputFiles({ htmlFor, tableName, thumbnailUrl, setFile, setThumb
             <TableCell>{tableName}</TableCell>
             <TableCell>
                 <ThumbnailBox>
-                    <ImagePreview src={cacheRemove(thumbnailUrl)} alt="Favicon Preview" />
+                    <ImagePreview
+                        src={cacheRemove(thumbnailUrl)}
+                        alt="Favicon Preview"
+                        onError={(props) => {
+                            props.currentTarget.src = '/assets/images/image_not_available.png'
+                        }}
+                    />
                     <FileUploader htmlFor={htmlFor} setFile={setFile} setThumbnailUrl={setThumbnailUrl} />
                 </ThumbnailBox>
             </TableCell>
