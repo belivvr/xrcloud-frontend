@@ -34,18 +34,17 @@ const ForgotPassword = () => {
                             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
-                                        <Grid item sx={{ mb: 3 }}>
+                                        <Grid item sx={{ mb: 1 }}>
                                             <Link href="#" aria-label="theme-logo" sx={{ textDecoration: 'none', color: '#000' }}>
                                                 {/* <Logo /> */}
                                                 <Box
                                                     component="span"
                                                     sx={{
                                                         display: 'flex',
-                                                        justifyContent: 'flex-start',
+                                                        justifyContent: 'center',
                                                         alignItems: 'center',
                                                         fontSize: '24px',
-                                                        fontWeight: '700',
-                                                        marginRight: '1em'
+                                                        fontWeight: '700'
                                                     }}
                                                 >
                                                     {/* <LogoSection /> */}
