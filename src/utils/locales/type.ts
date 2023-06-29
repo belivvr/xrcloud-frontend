@@ -85,5 +85,4 @@ export interface Localization {
     'send-mail': string
 
     'check-reset-link': string
-
 }
