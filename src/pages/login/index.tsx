@@ -66,7 +66,7 @@ const Login = () => {
                                                         <Typography
                                                             color={theme.palette.secondary.main}
                                                             gutterBottom
-                                                            variant={matchDownSM ? 'h3' : 'h2'}
+                                                            variant={matchDownSM ? 'h4' : 'h3'}
                                                         >
                                                             {localization.welcome}
                                                         </Typography>
