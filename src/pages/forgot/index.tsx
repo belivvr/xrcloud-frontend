@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 import Link from 'Link'
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Divider, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Divider, Grid, Typography, useMediaQuery, Box } from '@mui/material'
 
 // project imports
 import LAYOUT from 'constant'
@@ -14,11 +14,16 @@ import Logo from 'ui-component/Logo'
 import AuthForgotPassword from 'components/authentication/auth-forms/AuthForgotPassword'
 import AuthFooter from 'ui-component/cards/AuthFooter'
 
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
+
 // ============================|| AUTH3 - FORGOT PASSWORD ||============================ //
 
 const ForgotPassword = () => {
     const theme = useTheme()
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     return (
         <Page title="Forgot Password">
@@ -29,9 +34,22 @@ const ForgotPassword = () => {
                             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
-                                        <Grid item sx={{ mb: 3 }}>
-                                            <Link href="#" aria-label="theme-logo">
-                                                <Logo />
+                                        <Grid item sx={{ mb: 1 }}>
+                                            <Link href="#" aria-label="theme-logo" sx={{ textDecoration: 'none', color: '#000' }}>
+                                                {/* <Logo /> */}
+                                                <Box
+                                                    component="span"
+                                                    sx={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        fontSize: '24px',
+                                                        fontWeight: '700'
+                                                    }}
+                                                >
+                                                    {/* <LogoSection /> */}
+                                                    XRCloud
+                                                </Box>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12}>
@@ -42,12 +60,12 @@ const ForgotPassword = () => {
                                                         gutterBottom
                                                         variant={matchDownSM ? 'h3' : 'h2'}
                                                     >
-                                                        Forgot password?
+                                                        {localization['forgot-password']}
                                                     </Typography>
                                                 </Grid>
                                                 <Grid item xs={12}>
-                                                    <Typography variant="caption" fontSize="16px" textAlign="center">
-                                                        Enter your email address below and we&apos;ll send you password reset OTP.
+                                                    <Typography variant="caption" fontSize="12px" textAlign="center">
+                                                        {localization['reset-otp']}
                                                     </Typography>
                                                 </Grid>
                                             </Grid>
@@ -66,7 +84,7 @@ const ForgotPassword = () => {
                                                     variant="subtitle1"
                                                     sx={{ textDecoration: 'none' }}
                                                 >
-                                                    Already have an account?
+                                                    {localization['already-account']}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -75,9 +93,9 @@ const ForgotPassword = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+                    {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
                         <AuthFooter />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </AuthWrapper1>
         </Page>

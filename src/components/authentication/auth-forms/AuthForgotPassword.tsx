@@ -13,12 +13,16 @@ import useAuth from 'hooks/useAuth'
 import useScriptRef from 'hooks/useScriptRef'
 import { openSnackbar } from 'store/slices/snackbar'
 
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 // ========================|| FIREBASE - FORGOT PASSWORD ||======================== //
 
 const AuthForgotPassword = ({ ...others }) => {
     const theme = useTheme()
     const scriptedRef = useScriptRef()
     const dispatch = useDispatch()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     const { resetPassword } = useAuth()
 
@@ -30,7 +34,7 @@ const AuthForgotPassword = ({ ...others }) => {
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().email('Must be a valid email').max(255).required('Email is required')
+                email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required'])
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
@@ -42,7 +46,7 @@ const AuthForgotPassword = ({ ...others }) => {
                         dispatch(
                             openSnackbar({
                                 open: true,
-                                message: 'Check mail for reset password link',
+                                message: localization['check-reset-link'],
                                 variant: 'alert',
                                 alert: {
                                     color: 'success'
@@ -67,7 +71,9 @@ const AuthForgotPassword = ({ ...others }) => {
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
                     <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-forgot">Email Address / Username</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-email-forgot">
+                            {localization['email-address']} / {localization.username}
+                        </InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-email-forgot"
                             type="email"
@@ -75,7 +81,6 @@ const AuthForgotPassword = ({ ...others }) => {
                             name="email"
                             onBlur={handleBlur}
                             onChange={handleChange}
-                            label="Email Address / Username"
                             inputProps={{}}
                         />
                         {touched.email && errors.email && (
@@ -102,7 +107,7 @@ const AuthForgotPassword = ({ ...others }) => {
                                 variant="contained"
                                 color="secondary"
                             >
-                                Send Mail
+                                {localization['send-mail']}
                             </Button>
                         </AnimateButton>
                     </Box>
