@@ -28,7 +28,6 @@ import AnimateButton from 'ui-component/extended/AnimateButton'
 import useAuth from 'hooks/useAuth'
 import useScriptRef from 'hooks/useScriptRef'
 import { strengthColor, strengthIndicator } from 'utils/password-strength'
-import { openSnackbar } from 'store/slices/snackbar'
 
 // assets
 import Visibility from '@mui/icons-material/Visibility'

@@ -1,6 +1,6 @@
 // project imports
 import { UserProfile } from 'types/user-profile'
-import { Project } from './project'
+import { Project, Scene } from './project'
 
 export interface JWTData {
     userId: string
@@ -40,7 +40,9 @@ export type XRCloudAuthContextType = {
 
 export type ProjectContextType = {
     choicedProject: Project | undefined
+    choicedScene: string | undefined
     setChoicedProject: React.Dispatch<React.SetStateAction<Project | undefined>>
+    setChoicedScene: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
 export interface InitialLoginContextProps {

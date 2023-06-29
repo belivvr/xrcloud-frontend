@@ -6,12 +6,12 @@ import { useLocalization } from '../useLocalization'
 import { useRequest } from '../useRequest'
 
 export function useRoom() {
-    const { choicedProject } = useChoicedProject()
+    const { choicedProject, choicedScene } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()
 
-    const { get } = useRequest()
+    const { get, deleteRequest } = useRequest()
 
     const validateProject = (): boolean => {
         if (!choicedProject) {
@@ -42,7 +42,10 @@ export function useRoom() {
         }
 
         return get<{ items: Room[] }>('/api/rooms/findAll', {
-            headers: createHeaders()
+            headers: createHeaders(),
+            params: {
+                sceneId: choicedScene
+            }
         })
     }
 
@@ -59,5 +62,18 @@ export function useRoom() {
         })
     }
 
-    return { getRooms, getRoom }
+    const deleteRoom = async (roomId: string) => {
+        if (!validateProject()) {
+            return Promise.reject(new Error(localization['scene-select-no-project']))
+        }
+
+        return deleteRequest('/api/rooms/delete', {
+            headers: createHeaders(),
+            params: {
+                roomId
+            }
+        })
+    }
+
+    return { getRooms, getRoom, deleteRoom }
 }

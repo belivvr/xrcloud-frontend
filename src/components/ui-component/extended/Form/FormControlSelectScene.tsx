@@ -6,15 +6,14 @@ import { Divider, FormControl, InputAdornment, MenuItem, TextField } from '@mui/
 
 // project imports
 import { GenericCardProps } from 'types'
-import { Project, Scene } from 'types/project'
-import { useProject } from 'hooks/api/useProject'
+import { Scene } from 'types/project'
 import useChoicedProject from 'hooks/useChoicedProject'
 
 // ==============================|| FORM CONTROL SELECT ||============================== //
 
 interface FormControlSelectProps {
     captionLabel?: string
-    currencies?: Project[] | Scene[] | undefined
+    currencies?: Scene[] | undefined
     formState?: string
     iconPrimary?: GenericCardProps['iconPrimary']
     iconSecondary?: GenericCardProps['iconPrimary']
@@ -23,7 +22,7 @@ interface FormControlSelectProps {
     textSecondary?: string
 }
 
-const FormControlSelect = ({
+const FormControlSelectScene = ({
     captionLabel,
     currencies,
     formState,
@@ -33,7 +32,7 @@ const FormControlSelect = ({
     textPrimary,
     textSecondary
 }: FormControlSelectProps) => {
-    const { setChoicedProject, setChoicedScene } = useChoicedProject()
+    const { setChoicedScene } = useChoicedProject()
 
     const theme = useTheme()
     const IconPrimary = iconPrimary!
@@ -46,14 +45,11 @@ const FormControlSelect = ({
     const val = selected || ''
 
     const [currency, setCurrency] = useState(val)
-    const { findById } = useProject()
     const handleChange = async (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
         const projectId = event?.target.value
         if (typeof projectId === 'string') {
             setCurrency(projectId)
-            const response = await findById(projectId)
-            setChoicedProject(response)
-            setChoicedScene(undefined)
+            setChoicedScene(projectId)
         }
     }
 
@@ -101,4 +97,4 @@ const FormControlSelect = ({
     )
 }
 
-export default FormControlSelect
+export default FormControlSelectScene
