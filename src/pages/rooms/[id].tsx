@@ -19,11 +19,7 @@ import { useScenes } from 'hooks/api/useScenes'
 const RoomUpdate = () => {
     const [room, setRoom] = useState<RoomType | null>()
     const [sceneList, setSceneList] = useState<Scene[]>([])
-    const [choiceSceneId, setChoiceSceneId] = useState('')
-    const [roomName, setRoomName] = useState('')
-    const [customData, setCustomData] = useState('')
-    const [roomSize, setRoomSize] = useState('')
-    const [isAutoScale, setIsAutoScale] = useState(false)
+
     const projectId = localStorage.getItem('projectId')
 
     const router = useRouter()
@@ -31,12 +27,6 @@ const RoomUpdate = () => {
     const { getScenes } = useScenes()
     const { findById } = useProject()
     const { choicedProject, setChoicedProject } = useChoicedProject()
-
-    const roomEnter = () => {}
-
-    const roomUpdate = () => {
-        console.log(choiceSceneId, roomName, customData, roomSize, isAutoScale)
-    }
 
     const roomDelete = () => {}
 
@@ -57,10 +47,6 @@ const RoomUpdate = () => {
 
         getRoom(roomId)
             .then((res) => {
-                setRoomName(res.name)
-                setCustomData(res.customData)
-                setRoomSize(String(res.roomSize))
-                setIsAutoScale(res.autoScale)
                 setRoom(res)
             })
             .catch((err) => console.log(err))
@@ -73,18 +59,8 @@ const RoomUpdate = () => {
     return (
         <Page title="Room">
             <MainCard sx={{ overflow: 'scroll' }} title="Room">
-                {sceneList && (
-                    <Contents
-                        room={room}
-                        sceneList={sceneList}
-                        setChoiceSceneId={setChoiceSceneId}
-                        setRoomName={setRoomName}
-                        setCustomData={setCustomData}
-                        setRoomSize={setRoomSize}
-                        setIsAutoScale={setIsAutoScale}
-                    />
-                )}
-                <Buttons roomEnter={roomEnter} roomUpdate={roomUpdate} roomDelete={roomDelete} />
+                {sceneList && <Contents room={room} sceneList={sceneList} />}
+                <Buttons roomDelete={roomDelete} />
             </MainCard>
         </Page>
     )

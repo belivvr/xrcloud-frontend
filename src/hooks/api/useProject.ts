@@ -30,15 +30,15 @@ export function useProject() {
     }
 
     const createsProject = async (faviconFile: File | undefined, logoFile: File | undefined, projectName: string, productName: string) => {
-        if (!faviconFile || !logoFile) {
-            enqueueSnackbar(localization['need-favicon-logo'], {
+        if (!projectName) {
+            enqueueSnackbar(localization['need-project-name'], {
                 variant: 'error'
             })
             return
         }
 
-        if (!projectName) {
-            enqueueSnackbar(localization['need-project-name'], {
+        if (!faviconFile || !logoFile) {
+            enqueueSnackbar(localization['need-favicon-logo'], {
                 variant: 'error'
             })
             return

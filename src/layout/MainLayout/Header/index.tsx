@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Avatar, Box, useMediaQuery } from '@mui/material'
+import { Avatar, Box, Button, useMediaQuery } from '@mui/material'
 
 // project imports
 import { LAYOUT_CONST } from 'constant'
@@ -15,6 +15,7 @@ import { openDrawer } from 'store/slices/menu'
 // assets
 import { IconMenu2 } from '@tabler/icons'
 import router from 'next/router'
+import Link from 'next/link'
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -28,7 +29,7 @@ const Header = () => {
     const { layout } = useConfig()
 
     return (
-        <>
+        <Box style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             {/* logo & toggler button */}
             <Box
                 sx={{
@@ -79,23 +80,70 @@ const Header = () => {
                 )}
             </Box>
 
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ flexGrow: 1 }} />
-
+            {/* <Box sx={{ flexGrow: 1 }} /> */}
+            <Box sx={{ display: matchDownMd ? 'none' : 'flex', gap: '50px' }}>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
+                    <Link target="_blank" href="https://developers.belivvr.com/docs/xrcloud">
+                        Documentation
+                    </Link>
+                </Button>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
+                    <Link target="_blank" href="https://github.com/belivvr">
+                        Github
+                    </Link>
+                </Button>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
+                    <Link target="_blank" href="https://hubs.mozilla.com/docs/welcome.html">
+                        Mozila Hubs
+                    </Link>
+                </Button>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
+                    <Link target="_blank" href="https://www.facebook.com/groups/webxrko">
+                        Forum
+                    </Link>
+                </Button>
+            </Box>
             {/* live customization & localization */}
-            <Box sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '24px' }}>
+            <Box sx={{ display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', marginRight: '24px', gap: '20px' }}>
                 <LocalizationSection />
+                <ProfileSection />
             </Box>
 
             {/* profile */}
-
-            <ProfileSection />
 
             {/* mobile header */}
             <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                 <MobileSection />
             </Box>
-        </>
+        </Box>
     )
 }
 
