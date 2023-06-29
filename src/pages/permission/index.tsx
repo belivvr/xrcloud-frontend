@@ -30,7 +30,7 @@ const Permission = () => {
                     </div>
                 }
             >
-                <PermissionContents permission={permission} fields={permissionFields} checkfields={permissionCheckFields} />
+                <PermissionContents fields={permissionFields} checkfields={permissionCheckFields} />
             </MainCard>
         </Page>
     )
