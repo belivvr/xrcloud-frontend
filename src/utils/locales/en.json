@@ -95,5 +95,11 @@
     "reset-otp": "Enter your email address below and we'll send you password reset OTP",
     "send-mail": "Send Mail",
 
-    "check-reset-link": "Check mail for reset password link"
+    "check-reset-link": "Check mail for reset password link",
+    "business-license": "Business License 846-88-00665",
+    "telemarketing-business-license-number": "Telemarketing business license number No.2020-Jeonnam Suncheon-2995-Republic-of-Korea",
+    "belivvr-address-contents": "BELIVVR, 3rd floor, Cheongam Health Education Center, Cheongam College, 7, Useok-ro, Suncheon-si, Jeollanam-do, Republic of Korea",
+    "company-number": "Company number 070-4227-9371",
+
+    "not-found-rooms": "No rooms were created"
 }

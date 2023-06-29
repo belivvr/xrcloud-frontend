@@ -85,4 +85,10 @@ export interface Localization {
     'send-mail': string
 
     'check-reset-link': string
+    'business-license': string
+    'telemarketing-business-license-number': string
+    'belivvr-address-contents': string
+    'company-number': string
+
+    'not-found-rooms': string
 }

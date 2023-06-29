@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Checkbox, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 import { Room, Scene } from 'types/project'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
@@ -25,28 +25,15 @@ const ContentTextField = styled(TextField)`
 interface Props {
     room: Room
     sceneList: Scene[]
-    setChoiceSceneId: (value: string) => void
-    setRoomName: (value: string) => void
-    setCustomData: (value: string) => void
-    setRoomSize: (value: string) => void
-    setIsAutoScale: (value: boolean) => void
 }
 
 export default function Contents({
     room,
-    sceneList,
-    setChoiceSceneId,
-    setRoomName,
-    setCustomData,
-    setRoomSize,
-    setIsAutoScale
+    sceneList
 }: //
 Props) {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
-    const selectChange = (event: SelectChangeEvent) => {
-        setChoiceSceneId(event.target.value as string)
-    }
     return (
         <>
             <Content>
@@ -78,8 +65,7 @@ Props) {
             <Content>
                 <ContentTitle>{localization['room-name']}</ContentTitle>
                 <ContentTextField
-                    onChange={(e) => setRoomName(e.target.value)}
-                    disabled={false}
+                    disabled={true}
                     id="outlined-required"
                     label={localization['room-name']}
                     placeholder={localization['room-name']}
@@ -89,8 +75,7 @@ Props) {
             <Content>
                 <ContentTitle>{localization['custom-data']}</ContentTitle>
                 <ContentTextField
-                    disabled={false}
-                    onChange={(e) => setCustomData(e.target.value)}
+                    disabled={true}
                     id="outlined-required"
                     label={localization['custom-data']}
                     defaultValue={room.customData}
@@ -100,19 +85,18 @@ Props) {
                 <ContentTitle>{localization['room-size']}</ContentTitle>
                 <ContentTextField
                     type="number"
-                    onChange={(e) => setRoomSize(e.target.value)}
-                    disabled={false}
+                    disabled={true}
                     id="outlined-required"
                     label={localization['room-size']}
                     defaultValue={room.roomSize}
                 />
             </Content>
 
-            <Content>
+            {/* <Content>
                 <ContentTitle>{localization['change-scene']}</ContentTitle>
                 <FormControl sx={{ m: 1, minWidth: 80, margin: 0 }}>
                     <InputLabel id="demo-simple-select-autowidth-label">{localization['change-scene']}</InputLabel>
-                    <Select color="primary" value={room.sceneId} label="Scene" autoWidth onChange={selectChange}>
+                    <Select color="primary" value={room.sceneId} label="Scene" autoWidth>
                         {sceneList.map((scene) => (
                             <MenuItem key={scene.id} value={scene.id}>
                                 {scene.id}
@@ -120,11 +104,11 @@ Props) {
                         ))}
                     </Select>
                 </FormControl>
-            </Content>
+            </Content> */}
 
             <Content>
                 <ContentTitle>{localization['auto-scale']}</ContentTitle>
-                <Checkbox defaultChecked={room.autoScale} onChange={(_, checked) => setIsAutoScale(checked)} />
+                <Checkbox disabled={true} defaultChecked={room.autoScale} />
             </Content>
         </>
     )

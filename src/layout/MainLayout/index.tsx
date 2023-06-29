@@ -1,4 +1,4 @@
-import { useEffect, useMemo, FC, ReactNode, useState } from 'react'
+import { useEffect, useMemo, FC, ReactNode } from 'react'
 
 // material-ui
 import { styled, useTheme, Theme } from '@mui/material/styles'
@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'store'
 
 // assets
 import { IconChevronRight } from '@tabler/icons'
+import { Footer } from 'components/custom/common/Footer'
 
 interface Props {
     children: ReactNode
@@ -149,6 +150,7 @@ const MainLayout: FC<Props> = ({ children }) => {
                         {children}
                     </Container>
                 </Main>
+                {/* <Footer /> */}
             </Box>
         </AuthGuard>
     )

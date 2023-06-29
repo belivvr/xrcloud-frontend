@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { EnterServiceButton, StyledAddIcon } from 'components/custom/styles/styled'
 import { useRouter } from 'next/router'
 import { Room } from 'types/project'
 import { BasicContentsButton, GridWrapper } from '../common'
+import { CircularProgress } from '@mui/material'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
     roomList: Room[] | undefined
@@ -11,6 +13,35 @@ interface Props {
 
 const RoomList = ({ roomList }: Props) => {
     const router = useRouter()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+
+    if (roomList === undefined)
+        return (
+            <div style={{ height: 'calc(100vh - 264px)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <CircularProgress size={200} />
+            </div>
+        )
+
+    if (roomList.length === 0) {
+        return (
+            <div
+                style={{
+                    height: 'calc(100vh - 264px)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '60px',
+                    fontWeight: '700',
+                    lineHeight: 1.5,
+                    textAlign: 'center',
+                    whiteSpace: 'pre-line'
+                }}
+            >
+                {localization['not-found-rooms']}
+            </div>
+        )
+    }
 
     return (
         <GridWrapper>
@@ -35,9 +66,6 @@ const RoomList = ({ roomList }: Props) => {
                     </BasicContentsButton>
                 )
             })}
-            <EnterServiceButton onClick={() => router.push('/createRoom')}>
-                <StyledAddIcon />
-            </EnterServiceButton>
         </GridWrapper>
     )
 }

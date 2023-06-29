@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -18,7 +18,7 @@ interface FormControlSelectProps {
     formState?: string
     iconPrimary?: GenericCardProps['iconPrimary']
     iconSecondary?: GenericCardProps['iconPrimary']
-    selected?: string
+    selected?: string | null
     textPrimary?: string
     textSecondary?: string
 }
@@ -33,7 +33,7 @@ const FormControlSelect = ({
     textPrimary,
     textSecondary
 }: FormControlSelectProps) => {
-    const { choicedProject, setChoicedProject } = useChoicedProject()
+    const { setChoicedProject } = useChoicedProject()
 
     const theme = useTheme()
     const IconPrimary = iconPrimary!

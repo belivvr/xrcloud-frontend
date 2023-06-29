@@ -56,7 +56,7 @@ export function useScenes() {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
 
-        return get<any>('/api/admins/scenes-update', {
+        return get<{ modifySceneUrl: string }>('/api/admins/scene-update', {
             params: {
                 sceneId
             },

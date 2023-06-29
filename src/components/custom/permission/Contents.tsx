@@ -2,9 +2,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Checkbox, TextField, Button } from '@mui/material'
 import { Content, ContentTitle } from '../styles/styled'
-import { Permission, PermissionCheckField } from 'types/project'
+import { PermissionCheckField } from 'types/project'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import { useSnackbar } from 'notistack'
 
 interface permissionFields {
     title: string
@@ -14,7 +15,6 @@ interface permissionFields {
 }
 
 interface Props {
-    permission: Permission | undefined
     fields: permissionFields[]
     checkfields: PermissionCheckField[]
 }
@@ -23,9 +23,10 @@ const ContentTextField = styled(TextField)`
     width: 100%;
 `
 
-const PermissionContents = ({ permission, fields, checkfields }: Props) => {
+const PermissionContents = ({ fields, checkfields }: Props) => {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+    const { enqueueSnackbar } = useSnackbar()
 
     const localizedFields = fields.map((field) => ({
         ...field,
@@ -63,7 +64,16 @@ const PermissionContents = ({ permission, fields, checkfields }: Props) => {
                 </Content>
             ))}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '16px' }}>
-                <Button variant="contained">{localization.create}</Button>
+                <Button
+                    onClick={() => {
+                        // enqueueSnackbar(localization['scene-select-no-project'], {
+                        //     variant: 'error'
+                        // })
+                    }}
+                    variant="contained"
+                >
+                    {localization.create}
+                </Button>
             </div>
         </>
     )

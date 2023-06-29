@@ -18,8 +18,8 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                 return (
                     <BasicContentsButton
                         onClick={async () => {
-                            const response = await updateScene(scene.id)
-                            console.log(response)
+                            const { modifySceneUrl } = await updateScene(scene.id)
+                            router.push(modifySceneUrl)
                         }}
                         key={scene.id}
                     >
