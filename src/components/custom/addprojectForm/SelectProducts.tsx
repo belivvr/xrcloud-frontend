@@ -11,13 +11,14 @@ interface Props {
 export function SelectProducts({ productName, selectProduct }: Props) {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+
     return (
         <TableRow>
             <TableCell>{localization.product}</TableCell>
             <TableCell>
                 <FormControl sx={{ minWidth: 120 }}>
                     <InputLabel>{localization.product}</InputLabel>
-                    <Select id="product" label="product" value={productName} onChange={selectProduct}>
+                    <Select id="product" label={localization.product} value={'1'} onChange={selectProduct}>
                         <MenuItem value={1}>hubs</MenuItem>
                     </Select>
                 </FormControl>

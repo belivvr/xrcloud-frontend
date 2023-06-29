@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useState } from 'react'
+import { ReactElement, ReactNode, useEffect, useState } from 'react'
 // import { ProjectContext, Project } from 'custom/ProjectContext'
 
 // global styles
@@ -29,6 +29,7 @@ import { ProjectChoicedProjectProvider } from 'contexts/ChoicedProjectContext'
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
 import { SnackbarProvider } from 'notistack'
+import useConfig from 'hooks/useConfig'
 
 // types
 type LayoutProps = NextPage & {
@@ -41,6 +42,11 @@ interface Props {
 
 function MyApp({ Component, pageProps }: AppProps & Props) {
     const getLayout = Component.getLayout ?? ((page: any) => page)
+    const { onChangePresetColor } = useConfig()
+
+    useEffect(() => {
+        onChangePresetColor('theme6')
+    }, [])
     return (
         <Provider store={store}>
             <ConfigProvider>

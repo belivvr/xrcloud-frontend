@@ -1,4 +1,7 @@
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 import router from 'next/router'
+import { enqueueSnackbar } from 'notistack'
 import { Project } from 'types/project'
 import { createRequestOptions } from 'utils/createRequestOptions'
 import { useRefresh } from '../useRefresh'
@@ -7,6 +10,8 @@ import { useRequest } from '../useRequest'
 export function useProject() {
     const { get, patch, deleteRequest } = useRequest()
     const { renewTokens } = useRefresh()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     const accessToken = localStorage.getItem('accessToken')
 
@@ -25,7 +30,19 @@ export function useProject() {
     }
 
     const createsProject = async (faviconFile: File | undefined, logoFile: File | undefined, projectName: string, productName: string) => {
-        if (!faviconFile || !logoFile) return alert('파비콘과 로고를 모두 등록해주세요')
+        if (!faviconFile || !logoFile) {
+            enqueueSnackbar(localization['need-favicon-logo'], {
+                variant: 'error'
+            })
+            return
+        }
+
+        if (!projectName) {
+            enqueueSnackbar(localization['need-project-name'], {
+                variant: 'error'
+            })
+            return
+        }
 
         const formData = new FormData()
         formData.append('projectName', projectName)

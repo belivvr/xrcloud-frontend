@@ -12,7 +12,7 @@ import { useLocalization } from 'hooks/useLocalization'
 export const AddProjectForm = () => {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
-    const [productName, setProductName] = useState<string>('')
+    const [productName, setProductName] = useState<string>('hubs')
     const [projectName, setProjectName] = useState<string>('')
 
     const [faviconThumbnailUrl, setFaviconThumbnailUrl] = useState('')

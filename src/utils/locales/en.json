@@ -67,6 +67,9 @@
     "scene-id": "Scene ID",
     "change-scene": "Change Scene",
 
+    "need-favicon-logo": "Please, upload favicon and logo",
+    "need-project-name": "Please enter a project name",
+
     "scene-select-no-project": "Please select a project",
     "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project.",
 
