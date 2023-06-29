@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Divider, Grid, Stack, Typography, useMediaQuery, Box } from '@mui/material'
 import Link from '../../Link'
 
 // project imports
@@ -15,11 +15,16 @@ import AuthLogin from 'components/authentication/auth-forms/AuthLogin'
 import Logo from 'ui-component/Logo'
 import AuthFooter from 'ui-component/cards/AuthFooter'
 
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
+
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
     const theme = useTheme()
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     return (
         <Page title="Login">
@@ -31,8 +36,22 @@ const Login = () => {
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
                                         <Grid item sx={{ mb: 3 }}>
-                                            <Link href="#" aria-label="theme-logo">
-                                                <Logo />
+                                            <Link href="#" aria-label="theme-logo" sx={{ textDecoration: 'none', color: '#000' }}>
+                                                {/* <Logo /> */}
+                                                <Box
+                                                    component="span"
+                                                    sx={{
+                                                        display: 'flex',
+                                                        justifyContent: 'flex-start',
+                                                        alignItems: 'center',
+                                                        fontSize: '24px',
+                                                        fontWeight: '700',
+                                                        marginRight: '1em'
+                                                    }}
+                                                >
+                                                    {/* <LogoSection /> */}
+                                                    XRCloud
+                                                </Box>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={12}>
@@ -49,14 +68,14 @@ const Login = () => {
                                                             gutterBottom
                                                             variant={matchDownSM ? 'h3' : 'h2'}
                                                         >
-                                                            Hi, Welcome Back
+                                                            {localization.welcome}
                                                         </Typography>
                                                         <Typography
                                                             variant="caption"
                                                             fontSize="16px"
                                                             textAlign={matchDownSM ? 'center' : 'inherit'}
                                                         >
-                                                            Enter your credentials to continue
+                                                            {localization['enter-your-credentials']}
                                                         </Typography>
                                                     </Stack>
                                                 </Grid>
@@ -76,7 +95,7 @@ const Login = () => {
                                                     variant="subtitle1"
                                                     sx={{ textDecoration: 'none' }}
                                                 >
-                                                    Don&apos;t have an account?
+                                                    {localization['dont-account']}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -85,9 +104,9 @@ const Login = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+                    {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
                         <AuthFooter />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </AuthWrapper1>
         </Page>

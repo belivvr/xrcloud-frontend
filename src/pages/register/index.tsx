@@ -14,11 +14,16 @@ import Logo from 'ui-component/Logo'
 import AuthRegister from 'components/authentication/auth-forms/AuthRegister'
 import AuthFooter from 'ui-component/cards/AuthFooter'
 
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
+
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
     const theme = useTheme()
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     return (
         <Page title="Register">
@@ -29,7 +34,9 @@ const Register = () => {
                             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
-                                        <div style={{ marginTop: '24px', fontSize: '24px', fontWeight: 700, color: '#000' }}>SIGN UP</div>
+                                        <div style={{ marginTop: '24px', fontSize: '24px', fontWeight: 700, color: '#000' }}>
+                                            {localization['sign-up']}
+                                        </div>
                                         <Grid item xs={12}>
                                             <AuthRegister />
                                         </Grid>
@@ -44,7 +51,7 @@ const Register = () => {
                                                     variant="subtitle1"
                                                     sx={{ textDecoration: 'none' }}
                                                 >
-                                                    Already have an account?
+                                                    {localization['already-account']}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -53,9 +60,9 @@ const Register = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+                    {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
                         <AuthFooter />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </AuthWrapper1>
         </Page>
