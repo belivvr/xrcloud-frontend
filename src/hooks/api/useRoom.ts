@@ -46,13 +46,16 @@ export function useRoom() {
         })
     }
 
-    const getRoom = async (projectId: string, roomId: string): Promise<{ items: Room }> => {
+    const getRoom = async (roomId: string): Promise<Room> => {
         if (!validateProject()) {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
 
-        return get<{ items: Room }>('/api/rooms/findById', {
-            headers: createHeaders()
+        return get<Room>('/api/rooms/findById', {
+            headers: createHeaders(),
+            params: {
+                roomId
+            }
         })
     }
 

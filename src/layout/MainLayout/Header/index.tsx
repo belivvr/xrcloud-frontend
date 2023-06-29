@@ -14,6 +14,7 @@ import { openDrawer } from 'store/slices/menu'
 
 // assets
 import { IconMenu2 } from '@tabler/icons'
+import router from 'next/router'
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -39,6 +40,7 @@ const Header = () => {
                 }}
             >
                 <Box
+                    onClick={() => router.push('/projects')}
                     component="span"
                     sx={{
                         display: 'flex',
@@ -46,7 +48,8 @@ const Header = () => {
                         alignItems: 'center',
                         fontSize: '24px',
                         fontWeight: '700',
-                        marginRight: '1em'
+                        marginRight: '1em',
+                        cursor: 'pointer'
                     }}
                 >
                     {/* <LogoSection /> */}

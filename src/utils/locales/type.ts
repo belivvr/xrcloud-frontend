@@ -1,5 +1,3 @@
-import { string } from 'yup'
-
 export interface Localization {
     'project-manage': string
     projects: string
@@ -58,6 +56,9 @@ export interface Localization {
     'change-scene': string
     enter: string
 
+    'need-favicon-logo': string
+    'need-project-name': string
+
     'scene-select-no-project': string
     'scene-select-alert-no-key': string
 
@@ -84,4 +85,5 @@ export interface Localization {
     'send-mail': string
 
     'check-reset-link': string
+
 }

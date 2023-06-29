@@ -6,9 +6,7 @@ import { ReactElement, useEffect, useState } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import { mockRoom, roomFields } from 'config'
 import { Room as RoomType, Scene } from 'types/project'
-import { SelectChangeEvent } from '@mui/material'
 import Contents from 'components/custom/room/Contents'
 import Buttons from 'components/custom/room/Buttons'
 import { Loading } from 'components/custom/common'
@@ -19,9 +17,13 @@ import { useRoom } from 'hooks/api/useRoom'
 import { useScenes } from 'hooks/api/useScenes'
 
 const RoomUpdate = () => {
-    const [scene, setScene] = useState('')
     const [room, setRoom] = useState<RoomType | null>()
     const [sceneList, setSceneList] = useState<Scene[]>([])
+    const [choiceSceneId, setChoiceSceneId] = useState('')
+    const [roomName, setRoomName] = useState('')
+    const [customData, setCustomData] = useState('')
+    const [roomSize, setRoomSize] = useState('')
+    const [isAutoScale, setIsAutoScale] = useState(false)
     const projectId = localStorage.getItem('projectId')
 
     const router = useRouter()
@@ -30,13 +32,11 @@ const RoomUpdate = () => {
     const { findById } = useProject()
     const { choicedProject, setChoicedProject } = useChoicedProject()
 
-    const selectChange = (event: SelectChangeEvent) => {
-        setScene(event.target.value as string)
-    }
-
     const roomEnter = () => {}
 
-    const roomUpdate = () => {}
+    const roomUpdate = () => {
+        console.log(choiceSceneId, roomName, customData, roomSize, isAutoScale)
+    }
 
     const roomDelete = () => {}
 
@@ -50,11 +50,20 @@ const RoomUpdate = () => {
 
     useEffect(() => {
         if (!choicedProject) return
+        const roomId = router.query.id as string
+        getScenes()
+            .then((res) => setSceneList(res.items))
+            .catch((err) => console.log(err))
 
-        setRoom(mockRoom)
-        getScenes().then((res) => {
-            setSceneList(res.items)
-        })
+        getRoom(roomId)
+            .then((res) => {
+                setRoomName(res.name)
+                setCustomData(res.customData)
+                setRoomSize(String(res.roomSize))
+                setIsAutoScale(res.autoScale)
+                setRoom(res)
+            })
+            .catch((err) => console.log(err))
     }, [choicedProject])
 
     if (!room) {
@@ -64,7 +73,17 @@ const RoomUpdate = () => {
     return (
         <Page title="Room">
             <MainCard sx={{ overflow: 'scroll' }} title="Room">
-                {sceneList && <Contents room={room} fields={roomFields} sceneList={sceneList} selectChange={selectChange} />}
+                {sceneList && (
+                    <Contents
+                        room={room}
+                        sceneList={sceneList}
+                        setChoiceSceneId={setChoiceSceneId}
+                        setRoomName={setRoomName}
+                        setCustomData={setCustomData}
+                        setRoomSize={setRoomSize}
+                        setIsAutoScale={setIsAutoScale}
+                    />
+                )}
                 <Buttons roomEnter={roomEnter} roomUpdate={roomUpdate} roomDelete={roomDelete} />
             </MainCard>
         </Page>
