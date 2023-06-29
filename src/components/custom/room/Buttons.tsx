@@ -1,5 +1,7 @@
 import { Button } from '@mui/material'
 import React from 'react'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
     roomEnter: () => void
@@ -8,6 +10,8 @@ interface Props {
 }
 
 export default function Buttons({ roomEnter, roomUpdate, roomDelete }: Props) {
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
     return (
         <div
             style={{
@@ -19,13 +23,13 @@ export default function Buttons({ roomEnter, roomUpdate, roomDelete }: Props) {
             }}
         >
             <Button onClick={roomEnter} variant="contained">
-                PROJECTS.HUBS.ROOMS.ENTER
+                {localization.enter}
             </Button>
-            <Button onClick={roomUpdate} variant="contained">
-                수정
+            <Button onClick={roomUpdate} variant="contained" color="secondary">
+                {localization.modify}
             </Button>
             <Button onClick={roomDelete} variant="contained" sx={{ backgroundColor: '#EA0000' }}>
-                삭제
+                {localization.delete}
             </Button>
         </div>
     )
