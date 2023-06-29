@@ -67,6 +67,8 @@
     "scene-id": "Scene 아이디",
     "change-scene": "Scene 바꾸기",
 
+    "need-favicon-logo": "파비콘과 로고를 모두 업로드 해주세요",
+
     "scene-select-no-project": "프로젝트를 선택해주세요",
     "scene-select-alert-no-key": "프로젝트의 키가 없습니다. 프로젝트에서 발급 받아주세요."
 }
