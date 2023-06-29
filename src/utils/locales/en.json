@@ -71,5 +71,29 @@
     "need-project-name": "Please enter a project name",
 
     "scene-select-no-project": "Please select a project",
-    "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project."
+    "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project.",
+
+    "sign-in": "Sign In",
+    "logout": "Logout",
+    "welcome": "Hi, Welcome Back",
+    "enter-your-credentials": "Enter your credentials to continue",
+    "email-address": "Email Address",
+    "username": "Username",
+    "password": "Password",
+    "dont-account": "Don't have an account?",
+
+    "valid-email": "Must be a valid email",
+    "email-required": "Email is required",
+    "password-required": "Password is required",
+
+    "sign-up": "Sign Up",
+    "sign-up-with": "Sign up with Email address",
+    "agree-term": "Agree with Terms & Condition",
+    "already-account": "Already have an account?",
+
+    "forgot-password": "Forgot password?",
+    "reset-otp": "Enter your email address below and we'll send you password reset OTP",
+    "send-mail": "Send Mail",
+
+    "check-reset-link": "Check mail for reset password link"
 }
