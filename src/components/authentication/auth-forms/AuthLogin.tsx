@@ -71,7 +71,14 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                         setSubmitting(false)
                     }
                 } catch (err: any) {
-                    console.error(err)
+                    if (err.response.status === 401) {
+                        if (scriptedRef.current) {
+                            setStatus({ success: false })
+                            setErrors({ submit: localization['failed-login'] })
+                            setSubmitting(false)
+                            return
+                        }
+                    }
                     if (scriptedRef.current) {
                         setStatus({ success: false })
                         setErrors({ submit: err.message })
