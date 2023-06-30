@@ -102,5 +102,6 @@
     "belivvr-address-contents": "전남 순천시 우석로 7, 청암대학교 청암건강교육센터 3층, (주)빌리버",
     "company-number": "회사 전화번호 070-4227-9371",
 
-    "not-found-rooms": "만들어진 방이 없습니다."
+    "not-found-rooms": "만들어진 방이 없습니다.",
+    "failed-login": "이메일 혹은 비밀번호가 일치하지 않습니다."
 }

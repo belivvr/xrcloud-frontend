@@ -94,4 +94,5 @@ export interface Localization {
 
     'not-found-rooms': string
     'room-no-scenes': string
+    'failed-login': string
 }

@@ -103,5 +103,6 @@
     "belivvr-address-contents": "BELIVVR, 3rd floor, Cheongam Health Education Center, Cheongam College, 7, Useok-ro, Suncheon-si, Jeollanam-do, Republic of Korea",
     "company-number": "Company number 070-4227-9371",
 
-    "not-found-rooms": "No rooms were created"
+    "not-found-rooms": "No rooms were created",
+    "failed-login": "Email or password doesn't match."
 }
