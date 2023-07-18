@@ -1,5 +1,6 @@
 import { useSnackbar } from 'notistack'
-import { CreateRoom, Room } from 'types/project'
+import { CreateRoom, Project, Room } from 'types/project'
+import { createHeaders } from 'utils/createHeaders'
 import useChoicedProject from '../useChoicedProject'
 import useConfig from '../useConfig'
 import { useLocalization } from '../useLocalization'
@@ -34,11 +35,6 @@ export function useRoom() {
         return true
     }
 
-    const createHeaders = () => ({
-        'X-XRCLOUD-PROJECT-ID': choicedProject?.id,
-        Authorization: `bearer ${choicedProject?.projectKey}`
-    })
-
     const createRoom = async (sceneId: string, name: string, size: number) => {
         if (!validateProject()) {
             return Promise.reject(new Error(localization['scene-select-no-project']))
@@ -52,7 +48,7 @@ export function useRoom() {
                 size
             },
             {
-                headers: createHeaders()
+                headers: createHeaders(choicedProject as Project)
             }
         )
     }
@@ -63,7 +59,7 @@ export function useRoom() {
         }
 
         return get<{ items: Room[] }>('/api/rooms/findAll', {
-            headers: createHeaders(),
+            headers: createHeaders(choicedProject as Project),
             params: {
                 sceneId: choicedScene
             }
@@ -76,7 +72,7 @@ export function useRoom() {
         }
 
         return get<Room>('/api/rooms/findById', {
-            headers: createHeaders(),
+            headers: createHeaders(choicedProject as Project),
             params: {
                 roomId
             }
@@ -89,7 +85,7 @@ export function useRoom() {
         }
 
         return deleteRequest('/api/rooms/delete', {
-            headers: createHeaders(),
+            headers: createHeaders(choicedProject as Project),
             params: {
                 roomId
             }
