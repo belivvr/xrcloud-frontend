@@ -27,46 +27,6 @@ const config: ConfigProps = {
     container: false
 }
 
-export const mockRoom: Room = {
-    id: v4(),
-    sceneId: v4(),
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    name: 'Room 1',
-    customData: 'Room 1 test',
-    roomSize: 6,
-    autoScale: false,
-    roomUrl: 'https://www.google.com',
-    thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
-}
-
-export const mockSceneList: Scene[] = [
-    {
-        id: mockRoom.sceneId,
-        name: 'Creator',
-        sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
-    },
-    {
-        id: v4(),
-        name: 'Creator',
-        sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
-    },
-    {
-        id: v4(),
-        name: 'Creator',
-        sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
-    },
-    {
-        id: v4(),
-        name: 'Creator',
-        sceneUrl: 'https://www.google.com',
-        thumbnailUrl: '/assets/images/maintenance/img-slider-layout1.png'
-    }
-]
-
 export const roomFields: RoomField[] = [
     { title: 'date-of-room-creation', id: 'createdAt', label: 'date-of-room-creation', isDisabled: true },
     { title: 'date-of-room-update', id: 'updatedAt', label: 'date-of-room-update', isDisabled: true },

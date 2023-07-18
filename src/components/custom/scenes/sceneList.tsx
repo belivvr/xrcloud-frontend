@@ -44,7 +44,7 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
             <EnterServiceButton
                 onClick={async () => {
                     const { newSceneUrl } = await createScene()
-                    router.push(newSceneUrl)
+                    router.push(`${newSceneUrl}&callback=${window.location.host}${window.location.pathname}`)
                 }}
             >
                 <StyledAddIcon color="inherit" />

@@ -41,7 +41,7 @@ export interface Localization {
     'create-project': string
 
     attachment: string
-    'get-issued': string
+    'create-project-key': string
     [key: string]: string
     'scene-selection': string
     'room-name': string
@@ -63,6 +63,7 @@ export interface Localization {
 
     'scene-select-no-project': string
     'scene-select-alert-no-key': string
+    'room-guide': string
 
     'sign-in': string
     logout: string

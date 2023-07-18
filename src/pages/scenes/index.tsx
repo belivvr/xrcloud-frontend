@@ -13,15 +13,19 @@ import { useLocalization } from 'hooks/useLocalization'
 import { useScenes } from 'hooks/api/useScenes'
 import { Scene } from 'types/project'
 import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
+import { useProject } from 'hooks/api/useProject'
 
 const Scenes = () => {
     const [sceneList, setSceneList] = useState<Scene[]>()
+    const { findById } = useProject()
     const { projectList } = useProjects()
+
     const { getScenes, createScene, updateScene } = useScenes()
     const { choicedProject, setChoicedProject } = useChoicedProject()
 
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+    const selectedProjectId = localStorage.getItem('projectId')
 
     useEffect(() => {
         if (!choicedProject) return
@@ -34,6 +38,13 @@ const Scenes = () => {
                 setChoicedProject(undefined)
             })
     }, [choicedProject])
+
+    useEffect(() => {
+        if (!selectedProjectId) return
+        findById(selectedProjectId).then((project) => {
+            setChoicedProject(project)
+        })
+    }, [selectedProjectId])
 
     return (
         <Page title="Scenes">

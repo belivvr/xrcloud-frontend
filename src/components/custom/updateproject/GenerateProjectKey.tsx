@@ -26,7 +26,7 @@ export function GenerateProjectKey({ project, setProject, getProjectKey }: Props
                     }}
                     style={{ minWidth: '200px', backgroundColor: '#fff', fontSize: '18px', fontWeight: '600' }}
                 >
-                    {localization['get-issued']}
+                    {localization['create-project-key']}
                 </Button>
             </TableCell>
         </TableRow>
