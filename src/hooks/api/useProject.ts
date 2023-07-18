@@ -2,12 +2,14 @@ import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import router from 'next/router'
 import { enqueueSnackbar } from 'notistack'
+import { useEffect, useState } from 'react'
 import { Project } from 'types/project'
 import { createRequestOptions } from 'utils/createRequestOptions'
 import { useRefresh } from '../useRefresh'
 import { useRequest } from '../useRequest'
 
 export function useProject() {
+    const [projectList, setProjectList] = useState<Project[]>()
     const { get, patch, deleteRequest } = useRequest()
     const { renewTokens } = useRefresh()
     const { locale } = useConfig()
@@ -124,5 +126,19 @@ export function useProject() {
         }
     }
 
-    return { findById, createsProject, updateProject, deleteProject, getProjectKey }
+    useEffect(() => {
+        get<{ items: Project[] }>('/api/projects/findAll', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+            .then((res) => {
+                setProjectList(res.items)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }, [accessToken, get])
+
+    return { findById, createsProject, updateProject, deleteProject, getProjectKey, projectList }
 }

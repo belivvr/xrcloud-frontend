@@ -5,14 +5,14 @@ import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import PermissionList from 'components/custom/permissions/permissionList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
-import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { NeedChoiceProject } from 'components/custom/common'
+import { useProject } from 'hooks/api/useProject'
 
 const Permissions = () => {
-    const { projectList } = useProjects()
+    const { projectList } = useProject()
     const { choicedProject } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)

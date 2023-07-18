@@ -4,14 +4,14 @@ import { ReactElement } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import ProjectList from 'components/custom/projectList'
-import { useProjects } from 'hooks/useProjects'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { MainCardCustom } from 'components/custom/common/MainCardCustom'
 import { Footer } from 'components/custom/common/Footer'
+import { useProject } from 'hooks/api/useProject'
 
 const Projects = () => {
-    const { projectList } = useProjects()
+    const { projectList } = useProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     return (
