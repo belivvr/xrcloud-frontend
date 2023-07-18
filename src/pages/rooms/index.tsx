@@ -6,7 +6,6 @@ import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import RoomList from 'components/custom/room/roomList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
-import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
@@ -16,12 +15,13 @@ import { Room, Scene } from 'types/project'
 import { useScenes } from 'hooks/api/useScenes'
 import FormControlSelectScene from 'ui-component/extended/Form/FormControlSelectScene'
 import { enqueueSnackbar } from 'notistack'
+import { useProject } from 'hooks/api/useProject'
 
 const Rooms = () => {
     const [roomList, setRoomList] = useState<Room[]>()
     const [sceneList, setSceneList] = useState<Scene[]>()
 
-    const { projectList } = useProjects()
+    const { projectList } = useProject()
     const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)

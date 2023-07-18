@@ -7,13 +7,13 @@ import PermissionContents from 'components/custom/permission/Contents'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
 import { Permission as PermissionType } from 'types/project'
 import { mockPermission, permissionFields, permissionCheckFields } from 'config'
-import { useProjects } from 'hooks/useProjects'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import { useProject } from 'hooks/api/useProject'
 
 const Permission = () => {
     const [permission, setPermission] = useState<PermissionType | undefined>()
-    const { projectList } = useProjects()
+    const { projectList } = useProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
 
