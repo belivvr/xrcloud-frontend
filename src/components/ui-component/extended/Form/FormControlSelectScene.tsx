@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -32,7 +32,7 @@ const FormControlSelectScene = ({
     textPrimary,
     textSecondary
 }: FormControlSelectProps) => {
-    const { setChoicedScene } = useChoicedProject()
+    const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
 
     const theme = useTheme()
     const IconPrimary = iconPrimary!
@@ -42,9 +42,8 @@ const FormControlSelectScene = ({
     const secondaryIcon = iconSecondary ? <IconSecondary fontSize="small" sx={{ color: theme.palette.grey[700] }} /> : null
 
     const errorState = formState === 'error'
-    const val = selected || ''
 
-    const [currency, setCurrency] = useState(val)
+    const [currency, setCurrency] = useState(selected || '')
     const handleChange = async (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
         const projectId = event?.target.value
         if (typeof projectId === 'string') {
@@ -52,6 +51,12 @@ const FormControlSelectScene = ({
             setChoicedScene(projectId)
         }
     }
+
+    useEffect(() => {
+        return () => {
+            setCurrency('')
+        }
+    }, [choicedProject])
 
     return (
         <FormControl fullWidth error={errorState}>

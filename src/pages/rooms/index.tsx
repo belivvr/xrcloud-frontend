@@ -22,7 +22,7 @@ const Rooms = () => {
     const [sceneList, setSceneList] = useState<Scene[]>()
 
     const { projectList } = useProjects()
-    const { choicedProject, choicedScene } = useChoicedProject()
+    const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const { getScenes } = useScenes()
@@ -45,14 +45,17 @@ const Rooms = () => {
     }, [choicedProject])
 
     useEffect(() => {
-        if (!choicedScene) return
+        if (!choicedScene) {
+            setSceneList(undefined)
+            setRoomList(undefined)
+            setChoicedScene('')
+            return
+        }
         getRooms()
             .then((res) => {
                 setRoomList(res.items)
             })
-            .catch((err) => {
-                console.log(err)
-            })
+            .catch((err) => {})
     }, [choicedScene])
 
     return (
@@ -79,9 +82,9 @@ const Rooms = () => {
                 }
             >
                 {roomList ? (
-                    <RoomList roomList={roomList} />
+                    <RoomList roomList={roomList} sceneId={choicedScene} />
                 ) : (
-                    <NeedChoiceProject title={`우측 상단에서 \n Project 선택 후 Scene ID를 선택해주세요.`} />
+                    <NeedChoiceProject title={localization['room-guide']} />
                 )}
             </MainCard>
         </Page>

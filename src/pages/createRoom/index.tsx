@@ -1,32 +1,65 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactElement, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import { Button, Table, TableBody } from '@mui/material'
 import { BasicTableInput } from 'components/custom/common/BasicTableInput'
-import { mockSceneList } from 'config'
-import BasicTableCheckbox from 'components/custom/common/BasicTableCheckbox'
 import { SceneSelect } from 'components/custom/room'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import { useRouter } from 'next/router'
+import { useScenes } from 'hooks/api/useScenes'
+import useChoicedProject from 'hooks/useChoicedProject'
+import { useProject } from 'hooks/api/useProject'
+import { Scene } from 'types/project'
+import { useRoom } from 'hooks/api/useRoom'
 
 const CreateRoom = () => {
-    const [sceneId, setSceneId] = useState('')
+    const router = useRouter()
+
+    const [sceneList, setSceneList] = useState<Scene[]>([])
+    const [sceneId, setSceneId] = useState(router.query.sceneId as string)
     const [roomName, setRoomName] = useState('')
-    const [customData, setCustomData] = useState('')
+
     const [roomSize, setRoomSize] = useState('')
-    const [isAutoScale, setIsAutoScale] = useState(false)
+    const [query] = useState(router.query)
+
+    const { choicedProject, setChoicedProject } = useChoicedProject()
+    const { findById } = useProject()
+    const { createRoom } = useRoom()
+    const { getScenes } = useScenes()
 
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+
+    const handleCreateRoom = async () => {
+        await createRoom(sceneId, roomName, Math.min(50, Math.max(1, Number(roomSize))))
+        router.push('/rooms')
+    }
+
+    useEffect(() => {
+        if (query.projectId === undefined) return
+        if (typeof query.projectId !== 'string') return
+
+        findById(query.projectId).then((res) => {
+            setChoicedProject(res)
+        })
+    }, [query])
+
+    useEffect(() => {
+        if (!choicedProject) return
+        getScenes()
+            .then((res) => setSceneList(res.items))
+            .catch((err) => console.log(err))
+    }, [choicedProject])
 
     return (
         <Page title="Create Room">
             <MainCard sx={{ overflow: 'scroll' }} title="Create Room">
                 <Table>
                     <TableBody>
-                        <SceneSelect sceneId={sceneId} sceneList={mockSceneList} onChange={(e) => setSceneId(e.target.value)} />
+                        <SceneSelect sceneId={sceneId} sceneList={sceneList} onChange={(e) => setSceneId(e.target.value)} />
                         <BasicTableInput
                             type="text"
                             title={localization['room-name']}
@@ -35,24 +68,16 @@ const CreateRoom = () => {
                             onChange={(e) => setRoomName(e.target.value)}
                         />
                         <BasicTableInput
-                            type="text"
-                            title={localization['custom-data']}
-                            value={customData}
-                            placeholder={localization['write-custom-data']}
-                            onChange={(e) => setCustomData(e.target.value)}
-                        />
-                        <BasicTableInput
                             type="number"
                             title={localization['room-size']}
                             value={roomSize}
                             placeholder={localization['enter-room-size']}
                             onChange={(e) => setRoomSize(e.target.value)}
                         />
-                        <BasicTableCheckbox title={localization['auto-scale']} onChange={(_, checked) => setIsAutoScale(checked)} />
                     </TableBody>
                 </Table>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button style={{ minWidth: '300px', height: '48px', marginTop: '24px' }} variant="contained">
+                    <Button onClick={handleCreateRoom} style={{ minWidth: '300px', height: '48px', marginTop: '24px' }} variant="contained">
                         {localization.create}
                     </Button>
                 </div>

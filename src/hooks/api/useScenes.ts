@@ -7,7 +7,7 @@ import { useLocalization } from '../useLocalization'
 import { useRequest } from '../useRequest'
 
 export function useScenes() {
-    const { choicedProject } = useChoicedProject()
+    const { choicedProject, setChoicedScene } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()

@@ -59,9 +59,6 @@ export function useProject() {
             await fetch('/api/projects/create', requestOptions)
         }
 
-        const { id } = await data.json()
-        localStorage.setItem('projectId', id)
-
         router.push(`/projects`)
     }
 

@@ -35,6 +35,19 @@ export interface RoomField {
     isDisabled: boolean
 }
 
+export interface CreateRoom {
+    createdAt: Date
+    id: string
+    infraRoomId: string
+    name: string
+    ownerId: string
+    sceneId: string
+    size: number
+    thumbnailId: string
+    updatedAt: Date
+    version: number
+}
+
 export type URL = string
 
 export interface Permission {

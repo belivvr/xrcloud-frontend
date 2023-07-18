@@ -1,6 +1,6 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { ProjectContextType } from 'types/auth'
-import { Project, Scene } from 'types/project'
+import { Project } from 'types/project'
 
 const ChoicedProjectContext = createContext<ProjectContextType | null>(null)
 

@@ -3,18 +3,28 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Room } from 'types/project'
 import { BasicContentsButton, GridWrapper } from '../common'
-import { CircularProgress } from '@mui/material'
+import { Button, CircularProgress, styled } from '@mui/material'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import { StyledAddIcon } from '../styles/styled'
+
+export const CreateRoom = styled(Button)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: white;
+    border: 1px solid #eee;
+    color: #000;
+`
 
 interface Props {
     roomList: Room[] | undefined
+    sceneId: string | undefined
 }
 
-const RoomList = ({ roomList }: Props) => {
+const RoomList = ({ roomList, sceneId }: Props) => {
     const router = useRouter()
-    const { locale } = useConfig()
-    const localization = useLocalization(locale)
 
     if (roomList === undefined)
         return (
@@ -23,31 +33,17 @@ const RoomList = ({ roomList }: Props) => {
             </div>
         )
 
-    if (roomList.length === 0) {
-        return (
-            <div
-                style={{
-                    height: 'calc(100vh - 264px)',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    fontSize: '60px',
-                    fontWeight: '700',
-                    lineHeight: 1.5,
-                    textAlign: 'center',
-                    whiteSpace: 'pre-line'
-                }}
-            >
-                {localization['not-found-rooms']}
-            </div>
-        )
-    }
-
     return (
         <GridWrapper>
             {roomList?.map((room: Room) => {
                 return (
-                    <BasicContentsButton onClick={() => router.push(`/rooms/${room.id}`)} key={room.id}>
+                    <div
+                        style={{
+                            minWidth: '64px',
+                            border: '1px solid #eee'
+                        }}
+                        key={room.id}
+                    >
                         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', objectFit: 'cover' }}>
                             <img style={{ height: '250px', objectFit: 'contain' }} src={room.thumbnailUrl} alt={room.thumbnailUrl} />
                             <div
@@ -63,9 +59,17 @@ const RoomList = ({ roomList }: Props) => {
                                 {room.name}
                             </div>
                         </div>
-                    </BasicContentsButton>
+                    </div>
                 )
             })}
+            <CreateRoom
+                onClick={() => {
+                    const projectId = localStorage.getItem('projectId')
+                    router.push(`/createRoom?projectId=${projectId}&sceneId=${sceneId}`)
+                }}
+            >
+                <StyledAddIcon color="inherit" />
+            </CreateRoom>
         </GridWrapper>
     )
 }
