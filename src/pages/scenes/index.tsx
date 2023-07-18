@@ -6,7 +6,6 @@ import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import SceneList from 'components/custom/scenes/sceneList'
 import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
-import { useProjects } from 'hooks/useProjects'
 import useChoicedProject from 'hooks/useChoicedProject'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
@@ -17,9 +16,7 @@ import { useProject } from 'hooks/api/useProject'
 
 const Scenes = () => {
     const [sceneList, setSceneList] = useState<Scene[]>()
-    const { findById } = useProject()
-    const { projectList } = useProjects()
-
+    const { projectList, findById } = useProject()
     const { getScenes, createScene, updateScene } = useScenes()
     const { choicedProject, setChoicedProject } = useChoicedProject()
 
