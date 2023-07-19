@@ -19,7 +19,7 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                     <BasicContentsButton
                         onClick={async () => {
                             const { modifySceneUrl } = await updateScene(scene.id)
-                            router.push(modifySceneUrl)
+                            router.push(`${modifySceneUrl}&callback=${window.location.host}${window.location.pathname}`)
                         }}
                         key={scene.id}
                     >
