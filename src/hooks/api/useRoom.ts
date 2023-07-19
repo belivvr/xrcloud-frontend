@@ -23,7 +23,6 @@ export function useRoom() {
         }
 
         if (!choicedProject.projectKey) {
-            console.log(123)
             enqueueSnackbar(localization['scene-select-alert-no-key'], {
                 variant: 'error'
             })
@@ -40,17 +39,34 @@ export function useRoom() {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
 
-        return post<CreateRoom>(
-            'api/admins/createRoom',
-            {
-                sceneId,
-                name,
-                size
-            },
-            {
-                headers: createHeaders(choicedProject as Project)
+        if (size > 10) {
+            enqueueSnackbar(localization['room-user-limit'], {
+                variant: 'error'
+            })
+            return Promise.reject(new Error(localization['room-user-limit']))
+        }
+
+        try {
+            const data = await post<CreateRoom>(
+                'api/admins/createRoom',
+                {
+                    sceneId,
+                    name,
+                    size: Math.min(10, Math.max(1, size))
+                },
+                {
+                    headers: createHeaders(choicedProject as Project)
+                }
+            )
+            return data
+        } catch (err: any) {
+            if (err.response.status === 403) {
+                enqueueSnackbar(localization['total-room-count-exceed'], {
+                    variant: 'error'
+                })
+                throw err
             }
-        )
+        }
     }
 
     const getRooms = (): Promise<{ items: Room[] }> => {

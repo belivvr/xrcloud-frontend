@@ -20,7 +20,7 @@ export const AddProjectForm = () => {
 
     const [logoThumbnailUrl, setLogoThumbnailUrl] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
-    const { createsProject } = useProject()
+    const { createsProject, projectList } = useProject()
 
     const selectProduct = (event: SelectChangeEvent) => {
         setProductName(event.target.value)

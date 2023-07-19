@@ -2,10 +2,8 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { Room } from 'types/project'
-import { BasicContentsButton, GridWrapper } from '../common'
+import { GridWrapper } from '../common'
 import { Button, CircularProgress, styled } from '@mui/material'
-import useConfig from 'hooks/useConfig'
-import { useLocalization } from 'hooks/useLocalization'
 import { StyledAddIcon } from '../styles/styled'
 
 export const CreateRoom = styled(Button)`
@@ -56,7 +54,7 @@ const RoomList = ({ roomList, sceneId }: Props) => {
                                     borderTop: '1px solid #eee'
                                 }}
                             >
-                                {room.name}
+                                {room.roomUrl}
                             </div>
                         </div>
                     </div>

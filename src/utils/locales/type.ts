@@ -96,4 +96,8 @@ export interface Localization {
     'not-found-rooms': string
     'room-no-scenes': string
     'failed-login': string
+    'project-limit': string
+    'total-room-count-exceed': string
+    'room-user-limit': string
+    'permission-not-ready': string
 }

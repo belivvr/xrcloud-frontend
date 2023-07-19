@@ -33,9 +33,12 @@ const CreateRoom = () => {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
 
-    const handleCreateRoom = async () => {
-        await createRoom(sceneId, roomName, Math.min(50, Math.max(1, Number(roomSize))))
-        router.push('/rooms')
+    const handleCreateRoom = () => {
+        createRoom(sceneId, roomName, Number(roomSize))
+            .then((res) => {
+                router.push('/rooms')
+            })
+            .catch((err) => {})
     }
 
     useEffect(() => {
