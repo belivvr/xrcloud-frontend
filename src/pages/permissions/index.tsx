@@ -3,37 +3,17 @@ import { ReactElement } from 'react'
 import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
-import PermissionList from 'components/custom/permissions/permissionList'
-import FormControlSelect from 'ui-component/extended/Form/FormControlSelect'
-import useChoicedProject from 'hooks/useChoicedProject'
-import useConfig from 'hooks/useConfig'
-import { useLocalization } from 'hooks/useLocalization'
 import { NeedChoiceProject } from 'components/custom/common'
-import { useProject } from 'hooks/api/useProject'
+import { useLocalization } from 'hooks/useLocalization'
+import useConfig from 'hooks/useConfig'
 
 const Permissions = () => {
-    const { projectList } = useProject()
-    const { choicedProject } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
-
     return (
         <Page title="Permissions">
-            <MainCard
-                title="Permissions"
-                secondary={
-                    <div style={{ width: '300px' }}>
-                        {projectList && (
-                            <FormControlSelect
-                                selected={choicedProject?.id}
-                                currencies={projectList}
-                                captionLabel={localization['select-project-id']}
-                            />
-                        )}
-                    </div>
-                }
-            >
-                {choicedProject ? <PermissionList /> : <NeedChoiceProject />}
+            <MainCard title="Permissions">
+                <NeedChoiceProject title={localization['permission-not-ready']} />
             </MainCard>
         </Page>
     )

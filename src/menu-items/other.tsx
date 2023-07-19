@@ -2,7 +2,7 @@
 import { FormattedMessage } from 'react-intl'
 
 // assets
-import { IconBrandChrome, IconHelp, IconAccessible, IconSitemap } from '@tabler/icons'
+import { IconBrandChrome, IconHelp, IconAccessible, IconSitemap, IconRocket } from '@tabler/icons'
 import { NavItemType } from 'types'
 
 // constant
@@ -10,7 +10,8 @@ const icons = {
     IconBrandChrome,
     IconHelp,
     IconAccessible,
-    IconSitemap
+    IconSitemap,
+    IconRocket
 }
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
@@ -42,6 +43,15 @@ const other: NavItemType = {
             type: 'item',
             url: '/permissions',
             icon: icons.IconSitemap,
+            breadcrumbs: false
+        },
+        {
+            id: 'belivvr.com',
+            title: <FormattedMessage id="belivvr.com" />,
+            type: 'item',
+            url: 'https://belivvr.com',
+            icon: icons.IconRocket,
+            color: 'default',
             breadcrumbs: false
         }
     ]

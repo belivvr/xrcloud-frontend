@@ -90,7 +90,7 @@ const Header = () => {
                         fontWeight: 600
                     }}
                 >
-                    <Link target="_blank" href="https://developers.belivvr.com/docs/xrcloud">
+                    <Link target="_blank" href="https://api.xrcloud.app/docs/">
                         Documentation
                     </Link>
                 </Button>

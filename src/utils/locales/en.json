@@ -4,6 +4,7 @@
     "scenes": "Scenes",
     "rooms": "Rooms",
     "permissions": "Permissions",
+    "belivvr.com": "BELIVVR.COM",
     "avatars": "Avatars",
     "emojis": "Emojis",
     "3d-models": "3D-Models",
@@ -60,7 +61,7 @@
 
     "write-room-name": "please, write room name",
     "write-custom-data": "please, write custom data",
-    "enter-room-size": "please, enter room size",
+    "enter-room-size": "Please enter a room size of 10 people or less",
 
     "date-of-room-creation": "Date of Room Creation",
     "date-of-room-update": "Date of Room Update",
@@ -74,7 +75,7 @@
     "scene-select-no-project": "Please select a project",
     "scene-select-alert-no-key": "You don't have a key for the project, please get a key from that project.",
     "room-no-scenes": "There are no scenes in this project, please add Scene",
-    "room-guide": "Please select Project in the top right corner and then select your Scene ID",
+    "room-guide": "Please select project in the top right corner \n and then select your scene ID",
 
     "sign-in": "Sign In",
     "logout": "Logout",
@@ -105,5 +106,9 @@
     "company-number": "Company number 070-4227-9371",
 
     "not-found-rooms": "No rooms were created",
-    "failed-login": "Email or password doesn't match."
+    "failed-login": "Email or password doesn't match.",
+    "project-limit": "You can create a maximum of 1 project.",
+    "total-room-count-exceed": "You can create up to 3 rooms for this project",
+    "room-user-limit": "Not available on free products, please contact help@belivvr.com",
+    "permission-not-ready": "Permission settings will be supported soon."
 }

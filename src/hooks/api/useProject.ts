@@ -46,6 +46,13 @@ export function useProject() {
             return
         }
 
+        if (projectList && projectList?.length >= 1) {
+            enqueueSnackbar(localization['project-limit'], {
+                variant: 'error'
+            })
+            return
+        }
+
         const formData = new FormData()
         formData.append('projectName', projectName)
         formData.append('productName', productName)

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect } from 'react'
 
 // project imports
 import Layout from 'layout'
@@ -12,8 +12,12 @@ import { useProject } from 'hooks/api/useProject'
 
 const Projects = () => {
     const { projectList } = useProject()
-    const { locale } = useConfig()
+    const { locale, onChangePresetColor } = useConfig()
     const localization = useLocalization(locale)
+
+    useEffect(() => {
+        onChangePresetColor('theme6')
+    }, [])
     return (
         <Page title={localization['project-manage']}>
             <MainCardCustom title={localization['project-manage']}>

@@ -4,6 +4,7 @@
     "scenes": "Scenes",
     "rooms": "Rooms",
     "permissions": "Permissions",
+    "belivvr.com": "BELIVVR.COM",
     "avatars": "Avatars",
     "emojis": "Emojis",
     "3d-models": "3D-Models",
@@ -104,5 +105,9 @@
     "company-number": "회사 전화번호 070-4227-9371",
 
     "not-found-rooms": "만들어진 방이 없습니다.",
-    "failed-login": "이메일 혹은 비밀번호가 일치하지 않습니다."
+    "failed-login": "이메일 혹은 비밀번호가 일치하지 않습니다.",
+    "project-limit": "프로젝트는 최대 1개까지 생성 가능합니다.",
+    "total-room-count-exceed": "해당 프로젝트의 Room은 최대 3개까지 생성 가능합니다.",
+    "room-user-limit": "무료 상품에서는 이용할 수 없습니다. help@belivvr.com 으로 연락주세요",
+    "permission-not-ready": "권한 설정이 곧 지원 될 예정입니다."
 }

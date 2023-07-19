@@ -19,8 +19,6 @@ import { drawerWidth } from 'store/constant'
 import { useDispatch, useSelector } from 'store'
 import { openDrawer } from 'store/slices/menu'
 
-import MenuOnly from '../Menu'
-
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
 const Sidebar = () => {

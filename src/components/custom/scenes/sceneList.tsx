@@ -24,7 +24,7 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                         key={scene.id}
                     >
                         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', objectFit: 'cover' }}>
-                            <img style={{ height: '250px', objectFit: 'cover' }} src={scene.thumbnailUrl} alt={scene.thumbnailUrl} />
+                            <img style={{ height: '250px', objectFit: 'cover' }} src={scene.thumbnailUrl} alt={scene.name} />
                             <div
                                 style={{
                                     display: 'flex',
@@ -35,7 +35,7 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                                     borderTop: '1px solid #eee'
                                 }}
                             >
-                                {scene.thumbnailUrl}
+                                {scene.name}
                             </div>
                         </div>
                     </BasicContentsButton>
