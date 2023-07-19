@@ -109,5 +109,9 @@
     "project-limit": "프로젝트는 최대 1개까지 생성 가능합니다.",
     "total-room-count-exceed": "해당 프로젝트의 Room은 최대 3개까지 생성 가능합니다.",
     "room-user-limit": "무료 상품에서는 이용할 수 없습니다. help@belivvr.com 으로 연락주세요",
-    "permission-not-ready": "권한 설정이 곧 지원 될 예정입니다."
+    "permission-not-ready": "권한 설정이 곧 지원 될 예정입니다.",
+
+    "delete-project-modal": "프로젝트를 삭제하시겠습니까?",
+    "delete-project-modal-left-button": "취소",
+    "delete-project-modal-right-button": "삭제"
 }

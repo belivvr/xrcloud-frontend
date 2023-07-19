@@ -5,6 +5,7 @@ import { BasicTableRow, CancelButton, DefaultButton, InputFiles, InputName } fro
 import { GenerateProjectKey } from '.'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import BasicModal from '../common/BasicModal'
 
 interface Props {
     project: Project
@@ -22,6 +23,9 @@ export function UpdateProjectForm({ project, setProject, updateProject, deletePr
     const [faviconFile, setFaviconFile] = useState<File | undefined>(undefined)
     const [logoThumbnailUrl, setLogoThumbnailUrl] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
+    const [modalOpen, setModalOpen] = useState(false)
+    const handleOpen = () => setModalOpen(true)
+    const handleClose = () => setModalOpen(false)
 
     useEffect(() => {
         if (project) {
@@ -33,6 +37,16 @@ export function UpdateProjectForm({ project, setProject, updateProject, deletePr
 
     return (
         <Table>
+            <BasicModal
+                mainText={localization['delete-project-modal']}
+                buttonLeftText={localization['delete-project-modal-left-button']}
+                buttonRightText={localization['delete-project-modal-right-button']}
+                open={modalOpen}
+                handleClose={handleClose}
+                handleRightButton={() => {
+                    deleteProject(project.id)
+                }}
+            />
             <TableBody>
                 <InputName projectName={projectName} setProjectName={setProjectName} />
                 <InputFiles
@@ -59,7 +73,12 @@ export function UpdateProjectForm({ project, setProject, updateProject, deletePr
                                 text={localization.update}
                                 onClick={() => updateProject(project.id, projectName, faviconFile, logoFile)}
                             />
-                            <CancelButton text={localization.delete} onClick={() => deleteProject(project.id)} />
+                            <CancelButton
+                                text={localization.delete}
+                                onClick={() => {
+                                    handleOpen()
+                                }}
+                            />
                         </div>
                     </TableCell>
                 </TableRow>
