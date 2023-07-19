@@ -38,9 +38,14 @@ const Scenes = () => {
 
     useEffect(() => {
         if (!selectedProjectId) return
-        findById(selectedProjectId).then((project) => {
-            setChoicedProject(project)
-        })
+        findById(selectedProjectId)
+            .then((project) => {
+                setChoicedProject(project)
+            })
+            .catch((err) => {
+                setChoicedProject(undefined)
+                localStorage.removeItem('projectId')
+            })
     }, [selectedProjectId])
 
     return (

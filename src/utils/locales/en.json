@@ -110,5 +110,9 @@
     "project-limit": "You can create a maximum of 1 project.",
     "total-room-count-exceed": "You can create up to 3 rooms for this project",
     "room-user-limit": "Not available on free products, please contact help@belivvr.com",
-    "permission-not-ready": "Permission settings will be supported soon."
+    "permission-not-ready": "Permission settings will be supported soon.",
+
+    "delete-project-modal": "Are you sure you want to delete the project?",
+    "delete-project-modal-left-button": "CANCEL",
+    "delete-project-modal-right-button": "DELETE"
 }
