@@ -100,4 +100,8 @@ export interface Localization {
     'total-room-count-exceed': string
     'room-user-limit': string
     'permission-not-ready': string
+
+    'delete-project-modal': string
+    'delete-project-modal-left-button': string
+    'delete-project-modal-right-button': string
 }
