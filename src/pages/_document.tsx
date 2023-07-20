@@ -5,7 +5,7 @@ export default function Document() {
         <Html>
             <Head>
                 <meta name="theme-color" content="#2296f3" />
-                <meta name="title" content="Berry - React Material Admin Dashboard Template by CodedThemes" />
+                <meta name="title" content="Developers XRCLOUD" />
                 <meta
                     name="description"
                     content="Start your next React project with Berry admin template. It build with Reactjs, Material-UI, Redux, and Hook for faster web development."
