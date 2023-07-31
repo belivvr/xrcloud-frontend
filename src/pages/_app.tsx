@@ -30,6 +30,8 @@ import { ChoicedProjectProvider } from 'contexts/ChoicedProjectContext'
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
 import { SnackbarProvider } from 'notistack'
 import useConfig from 'hooks/useConfig'
+import { useRouter } from 'next/router'
+import * as gtag from '../../lib/gtag'
 
 // types
 type LayoutProps = NextPage & {
@@ -47,6 +49,20 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
     useEffect(() => {
         onChangePresetColor('theme6')
     }, [])
+
+    const router = useRouter()
+
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            gtag.pageview(url)
+        }
+        router.events.on('routeChangeComplete', handleRouteChange)
+        router.events.on('hashChangeComplete', handleRouteChange)
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange)
+            router.events.off('hashChangeComplete', handleRouteChange)
+        }
+    }, [router.events])
     return (
         <Provider store={store}>
             <ConfigProvider>
