@@ -48,13 +48,20 @@ const RoomList = ({ roomList, sceneId }: Props) => {
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center',
-                                    alignItems: 'center',
-                                    height: '62px',
+                                    flexDirection: 'column',
+                                    padding: '14px 14px',
                                     color: '#333',
                                     borderTop: '1px solid #eee'
                                 }}
                             >
-                                {room.roomUrl}
+                                <div style={{ marginBottom: '5px' }}>
+                                    <span>ID ) </span>
+                                    <span style={{ fontWeight: 700 }}>{room.id}</span>
+                                </div>
+                                <div style={{ marginBottom: '5px' }}>
+                                    <span>URL ) </span>
+                                    <span style={{ fontWeight: 700 }}>{room.roomUrl}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

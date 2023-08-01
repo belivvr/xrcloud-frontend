@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'Link'
 
 // material-ui
@@ -50,6 +50,12 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
     const handleMouseDownPassword = (event: React.MouseEvent) => {
         event.preventDefault()!
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('projectId')) {
+            return localStorage.removeItem('projectId')
+        }
+    }, [])
 
     return (
         <Formik
