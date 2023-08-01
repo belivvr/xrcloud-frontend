@@ -48,8 +48,8 @@
     "create-project": "Create Project",
 
     "click-project": "Please select your\n project in the top right corner.",
-    "select-project-id": "Select project ID",
-    "select-scene-id": "Select scene ID",
+    "select-project-id": "Select project name",
+    "select-scene-id": "Select scene name",
 
     "attachment": "Attachment",
 

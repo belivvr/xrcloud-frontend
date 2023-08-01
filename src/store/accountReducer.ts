@@ -35,6 +35,7 @@ const accountReducer = (state = initialState, action: AccountReducerActionProps)
             }
         }
         case LOGOUT: {
+            localStorage.removeItem('projectId')
             return {
                 ...state,
                 isInitialized: true,
