@@ -38,7 +38,8 @@ const RoomList = ({ roomList, sceneId }: Props) => {
                     <div
                         style={{
                             minWidth: '64px',
-                            border: '1px solid #eee'
+                            border: '1px solid #eee',
+                            borderRadius: '4px'
                         }}
                         key={room.id}
                     >
@@ -54,6 +55,10 @@ const RoomList = ({ roomList, sceneId }: Props) => {
                                     borderTop: '1px solid #eee'
                                 }}
                             >
+                                <div style={{ marginBottom: '5px' }}>
+                                    <span>Name ) </span>
+                                    <span style={{ fontWeight: 700 }}>{room.name}</span>
+                                </div>
                                 <div style={{ marginBottom: '5px' }}>
                                     <span>ID ) </span>
                                     <span style={{ fontWeight: 700 }}>{room.id}</span>
