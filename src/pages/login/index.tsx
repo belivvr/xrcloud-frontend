@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -12,11 +12,10 @@ import Page from 'components/ui-component/Page'
 import AuthWrapper1 from 'components/authentication/AuthWrapper1'
 import AuthCardWrapper from 'components/authentication/AuthCardWrapper'
 import AuthLogin from 'components/authentication/auth-forms/AuthLogin'
-import Logo from 'ui-component/Logo'
-import AuthFooter from 'ui-component/cards/AuthFooter'
 
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import useChoicedProject from 'hooks/useChoicedProject'
 
 // ================================|| AUTH3 - LOGIN ||================================ //
 
@@ -25,6 +24,12 @@ const Login = () => {
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+    const { choicedProject, choicedScene, setChoicedProject, setChoicedScene } = useChoicedProject()
+
+    useEffect(() => {
+        if (choicedProject) setChoicedProject(undefined)
+        if (choicedScene) setChoicedScene(undefined)
+    }, [])
 
     return (
         <Page title="Login">

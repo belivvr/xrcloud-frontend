@@ -17,6 +17,7 @@ import { InitialLoginContextProps, KeyedObject } from 'types'
 import { AuthResponseToken, CreateUser, XRCloudAuthContextType } from 'types/auth'
 import { Tokens, useRefresh } from 'hooks/useRefresh'
 import { useRequest } from 'hooks/useRequest'
+import useChoicedProject from 'hooks/useChoicedProject'
 
 type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
 
