@@ -52,12 +52,12 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                             }}
                         >
                             <div style={{ marginBottom: '5px' }}>
-                                <span>ID ) </span>
-                                <span style={{ fontWeight: 700 }}>{scene.id}</span>
-                            </div>
-                            <div style={{ marginBottom: '5px' }}>
                                 <span>Name ) </span>
                                 <span style={{ fontWeight: 700 }}>{scene.name}</span>
+                            </div>
+                            <div style={{ marginBottom: '5px' }}>
+                                <span>ID ) </span>
+                                <span style={{ fontWeight: 700 }}>{scene.id}</span>
                             </div>
                         </div>
                     </div>

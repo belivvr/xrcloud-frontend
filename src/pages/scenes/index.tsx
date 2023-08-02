@@ -28,7 +28,6 @@ const Scenes = () => {
         if (!choicedProject) return
         getScenes()
             .then((res) => {
-                console.log(res.items)
                 setSceneList(res.items)
             })
             .catch((err) => {
