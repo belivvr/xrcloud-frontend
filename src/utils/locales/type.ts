@@ -4,6 +4,7 @@ export interface Localization {
     scenes: string
     rooms: string
     permissions: string
+    price
     avatars: string
     emojis: string
     '3d-models': string

@@ -35,3 +35,13 @@ export type CustomizationProps = {
     onChangeBorderRadius: (event: Event, newValue: number | number[]) => void
     onChangeOutlinedField: (outlinedFilled: boolean) => void
 }
+
+export interface PricePlan {
+    id: string
+    active: boolean
+    icon: JSX.Element
+    title: string
+    description: string
+    price: number
+    permission: number[]
+}

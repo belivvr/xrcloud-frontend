@@ -70,4 +70,15 @@ export const permissionCheckFields: PermissionCheckField[] = [
     { title: 'emoji-creation', id: 'emojiCreate' }
 ]
 
+export const optionList = [
+    'One End Product',
+    'No attribution required',
+    'TypeScript',
+    'Figma Design Resources',
+    'Create Multiple Products',
+    'Create a SaaS Project',
+    'Resale Product',
+    'Separate sale of our UI Elements?'
+]
+
 export default config

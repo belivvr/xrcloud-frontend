@@ -2,16 +2,17 @@
 import { FormattedMessage } from 'react-intl'
 
 // assets
-import { IconBrandChrome, IconHelp, IconAccessible, IconSitemap, IconRocket } from '@tabler/icons'
+import { IconBrandChrome, IconDoor, IconAccessible, IconSitemap, IconRocket, IconFileDollar } from '@tabler/icons'
 import { NavItemType } from 'types'
 
 // constant
 const icons = {
     IconBrandChrome,
-    IconHelp,
+    IconDoor,
     IconAccessible,
     IconSitemap,
-    IconRocket
+    IconRocket,
+    IconFileDollar
 }
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
@@ -34,7 +35,7 @@ const other: NavItemType = {
             title: <FormattedMessage id="rooms" />,
             type: 'item',
             url: '/rooms',
-            icon: icons.IconHelp,
+            icon: icons.IconDoor,
             breadcrumbs: false
         },
         {
@@ -43,6 +44,14 @@ const other: NavItemType = {
             type: 'item',
             url: '/permissions',
             icon: icons.IconSitemap,
+            breadcrumbs: false
+        },
+        {
+            id: 'price',
+            title: <FormattedMessage id="price" />,
+            type: 'item',
+            url: '/price-plan',
+            icon: icons.IconFileDollar,
             breadcrumbs: false
         },
         {
