@@ -4,7 +4,7 @@ export interface Localization {
     scenes: string
     rooms: string
     permissions: string
-    price
+    price: string
     avatars: string
     emojis: string
     '3d-models': string
@@ -105,4 +105,8 @@ export interface Localization {
     'delete-project-modal': string
     'delete-project-modal-left-button': string
     'delete-project-modal-right-button': string
+
+    landing: string
+    'landing-title': string
+    'landing-description': string
 }
