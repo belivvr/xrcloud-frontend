@@ -4,13 +4,13 @@ import { FormattedMessage } from 'react-intl'
 import { Icon } from '@mui/material'
 
 // assets
-import { IconKey, IconSitemap } from '@tabler/icons'
+import { IconKey, IconHomeCog } from '@tabler/icons'
 import { NavItemType } from 'types'
 
 // constant
 const icons = {
     IconKey,
-    IconSitemap
+    IconHomeCog
 }
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -26,7 +26,7 @@ const pages: NavItemType = {
             title: <FormattedMessage id="projects" />,
             type: 'item',
             url: '/projects',
-            icon: icons.IconSitemap,
+            icon: icons.IconHomeCog,
             breadcrumbs: false,
             children: []
         }
