@@ -115,5 +115,9 @@
 
     "delete-project-modal": "Are you sure you want to delete the project?",
     "delete-project-modal-left-button": "CANCEL",
-    "delete-project-modal-right-button": "DELETE"
+    "delete-project-modal-right-button": "DELETE",
+
+    "landing": "Developers XRCLOUD",
+    "landing-title": "Welcome to the XRCLOUD Developers page. \n\n",
+    "landing-description": "The XRCLOUD Developer Center is a place to create, share, and experience VR/AR spaces. \n Create, share, and experience various spaces. \n\n For more information, check out the address below. \n\n"
 }

@@ -16,6 +16,7 @@ import { openDrawer } from 'store/slices/menu'
 import { IconMenu2 } from '@tabler/icons'
 import router from 'next/router'
 import Link from 'next/link'
+import useAuth from 'hooks/useAuth'
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -27,6 +28,7 @@ const Header = () => {
 
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
     const { layout } = useConfig()
+    const { user } = useAuth()
 
     return (
         <Box style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -41,7 +43,7 @@ const Header = () => {
                 }}
             >
                 <Box
-                    onClick={() => router.push('/projects')}
+                    onClick={() => router.push('/')}
                     component="span"
                     sx={{
                         display: 'flex',
@@ -54,7 +56,7 @@ const Header = () => {
                     }}
                 >
                     {/* <LogoSection /> */}
-                    XRCloud
+                    XRCLOUD
                 </Box>
                 {layout === LAYOUT_CONST.VERTICAL_LAYOUT}
                 {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || (layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && matchDownMd)) && (
@@ -134,7 +136,7 @@ const Header = () => {
             {/* live customization & localization */}
             <Box sx={{ display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', marginRight: '24px', gap: '20px' }}>
                 <LocalizationSection />
-                <ProfileSection />
+                {user ? <ProfileSection /> : null}
             </Box>
 
             {/* profile */}

@@ -63,7 +63,19 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
         component: ForwardRefExoticComponent<RefAttributes<HTMLAnchorElement>> | string
         href?: string
         target?: LinkTarget
-    } = { component: forwardRef((props, ref) => <Link ref={ref} {...props} href={`${item.url!}`} target={itemTarget} />) }
+    } = {
+        component: forwardRef((props, ref) => {
+            if (window.location.pathname === '/' && item.id !== 'belivvr.com' && item.id !== 'price') {
+                return <Link ref={ref} {...props} href={`/login`} target={itemTarget} />
+            }
+
+            if (item.id === 'belivvr.com') {
+                return <Link ref={ref} {...props} href={`https://belivvr.com`} target={'_blank'} />
+            }
+
+            return <Link ref={ref} {...props} href={`${item.url!}`} target={itemTarget} />
+        })
+    }
     if (item?.external) {
         listItemProps = { component: 'a', href: item.url, target: itemTarget }
     }

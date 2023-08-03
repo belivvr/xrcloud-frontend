@@ -10,11 +10,12 @@ export const LAYOUT_CONST = {
 export const LAYOUT: any = {
     main: 'main',
     noauth: 'noauth',
-    minimal: 'minimal'
+    minimal: 'minimal',
+    landing: 'landing'
 }
 export interface Props {
     children: ReactElement
-    variant?: 'main' | 'minimal' | 'noauth'
+    variant?: 'main' | 'minimal' | 'noauth' | 'landing'
 }
 
 export const gridSpacing = 3
