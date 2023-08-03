@@ -46,14 +46,14 @@ const other: NavItemType = {
             icon: icons.IconSitemap,
             breadcrumbs: false
         },
-        {
-            id: 'price',
-            title: <FormattedMessage id="price" />,
-            type: 'item',
-            url: '/price-plan',
-            icon: icons.IconFileDollar,
-            breadcrumbs: false
-        },
+        // {
+        //     id: 'price',
+        //     title: <FormattedMessage id="price" />,
+        //     type: 'item',
+        //     url: '/price-plan',
+        //     icon: icons.IconFileDollar,
+        //     breadcrumbs: false
+        // },
         {
             id: 'belivvr.com',
             title: <FormattedMessage id="belivvr.com" />,
