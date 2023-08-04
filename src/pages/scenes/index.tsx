@@ -23,6 +23,7 @@ const Scenes = () => {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const selectedProjectId = localStorage.getItem('projectId')
+    const apiKey = localStorage.getItem('apiKey')
 
     useEffect(() => {
         if (!choicedProject) return
