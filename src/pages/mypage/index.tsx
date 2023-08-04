@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import Page from 'ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import Layout from 'layout'
@@ -10,6 +10,7 @@ import { allyProps } from 'utils/allyProps'
 
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone'
 import useConfig from 'hooks/useConfig'
+import useAuth from 'hooks/useAuth'
 
 const tabsOption = [
     {
@@ -23,6 +24,17 @@ const Mypage = () => {
     const theme = useTheme()
     const [value, setValue] = useState(0)
     const { borderRadius } = useConfig()
+    const { receivedApiKey, getProfile, genrateApiKey } = useAuth()
+
+    useEffect(() => {
+        getProfile().then((res) => {
+            console.log(res)
+        })
+    }, [])
+
+    useEffect(() => {
+        console.log(receivedApiKey)
+    }, [receivedApiKey])
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
@@ -100,7 +112,7 @@ const Mypage = () => {
                             }}
                         >
                             <TabPanel value={value} index={0}>
-                                <UserProfile />
+                                <UserProfile receivedApiKey={receivedApiKey} genrateApiKey={genrateApiKey} />
                             </TabPanel>
                         </CardContent>
                     </Grid>

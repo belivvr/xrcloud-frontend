@@ -7,10 +7,12 @@ import { useLocalization } from '../useLocalization'
 import { useRequest } from '../useRequest'
 
 export function useScenes() {
-    const { choicedProject, setChoicedScene } = useChoicedProject()
+    const { choicedProject } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()
+
+    const apiKey = localStorage.getItem('apiKey')
 
     const { get } = useRequest()
 
@@ -22,7 +24,7 @@ export function useScenes() {
             return false
         }
 
-        if (!choicedProject.projectKey) {
+        if (!apiKey) {
             enqueueSnackbar(localization['scene-select-alert-no-key'], {
                 variant: 'error'
             })

@@ -14,6 +14,7 @@ export interface AuthResponseToken {
 export interface AuthProfileResponse {
     adminId: string
     email: string
+    apiKey: string
 }
 
 export type CreateUser = {
@@ -32,15 +33,24 @@ export type JWTContextType = {
     updateProfile: VoidFunction
 }
 
+export type GenerateApiKey = {
+    id: string
+    apiKey: string
+    email: string
+}
+
 export type XRCloudAuthContextType = {
     isLoggedIn: boolean
     isInitialized?: boolean
     user?: UserProfile | null | undefined
+    receivedApiKey: string | undefined
     logout: () => void
     login: (email: string, password: string) => Promise<void>
     register: (email: string, password: string) => Promise<CreateUser>
     resetPassword: (email: string) => void
     updateProfile: VoidFunction
+    getProfile: () => Promise<AuthProfileResponse>
+    genrateApiKey: () => Promise<void>
 }
 
 export type ProjectContextType = {
