@@ -37,6 +37,7 @@ import useAuth from 'hooks/useAuth'
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons'
 import useConfig from 'hooks/useConfig'
+import { useRouter } from 'next/router'
 
 const User1 = '/assets/images/users/user-round.svg'
 
@@ -53,6 +54,8 @@ const ProfileSection = () => {
     const [selectedIndex, setSelectedIndex] = useState(-1)
     const { logout, user } = useAuth()
     const [open, setOpen] = useState(false)
+    const router = useRouter()
+
     /**
      * anchorRef is used on different components and specifying one type leads to other components throwing an error
      * */
@@ -118,7 +121,6 @@ const ProfileSection = () => {
                 }}
                 icon={
                     <Avatar
-                        src={User1}
                         sx={{
                             ...theme.typography.mediumAvatar,
                             margin: '8px 0 8px 8px !important',
@@ -180,6 +182,24 @@ const ProfileSection = () => {
                                                         }
                                                     }}
                                                 >
+                                                    <ListItemButton
+                                                        sx={{ borderRadius: `${borderRadius}px` }}
+                                                        selected={selectedIndex === 4}
+                                                        onClick={() => {
+                                                            router.push('/mypage')
+                                                        }}
+                                                    >
+                                                        <ListItemIcon>
+                                                            <IconUser stroke={1.5} size="20px" />
+                                                        </ListItemIcon>
+                                                        <ListItemText
+                                                            primary={
+                                                                <Typography variant="body2">
+                                                                    <FormattedMessage id="Mypage" />
+                                                                </Typography>
+                                                            }
+                                                        />
+                                                    </ListItemButton>
                                                     <ListItemButton
                                                         sx={{ borderRadius: `${borderRadius}px` }}
                                                         selected={selectedIndex === 4}

@@ -16,6 +16,7 @@ export function useProject() {
     const localization = useLocalization(locale)
 
     const accessToken = localStorage.getItem('accessToken')
+    const adminId = localStorage.getItem('adminId')
 
     const findById = async (projectId: string) => {
         const response = await get<Project>(`/api/projects/findById`, {
