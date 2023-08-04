@@ -4,7 +4,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'DELETE') {
         try {
-            console.log(`${process.env.NODE_LOCAL_SERVER}/rooms/${req.query.roomId}`)
             const data = await axios.delete(`${process.env.NODE_LOCAL_SERVER}/rooms/${req.query.roomId}`, {
                 headers: {
                     'X-XRCLOUD-PROJECT-ID': req.headers['x-xrcloud-project-id'],

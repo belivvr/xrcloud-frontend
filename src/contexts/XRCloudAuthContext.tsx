@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useReducer } from 'react'
 
 // third-party
-import { Chance } from 'chance'
 import jwtDecode from 'jwt-decode'
 
 // constant
@@ -14,14 +13,11 @@ import accountReducer from 'store/accountReducer'
 import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
-import { AuthResponseToken, CreateUser, XRCloudAuthContextType } from 'types/auth'
+import { AuthProfileResponse, AuthResponseToken, CreateUser, XRCloudAuthContextType } from 'types/auth'
 import { Tokens, useRefresh } from 'hooks/useRefresh'
 import { useRequest } from 'hooks/useRequest'
-import useChoicedProject from 'hooks/useChoicedProject'
 
 type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
-
-const chance = new Chance()
 
 // constant
 const initialState: InitialLoginContextProps = {
@@ -73,7 +69,7 @@ const XRCloudAuthContext = createContext<XRCloudAuthContextType | null>(null)
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
     const { renewTokens } = useRefresh()
-    const { post } = useRequest()
+    const { get, post } = useRequest()
 
     useEffect(() => {
         const init = async () => {
@@ -114,7 +110,13 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             email,
             password
         })
+        const { adminId } = await get<AuthProfileResponse>(`/api/auth/profile`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
 
+        localStorage.setItem('adminId', adminId)
         setSession(accessToken, refreshToken)
         dispatch({
             type: LOGIN,
@@ -136,6 +138,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const logout = () => {
         setSession(null)
+        localStorage.removeItem('adminId')
         dispatch({ type: LOGOUT })
     }
 

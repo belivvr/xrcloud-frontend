@@ -11,6 +11,11 @@ export interface AuthResponseToken {
     refreshToken: string
 }
 
+export interface AuthProfileResponse {
+    adminId: string
+    email: string
+}
+
 export type CreateUser = {
     id: string
     email: string
