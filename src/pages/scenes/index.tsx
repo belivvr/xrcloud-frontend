@@ -65,11 +65,7 @@ const Scenes = () => {
                     </div>
                 }
             >
-                {sceneList ? (
-                    <SceneList createScene={createScene} updateScene={updateScene} sceneList={sceneList} />
-                ) : (
-                    <NeedChoiceProject />
-                )}
+                {sceneList ? <SceneList project={choicedProject} updateScene={updateScene} sceneList={sceneList} /> : <NeedChoiceProject />}
             </MainCard>
         </Page>
     )

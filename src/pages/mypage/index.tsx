@@ -27,14 +27,8 @@ const Mypage = () => {
     const { receivedApiKey, getProfile, genrateApiKey } = useAuth()
 
     useEffect(() => {
-        getProfile().then((res) => {
-            console.log(res)
-        })
+        getProfile().then((res) => {})
     }, [])
-
-    useEffect(() => {
-        console.log(receivedApiKey)
-    }, [receivedApiKey])
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
@@ -79,7 +73,7 @@ const Mypage = () => {
     return (
         <Page title="My page">
             <MainCard title="My page">
-                <Grid container spacing={gridSpacing}>
+                <Grid container>
                     <Grid item xs={12} lg={4}>
                         <CardContent>
                             <Tabs value={value} onChange={handleChange} orientation="vertical" variant="scrollable" sx={{ ...style }}>

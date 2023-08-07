@@ -1,17 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { EnterServiceButton, StyledAddIcon } from 'components/custom/styles/styled'
-import { Scene } from 'types/project'
+import { Project, Scene } from 'types/project'
 import { BasicContentsButton, GridWrapper } from '../common'
 import router from 'next/router'
+import { cacheRemove } from 'utils/cacheRemove'
 
 interface Props {
+    project: Project | undefined
     sceneList: Scene[] | undefined
-    createScene: () => Promise<any>
     updateScene: (sceneId: string) => Promise<any>
 }
 
-const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
+const SceneList = ({ project, sceneList, updateScene }: Props) => {
     return (
         <GridWrapper>
             {sceneList?.map((scene: Scene) => {
@@ -27,13 +28,12 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
                                 borderTopRightRadius: '4px'
                             }}
                             onClick={async () => {
-                                const { modifySceneUrl } = await updateScene(scene.id)
-                                router.push(`${modifySceneUrl}&callback=${window.location.host}${window.location.pathname}`)
+                                router.push(`${scene.sceneModificationUrl}&callback=${window.location.host}${window.location.pathname}`)
                             }}
                         >
                             <img
                                 style={{ width: '100%', height: '250px', objectFit: 'contain' }}
-                                src={scene.thumbnailUrl}
+                                src={cacheRemove(scene.thumbnailUrl)}
                                 alt={scene.name}
                             />
                         </BasicContentsButton>
@@ -65,8 +65,9 @@ const SceneList = ({ sceneList, createScene, updateScene }: Props) => {
             })}
             <EnterServiceButton
                 onClick={async () => {
-                    const { newSceneUrl } = await createScene()
-                    router.push(`${newSceneUrl}&callback=${window.location.host}${window.location.pathname}`)
+                    if (project) {
+                        router.push(`${project.sceneCreationUrl}&callback=${window.location.host}${window.location.pathname}`)
+                    }
                 }}
             >
                 <StyledAddIcon color="inherit" />
