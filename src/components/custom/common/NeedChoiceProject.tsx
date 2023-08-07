@@ -4,9 +4,10 @@ import React from 'react'
 
 interface Props {
     title?: string
+    style?: React.CSSProperties
 }
 
-export function NeedChoiceProject({ title }: Props) {
+export function NeedChoiceProject({ title, style }: Props) {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     return (
@@ -20,7 +21,8 @@ export function NeedChoiceProject({ title }: Props) {
                 fontWeight: '700',
                 lineHeight: 1.5,
                 textAlign: 'center',
-                whiteSpace: 'pre-line'
+                whiteSpace: 'pre-line',
+                ...style
             }}
         >
             {title || localization['click-project']}
