@@ -44,7 +44,6 @@ export default function Document() {
                         `
                     }}
                 />
-                <title>XRCLOUD - BELIVVR</title>
             </Head>
             <body>
                 <Main />
