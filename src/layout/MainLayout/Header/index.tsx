@@ -132,6 +132,16 @@ const Header = () => {
                         Forum
                     </Link>
                 </Button>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
+                    <Link href="/price-plan">Price</Link>
+                </Button>
             </Box>
             {/* live customization & localization */}
             <Box sx={{ display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', marginRight: '24px', gap: '20px' }}>

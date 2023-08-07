@@ -7,7 +7,6 @@ import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { Footer } from 'components/custom/common/Footer'
 import MainCard from 'ui-component/cards/MainCard'
-import { NeedChoiceProject } from 'components/custom/common'
 import { LandingContents } from 'components/custom/common/LandingContents'
 
 const Landing = () => {
@@ -21,7 +20,6 @@ const Landing = () => {
     return (
         <Page title={localization.landing}>
             <MainCard title={localization.landing}>
-                {/* <NeedChoiceProject style={{ fontSize: '24px', padding: '72px' }} title={localization['landing-contents']} /> */}
                 <LandingContents
                     style={{ fontSize: '24px', padding: '72px' }}
                     title={localization['landing-title']}
