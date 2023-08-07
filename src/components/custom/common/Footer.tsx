@@ -30,24 +30,14 @@ export function Footer() {
                 borderTop: '1px solid #eef2e6'
             }}
         >
-            <FooterRouters
-                style={{
-                    width: '30%',
-                    display: 'flex',
-                    justifyContent: 'space-between'
-                }}
-            >
-                <Button>WebXR KOREA</Button>
-                <Button>Github</Button>
-            </FooterRouters>
             <div
                 style={{
-                    width: '30%',
-                    marginTop: '30px',
+                    width: '80%',
+                    marginTop: '0px',
                     display: 'flex',
                     gap: '16px',
                     flexDirection: 'column',
-                    fontSize: '16px'
+                    fontSize: '14px'
                 }}
             >
                 <div>{localization['business-license']}</div>

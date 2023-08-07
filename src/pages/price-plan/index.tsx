@@ -75,7 +75,7 @@ const PricePlan = () => {
 }
 
 PricePlan.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>
+    return <Layout variant="landing">{page}</Layout>
 }
 
 export default PricePlan

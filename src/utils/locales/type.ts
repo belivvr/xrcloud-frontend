@@ -105,4 +105,8 @@ export interface Localization {
     'delete-project-modal': string
     'delete-project-modal-left-button': string
     'delete-project-modal-right-button': string
+
+    landing: string
+    'landing-title': string
+    'landing-description': string
 }

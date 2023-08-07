@@ -16,8 +16,15 @@ import AuthLogin from 'components/authentication/auth-forms/AuthLogin'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import useChoicedProject from 'hooks/useChoicedProject'
+import styled from '@emotion/styled'
 
 // ================================|| AUTH3 - LOGIN ||================================ //
+
+const LinkTitle = styled(Link)`
+    :hover {
+        color: #d84315;
+    }
+`
 
 const Login = () => {
     const theme = useTheme()
@@ -43,7 +50,7 @@ const Login = () => {
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
                                         <Grid item sx={{ mb: 1 }}>
-                                            <Link href="#" aria-label="theme-logo" sx={{ textDecoration: 'none', color: '#000' }}>
+                                            <LinkTitle href="/" aria-label="theme-logo" sx={{ textDecoration: 'none', color: '#000' }}>
                                                 {/* <Logo /> */}
                                                 <Box
                                                     component="span"
@@ -56,9 +63,9 @@ const Login = () => {
                                                     }}
                                                 >
                                                     {/* <LogoSection /> */}
-                                                    XRCloud
+                                                    XRCLOUD
                                                 </Box>
-                                            </Link>
+                                            </LinkTitle>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <Grid

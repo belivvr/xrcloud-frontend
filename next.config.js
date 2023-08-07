@@ -13,14 +13,14 @@ const nextConfig = withTM({
 })
 
 module.exports = {
-    ...nextConfig,
-    async redirects() {
-        return [
-            {
-                source: '/',
-                destination: '/login',
-                permanent: true
-            }
-        ]
-    }
+    ...nextConfig
+    // async redirects() {
+    //     return [
+    //         {
+    //             source: '/',
+    //             destination: '/',
+    //             permanent: false
+    //         }
+    //     ]
+    // }
 }
