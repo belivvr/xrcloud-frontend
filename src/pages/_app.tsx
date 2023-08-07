@@ -32,6 +32,7 @@ import { SnackbarProvider } from 'notistack'
 import useConfig from 'hooks/useConfig'
 import { useRouter } from 'next/router'
 import * as gtag from '../../lib/gtag'
+import Head from 'next/head'
 
 // types
 type LayoutProps = NextPage & {
@@ -80,6 +81,9 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                                         maxSnack={3}
                                         autoHideDuration={5000}
                                     >
+                                        <Head>
+                                            <title>XRCLOUD - BELIVVR</title>
+                                        </Head>
                                         <script async src="https://www.googletagmanager.com/gtag/js?id=G-E822WDDXP0"></script>
                                         {/* <!-- Google tag (gtag.js) --> */}
                                         <script>
