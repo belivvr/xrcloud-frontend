@@ -6,6 +6,7 @@ export interface Project {
     projectKey: string
     logoUrl: URL
     faviconUrl: URL
+    sceneCreationUrl: URL
 }
 
 export interface Scene {
@@ -13,6 +14,7 @@ export interface Scene {
     name: string
     sceneUrl: URL
     thumbnailUrl: URL
+    sceneModificationUrl: URL
 }
 
 export interface Room {

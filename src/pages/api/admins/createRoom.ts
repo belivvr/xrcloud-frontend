@@ -5,21 +5,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const data = await axios.post(
-                `${process.env.NODE_LOCAL_SERVER}/admins/rooms`,
+                `${process.env.NODE_LOCAL_SERVER}/console/projects/${req.headers['x-xrcloud-project-id']}/scenes/${req.body.sceneId}/rooms`,
                 {
-                    sceneId: req.body.sceneId,
                     name: req.body.name,
                     size: req.body.size
                 },
                 {
                     headers: {
-                        'X-XRCLOUD-PROJECT-ID': req.headers['x-xrcloud-project-id'],
                         Authorization: req.headers.authorization
                     }
                 }
             )
             res.status(data.status).send(data.data)
         } catch (e: any) {
+            console.log(e.response.data)
             res.status(e.response.data.statusCode).send(e.response.data.message)
         }
     } else {
