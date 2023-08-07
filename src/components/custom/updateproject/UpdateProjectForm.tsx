@@ -63,7 +63,6 @@ export function UpdateProjectForm({ project, setProject, updateProject, deletePr
                     setFile={setLogoFile}
                     setThumbnailUrl={setLogoThumbnailUrl}
                 />
-                <GenerateProjectKey project={project} setProject={setProject} getProjectKey={getProjectKey} />
                 <BasicTableRow tableName={localization['creation-date']} value={project.createdAt} />
                 <BasicTableRow tableName={localization['last-update']} value={project.updatedAt} />
                 <TableRow>

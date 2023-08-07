@@ -52,9 +52,8 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem('projectId')) {
-            return localStorage.removeItem('projectId')
-        }
+        localStorage.removeItem('projectId')
+        localStorage.removeItem('apiKey')
     }, [])
 
     return (

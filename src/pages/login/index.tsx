@@ -36,6 +36,8 @@ const Login = () => {
     useEffect(() => {
         if (choicedProject) setChoicedProject(undefined)
         if (choicedScene) setChoicedScene(undefined)
+
+        localStorage.removeItem('adminId')
     }, [])
 
     return (

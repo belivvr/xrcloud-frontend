@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'PATCH') {
         try {
             const data = await axios.patch(
-                `${process.env.NODE_LOCAL_SERVER}/projects/${req.body.projectId}/issue-key`,
+                `${process.env.NODE_LOCAL_SERVER}/projects/${req.body.projectId}/generate-key`,
                 {},
                 {
                     headers: {

@@ -1,7 +1,6 @@
-import React, { createContext, useEffect, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer, useState } from 'react'
 
 // third-party
-import { Chance } from 'chance'
 import jwtDecode from 'jwt-decode'
 
 // constant
@@ -14,14 +13,11 @@ import accountReducer from 'store/accountReducer'
 import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
 import { InitialLoginContextProps, KeyedObject } from 'types'
-import { AuthResponseToken, CreateUser, XRCloudAuthContextType } from 'types/auth'
+import { AuthProfileResponse, AuthResponseToken, CreateUser, GenerateApiKey, XRCloudAuthContextType } from 'types/auth'
 import { Tokens, useRefresh } from 'hooks/useRefresh'
 import { useRequest } from 'hooks/useRequest'
-import useChoicedProject from 'hooks/useChoicedProject'
 
 type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
-
-const chance = new Chance()
 
 // constant
 const initialState: InitialLoginContextProps = {
@@ -72,8 +68,9 @@ const XRCloudAuthContext = createContext<XRCloudAuthContextType | null>(null)
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
+    const [receivedApiKey, setReceivedApiKey] = useState<string>()
     const { renewTokens } = useRefresh()
-    const { post } = useRequest()
+    const { get, post, patch } = useRequest()
 
     useEffect(() => {
         const init = async () => {
@@ -114,7 +111,15 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             email,
             password
         })
-
+        const { adminId, apiKey } = await get<AuthProfileResponse>(`/api/auth/profile`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+        if (apiKey) {
+            localStorage.setItem('apiKey', apiKey)
+        }
+        localStorage.setItem('adminId', adminId)
         setSession(accessToken, refreshToken)
         dispatch({
             type: LOGIN,
@@ -136,7 +141,41 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const logout = () => {
         setSession(null)
+        localStorage.removeItem('adminId')
+        localStorage.removeItem('apiKey')
         dispatch({ type: LOGOUT })
+    }
+
+    const getProfile = async () => {
+        const accessToken = window.localStorage.getItem('accessToken')
+        const profile = await get<AuthProfileResponse>(`/api/auth/profile`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+
+        setReceivedApiKey(profile.apiKey)
+        if (profile.apiKey) {
+            localStorage.setItem('apiKey', profile.apiKey)
+        }
+        return profile
+    }
+
+    const genrateApiKey = async () => {
+        const accessToken = window.localStorage.getItem('accessToken')
+        const { apiKey } = await patch<GenerateApiKey>(
+            `/api/admins/generateApiKey`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+        )
+        setReceivedApiKey(apiKey)
+        if (apiKey) {
+            localStorage.setItem('apiKey', apiKey)
+        }
     }
 
     const resetPassword = (email: string) => console.log(email)
@@ -148,7 +187,9 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     }
 
     return (
-        <XRCloudAuthContext.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>
+        <XRCloudAuthContext.Provider
+            value={{ ...state, receivedApiKey, login, logout, register, resetPassword, updateProfile, getProfile, genrateApiKey }}
+        >
             {children}
         </XRCloudAuthContext.Provider>
     )

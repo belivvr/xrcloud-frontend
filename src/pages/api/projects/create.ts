@@ -53,7 +53,7 @@ export default async function handler(req: any, res: any) {
         const logoFileStream = fs.createReadStream(logoFilepath)
         formData.append(`logo`, logoFileStream, { knownLength: logoFileSizeInBytes })
 
-        const api = await fetch(`${process.env.NODE_LOCAL_SERVER}/projects`, {
+        const api = await fetch(`${process.env.NODE_LOCAL_SERVER}/console/projects`, {
             method: 'POST',
             body: formData,
             headers: {

@@ -38,12 +38,13 @@ export default function Document() {
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-E822WDDXP0');
-          `
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-E822WDDXP0');
+                        `
                     }}
                 />
+                <title>XRCLOUD - BELIVVR</title>
             </Head>
             <body>
                 <Main />
