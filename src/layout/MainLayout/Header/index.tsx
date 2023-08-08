@@ -17,6 +17,7 @@ import { IconMenu2 } from '@tabler/icons'
 import router from 'next/router'
 import Link from 'next/link'
 import useAuth from 'hooks/useAuth'
+import { useLocalization } from 'hooks/useLocalization'
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -27,8 +28,9 @@ const Header = () => {
     const { drawerOpen } = useSelector((state) => state.menu)
 
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
-    const { layout } = useConfig()
+    const { layout, locale } = useConfig()
     const { user } = useAuth()
+    const localization = useLocalization(locale)
 
     return (
         <Box style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -82,7 +84,6 @@ const Header = () => {
                 )}
             </Box>
 
-            {/* <Box sx={{ flexGrow: 1 }} /> */}
             <Box sx={{ display: matchDownMd ? 'none' : 'flex', gap: '50px' }}>
                 <Button
                     sx={{
@@ -92,32 +93,28 @@ const Header = () => {
                         fontWeight: 600
                     }}
                 >
+                    <Link href="/news">{localization['header-news']}</Link>
+                </Button>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
+                    <Link href="/price-plan">{localization['header-price']}</Link>
+                </Button>
+                <Button
+                    sx={{
+                        alignItems: 'center',
+                        transition: 'all .2s ease-in-out',
+                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+                        fontWeight: 600
+                    }}
+                >
                     <Link target="_blank" href="https://api.xrcloud.app/docs/">
-                        Documentation
-                    </Link>
-                </Button>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                >
-                    <Link target="_blank" href="https://github.com/belivvr">
-                        Github
-                    </Link>
-                </Button>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                >
-                    <Link target="_blank" href="https://hubs.mozilla.com/docs/welcome.html">
-                        Mozila Hubs
+                        {localization['header-api']}
                     </Link>
                 </Button>
                 <Button
@@ -129,18 +126,8 @@ const Header = () => {
                     }}
                 >
                     <Link target="_blank" href="https://www.facebook.com/groups/webxrko">
-                        Forum
+                        {localization['header-community']}
                     </Link>
-                </Button>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                >
-                    <Link href="/price-plan">Price</Link>
                 </Button>
             </Box>
             {/* live customization & localization */}

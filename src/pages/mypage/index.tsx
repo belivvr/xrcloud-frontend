@@ -23,11 +23,15 @@ const tabsOption = [
 const Mypage = () => {
     const theme = useTheme()
     const [value, setValue] = useState(0)
+    const [email, setEmail] = useState('')
     const { borderRadius } = useConfig()
     const { receivedApiKey, getProfile, genrateApiKey } = useAuth()
 
     useEffect(() => {
-        getProfile().then((res) => {})
+        ;(async () => {
+            const profile = await getProfile()
+            setEmail(profile.email)
+        })()
     }, [])
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -106,7 +110,7 @@ const Mypage = () => {
                             }}
                         >
                             <TabPanel value={value} index={0}>
-                                <UserProfile receivedApiKey={receivedApiKey} genrateApiKey={genrateApiKey} />
+                                <UserProfile email={email} receivedApiKey={receivedApiKey} genrateApiKey={genrateApiKey} />
                             </TabPanel>
                         </CardContent>
                     </Grid>

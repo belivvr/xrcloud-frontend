@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const withTM = require('next-transpile-modules')(['@babel/preset-react'])
+const { i18n } = require('./next-i18next.config')
 
 const nextConfig = withTM({
     images: {
@@ -13,6 +14,7 @@ const nextConfig = withTM({
 })
 
 module.exports = {
+    i18n,
     ...nextConfig
     // async redirects() {
     //     return [

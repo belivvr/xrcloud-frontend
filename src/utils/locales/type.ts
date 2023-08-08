@@ -13,6 +13,7 @@ export interface Localization {
     'project-name': string
     favicon: string
     logo: string
+    'project-id': string
     'project-key': string
     'creation-date': string
     'last-update': string
@@ -109,4 +110,9 @@ export interface Localization {
     landing: string
     'landing-title': string
     'landing-description': string
+
+    'header-news': string
+    'header-price': string
+    'header-api': string
+    'header-community': string
 }
