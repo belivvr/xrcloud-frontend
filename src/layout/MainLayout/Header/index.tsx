@@ -92,8 +92,10 @@ const Header = () => {
                         borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
                         fontWeight: 600
                     }}
+                    component={Link}
+                    href="/news"
                 >
-                    <Link href="/news">{localization['header-news']}</Link>
+                    {localization['header-news']}
                 </Button>
                 <Button
                     sx={{
@@ -102,8 +104,10 @@ const Header = () => {
                         borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
                         fontWeight: 600
                     }}
+                    component={Link}
+                    href="/price-plan"
                 >
-                    <Link href="/price-plan">{localization['header-price']}</Link>
+                    {localization['header-price']}
                 </Button>
                 <Button
                     sx={{
@@ -112,10 +116,11 @@ const Header = () => {
                         borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
                         fontWeight: 600
                     }}
+                    component={Link}
+                    href="https://api.xrcloud.app/docs/"
+                    target="_blank"
                 >
-                    <Link target="_blank" href="https://api.xrcloud.app/docs/">
-                        {localization['header-api']}
-                    </Link>
+                    {localization['header-api']}
                 </Button>
                 <Button
                     sx={{
@@ -124,10 +129,11 @@ const Header = () => {
                         borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
                         fontWeight: 600
                     }}
+                    component={Link}
+                    href="https://www.facebook.com/groups/webxrko"
+                    target="_blank"
                 >
-                    <Link target="_blank" href="https://www.facebook.com/groups/webxrko">
-                        {localization['header-community']}
-                    </Link>
+                    {localization['header-community']}
                 </Button>
             </Box>
             {/* live customization & localization */}

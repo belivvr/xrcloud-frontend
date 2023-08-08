@@ -3,6 +3,7 @@
     "projects": "Projects",
     "scenes": "Scenes",
     "rooms": "Rooms",
+    "news": "News",
     "permissions": "Permissions",
     "price": "Price plan",
     "belivvr.com": "BELIVVR.COM",
@@ -126,5 +127,18 @@
     "header-news": "News",
     "header-price": "Price",
     "header-api": "API Docs",
-    "header-community": "Community"
+    "header-community": "Community",
+
+    "price-starter-capacity": "500MB Asset stroage \nFor avatars and scenes",
+    "price-starter-user": "Create 1 Hubs room and 10 guest capacity Free for guests to join",
+
+    "price-personal-capacity": "2GB Asset stroage \nFor avatars and scenes",
+    "price-personal-user": "Create 5 Hubs room and 25 guest capacity Free for guests to join",
+
+    "price-professional-capacity": "25GB Asset stroage \nFor avatars and scenes",
+    "price-professional-user": "Create Unlimited Hubs room and Additional paid options available for 50+ users (up to 1000)",
+    "price-professional-domain": "Custom your domain",
+
+    "price-business-description": "Need dedicated infrastucture, custom clients, or. somethin else?",
+    "price-business-button": "Contact Us"
 }

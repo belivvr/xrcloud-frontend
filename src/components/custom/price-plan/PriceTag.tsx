@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material'
 import React from 'react'
 
 interface Props {
-    price: number
+    price: string
 }
 
 export function PriceTag({ price }: Props) {
@@ -11,18 +11,11 @@ export function PriceTag({ price }: Props) {
             <Typography
                 component="div"
                 variant="body2"
-                sx={{
-                    fontSize: '2.1875rem',
-                    fontWeight: 700,
-                    '& > span': {
-                        fontSize: '1.25rem',
-                        fontWeight: 500
-                    }
-                }}
+                padding="12px"
+                style={{ backgroundColor: '#e8eaf6', borderRadius: '18px', marginTop: '12px' }}
             >
-                <sup>$</sup>
-                {price}
-                <span>/Lifetime</span>
+                <div style={{ fontSize: '24px', marginTop: '12px', fontWeight: 700 }}>{price === '0' ? 'Free' : `$${price}`}</div>
+                <span style={{ fontSize: '12px' }}>per month</span>
             </Typography>
         </Grid>
     )

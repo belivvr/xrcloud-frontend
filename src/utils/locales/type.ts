@@ -3,6 +3,7 @@ export interface Localization {
     projects: string
     scenes: string
     rooms: string
+    news: string
     permissions: string
     price: string
     avatars: string
@@ -115,4 +116,17 @@ export interface Localization {
     'header-price': string
     'header-api': string
     'header-community': string
+
+    'price-starter-capacity': string
+    'price-starter-user': string
+
+    'price-personal-capacity': string
+    'price-personal-user': string
+
+    'price-professional-capacity': string
+    'price-professional-user': string
+    'price-professional-domain': string
+
+    'price-business-description': string
+    'price-business-button': string
 }

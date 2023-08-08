@@ -18,6 +18,7 @@ import { drawerWidth } from 'store/constant'
 
 import { useDispatch, useSelector } from 'store'
 import { openDrawer } from 'store/slices/menu'
+import Link from 'next/link'
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -97,11 +98,27 @@ const Sidebar = () => {
                 >
                     {matchDownMd && logo}
                     {drawer}
+                    <Link
+                        href="https://github.com/belivvr"
+                        target="_blank"
+                        style={{ position: 'absolute', bottom: '10%', left: '40px', fontWeight: '600' }}
+                    >
+                        GITHUB
+                    </Link>
                 </Drawer>
             ) : (
                 <MiniDrawerStyled variant="permanent" open={drawerOpen}>
                     {logo}
                     {drawer}
+                    {drawerOpen && (
+                        <Link
+                            href="https://github.com/belivvr"
+                            target="_blank"
+                            style={{ position: 'absolute', bottom: '10%', left: '40px', fontWeight: '600' }}
+                        >
+                            GITHUB
+                        </Link>
+                    )}
                 </MiniDrawerStyled>
             )}
         </Box>
