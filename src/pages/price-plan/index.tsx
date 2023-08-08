@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 
 // project imports
 import Layout from 'layout'
@@ -10,60 +10,76 @@ import { useLocalization } from 'hooks/useLocalization'
 import TwoWheelerTwoToneIcon from '@mui/icons-material/TwoWheelerTwoTone'
 import AirportShuttleTwoToneIcon from '@mui/icons-material/AirportShuttleTwoTone'
 import DirectionsBoatTwoToneIcon from '@mui/icons-material/DirectionsBoatTwoTone'
-import { Grid } from '@mui/material'
+import { Grid, useMediaQuery, useTheme } from '@mui/material'
 import MainCard from 'ui-component/cards/MainCard'
-import { gridSpacing } from 'constant'
 import React from 'react'
 import { Plan } from 'components/custom/price-plan/Plan'
-
-export const mockPlans = [
-    {
-        id: '1',
-        active: true,
-        icon: <TwoWheelerTwoToneIcon fontSize="large" color="inherit" />,
-        title: 'Standard',
-        description:
-            'Create one end product for a client, transfer that end product to your client, charge them for your services. The license is then transferred to the client.',
-        price: 69,
-        permission: [0, 1]
-    },
-    {
-        id: '2',
-        active: false,
-        icon: <AirportShuttleTwoToneIcon fontSize="large" />,
-        title: 'Standard Plus',
-        description:
-            'Create one end product for a client, transfer that end product to your client, charge them for your services. The license is then transferred to the client.',
-        price: 129,
-        permission: [0, 1, 2, 3]
-    },
-    {
-        id: '3',
-        active: false,
-        icon: <DirectionsBoatTwoToneIcon fontSize="large" />,
-        title: 'Extended',
-        description:
-            'You are licensed to use the CONTENT to create one end product for yourself or for one client (a “single application”), and the end product may be sold or distributed for free.',
-        price: 599,
-        permission: [0, 1, 2, 3, 4, 5, 6, 7]
-    }
-]
+import mailgo from 'mailgo'
+import { thousandsSeparator } from 'utils/thousandSeparator'
+import { PricePlan as PricePlanType } from 'types/config'
 
 const PricePlan = () => {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
-    const [plans] = useState(mockPlans)
+
+    const [plans, setPlans] = useState<PricePlanType[]>()
     const [activeIndex, setActiveIndex] = useState('1')
+    const theme = useTheme()
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
 
     const onChangeActiveIndex = (index: string) => {
         setActiveIndex(index)
     }
 
+    useEffect(() => {
+        mailgo()
+    }, [])
+
+    useEffect(() => {
+        const mockPlans: PricePlanType[] = [
+            {
+                id: '1',
+                active: true,
+                icon: <TwoWheelerTwoToneIcon fontSize="large" color="inherit" />,
+                title: 'Starter',
+                price: '0',
+                permission: [0, 1]
+            },
+            {
+                id: '2',
+                active: false,
+                icon: <AirportShuttleTwoToneIcon fontSize="large" />,
+                title: 'Personal',
+                price: locale === 'en' ? '6.66' : '8,800',
+                permission: [0, 1]
+            },
+            {
+                id: '3',
+                active: false,
+                icon: <DirectionsBoatTwoToneIcon fontSize="large" />,
+                title: 'Professional',
+                price: locale === 'en' ? '77' : '99,000',
+                permission: [0, 1, 2]
+            },
+            {
+                id: '4',
+                active: false,
+                icon: <DirectionsBoatTwoToneIcon fontSize="large" />,
+                title: 'Extended',
+                price: '599',
+                permission: [0, 1, 2]
+            }
+        ]
+        setPlans(mockPlans)
+    }, [locale])
+
+    useEffect(() => {}, [plans])
+
     return (
         <Page title={localization.price}>
             <MainCard title={localization.price}>
-                <Grid container spacing={gridSpacing}>
-                    {plans.map((plan, index) => {
+                <Grid style={{ display: 'grid', gridTemplateColumns: !matchDownMd ? '1fr 1fr 1fr 1fr' : '1fr 1fr', gap: '8px' }}>
+                    {plans?.map((plan, index) => {
                         return (
                             <Plan key={plan.id} receivedPlan={plan} activeIndex={activeIndex} onChangeActiveIndex={onChangeActiveIndex} />
                         )

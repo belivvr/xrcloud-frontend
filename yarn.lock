@@ -3036,6 +3036,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"mailgo@^0.12.2":
+  "integrity" "sha512-iX4F3eOhPJ+12YlM51UNV8yTYwxHywaGP1C9Qaep/iNP2ZS+xzqHR7U3o+7HoCL19gZKysc7+MwgBEiRy8ogzA=="
+  "resolved" "https://registry.npmjs.org/mailgo/-/mailgo-0.12.2.tgz"
+  "version" "0.12.2"
+
 "markdown-table@^3.0.0":
   "integrity" "sha512-y8j3a5/DkJCmS5x4dMCQL+OR0+2EAq3DOtio1COSHsmW2BGXnNCK3v12hJt1LrUz5iZH5g0LmuYOjDdI+czghA=="
   "resolved" "https://registry.npmjs.org/markdown-table/-/markdown-table-3.0.2.tgz"

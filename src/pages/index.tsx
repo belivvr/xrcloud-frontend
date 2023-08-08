@@ -19,7 +19,6 @@ interface StaticProps {
 
 export async function getStaticProps(data: StaticProps) {
     try {
-        console.log(`public/landing-${data.locale}.md`)
         const post = fs.readFileSync(`public/landing-${data.locale}.md`).toString()
         return {
             props: { post, locale: data.locale }

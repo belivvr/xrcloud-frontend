@@ -16,7 +16,6 @@ export function Title({ title }: Props) {
                     fontSize: '1.5625rem',
                     fontWeight: 500,
                     position: 'relative',
-                    mb: 1.875,
                     '&:after': {
                         content: '""',
                         position: 'absolute',

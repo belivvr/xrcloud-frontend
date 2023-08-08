@@ -3,6 +3,7 @@
     "projects": "Projects",
     "scenes": "Scenes",
     "rooms": "Rooms",
+    "news": "News",
     "permissions": "Permissions",
     "price": "Price plan",
     "belivvr.com": "BELIVVR.COM",
@@ -125,5 +126,18 @@
     "header-news": "새소식",
     "header-price": "가격",
     "header-api": "API 문서",
-    "header-community": "커뮤니티"
+    "header-community": "커뮤니티",
+
+    "price-starter-capacity": "저장 공간 : 500MB",
+    "price-starter-user": "최대 10명 동시 접속 가능 한 Hubs Room 1개",
+
+    "price-personal-capacity": "저장 공간 : 2GB",
+    "price-personal-user": "최대 25명 동시 접속 가능 한 Hubs Room 5개",
+
+    "price-professional-capacity": "저장 공간 : 25GB",
+    "price-professional-user": "최대 1,000명 동시 접속 가능 한 Hubs 무제한 Room 생성 (25명 이상 사용시 추가 과금)",
+    "price-professional-domain": "사용자 도메인 사용",
+
+    "price-business-description": "전용 인프라 구축이나 G클라우드 지원, 별도의 커스터마이징 지원을 요구하세요?",
+    "price-business-button": "상담하기"
 }

@@ -1,8 +1,9 @@
-import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone'
-import { Divider, Grid, List, ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material'
-import { optionList } from 'config'
+import { Grid, List, useTheme } from '@mui/material'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 import React from 'react'
 import { PricePlan } from 'types/config'
+import { OptionListItem } from './OptionListItem'
 
 interface Props {
     plan: PricePlan
@@ -10,6 +11,15 @@ interface Props {
 
 export function CheckOptions({ plan }: Props) {
     const theme = useTheme()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+    const starterList = [localization['price-starter-capacity'], localization['price-starter-user']]
+    const personalList = [localization['price-personal-capacity'], localization['price-personal-user']]
+    const professionalList = [
+        localization['price-professional-capacity'],
+        localization['price-professional-user'],
+        localization['price-professional-domain']
+    ]
 
     return (
         <Grid item xs={12}>
@@ -27,28 +37,10 @@ export function CheckOptions({ plan }: Props) {
                 }}
                 component="ul"
             >
-                {optionList.map((list, i) => (
-                    <React.Fragment key={i}>
-                        <ListItem
-                            sx={
-                                !plan.permission.includes(i)
-                                    ? {
-                                          opacity: '0.4',
-                                          '& >div> svg': {
-                                              fill: theme.palette.secondary.light
-                                          }
-                                      }
-                                    : {}
-                            }
-                        >
-                            <ListItemIcon>
-                                <CheckTwoToneIcon sx={{ fontSize: '1.3rem' }} />
-                            </ListItemIcon>
-                            <ListItemText primary={list} />
-                        </ListItem>
-                        <Divider />
-                    </React.Fragment>
-                ))}
+                {plan.id === '1' && starterList.map((list, index) => <OptionListItem key={index} index={index} plan={plan} list={list} />)}
+                {plan.id === '2' && personalList.map((list, index) => <OptionListItem key={index} index={index} plan={plan} list={list} />)}
+                {plan.id === '3' &&
+                    professionalList.map((list, index) => <OptionListItem key={index} index={index} plan={plan} list={list} />)}
             </List>
         </Grid>
     )

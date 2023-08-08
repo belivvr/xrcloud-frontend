@@ -41,7 +41,19 @@ export interface PricePlan {
     active: boolean
     icon: JSX.Element
     title: string
-    description: string
-    price: number
+    price: string
     permission: number[]
+}
+
+export interface MediumPost {
+    author: string
+    categories: string[]
+    content: string
+    description: string
+    enclosure: any
+    guid: URL
+    link: string
+    pubDate: string
+    thumbnail: string
+    title: string
 }
