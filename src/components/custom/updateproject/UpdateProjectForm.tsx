@@ -48,6 +48,8 @@ export function UpdateProjectForm({ project, setProject, updateProject, deletePr
                 }}
             />
             <TableBody>
+                <BasicTableRow tableName={localization['project-id']} value={project.id} />
+
                 <InputName projectName={projectName} setProjectName={setProjectName} />
                 <InputFiles
                     tableName={localization.favicon}

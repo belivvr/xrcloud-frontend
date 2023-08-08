@@ -17,6 +17,7 @@
     "permissons-cardtitle": "Permissons",
 
     "product": "제품",
+    "project-id": "프로젝트 ID",
     "project-name": "프로젝트 이름",
     "favicon": "파비콘",
     "logo": "로고",
@@ -119,5 +120,10 @@
 
     "landing": "XRCLOUD 개발자 센터",
     "landing-title": "XRCLOUD 개발자 센터에 오신 것을 환영합니다. \n\n",
-    "landing-description": "XRCLOUD 개발자 센터는 VR/AR 공간을 만들고, 공유하고, 경험할 수 있는 공간입니다. \n 다양한 공간을 만들고, 공유하고, 경험하세요. \n\n 자세한 사항은 아래 주소로 확인하세요. \n\n"
+    "landing-description": "XRCLOUD 개발자 센터는 VR/AR 공간을 만들고, 공유하고, 경험할 수 있는 공간입니다. \n 다양한 공간을 만들고, 공유하고, 경험하세요. \n\n 자세한 사항은 아래 주소로 확인하세요. \n\n",
+
+    "header-news": "새소식",
+    "header-price": "가격",
+    "header-api": "API 문서",
+    "header-community": "커뮤니티"
 }

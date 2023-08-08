@@ -18,3 +18,11 @@ a {
 .notistack-CollapseWrapper {
     transform: translate(0, 0px) !important;
 }
+
+blockquote {
+    color: rgb(55, 53, 47);
+    margin: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-left: 3px solid currentcolor;
+}

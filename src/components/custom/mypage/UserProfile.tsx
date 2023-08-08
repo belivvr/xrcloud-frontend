@@ -3,11 +3,12 @@ import { gridSpacing } from 'constant'
 import React, { useEffect, useState } from 'react'
 
 interface Props {
+    email: string
     receivedApiKey: string | undefined
     genrateApiKey: () => Promise<void>
 }
 
-export function UserProfile({ receivedApiKey, genrateApiKey }: Props) {
+export function UserProfile({ email, receivedApiKey, genrateApiKey }: Props) {
     const [value, setValue] = useState(receivedApiKey)
 
     useEffect(() => {
@@ -24,7 +25,7 @@ export function UserProfile({ receivedApiKey, genrateApiKey }: Props) {
                     <Grid item sm zeroMinWidth>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
-                                <Typography variant="h5">example@belivvr.com</Typography>
+                                <Typography variant="h5">{email}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -32,7 +33,7 @@ export function UserProfile({ receivedApiKey, genrateApiKey }: Props) {
                 <div style={{ display: 'flex', alignItems: 'center', height: '50px', marginTop: '20px', gap: '10px' }}>
                     <TextField disabled value={value} fullWidth />
                     <Button onClick={genrateApiKey} variant="contained" style={{ width: '200px', height: '100%' }}>
-                        CREATE API KEY
+                        GENERATE API KEY
                     </Button>
                 </div>
             </Grid>
