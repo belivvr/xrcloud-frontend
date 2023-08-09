@@ -42,7 +42,6 @@ const Landing = ({ post, locale }: { post: string; locale: Locale }) => {
     }, [])
 
     useEffect(() => {
-        console.log(configLocale)
         fetch(`landing-${configLocale}.md`)
             .then((response) => response.blob())
             .then((blob) => blob.text())
