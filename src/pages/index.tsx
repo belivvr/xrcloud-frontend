@@ -34,7 +34,7 @@ export async function getStaticProps(data: StaticProps) {
 
 const Landing = ({ post, locale }: { post: string; locale: Locale }) => {
     const [markdown, setMarkdown] = useState<string>(post)
-    const { onChangePresetColor } = useConfig()
+    const { onChangePresetColor, locale: configLocale } = useConfig()
     const localization = useLocalization(locale)
 
     useEffect(() => {
@@ -42,13 +42,14 @@ const Landing = ({ post, locale }: { post: string; locale: Locale }) => {
     }, [])
 
     useEffect(() => {
-        fetch(`landing-${locale}.md`)
+        console.log(configLocale)
+        fetch(`landing-${configLocale}.md`)
             .then((response) => response.blob())
             .then((blob) => blob.text())
             .then((data) => {
                 setMarkdown(data)
             })
-    }, [locale])
+    }, [configLocale])
 
     return (
         <Page position={'relative'} title={localization.landing}>
