@@ -47,10 +47,10 @@ Customize your space with web editors, share it with links, and easily integrate
 > **XRCLOUD Subscription Fee Guide**
 
 -   [Starter : **Free**](https://developers.xrcloud.app/price-plan)
-    -   지금 시작해보세요.
+    -   Get started now.
 -   [Personal : **$6.6/month**](https://developers.xrcloud.app/price-plan)
-    -   개인 홈페이지, 개발자를 위한 요금제
+    -   Personal website, plan for developers
 -   [Professional : **$77/month**](https://developers.xrcloud.app/price-plan)
-    -   상업용 개발을 위한 요금제
+    -   Plans for commercial development
 -   [Business 요금제 : **Contact us**](https://developers.xrcloud.app/price-plan)
-    -   전용 인프라 구축, g클라우드 별도의 다양한 커스터마이징
+    -   Dedicated infrastructure, various customizations separate, Korean Goverment validated cloud 
