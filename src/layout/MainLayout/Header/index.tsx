@@ -117,7 +117,7 @@ const Header = () => {
                         fontWeight: 600
                     }}
                     component={Link}
-                    href="https://api.xrcloud.app/docs/"
+                    href="https://api.xrcloud.app/docs/en"
                     target="_blank"
                 >
                     {localization['header-api']}
