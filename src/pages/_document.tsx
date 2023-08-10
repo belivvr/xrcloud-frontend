@@ -14,16 +14,16 @@ export default function Document() {
                 />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-backend/belivvr.png" />
+                <meta property="og:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og.png" />
                 <meta property="og:site_name" content="XRCLOUD - BELIVVR" />
                 <meta property="og:title" content="XRCLOUD - BELIVVR" />
                 <meta property="og:description" content="Homepage Development Costs 3D Spatial Web, Metaverse Services" />
-                <meta property="og:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-backend/belivvr.png" />
+                <meta property="og:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og.png" />
                 <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-backend/belivvr.png" />
+                <meta property="twitter:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og.png" />
                 <meta property="twitter:title" content="XRCLOUD - BELIVVR" />
                 <meta property="twitter:description" content="Homepage Development Costs 3D Spatial Web, Metaverse Services" />
-                <meta property="twitter:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-backend/belivvr.png" />
+                <meta property="twitter:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og.png" />
 
                 <link rel="icon" href="https://uploads-ssl.webflow.com/6449cc542956b39c2cb4660c/644e22096aae422abdb75902_icon_32x32.png" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
