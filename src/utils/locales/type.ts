@@ -129,4 +129,6 @@ export interface Localization {
 
     'price-business-description': string
     'price-business-button': string
+
+    'price-warning': string
 }

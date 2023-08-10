@@ -139,5 +139,7 @@
     "price-professional-domain": "사용자 도메인 사용",
 
     "price-business-description": "전용 인프라 구축이나 G클라우드 지원, 별도의 커스터마이징 지원을 요구하세요?",
-    "price-business-button": "상담하기"
+    "price-business-button": "상담하기",
+
+    "price-warning": "XRCLOUD는 현재 데모 기간으로 예기치 않은 오류로 사용자 데이터의 유실이 일어날 수 있습니다."
 }

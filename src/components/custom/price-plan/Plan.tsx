@@ -60,7 +60,7 @@ export function Plan({ plans, setPlans, plan, activeIndex, onChangeActiveIndex }
                         <div>{localization['price-business-description']}</div>
                         <Button
                             component="a"
-                            href="mailto:dev_team@belivvr.com"
+                            href="mailto:connect@belivvr.com"
                             style={{ backgroundColor: theme.palette.background.default, color: '#000' }}
                             variant="contained"
                         >
