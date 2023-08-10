@@ -1,5 +1,5 @@
 User-agent: *
-Allow: / /projects /scenes /rooms
+Allow: / /projects /scenes /rooms /ko /en
 Disallow: /register
 
-Sitemap: https://developers.xrcloud.app/sitemap.xml
+Sitemap: https://xrcloud.app/sitemap.xml

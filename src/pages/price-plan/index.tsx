@@ -41,7 +41,7 @@ const PricePlan = () => {
                 id: '1',
                 active: true,
                 icon: <TwoWheelerTwoToneIcon fontSize="large" color="inherit" />,
-                title: 'Starter',
+                title: locale === 'en' ? 'Starter' : '스타트',
                 price: '0',
                 permission: [0, 1]
             },
@@ -49,7 +49,7 @@ const PricePlan = () => {
                 id: '2',
                 active: false,
                 icon: <AirportShuttleTwoToneIcon fontSize="large" />,
-                title: 'Personal',
+                title: locale === 'en' ? 'Personal' : '퍼스널',
                 price: locale === 'en' ? '6.66' : '8,800',
                 permission: [0, 1]
             },
@@ -57,7 +57,7 @@ const PricePlan = () => {
                 id: '3',
                 active: false,
                 icon: <DirectionsBoatTwoToneIcon fontSize="large" />,
-                title: 'Professional',
+                title: locale === 'en' ? 'Professional' : '프로페셔널',
                 price: locale === 'en' ? '77' : '99,000',
                 permission: [0, 1, 2]
             },
@@ -73,15 +73,20 @@ const PricePlan = () => {
         setPlans(mockPlans)
     }, [locale])
 
-    useEffect(() => {}, [plans])
-
     return (
         <Page title={localization.price}>
             <MainCard title={localization.price}>
                 <Grid style={{ display: 'grid', gridTemplateColumns: !matchDownMd ? '1fr 1fr 1fr 1fr' : '1fr 1fr', gap: '8px' }}>
                     {plans?.map((plan, index) => {
                         return (
-                            <Plan key={plan.id} receivedPlan={plan} activeIndex={activeIndex} onChangeActiveIndex={onChangeActiveIndex} />
+                            <Plan
+                                key={plan.id}
+                                plan={plan}
+                                plans={plans}
+                                setPlans={setPlans}
+                                activeIndex={activeIndex}
+                                onChangeActiveIndex={onChangeActiveIndex}
+                            />
                         )
                     })}
                 </Grid>

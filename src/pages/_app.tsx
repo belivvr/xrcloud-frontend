@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useEffect, useState } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
 // import { ProjectContext, Project } from 'custom/ProjectContext'
 
 // global styles
@@ -45,9 +45,12 @@ interface Props {
 
 function MyApp({ Component, pageProps }: AppProps & Props) {
     const getLayout = Component.getLayout ?? ((page: any) => page)
-    const { onChangePresetColor } = useConfig()
+    const { onChangePresetColor, onChangeLocale } = useConfig()
 
     useEffect(() => {
+        if (pageProps.locale) {
+            onChangeLocale(pageProps.locale)
+        }
         onChangePresetColor('theme6')
     }, [])
 

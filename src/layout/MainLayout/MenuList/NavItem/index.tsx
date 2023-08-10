@@ -41,7 +41,7 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
         <Icon
             stroke={1.5}
             size={drawerOpen ? '20px' : '24px'}
-            style={{ color: isSelected ? theme.palette.secondary.main : theme.palette.text.primary }}
+            style={{ color: isSelected ? theme.palette.text.primary : theme.palette.text.primary }}
         />
     ) : (
         <FiberManualRecordIcon
@@ -141,7 +141,7 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
                             }
                         })
                     }}
-                    selected={isSelected}
+                    // selected={isSelected}
                     onClick={() => itemHandler(item.id!)}
                 >
                     <ButtonBase sx={{ borderRadius: `${borderRadius}px` }} disableRipple={drawerOpen} aria-label="theme-icon">
@@ -175,11 +175,7 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
 
                     {(drawerOpen || (!drawerOpen && level !== 1)) && (
                         <ListItemText
-                            primary={
-                                <Typography variant={isSelected ? 'h5' : 'body1'} color="inherit">
-                                    {item.title}
-                                </Typography>
-                            }
+                            primary={<Typography>{item.title}</Typography>}
                             secondary={
                                 item.caption && (
                                     <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>

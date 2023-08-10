@@ -10,14 +10,15 @@ import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 
 interface Props {
-    receivedPlan: PricePlan
+    plans: PricePlan[]
+    setPlans: React.Dispatch<React.SetStateAction<PricePlan[] | undefined>>
+    plan: PricePlan
     activeIndex: string
     onChangeActiveIndex: (index: string) => void
 }
 
-export function Plan({ receivedPlan, activeIndex, onChangeActiveIndex }: Props) {
+export function Plan({ plans, setPlans, plan, activeIndex, onChangeActiveIndex }: Props) {
     const theme = useTheme()
-    const [plan, setPlan] = useState<PricePlan>(receivedPlan)
     const darkBorder = theme.palette.mode === 'dark' ? theme.palette.background.default : theme.palette.primary[200] + 75
     const { locale } = useConfig()
     const localization = useLocalization(locale)
@@ -25,9 +26,8 @@ export function Plan({ receivedPlan, activeIndex, onChangeActiveIndex }: Props) 
     useEffect(() => {
         if (!plan) return
         if (activeIndex === plan.id) {
-            setPlan({ ...plan, active: true })
-        } else {
-            setPlan({ ...plan, active: false })
+            const newPlans = plans.map((item) => (item.id === activeIndex ? { ...item, active: true } : { ...item, active: false }))
+            setPlans(newPlans)
         }
     }, [activeIndex])
 
