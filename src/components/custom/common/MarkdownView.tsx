@@ -10,7 +10,7 @@ export const MarkdownView = ({ post }: MarkdownViewProps) => {
         <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-                img: ({ node, ...props }) => <img style={{ maxWidth: '50%' }} {...props} alt="" />,
+                img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} alt="" />,
                 ul: ({ node, ...props }) => <ul style={{ marginBottom: '12px' }} {...props} />,
                 hr: ({ node, ...props }) => <hr style={{ border: '1px solid #eee' }} {...props} />
             }}
