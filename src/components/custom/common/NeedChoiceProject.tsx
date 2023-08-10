@@ -17,7 +17,7 @@ export function NeedChoiceProject({ title, style }: Props) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: 'calc(100vh - 268px)',
-                fontSize: '60px',
+                fontSize: '36px',
                 fontWeight: '700',
                 lineHeight: 1.5,
                 textAlign: 'center',

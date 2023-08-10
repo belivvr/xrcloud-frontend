@@ -117,7 +117,7 @@ const Header = () => {
                         fontWeight: 600
                     }}
                     component={Link}
-                    href="https://api.xrcloud.app/docs/en"
+                    href={`https://api.xrcloud.app/docs/${locale}`}
                     target="_blank"
                 >
                     {localization['header-api']}
@@ -138,7 +138,9 @@ const Header = () => {
             </Box>
             {/* live customization & localization */}
             <Box sx={{ display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', marginRight: '24px', gap: '20px' }}>
-                <LocalizationSection />
+                {window.location.pathname === '/ko' || window.location.pathname === '/en' || window.location.pathname === '/' ? null : (
+                    <LocalizationSection />
+                )}
                 {user ? <ProfileSection /> : null}
             </Box>
 

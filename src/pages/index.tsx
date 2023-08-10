@@ -34,21 +34,22 @@ export async function getStaticProps(data: StaticProps) {
 
 const Landing = ({ post, locale }: { post: string; locale: Locale }) => {
     const [markdown, setMarkdown] = useState<string>(post)
-    const { onChangePresetColor, locale: configLocale } = useConfig()
+    const { onChangePresetColor, locale: configLocale, onChangeLocale } = useConfig()
     const localization = useLocalization(locale)
 
     useEffect(() => {
         onChangePresetColor('theme6')
+        onChangeLocale(locale)
     }, [])
 
     useEffect(() => {
-        fetch(`landing-${configLocale}.md`)
+        fetch(`landing-${locale}.md`)
             .then((response) => response.blob())
             .then((blob) => blob.text())
             .then((data) => {
                 setMarkdown(data)
             })
-    }, [configLocale])
+    }, [])
 
     return (
         <Page position={'relative'} title={localization.landing}>
