@@ -140,5 +140,7 @@
     "price-professional-domain": "Custom your domain",
 
     "price-business-description": "Need dedicated infrastucture, custom clients, or. somethin else?",
-    "price-business-button": "Contact Us"
+    "price-business-button": "Contact Us",
+
+    "price-warning": "XRCLOUD is currently in a demo period, and unexpected errors can cause user data loss."
 }

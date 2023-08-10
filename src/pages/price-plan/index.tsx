@@ -15,7 +15,6 @@ import MainCard from 'ui-component/cards/MainCard'
 import React from 'react'
 import { Plan } from 'components/custom/price-plan/Plan'
 import mailgo from 'mailgo'
-import { thousandsSeparator } from 'utils/thousandSeparator'
 import { PricePlan as PricePlanType } from 'types/config'
 
 const PricePlan = () => {
@@ -76,6 +75,7 @@ const PricePlan = () => {
     return (
         <Page title={localization.price}>
             <MainCard title={localization.price}>
+                <div style={{ marginBottom: '1rem', fontSize: '12px', fontWeight: '600' }}>{localization['price-warning']}</div>
                 <Grid style={{ display: 'grid', gridTemplateColumns: !matchDownMd ? '1fr 1fr 1fr 1fr' : '1fr 1fr', gap: '8px' }}>
                     {plans?.map((plan, index) => {
                         return (
