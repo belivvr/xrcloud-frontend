@@ -46,11 +46,11 @@ Customize your space with web editors, share it with links, and easily integrate
 ---
 > **XRCLOUD Subscription Fee Guide**
 
--   [Starter : **Free**](https://developers.xrcloud.app/price-plan)
+-   [Starter : **Free**](https://xrcloud.app/price-plan)
     -   Get started now.
--   [Personal : **$6.6/month**](https://developers.xrcloud.app/price-plan)
+-   [Personal : **$6.6/month**](https://xrcloud.app/price-plan)
     -   Personal website, plan for developers
--   [Professional : **$77/month**](https://developers.xrcloud.app/price-plan)
+-   [Professional : **$77/month**](https://xrcloud.app/price-plan)
     -   Plans for commercial development
--   [Business 요금제 : **Contact us**](https://developers.xrcloud.app/price-plan)
+-   [Business 요금제 : **Contact us**](https://xrcloud.app/price-plan)
     -   Dedicated infrastructure, various customizations separate, Korean Goverment validated cloud 
