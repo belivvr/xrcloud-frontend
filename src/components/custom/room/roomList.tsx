@@ -3,8 +3,9 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Room } from 'types/project'
 import { GridWrapper } from '../common'
-import { Button, CircularProgress, styled } from '@mui/material'
+import { Button, CircularProgress } from '@mui/material'
 import { StyledAddIcon } from '../styles/styled'
+import styled from '@emotion/styled'
 
 export const CreateRoom = styled(Button)`
     display: flex;
@@ -14,6 +15,14 @@ export const CreateRoom = styled(Button)`
     background-color: white;
     border: 1px solid #eee;
     color: #000;
+`
+
+const Image = styled.img`
+    transition: all 0.15s ease;
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(63, 81, 181, 0.04);
+    }
 `
 
 interface Props {
@@ -44,7 +53,14 @@ const RoomList = ({ roomList, sceneId }: Props) => {
                         key={room.id}
                     >
                         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', objectFit: 'cover' }}>
-                            <img style={{ height: '250px', objectFit: 'contain' }} src={room.thumbnailUrl} alt={room.thumbnailUrl} />
+                            <Image
+                                onClick={() => {
+                                    router.push(room.roomUrl)
+                                }}
+                                style={{ height: '250px', objectFit: 'contain' }}
+                                src={room.thumbnailUrl}
+                                alt={room.thumbnailUrl}
+                            />
                             <div
                                 style={{
                                     display: 'flex',
