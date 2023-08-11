@@ -45,11 +45,11 @@
 ---
 > **XRCLOUD 구독 요금 안내**
 
--   [Starter : **무료**](https://developers.xrcloud.app/price-plan)
+-   [Starter : **무료**](https://xrcloud.app/price-plan)
     -   지금 시작해보세요.
--   [Personal : **8,800원/월**](https://developers.xrcloud.app/price-plan)
+-   [Personal : **8,800원/월**](https://xrcloud.app/price-plan)
     -   개인 홈페이지, 개발자를 위한 요금제
--   [Professional : **99,000원/월**](https://developers.xrcloud.app/price-plan)
+-   [Professional : **99,000원/월**](https://xrcloud.app/price-plan)
     -   상업용 개발을 위한 요금제
--   [Business 요금제 : **상담하기**](https://developers.xrcloud.app/price-plan)
+-   [Business 요금제 : **상담하기**](https://xrcloud.app/price-plan)
     -   전용 인프라 구축, g클라우드 별도의 다양한 커스터마이징
