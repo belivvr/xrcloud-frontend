@@ -87,14 +87,14 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                                         <Head>
                                             <title>XRCLOUD - BELIVVR</title>
                                         </Head>
-                                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E822WDDXP0"></script>
+                                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0QKXX746"></script>
                                         {/* <!-- Google tag (gtag.js) --> */}
                                         <script>
                                             {`  window.dataLayer = window.dataLayer || [];
                                                 function gtag(){dataLayer.push(arguments);}
                                                 gtag('js', new Date());
                                                 
-                                                gtag('config', 'G-E822WDDXP0');`}
+                                                gtag('config', 'G-EG0QKXX746');`}
                                         </script>
                                         <>
                                             {getLayout(<Component {...pageProps} />)}
