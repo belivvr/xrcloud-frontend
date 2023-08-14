@@ -130,28 +130,36 @@ const MainLayout: FC<Props> = ({ children }) => {
 
     return (
         <AuthGuard>
-            <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
-                {/* header */}
-                <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: theme.palette.background.default }}>
-                    {header}
-                </AppBar>
+            <>
+                <Box sx={{ display: 'flex' }}>
+                    <CssBaseline />
+                    {/* header */}
+                    <AppBar
+                        enableColorOnDark
+                        position="fixed"
+                        color="inherit"
+                        elevation={0}
+                        sx={{ bgcolor: theme.palette.background.default }}
+                    >
+                        {header}
+                    </AppBar>
 
-                {/* horizontal menu-list bar */}
-                {layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && !matchDownMd && <HorizontalBar />}
+                    {/* horizontal menu-list bar */}
+                    {layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && !matchDownMd && <HorizontalBar />}
 
-                {/* drawer */}
-                {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || matchDownMd) && <Sidebar />}
+                    {/* drawer */}
+                    {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || matchDownMd) && <Sidebar />}
 
-                {/* main content */}
-                <Main theme={theme} open={drawerOpen} layout={layout}>
-                    <Container maxWidth={container ? 'lg' : false} {...(!container && { sx: { px: { xs: 0 } } })}>
-                        <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
-                        {children}
-                    </Container>
-                </Main>
+                    {/* main content */}
+                    <Main theme={theme} open={drawerOpen} layout={layout}>
+                        <Container maxWidth={container ? 'lg' : false} {...(!container && { sx: { px: { xs: 0 } } })}>
+                            <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
+                            {children}
+                        </Container>
+                    </Main>
+                </Box>
                 {/* <Footer /> */}
-            </Box>
+            </>
         </AuthGuard>
     )
 }

@@ -7,7 +7,7 @@ import ProjectList from 'components/custom/projectList'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { MainCardCustom } from 'components/custom/common/MainCardCustom'
-import { Footer } from 'components/custom/common/Footer'
+// import { Footer } from 'components/custom/common/Footer'
 import { useProject } from 'hooks/api/useProject'
 
 const Projects = () => {
@@ -18,12 +18,12 @@ const Projects = () => {
     useEffect(() => {
         onChangePresetColor('theme6')
     }, [])
+
     return (
         <Page title={localization['project-manage']}>
             <MainCardCustom title={localization['project-manage']}>
                 <ProjectList projectList={projectList} />
             </MainCardCustom>
-            <Footer />
         </Page>
     )
 }

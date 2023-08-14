@@ -150,8 +150,8 @@ const LandingLayout: FC<Props> = ({ children }) => {
                         {children}
                     </Container>
                 </Main>
-                {/* <Footer /> */}
             </Box>
+            <Footer />
         </div>
     )
 }

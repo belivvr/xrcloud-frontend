@@ -16,15 +16,15 @@ export function Footer() {
     return (
         <div
             style={{
-                position: 'absolute',
-                bottom: '-290px',
-                left: 0,
+                position: 'relative',
+                // bottom: '-290px',
+                // left: 0,
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
-                zIndex: 10000,
+                zIndex: 200000,
                 padding: '32px 0',
                 background: theme.palette.mode === 'dark' ? theme.palette.dark.main : '#fff',
                 borderTop: '1px solid #eef2e6'
