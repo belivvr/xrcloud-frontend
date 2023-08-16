@@ -142,7 +142,9 @@ export const KO_JSON = {
     'price-business-description': '전용 인프라 구축이나 G클라우드 지원, 별도의 커스터마이징 지원을 요구하세요?',
     'price-business-button': '상담하기',
 
-    'price-warning': 'XRCLOUD는 현재 데모 기간으로 예기치 않은 오류로 사용자 데이터의 유실이 일어날 수 있습니다.'
+    'price-warning': 'XRCLOUD는 현재 데모 기간으로 예기치 않은 오류로 사용자 데이터의 유실이 일어날 수 있습니다.',
+    'terms-of-use': '이용약관',
+    'privacy-policy': '개인정보 처리방침'
 }
 
 export const EN_JSON = {
@@ -290,5 +292,7 @@ export const EN_JSON = {
     'price-business-description': 'Need dedicated infrastucture, custom clients, or. somethin else?',
     'price-business-button': 'Contact Us',
 
-    'price-warning': 'XRCLOUD is currently in a demo period, and unexpected errors can cause user data loss.'
+    'price-warning': 'XRCLOUD is currently in a demo period, and unexpected errors can cause user data loss.',
+    'terms-of-use': 'Terms of Use',
+    'privacy-policy': 'Privacy Policy'
 }

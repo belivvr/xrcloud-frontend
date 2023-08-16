@@ -142,5 +142,7 @@
     "price-business-description": "Need dedicated infrastucture, custom clients, or. somethin else?",
     "price-business-button": "Contact Us",
 
-    "price-warning": "XRCLOUD is currently in a demo period, and unexpected errors can cause user data loss."
+    "price-warning": "XRCLOUD is currently in a demo period, and unexpected errors can cause user data loss.",
+    "terms-of-use": "Terms of Use",
+    "privacy-policy": "Privacy Policy"
 }
