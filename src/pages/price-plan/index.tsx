@@ -15,13 +15,33 @@ import MainCard from 'ui-component/cards/MainCard'
 import React from 'react'
 import { Plan } from 'components/custom/price-plan/Plan'
 import mailgo from 'mailgo'
-import { PricePlan as PricePlanType } from 'types/config'
+import { Locale, PricePlan as PricePlanType, StaticProps } from 'types/config'
+import Metatag from 'components/custom/common/Metatag'
 
-const PricePlan = () => {
-    const { locale } = useConfig()
-    const localization = useLocalization(locale)
+export const getServerSideProps = async (data: StaticProps) => {
+    try {
+        return {
+            props: { locale: data.locale }
+        }
+    } catch (err) {
+        console.error(err)
+        return {
+            props: {},
+            notFound: true
+        }
+    }
+}
+
+interface Props {
+    locale: Locale
+}
+
+const PricePlan = ({ locale }: Props) => {
+    const { locale: configLocale } = useConfig()
+    const localization = useLocalization(configLocale)
 
     const [plans, setPlans] = useState<PricePlanType[]>()
+    const [loading, setLoading] = useState(true)
     const [activeIndex, setActiveIndex] = useState('1')
     const theme = useTheme()
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
@@ -32,6 +52,7 @@ const PricePlan = () => {
 
     useEffect(() => {
         mailgo()
+        setLoading(false)
     }, [])
 
     useEffect(() => {
@@ -40,7 +61,7 @@ const PricePlan = () => {
                 id: '1',
                 active: true,
                 icon: <TwoWheelerTwoToneIcon fontSize="large" color="inherit" />,
-                title: locale === 'en' ? 'Starter' : '스타트',
+                title: configLocale === 'en' ? 'Starter' : '스타트',
                 price: '0',
                 permission: [0, 1]
             },
@@ -48,16 +69,16 @@ const PricePlan = () => {
                 id: '2',
                 active: false,
                 icon: <AirportShuttleTwoToneIcon fontSize="large" />,
-                title: locale === 'en' ? 'Personal' : '퍼스널',
-                price: locale === 'en' ? '6.66' : '8,800',
+                title: configLocale === 'en' ? 'Personal' : '퍼스널',
+                price: configLocale === 'en' ? '6.66' : '8,800',
                 permission: [0, 1]
             },
             {
                 id: '3',
                 active: false,
                 icon: <DirectionsBoatTwoToneIcon fontSize="large" />,
-                title: locale === 'en' ? 'Professional' : '프로페셔널',
-                price: locale === 'en' ? '77' : '99,000',
+                title: configLocale === 'en' ? 'Professional' : '프로페셔널',
+                price: configLocale === 'en' ? '77' : '99,000',
                 permission: [0, 1, 2]
             },
             {
@@ -70,7 +91,15 @@ const PricePlan = () => {
             }
         ]
         setPlans(mockPlans)
-    }, [locale])
+    }, [configLocale])
+
+    if (loading) {
+        return (
+            <Page title={localization.price}>
+                <Metatag locale={locale} />
+            </Page>
+        )
+    }
 
     return (
         <Page title={localization.price}>
@@ -96,7 +125,7 @@ const PricePlan = () => {
 }
 
 PricePlan.getLayout = function getLayout(page: ReactElement) {
-    return <Layout variant="landing">{page}</Layout>
+    return <Layout>{page}</Layout>
 }
 
 export default PricePlan

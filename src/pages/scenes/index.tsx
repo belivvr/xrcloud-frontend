@@ -13,8 +13,28 @@ import { useScenes } from 'hooks/api/useScenes'
 import { Scene } from 'types/project'
 import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
 import { useProject } from 'hooks/api/useProject'
+import Metatag from 'components/custom/common/Metatag'
+import { Locale, StaticProps } from 'types/config'
 
-const Scenes = () => {
+export const getServerSideProps = async (data: StaticProps) => {
+    try {
+        return {
+            props: { locale: data.locale }
+        }
+    } catch (err) {
+        console.error(err)
+        return {
+            props: {},
+            notFound: true
+        }
+    }
+}
+
+interface Props {
+    locale: Locale
+}
+
+const Scenes = ({ locale }: Props) => {
     const [sceneList, setSceneList] = useState<Scene[]>()
     const { projectList, findById } = useProject()
     const { getScenes, createScene, updateScene } = useScenes()
@@ -22,10 +42,8 @@ const Scenes = () => {
 
     const [loading, setLoading] = useState(true)
 
-    const { locale } = useConfig()
-    const localization = useLocalization(locale)
-    const selectedProjectId = localStorage.getItem('projectId')
-    const apiKey = localStorage.getItem('apiKey')
+    const { locale: configLocale } = useConfig()
+    const localization = useLocalization(configLocale)
 
     useEffect(() => {
         if (!choicedProject) return
@@ -40,6 +58,8 @@ const Scenes = () => {
     }, [choicedProject])
 
     useEffect(() => {
+        const selectedProjectId = localStorage.getItem('projectId')
+
         if (!selectedProjectId) return
         findById(selectedProjectId)
             .then((project) => {
@@ -49,15 +69,19 @@ const Scenes = () => {
                 setChoicedProject(undefined)
                 localStorage.removeItem('projectId')
             })
-    }, [selectedProjectId])
+    }, [])
 
     useEffect(() => {
         setLoading(false)
     }, [])
 
-    // if (loading) {
-    //     return <></>
-    // }
+    if (loading) {
+        return (
+            <Page title="Scenes">
+                <Metatag locale={locale} />
+            </Page>
+        )
+    }
 
     return (
         <Page title="Scenes">
