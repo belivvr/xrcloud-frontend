@@ -18,6 +18,7 @@ import router from 'next/router'
 import Link from 'next/link'
 import useAuth from 'hooks/useAuth'
 import { useLocalization } from 'hooks/useLocalization'
+import { useEffect, useState } from 'react'
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -31,6 +32,15 @@ const Header = () => {
     const { layout, locale } = useConfig()
     const { user } = useAuth()
     const localization = useLocalization(locale)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
+    if (loading) {
+        return <></>
+    }
 
     return (
         <Box style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

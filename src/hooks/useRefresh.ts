@@ -6,9 +6,8 @@ export interface Tokens {
 }
 
 export function useRefresh() {
-    const oldRefreshToken = window.localStorage.getItem('refreshToken')
-
     const renewTokens = async () => {
+        const oldRefreshToken = window.localStorage.getItem('refreshToken')
         try {
             const { data } = await axios.post(`/api/auth/refresh`, {
                 params: {

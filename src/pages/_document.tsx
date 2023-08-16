@@ -6,7 +6,7 @@ export default function Document() {
         <Html>
             <Head>
                 <meta name="theme-color" content="#2296f3" />
-                <meta name="title" content="XRCLOUD - BELIVVR" />
+                {/* <meta name="title" content="XRCLOUD - BELIVVR" />
                 <meta name="description" content="Homepage Development Costs 3D Spatial Web, Metaverse Services" />
                 <meta
                     name="keywords"
@@ -23,7 +23,7 @@ export default function Document() {
                 <meta property="twitter:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" />
                 <meta property="twitter:title" content="XRCLOUD - BELIVVR" />
                 <meta property="twitter:description" content="Homepage Development Costs 3D Spatial Web, Metaverse Services" />
-                <meta property="twitter:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" />
+                <meta property="twitter:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" /> */}
 
                 <link rel="icon" href="https://uploads-ssl.webflow.com/6449cc542956b39c2cb4660c/644e22096aae422abdb75902_icon_32x32.png" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" />

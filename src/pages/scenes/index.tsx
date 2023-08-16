@@ -20,6 +20,8 @@ const Scenes = () => {
     const { getScenes, createScene, updateScene } = useScenes()
     const { choicedProject, setChoicedProject } = useChoicedProject()
 
+    const [loading, setLoading] = useState(true)
+
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const selectedProjectId = localStorage.getItem('projectId')
@@ -48,6 +50,14 @@ const Scenes = () => {
                 localStorage.removeItem('projectId')
             })
     }, [selectedProjectId])
+
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
+    // if (loading) {
+    //     return <></>
+    // }
 
     return (
         <Page title="Scenes">

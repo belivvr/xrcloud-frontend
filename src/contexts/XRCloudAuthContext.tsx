@@ -182,9 +182,9 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const updateProfile = () => {}
 
-    if (state.isInitialized !== undefined && !state.isInitialized) {
-        return <Loader />
-    }
+    // if (state.isInitialized !== undefined && !state.isInitialized) {
+    //     return <Loader />
+    // }
 
     return (
         <XRCloudAuthContext.Provider
