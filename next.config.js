@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const withTM = require('next-transpile-modules')(['@babel/preset-react'])
-const { FALSE } = require('sass')
 const { i18n } = require('./next-i18next.config')
 
 const nextConfig = withTM({
