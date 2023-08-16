@@ -57,3 +57,11 @@ export interface MediumPost {
     thumbnail: string
     title: string
 }
+
+export type Locale = 'en' | 'ko'
+
+export interface StaticProps {
+    locales: Locale[]
+    locale: Locale
+    defaultLocale: Locale
+}

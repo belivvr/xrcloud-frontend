@@ -7,21 +7,53 @@ import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import MainCard from 'ui-component/cards/MainCard'
 import axios from 'axios'
-import { MediumPost } from 'types/config'
+import { Locale, MediumPost, StaticProps } from 'types/config'
 import { NewsCards } from 'components/custom/news'
+import Metatag from 'components/custom/common/Metatag'
 
-const News = () => {
-    const { locale } = useConfig()
-    const localization = useLocalization(locale)
+export const getServerSideProps = async (data: StaticProps) => {
+    try {
+        return {
+            props: { locale: data.locale }
+        }
+    } catch (err) {
+        console.error(err)
+        return {
+            props: {},
+            notFound: true
+        }
+    }
+}
+
+interface Props {
+    locale: Locale
+}
+
+const News = ({ locale }: Props) => {
+    const { locale: configLocale } = useConfig()
+    const localization = useLocalization(configLocale)
     const [posts, setPosts] = useState<MediumPost[]>([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axios
-            .get(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${locale === 'en' ? 'belivvr-en' : 'belivvr'}`)
+            .get(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${configLocale === 'en' ? 'belivvr-en' : 'belivvr'}`)
             .then((response) => {
                 setPosts(response.data.items)
             })
-    }, [locale])
+    }, [configLocale])
+
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
+    if (loading) {
+        return (
+            <Page position={'relative'} title={localization.news}>
+                <Metatag locale={locale} />
+            </Page>
+        )
+    }
 
     return (
         <Page position={'relative'} title={localization.news}>
@@ -33,7 +65,7 @@ const News = () => {
 }
 
 News.getLayout = function getLayout(page: ReactElement) {
-    return <Layout variant="landing">{page}</Layout>
+    return <Layout>{page}</Layout>
 }
 
 export default News

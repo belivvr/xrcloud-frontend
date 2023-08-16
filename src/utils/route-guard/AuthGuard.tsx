@@ -18,7 +18,8 @@ const AuthGuard = ({ children }: GuardProps) => {
     const { setChoicedProject, setChoicedScene } = useChoicedProject()
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        const apiKey = localStorage.getItem('apiKey')
+        if (!apiKey) {
             setChoicedProject(undefined)
             setChoicedScene(undefined)
             router.push('/login')
@@ -26,7 +27,7 @@ const AuthGuard = ({ children }: GuardProps) => {
         // eslint-disable-next-line
     }, [isLoggedIn])
 
-    if (!isLoggedIn) return <Loader />
+    // if (!isLoggedIn) return <Loader />
 
     return children
 }

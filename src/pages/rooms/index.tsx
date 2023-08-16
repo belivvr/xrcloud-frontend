@@ -16,15 +16,36 @@ import { useScenes } from 'hooks/api/useScenes'
 import FormControlSelectScene from 'ui-component/extended/Form/FormControlSelectScene'
 import { enqueueSnackbar } from 'notistack'
 import { useProject } from 'hooks/api/useProject'
+import { Locale, StaticProps } from 'types/config'
+import Metatag from 'components/custom/common/Metatag'
 
-const Rooms = () => {
+export const getServerSideProps = async (data: StaticProps) => {
+    try {
+        return {
+            props: { locale: data.locale }
+        }
+    } catch (err) {
+        console.error(err)
+        return {
+            props: {},
+            notFound: true
+        }
+    }
+}
+
+interface Props {
+    locale: Locale
+}
+
+const Rooms = ({ locale }: Props) => {
     const [roomList, setRoomList] = useState<Room[]>()
     const [sceneList, setSceneList] = useState<Scene[]>()
+    const [loading, setLoading] = useState(true)
 
     const { projectList } = useProject()
     const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
-    const { locale } = useConfig()
-    const localization = useLocalization(locale)
+    const { locale: configLocale } = useConfig()
+    const localization = useLocalization(configLocale)
     const { getScenes } = useScenes()
     const { getRooms } = useRoom()
 
@@ -57,6 +78,18 @@ const Rooms = () => {
             })
             .catch((err) => {})
     }, [choicedScene])
+
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
+    if (loading) {
+        return (
+            <Page title="Rooms">
+                <Metatag locale={locale} />
+            </Page>
+        )
+    }
 
     return (
         <Page title="Rooms">

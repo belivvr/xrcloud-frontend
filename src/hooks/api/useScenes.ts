@@ -12,11 +12,10 @@ export function useScenes() {
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()
 
-    const apiKey = localStorage.getItem('apiKey')
-
     const { get } = useRequest()
 
     const validateProject = (): boolean => {
+        const apiKey = localStorage.getItem('apiKey')
         if (!choicedProject) {
             enqueueSnackbar(localization['scene-select-no-project'], {
                 variant: 'error'

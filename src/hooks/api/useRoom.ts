@@ -14,9 +14,9 @@ export function useRoom() {
 
     const { get, post, deleteRequest } = useRequest()
 
-    const apiKey = localStorage.getItem('apiKey')
-
     const validateProject = (): boolean => {
+        const apiKey = localStorage.getItem('apiKey')
+
         if (!choicedProject) {
             enqueueSnackbar(localization['scene-select-no-project'], {
                 variant: 'error'
