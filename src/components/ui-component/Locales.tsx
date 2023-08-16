@@ -31,11 +31,9 @@ const Locales = ({ children }: LocalsProps) => {
 
     return (
         <>
-            {messages && (
-                <IntlProvider locale={locale} defaultLocale="en" messages={messages}>
-                    {children}
-                </IntlProvider>
-            )}
+            <IntlProvider locale={locale} defaultLocale="en" messages={messages}>
+                {children}
+            </IntlProvider>
         </>
     )
 }

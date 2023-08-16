@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent, RefAttributes, forwardRef, useEffect } from 'react'
+import { ForwardRefExoticComponent, RefAttributes, forwardRef, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // material-ui
@@ -32,6 +32,8 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
     const dispatch = useDispatch()
     const { pathname } = useRouter()
     const { layout, borderRadius } = useConfig()
+
+    const [loading, setLoading] = useState(true)
 
     const { selectedItem, drawerOpen } = useSelector((state) => state.menu)
     const isSelected = selectedItem.findIndex((id) => id === item.id) > -1
@@ -98,8 +100,16 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
         // eslint-disable-next-line
     }, [pathname])
 
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
     const textColor = theme.palette.mode === 'dark' ? 'grey.400' : 'text.primary'
     const iconSelectedColor = theme.palette.mode === 'dark' && drawerOpen ? 'text.primary' : 'secondary.main'
+
+    if (loading) {
+        return <></>
+    }
 
     return (
         <>
