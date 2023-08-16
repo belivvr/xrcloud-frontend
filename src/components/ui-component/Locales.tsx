@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 // third-party
 import { IntlProvider, MessageFormatElement } from 'react-intl'
 import useConfig from 'hooks/useConfig'
+import { EN_JSON, KO_JSON } from './localeJSON'
 
 // load locales files
 const loadLocaleData = (locale: string) => {
@@ -21,7 +22,9 @@ interface LocalsProps {
 
 const Locales = ({ children }: LocalsProps) => {
     const { locale } = useConfig()
-    const [messages, setMessages] = useState<Record<string, string> | Record<string, MessageFormatElement[]> | undefined>()
+    const [messages, setMessages] = useState<Record<string, string> | Record<string, MessageFormatElement[]> | undefined>(
+        locale === 'ko' ? KO_JSON : EN_JSON
+    )
 
     useEffect(() => {
         loadLocaleData(locale).then((d: { default: Record<string, string> | Record<string, MessageFormatElement[]> | undefined }) => {
@@ -31,11 +34,9 @@ const Locales = ({ children }: LocalsProps) => {
 
     return (
         <>
-            {messages && (
-                <IntlProvider locale={locale} defaultLocale="en" messages={messages}>
-                    {children}
-                </IntlProvider>
-            )}
+            <IntlProvider locale={locale} defaultLocale="en" messages={messages}>
+                {children}
+            </IntlProvider>
         </>
     )
 }

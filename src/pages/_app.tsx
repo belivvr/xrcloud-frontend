@@ -33,6 +33,7 @@ import useConfig from 'hooks/useConfig'
 import { useRouter } from 'next/router'
 import * as gtag from '../../lib/gtag'
 import Head from 'next/head'
+import Script from 'next/script'
 
 // types
 type LayoutProps = NextPage & {
@@ -84,18 +85,22 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                                         maxSnack={3}
                                         autoHideDuration={5000}
                                     >
-                                        <Head>
-                                            <title>XRCLOUD - BELIVVR</title>
-                                        </Head>
-                                        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0QKXX746"></script>
-                                        {/* <!-- Google tag (gtag.js) --> */}
-                                        <script>
-                                            {`  window.dataLayer = window.dataLayer || [];
-                                                function gtag(){dataLayer.push(arguments);}
-                                                gtag('js', new Date());
-                                                
-                                                gtag('config', 'G-EG0QKXX746');`}
-                                        </script>
+                                        <Script
+                                            strategy="afterInteractive"
+                                            src={`https://www.googletagmanager.com/gtag/js?id=G-EG0QKXX746`}
+                                        />
+                                        {/* Global Site Tag (gtag.js) - Google Analytics */}
+                                        <Script
+                                            id="gtag-init"
+                                            strategy="afterInteractive"
+                                            dangerouslySetInnerHTML={{
+                                                __html: `window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-EG0QKXX746');
+                        `
+                                            }}
+                                        />
                                         <>
                                             {getLayout(<Component {...pageProps} />)}
                                             <Snackbar />

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, FC, ReactNode } from 'react'
+import { useEffect, useMemo, FC, ReactNode, useState } from 'react'
 
 // material-ui
 import { styled, useTheme, Theme } from '@mui/material/styles'
@@ -92,6 +92,7 @@ const LandingLayout: FC<Props> = ({ children }) => {
     const dispatch = useDispatch()
     const { drawerOpen } = useSelector((state) => state.menu)
     const { drawerType, container, layout } = useConfig()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (drawerType === LAYOUT_CONST.DEFAULT_DRAWER) {
@@ -106,6 +107,7 @@ const LandingLayout: FC<Props> = ({ children }) => {
         if (drawerType === LAYOUT_CONST.DEFAULT_DRAWER) {
             dispatch(openDrawer(true))
         }
+        setLoading(false)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -133,15 +135,23 @@ const LandingLayout: FC<Props> = ({ children }) => {
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 {/* header */}
-                <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: theme.palette.background.default }}>
-                    {header}
-                </AppBar>
+                {!loading && (
+                    <AppBar
+                        enableColorOnDark
+                        position="fixed"
+                        color="inherit"
+                        elevation={0}
+                        sx={{ bgcolor: theme.palette.background.default }}
+                    >
+                        {header}
+                    </AppBar>
+                )}
 
                 {/* horizontal menu-list bar */}
                 {layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && !matchDownMd && <HorizontalBar />}
 
                 {/* drawer */}
-                {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || matchDownMd) && <Sidebar />}
+                {!loading && (layout === LAYOUT_CONST.VERTICAL_LAYOUT || matchDownMd) && <Sidebar />}
 
                 {/* main content */}
                 <Main theme={theme} open={drawerOpen} layout={layout}>
@@ -151,7 +161,7 @@ const LandingLayout: FC<Props> = ({ children }) => {
                     </Container>
                 </Main>
             </Box>
-            <Footer />
+            {!loading && <Footer />}
         </div>
     )
 }

@@ -15,10 +15,9 @@ export function useProject() {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
 
-    const accessToken = localStorage.getItem('accessToken')
-    const adminId = localStorage.getItem('adminId')
-
     const findById = async (projectId: string) => {
+        const accessToken = localStorage.getItem('accessToken')
+
         const response = await get<Project>(`/api/projects/findById`, {
             params: {
                 projectId
@@ -33,6 +32,8 @@ export function useProject() {
     }
 
     const createsProject = async (faviconFile: File | undefined, logoFile: File | undefined, projectName: string, productName: string) => {
+        const accessToken = localStorage.getItem('accessToken')
+
         if (!projectName) {
             enqueueSnackbar(localization['need-project-name'], {
                 variant: 'error'
@@ -73,6 +74,8 @@ export function useProject() {
     }
 
     const updateProject = async (projectId: string, projectName: string, faviconFile: File | undefined, logoFile: File | undefined) => {
+        const accessToken = localStorage.getItem('accessToken')
+
         const formData = new FormData()
         formData.append('projectId', projectId)
         formData.append('projectName', projectName)
@@ -98,6 +101,8 @@ export function useProject() {
     }
 
     const deleteProject = async (projectId: string) => {
+        const accessToken = localStorage.getItem('accessToken')
+
         try {
             await deleteRequest('/api/projects/delete', {
                 params: {
@@ -114,6 +119,8 @@ export function useProject() {
     }
 
     const getProjectKey = async (projectId: string) => {
+        const accessToken = localStorage.getItem('accessToken')
+
         try {
             await patch(
                 '/api/projects/getIssueKey',
@@ -135,6 +142,8 @@ export function useProject() {
     }
 
     useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken')
+
         get<{ items: Project[] }>('/api/projects/findAll', {
             headers: {
                 Authorization: `Bearer ${accessToken}`
@@ -144,9 +153,9 @@ export function useProject() {
                 setProjectList(res.items)
             })
             .catch((e) => {
-                console.log(e)
+                console.log(e.message)
             })
-    }, [accessToken, get])
+    }, [get])
 
     return { findById, createsProject, updateProject, deleteProject, getProjectKey, projectList }
 }

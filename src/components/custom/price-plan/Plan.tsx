@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Icon, Title } from 'components/custom/price-plan'
 import { PriceTag } from 'components/custom/price-plan/PriceTag'
 import { CheckOptions } from 'components/custom/price-plan/CheckOptions'

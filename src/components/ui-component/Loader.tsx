@@ -13,8 +13,13 @@ const LoaderWrapper = styled('div')({
 
 // ==============================|| LOADER ||============================== //
 
-const Loader = () => (
+interface Props {
+    meta?: JSX.Element
+}
+
+const Loader = ({ meta }: Props) => (
     <LoaderWrapper>
+        {meta}
         <LinearProgress color="primary" />
     </LoaderWrapper>
 )
