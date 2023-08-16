@@ -131,4 +131,6 @@ export interface Localization {
     'price-business-button': string
 
     'price-warning': string
+    'terms-of-use': string
+    'privacy-policy': string
 }

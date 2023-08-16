@@ -1,14 +1,9 @@
-import styled from '@emotion/styled'
-import { Button, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import Link from 'Link'
 import React from 'react'
-const FooterRouters = styled.div`
-    button {
-        color: #1976d2;
-        min-width: 120px;
-    }
-`
+
 export function Footer() {
     const theme = useTheme()
     const { locale } = useConfig()
@@ -17,8 +12,6 @@ export function Footer() {
         <div
             style={{
                 position: 'relative',
-                // bottom: '-290px',
-                // left: 0,
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
@@ -40,6 +33,22 @@ export function Footer() {
                     fontSize: '14px'
                 }}
             >
+                <div style={{ display: 'flex', gap: '124px', fontWeight: 700 }}>
+                    <Link
+                        style={{ textDecoration: 'none' }}
+                        target={'_blank'}
+                        href="https://belivvr.notion.site/578e4cc99c4b4127a1a789be096786c4?pvs=4"
+                    >
+                        {localization['terms-of-use']}
+                    </Link>
+                    <Link
+                        style={{ textDecoration: 'none' }}
+                        target={'_blank'}
+                        href="https://belivvr.notion.site/18ef753bf75342acb85637310a24d9c7?pvs=4"
+                    >
+                        {localization['privacy-policy']}
+                    </Link>
+                </div>
                 <div>{localization['business-license']}</div>
                 <div>{localization['telemarketing-business-license-number']}</div>
                 <div>{localization['belivvr-address-contents']}</div>
