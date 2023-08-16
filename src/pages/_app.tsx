@@ -85,9 +85,6 @@ function MyApp({ Component, pageProps }: AppProps & Props) {
                                         maxSnack={3}
                                         autoHideDuration={5000}
                                     >
-                                        <Head>
-                                            <title>XRCLOUD - BELIVVR</title>
-                                        </Head>
                                         <Script
                                             strategy="afterInteractive"
                                             src={`https://www.googletagmanager.com/gtag/js?id=G-EG0QKXX746`}

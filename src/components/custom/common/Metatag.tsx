@@ -1,4 +1,3 @@
-import useConfig from 'hooks/useConfig'
 import Head from 'next/head'
 import React from 'react'
 

@@ -8,16 +8,8 @@ import { useLocalization } from 'hooks/useLocalization'
 import MainCard from 'ui-component/cards/MainCard'
 import fs from 'fs'
 import { MarkdownView } from 'components/custom/common/MarkdownView'
-import Head from 'next/head'
 import Metatag from 'components/custom/common/Metatag'
-
-type Locale = 'en' | 'ko'
-
-interface StaticProps {
-    locales: Locale[]
-    locale: Locale
-    defaultLocale: Locale
-}
+import { Locale, StaticProps } from 'types/config'
 
 interface Props {
     post: string
@@ -43,6 +35,7 @@ const Landing = ({ post, locale }: Props) => {
     const [markdown, setMarkdown] = useState<string>(post)
     const { onChangePresetColor, locale: configLocale, onChangeLocale } = useConfig()
     const localization = useLocalization(locale)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         onChangePresetColor('theme6')
@@ -55,12 +48,20 @@ const Landing = ({ post, locale }: Props) => {
             .then((blob) => blob.text())
             .then((data) => {
                 setMarkdown(data)
+                setLoading(false)
             })
     }, [])
 
+    if (loading) {
+        return (
+            <Page position={'relative'} title={localization.landing}>
+                <Metatag locale={locale} />
+            </Page>
+        )
+    }
+
     return (
         <Page position={'relative'} title={localization.landing}>
-            <Metatag locale={locale} />
             <MainCard title={localization.landing}>
                 <MarkdownView post={markdown} />
             </MainCard>

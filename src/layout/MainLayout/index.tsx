@@ -20,7 +20,6 @@ import { useDispatch, useSelector } from 'store'
 
 // assets
 import { IconChevronRight } from '@tabler/icons'
-import { Footer } from 'components/custom/common/Footer'
 
 interface Props {
     children: ReactNode
