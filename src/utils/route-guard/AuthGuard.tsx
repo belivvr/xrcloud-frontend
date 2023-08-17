@@ -18,7 +18,8 @@ const AuthGuard = ({ children }: GuardProps) => {
     const { setChoicedProject, setChoicedScene } = useChoicedProject()
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        const accessToken = localStorage.getItem('accessToken')
+        if (!accessToken) {
             setChoicedProject(undefined)
             setChoicedScene(undefined)
             router.push('/login')

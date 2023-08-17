@@ -50,7 +50,7 @@ export function useRoom() {
 
         try {
             const data = await post<CreateRoom>(
-                'api/admins/createRoom',
+                '/api/admins/createRoom',
                 {
                     sceneId,
                     name,
@@ -62,6 +62,7 @@ export function useRoom() {
             )
             return data
         } catch (err: any) {
+            console.log(err)
             if (err.response.status === 403) {
                 enqueueSnackbar(localization['total-room-count-exceed'], {
                     variant: 'error'

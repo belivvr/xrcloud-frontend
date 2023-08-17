@@ -67,6 +67,11 @@ const NavItem = ({ item, level, parentId }: NavItemProps) => {
         target?: LinkTarget
     } = {
         component: forwardRef((props, ref) => {
+            const accessToken = localStorage.getItem('accessToken')
+            if (accessToken) {
+                return <Link ref={ref} {...props} href={`${item.url!}`} target={itemTarget} />
+            }
+
             if (window.location.pathname === '/' && item.id !== 'belivvr.com' && item.id !== 'price') {
                 return <Link ref={ref} {...props} href={`/login`} target={itemTarget} />
             }
