@@ -58,6 +58,7 @@ const other: NavItemType = {
             id: 'belivvr.com',
             title: <FormattedMessage id="belivvr.com" />,
             type: 'item',
+            target: true,
             url: 'https://belivvr.com',
             icon: icons.IconRocket,
             color: 'default',
