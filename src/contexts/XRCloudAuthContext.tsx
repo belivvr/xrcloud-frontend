@@ -76,7 +76,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         const init = async () => {
             try {
                 const checkToken = window.localStorage.getItem('accessToken')
-
                 if (checkToken) {
                     const isTokenValid = await verifyToken(checkToken, renewTokens)
                     if (!isTokenValid) throw new Error('Invalid token')
@@ -97,6 +96,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                     })
                 }
             } catch (err) {
+                setSession(null, null)
                 dispatch({
                     type: LOGOUT
                 })
