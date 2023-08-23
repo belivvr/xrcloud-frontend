@@ -21,8 +21,8 @@ Customize your space with web editors, share it with links, and easily integrate
 
 -   **Classroom** : A place to focus on the lesson, an experience where students are engaged with each other.
 -   **Exhibitions** : A space where visitors can interact with the artist or curator in a non-face-to-face way to fully appreciate the artwork.
--   **Community**: Build communities and social gatherings to meet people and friends in the metaverse.
--   **Your own space** : Gather materials in your field of interest, create your own portfolio, and express yourself freely.
+-   **Community** : Build communities and social gatherings to meet people and friends in the metaverse.
+-   **Event Hall** : You can make a speech using a large screen in a large event hall.
 
 ---
 > **Check out the more features that XRCLOUD which based world best most used web metaverse open source project**
