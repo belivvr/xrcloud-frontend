@@ -65,7 +65,7 @@ const News = ({ locale }: Props) => {
 }
 
 News.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>
+    return <Layout variant="landing">{page}</Layout>
 }
 
 export default News
