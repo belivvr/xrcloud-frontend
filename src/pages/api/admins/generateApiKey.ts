@@ -2,10 +2,10 @@ import axios from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === 'PATCH') {
+    if (req.method === 'POST') {
         try {
-            const data = await axios.patch(
-                `${process.env.NODE_LOCAL_SERVER}/admins/api-key`,
+            const data = await axios.post(
+                `${process.env.NODE_LOCAL_SERVER}/admins/generate-api-key`,
                 {},
                 {
                     headers: {

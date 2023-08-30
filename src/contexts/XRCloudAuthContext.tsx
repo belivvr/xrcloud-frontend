@@ -163,7 +163,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const genrateApiKey = async () => {
         const accessToken = window.localStorage.getItem('accessToken')
-        const { apiKey } = await patch<GenerateApiKey>(
+        const { apiKey } = await post<GenerateApiKey>(
             `/api/admins/generateApiKey`,
             {},
             {

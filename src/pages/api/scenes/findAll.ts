@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'GET') {
         try {
             const data = await axios.get(
-                `${process.env.NODE_LOCAL_SERVER}/console/projects/${req.headers['x-xrcloud-project-id']}/scenes`,
+                `${process.env.NODE_LOCAL_SERVER}/console/scenes?projectId=${req.headers['x-xrcloud-project-id']}`,
                 {
                     headers: {
                         Authorization: req.headers.authorization

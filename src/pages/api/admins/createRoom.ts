@@ -5,8 +5,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const data = await axios.post(
-                `${process.env.NODE_LOCAL_SERVER}/console/projects/${req.headers['x-xrcloud-project-id']}/scenes/${req.body.sceneId}/rooms`,
+                `${process.env.NODE_LOCAL_SERVER}/console/rooms`,
                 {
+                    sceneId: req.body.sceneId,
+                    projectId: req.headers['x-xrcloud-project-id'],
                     name: req.body.name,
                     size: req.body.size
                 },
