@@ -151,5 +151,12 @@
     "profile-caption": "Change Profile",
 
     "account": "Account",
-    "account-caption": "Management Account Settings"
+    "account-caption": "Management Account Settings",
+    "change-password": "Change Password",
+    "change-password-ex": "Please enter your existing password",
+    "enter-change-password": "Please enter the password to change",
+    "re-enter-change-password": "Please re-enter the password to change.",
+
+    "withdraw": "Member Withdrawal",
+    "withdraw-contents": "If you withdraw your membership, all Project, Scene, and Room information you have will be lost, \n and you will not be able to recover the data."
 }

@@ -140,4 +140,9 @@ export interface Localization {
 
     account: string
     'account-caption': string
+    withdraw: string
+    'withdraw-contents': string
+    'change-password-ex': string
+    'enter-change-password': string
+    're-enter-change-password': string
 }

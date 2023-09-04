@@ -50,7 +50,7 @@ export type XRCloudAuthContextType = {
     resetPassword: (email: string) => void
     updateProfile: VoidFunction
     getProfile: () => Promise<AuthProfileResponse>
-    genrateApiKey: () => Promise<void>
+    generateApiKey: () => Promise<void>
 }
 
 export type ProjectContextType = {

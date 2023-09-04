@@ -150,5 +150,12 @@
     "profile-caption": "프로필 변경",
 
     "account": "계정",
-    "account-caption": "계정 관리"
+    "account-caption": "계정 관리",
+    "change-password": "비밀번호 변경",
+    "change-password-ex": "기존 비밀번호를 입력하세요.",
+    "enter-change-password": "변경할 비밀번호를 입력하세요.",
+    "re-enter-change-password": "변경할 비밀번호를 다시 입력하세요.",
+
+    "withdraw": "회원탈퇴",
+    "withdraw-contents": "회원 탈퇴를 하게되면, 가지고 있는 모든 Project, Scene, Room 정보가 사라지게 되고, \n 데이터를 복구할 수 없습니다."
 }

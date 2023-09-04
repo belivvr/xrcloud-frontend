@@ -161,7 +161,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         return profile
     }
 
-    const genrateApiKey = async () => {
+    const generateApiKey = async () => {
         const accessToken = window.localStorage.getItem('accessToken')
         const { apiKey } = await post<GenerateApiKey>(
             `/api/admins/generateApiKey`,
@@ -188,7 +188,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     return (
         <XRCloudAuthContext.Provider
-            value={{ ...state, receivedApiKey, login, logout, register, resetPassword, updateProfile, getProfile, genrateApiKey }}
+            value={{ ...state, receivedApiKey, login, logout, register, resetPassword, updateProfile, getProfile, generateApiKey }}
         >
             {children}
         </XRCloudAuthContext.Provider>
