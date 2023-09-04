@@ -18,6 +18,7 @@ import { enqueueSnackbar } from 'notistack'
 import { useProject } from 'hooks/api/useProject'
 import { Locale, StaticProps } from 'types/config'
 import Metatag from 'components/custom/common/Metatag'
+import MainCardTrashIcon from 'components/custom/common/MainCardTrashIcon'
 
 export const getServerSideProps = async (data: StaticProps) => {
     try {
@@ -41,6 +42,7 @@ const Rooms = ({ locale }: Props) => {
     const [roomList, setRoomList] = useState<Room[]>()
     const [sceneList, setSceneList] = useState<Scene[]>()
     const [loading, setLoading] = useState(true)
+    const [isDeleteMode, setIsDeleteMode] = useState(false)
 
     const { projectList } = useProject()
     const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
@@ -96,9 +98,15 @@ const Rooms = ({ locale }: Props) => {
             <MainCard
                 title="Rooms"
                 secondary={
-                    <div style={{ width: '300px' }}>
+                    <div style={{ width: '500px', display: 'flex', alignItems: 'center' }}>
+                        <MainCardTrashIcon
+                            onClick={() => {
+                                if (!roomList?.length) return
+                                setIsDeleteMode(!isDeleteMode)
+                            }}
+                        />
                         {projectList && (
-                            <div style={{ display: 'flex', gap: '12px' }}>
+                            <div style={{ width: '500px', display: 'flex', gap: '12px' }}>
                                 <FormControlSelect
                                     selected={choicedProject?.id}
                                     currencies={projectList}
@@ -115,7 +123,7 @@ const Rooms = ({ locale }: Props) => {
                 }
             >
                 {roomList ? (
-                    <RoomList roomList={roomList} sceneId={choicedScene} />
+                    <RoomList isDeleteMode={isDeleteMode} roomList={roomList} sceneId={choicedScene} />
                 ) : (
                     <NeedChoiceProject title={localization['room-guide']} />
                 )}

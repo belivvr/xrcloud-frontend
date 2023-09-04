@@ -2,10 +2,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { Room } from 'types/project'
-import { GridWrapper } from '../common'
+import { BasicContentsButton, GridWrapper } from '../common'
 import { Button, CircularProgress } from '@mui/material'
 import { StyledAddIcon } from '../styles/styled'
 import styled from '@emotion/styled'
+import ListDeleteIcon from '../common/ListDeleteIcon'
+import { useRoom } from 'hooks/api/useRoom'
 
 export const CreateRoom = styled(Button)`
     display: flex;
@@ -26,12 +28,14 @@ const Image = styled.img`
 `
 
 interface Props {
+    isDeleteMode: boolean
     roomList: Room[] | undefined
     sceneId: string | undefined
 }
 
-const RoomList = ({ roomList, sceneId }: Props) => {
+const RoomList = ({ isDeleteMode, roomList, sceneId }: Props) => {
     const router = useRouter()
+    const { deleteRoom } = useRoom()
 
     if (roomList === undefined)
         return (
@@ -46,21 +50,43 @@ const RoomList = ({ roomList, sceneId }: Props) => {
                 return (
                     <div
                         style={{
+                            position: 'relative',
                             minWidth: '64px',
                             border: '1px solid #eee',
-                            borderRadius: '4px'
+                            borderRadius: '4px',
+                            overflow: 'hidden'
                         }}
                         key={room.id}
                     >
-                        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', objectFit: 'cover' }}>
-                            <Image
+                        {isDeleteMode && (
+                            <ListDeleteIcon
                                 onClick={() => {
+                                    deleteRoom(room.id)
+                                }}
+                            />
+                        )}
+                        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
+                            <BasicContentsButton
+                                style={{
+                                    position: 'relative',
+                                    height: '100%',
+                                    borderBottomLeftRadius: '0px',
+                                    borderBottomRightRadius: '0px',
+                                    overflow: 'hidden'
+                                }}
+                                onClick={async () => {
                                     router.push(room.roomUrl)
                                 }}
-                                style={{ height: '250px', objectFit: 'contain' }}
-                                src={room.thumbnailUrl}
-                                alt={room.thumbnailUrl}
-                            />
+                            >
+                                <Image
+                                    style={{
+                                        height: '250px',
+                                        objectFit: 'cover'
+                                    }}
+                                    src={room.thumbnailUrl}
+                                    alt={room.thumbnailUrl}
+                                />
+                            </BasicContentsButton>
                             <div
                                 style={{
                                     display: 'flex',

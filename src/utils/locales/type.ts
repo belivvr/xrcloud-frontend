@@ -133,4 +133,11 @@ export interface Localization {
     'price-warning': string
     'terms-of-use': string
     'privacy-policy': string
+
+    login: string
+    profile: string
+    'profile-caption': string
+
+    account: string
+    'account-caption': string
 }

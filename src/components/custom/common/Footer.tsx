@@ -17,7 +17,7 @@ export function Footer() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
-                zIndex: 200000,
+                zIndex: 1099,
                 padding: '32px 0',
                 background: theme.palette.mode === 'dark' ? theme.palette.dark.main : '#fff',
                 borderTop: '1px solid #eef2e6'

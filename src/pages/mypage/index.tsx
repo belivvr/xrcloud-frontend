@@ -3,22 +3,15 @@ import Page from 'ui-component/Page'
 import MainCard from 'ui-component/cards/MainCard'
 import Layout from 'layout'
 import { Button, CardActions, CardContent, Divider, Grid, Tab, Tabs, Typography, useTheme } from '@mui/material'
-import { gridSpacing } from 'constant'
 import { TabPanel, UserProfile } from 'components/custom/mypage'
 import AnimateButton from 'ui-component/extended/AnimateButton'
 import { allyProps } from 'utils/allyProps'
 
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone'
+import TuneIcon from '@mui/icons-material/Tune'
 import useConfig from 'hooks/useConfig'
 import useAuth from 'hooks/useAuth'
-
-const tabsOption = [
-    {
-        label: 'User Profile',
-        icon: <PersonOutlineTwoToneIcon />,
-        caption: 'Profile Settings'
-    }
-]
+import { useLocalization } from 'hooks/useLocalization'
 
 const Mypage = () => {
     const theme = useTheme()
@@ -26,11 +19,28 @@ const Mypage = () => {
     const [email, setEmail] = useState('')
     const { borderRadius } = useConfig()
     const { receivedApiKey, getProfile, genrateApiKey } = useAuth()
+    const [loading, setLoading] = useState(true)
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+
+    const tabsOption = [
+        {
+            label: localization.profile,
+            icon: <PersonOutlineTwoToneIcon />,
+            caption: localization['profile-caption']
+        },
+        {
+            label: localization.account,
+            icon: <TuneIcon />,
+            caption: localization['account-caption']
+        }
+    ]
 
     useEffect(() => {
         ;(async () => {
             const profile = await getProfile()
             setEmail(profile.email)
+            setLoading(false)
         })()
     }, [])
 
@@ -74,6 +84,10 @@ const Mypage = () => {
         }
     }
 
+    if (loading) {
+        return <></>
+    }
+
     return (
         <Page title="My page">
             <MainCard title="My page">
@@ -112,23 +126,13 @@ const Mypage = () => {
                             <TabPanel value={value} index={0}>
                                 <UserProfile email={email} receivedApiKey={receivedApiKey} genrateApiKey={genrateApiKey} />
                             </TabPanel>
+                            <TabPanel value={value} index={1}>
+                                asfafs
+                            </TabPanel>
                         </CardContent>
                     </Grid>
                 </Grid>
                 <Divider />
-                <CardActions>
-                    <Grid container justifyContent="space-between" spacing={0}>
-                        <Grid item>
-                            {value > 0 && (
-                                <AnimateButton>
-                                    <Button variant="outlined" size="large" onClick={(e) => handleChange(e, value - 1)}>
-                                        Back
-                                    </Button>
-                                </AnimateButton>
-                            )}
-                        </Grid>
-                    </Grid>
-                </CardActions>
             </MainCard>
         </Page>
     )
