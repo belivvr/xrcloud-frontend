@@ -15,6 +15,7 @@ import { NeedChoiceProject } from 'components/custom/common/NeedChoiceProject'
 import { useProject } from 'hooks/api/useProject'
 import Metatag from 'components/custom/common/Metatag'
 import { Locale, StaticProps } from 'types/config'
+import MainCardTrashIcon from 'components/custom/common/MainCardTrashIcon'
 
 export const getServerSideProps = async (data: StaticProps) => {
     try {
@@ -41,6 +42,7 @@ const Scenes = ({ locale }: Props) => {
     const { choicedProject, setChoicedProject } = useChoicedProject()
 
     const [loading, setLoading] = useState(true)
+    const [isDeleteMode, setIsDeleteMode] = useState(false)
 
     const { locale: configLocale } = useConfig()
     const localization = useLocalization(configLocale)
@@ -88,7 +90,8 @@ const Scenes = ({ locale }: Props) => {
             <MainCard
                 title="Scenes"
                 secondary={
-                    <div style={{ width: '300px' }}>
+                    <div style={{ width: '300px', display: 'flex', alignItems: 'center' }}>
+                        <MainCardTrashIcon onClick={() => setIsDeleteMode(!isDeleteMode)} />
                         {projectList && (
                             <FormControlSelect
                                 selected={choicedProject?.id}
@@ -99,7 +102,11 @@ const Scenes = ({ locale }: Props) => {
                     </div>
                 }
             >
-                {sceneList ? <SceneList project={choicedProject} updateScene={updateScene} sceneList={sceneList} /> : <NeedChoiceProject />}
+                {sceneList ? (
+                    <SceneList isDeleteMode={isDeleteMode} project={choicedProject} updateScene={updateScene} sceneList={sceneList} />
+                ) : (
+                    <NeedChoiceProject />
+                )}
             </MainCard>
         </Page>
     )

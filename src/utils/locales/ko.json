@@ -143,5 +143,12 @@
 
     "price-warning": "XRCLOUD는 현재 데모 기간으로 예기치 않은 오류로 사용자 데이터의 유실이 일어날 수 있습니다.",
     "terms-of-use": "이용약관",
-    "privacy-policy": "개인정보 처리방침"
+    "privacy-policy": "개인정보 처리방침",
+
+    "login": "로그인",
+    "profile": "프로필",
+    "profile-caption": "프로필 변경",
+
+    "account": "계정",
+    "account-caption": "계정 관리"
 }

@@ -65,5 +65,12 @@ export function useScenes() {
         })
     }
 
-    return { getScenes, createScene, updateScene }
+    const deleteScene = (sceneId: string) => {
+        if (!validateProject() || !choicedProject) {
+            return Promise.reject(new Error(localization['scene-select-no-project']))
+        }
+        console.log(sceneId)
+    }
+
+    return { getScenes, createScene, updateScene, deleteScene }
 }

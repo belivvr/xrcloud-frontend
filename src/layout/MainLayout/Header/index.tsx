@@ -151,7 +151,18 @@ const Header = () => {
                 {window.location.pathname === '/ko' || window.location.pathname === '/en' || window.location.pathname === '/' ? null : (
                     <LocalizationSection />
                 )}
-                {user ? <ProfileSection /> : null}
+                {user ? (
+                    <ProfileSection />
+                ) : (
+                    <Button
+                        style={{
+                            fontWeight: 600
+                        }}
+                        onClick={() => router.push('/login')}
+                    >
+                        {localization.login}
+                    </Button>
+                )}
             </Box>
 
             {/* profile */}

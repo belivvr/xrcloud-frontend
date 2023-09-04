@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -33,12 +33,16 @@ const Login = () => {
     const localization = useLocalization(locale)
     const { choicedProject, choicedScene, setChoicedProject, setChoicedScene } = useChoicedProject()
 
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         if (choicedProject) setChoicedProject(undefined)
         if (choicedScene) setChoicedScene(undefined)
-
+        if (loading) setLoading(false)
         localStorage.removeItem('adminId')
     }, [])
+
+    if (loading) return <></>
 
     return (
         <Page title="Login">
