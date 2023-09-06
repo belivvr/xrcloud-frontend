@@ -1,10 +1,9 @@
 import { Button, TextField } from '@mui/material'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function ManagementAccount() {
-    const [isDeleteAccount, setIsDeleteAccount] = useState(false)
     const { locale } = useConfig()
     const localization = useLocalization(locale)
 

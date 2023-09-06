@@ -29,6 +29,7 @@ const Header = () => {
     const { drawerOpen } = useSelector((state) => state.menu)
 
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
+    const matchDownSm = useMediaQuery(theme.breakpoints.down('sm'))
     const { layout, locale } = useConfig()
     const { user } = useAuth()
     const localization = useLocalization(locale)
@@ -148,20 +149,26 @@ const Header = () => {
             </Box>
             {/* live customization & localization */}
             <Box sx={{ display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', marginRight: '24px', gap: '20px' }}>
-                {window.location.pathname === '/ko' || window.location.pathname === '/en' || window.location.pathname === '/' ? null : (
-                    <LocalizationSection />
-                )}
-                {user ? (
-                    <ProfileSection />
-                ) : (
-                    <Button
-                        style={{
-                            fontWeight: 600
-                        }}
-                        onClick={() => router.push('/login')}
-                    >
-                        {localization.login}
-                    </Button>
+                {!matchDownSm && (
+                    <>
+                        {window.location.pathname === '/ko' ||
+                        window.location.pathname === '/en' ||
+                        window.location.pathname === '/' ? null : (
+                            <LocalizationSection />
+                        )}
+                        {user ? (
+                            <ProfileSection />
+                        ) : (
+                            <Button
+                                style={{
+                                    fontWeight: 600
+                                }}
+                                onClick={() => router.push('/login')}
+                            >
+                                {localization.login}
+                            </Button>
+                        )}
+                    </>
                 )}
             </Box>
 

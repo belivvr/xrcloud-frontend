@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { AppBar, Box, IconButton, ClickAwayListener, Grid, Paper, Popper, Toolbar, useMediaQuery } from '@mui/material'
+import { AppBar, Box, IconButton, ClickAwayListener, Grid, Paper, Popper, Toolbar, useMediaQuery, Button } from '@mui/material'
 
 // project imports
 import LocalizationSection from '../LocalizationSection'
@@ -10,12 +10,20 @@ import Transitions from 'ui-component/extended/Transitions'
 
 // assets
 import { IconDotsVertical } from '@tabler/icons'
+import ProfileSection from '../ProfileSection'
+import useAuth from 'hooks/useAuth'
+import router from 'next/router'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 // ==============================|| MOBILE HEADER ||============================== //
 
 const MobileSection = () => {
     const theme = useTheme()
     const matchMobile = useMediaQuery(theme.breakpoints.down('md'))
+    const { user } = useAuth()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
 
     const [open, setOpen] = useState(false)
     /**
@@ -91,8 +99,24 @@ const MobileSection = () => {
                                         }}
                                     >
                                         <Toolbar sx={{ pt: 2.75, pb: 2.75 }}>
-                                            <Grid container justifyContent={matchMobile ? 'space-between' : 'flex-end'} alignItems="center">
-                                                <LocalizationSection />
+                                            <Grid container gap={4} alignItems="center">
+                                                {window.location.pathname === '/ko' ||
+                                                window.location.pathname === '/en' ||
+                                                window.location.pathname === '/' ? null : (
+                                                    <LocalizationSection />
+                                                )}
+                                                {user ? (
+                                                    <ProfileSection />
+                                                ) : (
+                                                    <Button
+                                                        style={{
+                                                            fontWeight: 600
+                                                        }}
+                                                        onClick={() => router.push('/login')}
+                                                    >
+                                                        {localization.login}
+                                                    </Button>
+                                                )}
                                             </Grid>
                                         </Toolbar>
                                     </AppBar>
