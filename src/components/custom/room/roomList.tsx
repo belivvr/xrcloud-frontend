@@ -72,7 +72,8 @@ const RoomList = ({ isDeleteMode, roomList, sceneId }: Props) => {
                                     height: '100%',
                                     borderBottomLeftRadius: '0px',
                                     borderBottomRightRadius: '0px',
-                                    overflow: 'hidden'
+                                    overflow: 'hidden',
+                                    border: 'none'
                                 }}
                                 onClick={async () => {
                                     router.push(room.roomUrl)
@@ -80,6 +81,7 @@ const RoomList = ({ isDeleteMode, roomList, sceneId }: Props) => {
                             >
                                 <Image
                                     style={{
+                                        width: '100%',
                                         height: '250px',
                                         objectFit: 'cover'
                                     }}
