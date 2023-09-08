@@ -23,6 +23,10 @@ export default function ManagementAccount() {
     }
 
     const changePassword = async () => {
+        if (!oldPassword || !newPassword || !repeatPassword) {
+            return alert('비밀번호를 입력해주세요')
+        }
+
         if (!checkSamePassword(newPassword, repeatPassword)) {
             return alert('변경할 비밀번호를 동일하게 입력해주세요')
         }
@@ -34,6 +38,10 @@ export default function ManagementAccount() {
         } catch (e: any) {
             if (e.response.status === 401) {
                 return alert('비밀번호가 일치하지 않습니다')
+            }
+
+            if (e.response.status === 400) {
+                return alert('비밀번호는 6자 이상이어야 합니다')
             }
         }
     }
