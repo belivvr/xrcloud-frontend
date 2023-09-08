@@ -103,13 +103,12 @@ export function useRoom() {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
 
-        console.log('deleteRoom', roomId)
-        // return deleteRequest('/api/rooms/delete', {
-        //     headers: createHeaders(choicedProject as Project),
-        //     params: {
-        //         roomId
-        //     }
-        // })
+        return deleteRequest('/api/rooms/delete', {
+            headers: createHeaders(choicedProject as Project),
+            params: {
+                roomId
+            }
+        })
     }
 
     return { getRooms, getRoom, createRoom, deleteRoom }

@@ -4,20 +4,33 @@ import { BasicContentsButton } from '../common'
 import { Scene as SceneType } from 'types/project'
 import router from 'next/router'
 import { cacheRemove } from 'utils/cacheRemove'
-import { useScenes } from 'hooks/api/useScenes'
 import ListDeleteIcon from '../common/ListDeleteIcon'
+import { useScenes } from 'hooks/api/useScenes'
 
 interface Props {
     scene: SceneType
     isDeleteMode: boolean
+    setSceneList: React.Dispatch<React.SetStateAction<SceneType[] | undefined>>
 }
 
-export default function Scene({ scene, isDeleteMode }: Props) {
-    const { deleteScene } = useScenes()
+export default function Scene({ scene, isDeleteMode, setSceneList }: Props) {
+    const { getScenes, deleteScene } = useScenes()
 
     return (
         <div key={scene.id} style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
-            {isDeleteMode && <ListDeleteIcon onClick={() => deleteScene(scene.id)} />}
+            {isDeleteMode && (
+                <ListDeleteIcon
+                    onClick={async () => {
+                        try {
+                            await deleteScene(scene.id)
+                            const scenes = await getScenes()
+                            setSceneList(scenes.items)
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    }}
+                />
+            )}
             <BasicContentsButton
                 style={{
                     position: 'relative',

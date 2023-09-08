@@ -10,14 +10,14 @@ interface Props {
     project: Project | undefined
     sceneList: SceneType[] | undefined
     isDeleteMode: boolean
-    updateScene: (sceneId: string) => Promise<any>
+    setSceneList: React.Dispatch<React.SetStateAction<SceneType[] | undefined>>
 }
 
-const SceneList = ({ project, sceneList, isDeleteMode, updateScene }: Props) => {
+const SceneList = ({ project, sceneList, isDeleteMode, setSceneList }: Props) => {
     return (
         <GridWrapper>
             {sceneList?.map((scene: SceneType) => {
-                return <Scene key={scene.id} scene={scene} isDeleteMode={isDeleteMode} />
+                return <Scene key={scene.id} scene={scene} isDeleteMode={isDeleteMode} setSceneList={setSceneList} />
             })}
             <EnterServiceButton
                 onClick={async () => {

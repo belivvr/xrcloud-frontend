@@ -51,6 +51,8 @@ export type XRCloudAuthContextType = {
     updateProfile: VoidFunction
     getProfile: () => Promise<AuthProfileResponse>
     generateApiKey: () => Promise<void>
+    updatePassword: (oldPassword: string, newPassword: string) => Promise<void>
+    withdraw: () => Promise<void>
 }
 
 export type ProjectContextType = {

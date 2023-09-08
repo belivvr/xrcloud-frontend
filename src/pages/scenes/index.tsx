@@ -38,7 +38,7 @@ interface Props {
 const Scenes = ({ locale }: Props) => {
     const [sceneList, setSceneList] = useState<Scene[]>()
     const { projectList, findById } = useProject()
-    const { getScenes, createScene, updateScene } = useScenes()
+    const { getScenes } = useScenes()
     const { choicedProject, setChoicedProject } = useChoicedProject()
 
     const [loading, setLoading] = useState(true)
@@ -103,7 +103,7 @@ const Scenes = ({ locale }: Props) => {
                 }
             >
                 {sceneList ? (
-                    <SceneList isDeleteMode={isDeleteMode} project={choicedProject} updateScene={updateScene} sceneList={sceneList} />
+                    <SceneList isDeleteMode={isDeleteMode} project={choicedProject} setSceneList={setSceneList} sceneList={sceneList} />
                 ) : (
                     <NeedChoiceProject />
                 )}

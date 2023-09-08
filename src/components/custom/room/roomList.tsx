@@ -31,11 +31,12 @@ interface Props {
     isDeleteMode: boolean
     roomList: Room[] | undefined
     sceneId: string | undefined
+    setRoomList: React.Dispatch<React.SetStateAction<Room[] | undefined>>
 }
 
-const RoomList = ({ isDeleteMode, roomList, sceneId }: Props) => {
+const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList }: Props) => {
     const router = useRouter()
-    const { deleteRoom } = useRoom()
+    const { getRooms, deleteRoom } = useRoom()
 
     if (roomList === undefined)
         return (
@@ -60,8 +61,10 @@ const RoomList = ({ isDeleteMode, roomList, sceneId }: Props) => {
                     >
                         {isDeleteMode && (
                             <ListDeleteIcon
-                                onClick={() => {
-                                    deleteRoom(room.id)
+                                onClick={async () => {
+                                    await deleteRoom(room.id)
+                                    const rooms = await getRooms()
+                                    setRoomList(rooms.items)
                                 }}
                             />
                         )}
@@ -69,7 +72,7 @@ const RoomList = ({ isDeleteMode, roomList, sceneId }: Props) => {
                             <BasicContentsButton
                                 style={{
                                     position: 'relative',
-                                    height: '100%',
+                                    height: '250px',
                                     borderBottomLeftRadius: '0px',
                                     borderBottomRightRadius: '0px',
                                     overflow: 'hidden',

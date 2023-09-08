@@ -123,7 +123,7 @@ const Rooms = ({ locale }: Props) => {
                 }
             >
                 {roomList ? (
-                    <RoomList isDeleteMode={isDeleteMode} roomList={roomList} sceneId={choicedScene} />
+                    <RoomList isDeleteMode={isDeleteMode} roomList={roomList} sceneId={choicedScene} setRoomList={setRoomList} />
                 ) : (
                     <NeedChoiceProject title={localization['room-guide']} />
                 )}
