@@ -12,7 +12,7 @@ export function useScenes() {
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()
 
-    const { get } = useRequest()
+    const { get, deleteRequest } = useRequest()
 
     const validateProject = (): boolean => {
         const apiKey = localStorage.getItem('apiKey')
@@ -69,7 +69,13 @@ export function useScenes() {
         if (!validateProject() || !choicedProject) {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
-        console.log(sceneId)
+
+        return deleteRequest('/api/scenes/delete', {
+            params: {
+                sceneId
+            },
+            headers: createHeaders(choicedProject)
+        })
     }
 
     return { getScenes, createScene, updateScene, deleteScene }

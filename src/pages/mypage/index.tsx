@@ -5,7 +5,7 @@ import Layout from 'layout'
 import { Grid } from '@mui/material'
 import useAuth from 'hooks/useAuth'
 import TabsWrapper from 'components/custom/mypage/TabsWrapper'
-import TabPanelsWrapper from 'components/custom/mypage/TabPanelsWrapper'
+import TabContentsWrapper from 'components/custom/mypage/TabContentsWrapper'
 
 const Mypage = () => {
     const [email, setEmail] = useState('')
@@ -31,15 +31,11 @@ const Mypage = () => {
     }
 
     return (
-        <Page style={{ height: 'calc(100vh - 128px)' }} title="My page">
+        <Page style={{ height: '100%' }} title="My page">
             <MainCard style={{ height: '100%' }} title="My page">
                 <Grid container style={{ marginBottom: '1.5rem' }}>
-                    {/* 
-                        왜 인지는 모르겠는데 반대로 되어있음.
-                        베리 템플릿 기본 그대로 따라감.
-                    */}
                     <TabsWrapper value={value} handleChange={handleChange} />
-                    <TabPanelsWrapper value={value} email={email} receivedApiKey={receivedApiKey} generateApiKey={generateApiKey} />
+                    <TabContentsWrapper value={value} email={email} receivedApiKey={receivedApiKey} generateApiKey={generateApiKey} />
                 </Grid>
                 {/* <Divider /> */}
             </MainCard>

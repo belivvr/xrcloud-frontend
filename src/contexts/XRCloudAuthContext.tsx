@@ -69,8 +69,9 @@ const XRCloudAuthContext = createContext<XRCloudAuthContextType | null>(null)
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
     const [receivedApiKey, setReceivedApiKey] = useState<string>()
+    const [adminId, setAdminId] = useState<string>('')
     const { renewTokens } = useRefresh()
-    const { get, post, patch } = useRequest()
+    const { get, post, patch, deleteRequest } = useRequest()
 
     useEffect(() => {
         const init = async () => {
@@ -111,7 +112,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             email,
             password
         })
-        const { adminId, apiKey } = await get<AuthProfileResponse>(`/api/auth/profile`, {
+        const { apiKey } = await get<AuthProfileResponse>(`/api/auth/profile`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
@@ -119,7 +120,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         if (apiKey) {
             localStorage.setItem('apiKey', apiKey)
         }
-        localStorage.setItem('adminId', adminId)
         setSession(accessToken, refreshToken)
         dispatch({
             type: LOGIN,
@@ -154,6 +154,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             }
         })
 
+        setAdminId(profile.adminId)
         setReceivedApiKey(profile.apiKey)
         if (profile.apiKey) {
             localStorage.setItem('apiKey', profile.apiKey)
@@ -182,13 +183,50 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const updateProfile = () => {}
 
-    // if (state.isInitialized !== undefined && !state.isInitialized) {
-    //     return <Loader />
-    // }
+    const updatePassword = (oldPassword: string, newPassword: string) => {
+        const accessToken = window.localStorage.getItem('accessToken')
+        return post<void>(
+            '/api/auth/updatePassword',
+            {
+                oldPassword,
+                newPassword
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+        )
+    }
+
+    const withdraw = () => {
+        const accessToken = window.localStorage.getItem('accessToken')
+        console.log(adminId)
+        return deleteRequest<void>('/api/auth/withdraw', {
+            params: {
+                adminId
+            },
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+    }
 
     return (
         <XRCloudAuthContext.Provider
-            value={{ ...state, receivedApiKey, login, logout, register, resetPassword, updateProfile, getProfile, generateApiKey }}
+            value={{
+                ...state,
+                receivedApiKey,
+                login,
+                logout,
+                register,
+                resetPassword,
+                updateProfile,
+                getProfile,
+                generateApiKey,
+                updatePassword,
+                withdraw
+            }}
         >
             {children}
         </XRCloudAuthContext.Provider>

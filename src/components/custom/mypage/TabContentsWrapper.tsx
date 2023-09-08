@@ -10,9 +10,7 @@ interface Props {
     generateApiKey: () => Promise<void>
 }
 
-export default function TabPanelsWrapper({ value, email, receivedApiKey, generateApiKey }: Props) {
-    const theme = useTheme()
-
+export default function TabContentsWrapper({ value, email, receivedApiKey, generateApiKey }: Props) {
     return (
         <Grid item xs={12} lg={9}>
             <CardContent
