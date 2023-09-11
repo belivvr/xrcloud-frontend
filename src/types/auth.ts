@@ -12,7 +12,7 @@ export interface AuthResponseToken {
 }
 
 export interface AuthProfileResponse {
-    adminId: string
+    id: string
     email: string
     apiKey: string
 }

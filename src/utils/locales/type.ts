@@ -84,6 +84,7 @@ export interface Localization {
     'sign-up': string
     'sign-up-with': string
     'agree-term': string
+    'agree-term-error': string
     'already-account': string
 
     'forgot-password': string
@@ -145,4 +146,12 @@ export interface Localization {
     'change-password-ex': string
     'enter-change-password': string
     're-enter-change-password': string
+
+    'alert-change-password': string
+    'error-alert-change-password': string
+    'error-alert-change-password2': string
+    'error-alert-change-password3': string
+    'error-alert-change-password4': string
+
+    'withdraw-contents2': string
 }

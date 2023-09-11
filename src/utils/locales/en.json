@@ -97,6 +97,7 @@
     "sign-up": "Sign Up",
     "sign-up-with": "Sign up with Email address",
     "agree-term": "Agree with Terms & Condition",
+    "agree-term-error": "You must agree to the terms before you can sign up",
     "already-account": "Already have an account?",
 
     "forgot-password": "Forgot password?",
@@ -157,6 +158,13 @@
     "enter-change-password": "Please enter the password to change",
     "re-enter-change-password": "Please re-enter the password to change.",
 
+    "alert-change-password": "Your password has been changed",
+    "error-alert-change-password": "Please enter your password",
+    "error-alert-change-password2": "Please enter the same password to change.",
+    "error-alert-change-password3": "Password does not match.",
+    "error-alert-change-password4": "Password must be at least 6 characters long",
+
     "withdraw": "Member Withdrawal",
-    "withdraw-contents": "If you withdraw your membership, all Project, Scene, and Room information you have will be lost, \n and you will not be able to recover the data."
+    "withdraw-contents": "If you withdraw your membership, all Project, Scene, and Room information you have will be lost, \n and you will not be able to recover the data.",
+    "withdraw-contents2": "Are you sure you want to withdraw your membership?"
 }
