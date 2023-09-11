@@ -2,17 +2,20 @@ import { Button, TextField } from '@mui/material'
 import useAuth from 'hooks/useAuth'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
-import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import BasicModal from '../common/BasicModal'
 
 export default function ManagementAccount() {
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
     const { locale } = useConfig()
-    const { updatePassword, withdraw } = useAuth()
+    const { updatePassword, withdraw, logout } = useAuth()
     const localization = useLocalization(locale)
-    const router = useRouter()
+
+    const [modalOpen, setModalOpen] = useState(false)
+    const handleOpen = () => setModalOpen(true)
+    const handleClose = () => setModalOpen(false)
 
     const checkSamePassword = (newPass: string, repeatPass: string) => newPass === repeatPass
 
@@ -24,24 +27,24 @@ export default function ManagementAccount() {
 
     const changePassword = async () => {
         if (!oldPassword || !newPassword || !repeatPassword) {
-            return alert('비밀번호를 입력해주세요')
+            return alert(localization['error-alert-change-password'])
         }
 
         if (!checkSamePassword(newPassword, repeatPassword)) {
-            return alert('변경할 비밀번호를 동일하게 입력해주세요')
+            return alert(localization['error-alert-change-password2'])
         }
 
         try {
             await updatePassword(oldPassword, newPassword)
             resetPasswords()
-            return alert('비밀번호가 변경되었습니다')
+            return alert(localization['alert-change-password'])
         } catch (e: any) {
             if (e.response.status === 401) {
-                return alert('비밀번호가 일치하지 않습니다')
+                return alert(localization['error-alert-change-password3'])
             }
 
             if (e.response.status === 400) {
-                return alert('비밀번호는 6자 이상이어야 합니다')
+                return alert(localization['error-alert-change-password4'])
             }
         }
     }
@@ -49,7 +52,7 @@ export default function ManagementAccount() {
     const withdrawUser = async () => {
         try {
             await withdraw()
-            router.push('/')
+            logout()
         } catch (e: any) {
             console.log(e.response)
         }
@@ -57,6 +60,14 @@ export default function ManagementAccount() {
 
     return (
         <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
+            <BasicModal
+                mainText={localization['withdraw-contents2']}
+                buttonLeftText={localization['delete-project-modal-left-button']}
+                buttonRightText={localization['delete-project-modal-right-button']}
+                open={modalOpen}
+                handleClose={handleClose}
+                handleRightButton={withdrawUser}
+            />
             <div
                 style={{
                     flex: 1,
@@ -114,7 +125,7 @@ export default function ManagementAccount() {
                 <div style={{ fontSize: '24px', fontWeight: '700' }}>{localization.withdraw}</div>
                 <div style={{ whiteSpace: 'pre-line' }}>{localization['withdraw-contents']}</div>
                 <div>
-                    <Button onClick={withdrawUser} style={{ width: 'fit-content', height: '48px' }} variant="outlined" color="error">
+                    <Button onClick={handleOpen} style={{ width: 'fit-content', height: '48px' }} variant="outlined" color="error">
                         {localization.withdraw}
                     </Button>
                 </div>

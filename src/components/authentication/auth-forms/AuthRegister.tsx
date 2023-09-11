@@ -89,15 +89,15 @@ const JWTRegister = ({ ...others }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
+                        if (!checked) {
+                            throw new Error(localization['agree-term-error'])
+                        }
                         await register(values.email, values.password)
                         await login(values.email, values.password)
                     } catch (err: any) {
-                        console.error(err)
-                        if (scriptedRef.current) {
-                            setStatus({ success: false })
-                            setErrors({ submit: err.message })
-                            setSubmitting(false)
-                        }
+                        setStatus({ success: false })
+                        setErrors({ submit: err.message })
+                        setSubmitting(false)
                     }
                 }}
             >

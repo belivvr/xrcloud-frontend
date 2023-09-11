@@ -154,7 +154,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             }
         })
 
-        setAdminId(profile.adminId)
+        setAdminId(profile.id)
         setReceivedApiKey(profile.apiKey)
         if (profile.apiKey) {
             localStorage.setItem('apiKey', profile.apiKey)
@@ -201,7 +201,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const withdraw = () => {
         const accessToken = window.localStorage.getItem('accessToken')
-        console.log(adminId)
         return deleteRequest<void>('/api/auth/withdraw', {
             params: {
                 adminId

@@ -28,14 +28,14 @@ export default function BasicModal({ open, mainText, buttonLeftText, buttonRight
                     justifyContent: 'center',
                     alignItems: 'center',
                     padding: '24px',
-                    backgroundColor: '#fff',
+                    backgroundColor: '#f4f4f4',
                     borderRadius: '4px'
                 }}
             >
-                <p style={{ marginBottom: '40px', fontSize: '14px', fontWeight: '500', textAlign: 'center', lineHeight: '23px' }}>
+                <p style={{ marginBottom: '64px', fontSize: '18px', fontWeight: '500', textAlign: 'center', lineHeight: '23px' }}>
                     {mainText}
                 </p>
-                <div style={{ display: 'flex', position: 'absolute', width: '100%', bottom: '0px' }}>
+                <div style={{ position: 'absolute', bottom: '0px', display: 'flex', width: '100%', padding: '32px', gap: '8px' }}>
                     <Button
                         onClick={handleClose}
                         style={{
@@ -45,10 +45,10 @@ export default function BasicModal({ open, mainText, buttonLeftText, buttonRight
                             borderBottomLeftRadius: '4px',
                             color: '#fff',
                             fontSize: '16px',
-                            fontWeight: '500'
+                            fontWeight: '500',
+                            backgroundColor: '#aaa'
                         }}
                         variant="contained"
-                        color="info"
                     >
                         {buttonLeftText}
                     </Button>
