@@ -92,7 +92,9 @@
 
     "valid-email": "Must be a valid email",
     "email-required": "Email is required",
+    "password-validity": "Please enter a combination of at least 8 alphanumeric characters, numbers, and special characters",
     "password-required": "Password is required",
+    "already-have-email": "This is the email address you are already signed up with",
 
     "sign-up": "Sign Up",
     "sign-up-with": "Sign up with Email address",

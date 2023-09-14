@@ -80,6 +80,8 @@ export interface Localization {
     'valid-email': string
     'email-required': string
     'password-required': string
+    'password-validity': string
+    'already-have-email': string
 
     'sign-up': string
     'sign-up-with': string
