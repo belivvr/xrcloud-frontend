@@ -141,7 +141,7 @@ const Header = () => {
                         fontWeight: 600
                     }}
                     component={Link}
-                    href="https://www.facebook.com/groups/webxrko"
+                    href="https://discord.gg/h7wr75AuDd"
                     target="_blank"
                 >
                     {localization['header-community']}
