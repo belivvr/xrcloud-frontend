@@ -85,7 +85,10 @@ const JWTRegister = ({ ...others }) => {
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required']),
-                    password: Yup.string().max(255).required(localization['password-required'])
+                    password: Yup.string()
+                        .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/, localization['password-validity'])
+                        .max(255)
+                        .required(localization['password-required'])
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
@@ -96,8 +99,16 @@ const JWTRegister = ({ ...others }) => {
                         await login(values.email, values.password)
                     } catch (err: any) {
                         setStatus({ success: false })
-                        setErrors({ submit: err.message })
                         setSubmitting(false)
+                        if (!err.response) {
+                            setErrors({ submit: err.message })
+                            return
+                        }
+                        if (err.response.status === 409) {
+                            setErrors({ submit: localization['already-have-email'] })
+                            return
+                        }
+                        setErrors({ submit: err.message })
                     }
                 }}
             >
