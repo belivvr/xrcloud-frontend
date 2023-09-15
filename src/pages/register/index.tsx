@@ -1,8 +1,7 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Link from '../../Link'
 // material-ui
-import { useTheme } from '@mui/material/styles'
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Divider, Grid, Typography } from '@mui/material'
 
 // project imports
 import LAYOUT from 'constant'
@@ -10,9 +9,7 @@ import Layout from 'layout'
 import Page from 'components/ui-component/Page'
 import AuthWrapper1 from 'components/authentication/AuthWrapper1'
 import AuthCardWrapper from 'components/authentication/AuthCardWrapper'
-import Logo from 'ui-component/Logo'
 import AuthRegister from 'components/authentication/auth-forms/AuthRegister'
-import AuthFooter from 'ui-component/cards/AuthFooter'
 
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
@@ -20,10 +17,17 @@ import { useLocalization } from 'hooks/useLocalization'
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
-    const theme = useTheme()
-    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        setLoading(false)
+    }, [])
+
+    if (loading) {
+        return <></>
+    }
 
     return (
         <Page title="Register">
@@ -60,9 +64,6 @@ const Register = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-                        <AuthFooter />
-                    </Grid> */}
                 </Grid>
             </AuthWrapper1>
         </Page>
