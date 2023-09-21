@@ -21,6 +21,7 @@ const CreateRoom = () => {
     const [sceneList, setSceneList] = useState<Scene[]>([])
     const [sceneId, setSceneId] = useState(router.query.sceneId as string)
     const [roomName, setRoomName] = useState('')
+    const [roomReturnUrl, setRoomReturnUrl] = useState('')
 
     const [roomSize, setRoomSize] = useState('')
     const [query] = useState(router.query)
@@ -34,7 +35,7 @@ const CreateRoom = () => {
     const localization = useLocalization(locale)
 
     const handleCreateRoom = () => {
-        createRoom(sceneId, roomName, Number(roomSize))
+        createRoom(sceneId, roomName, Number(roomSize), roomReturnUrl)
             .then((res) => {
                 router.push('/rooms')
             })
@@ -76,6 +77,13 @@ const CreateRoom = () => {
                             value={roomSize}
                             placeholder={localization['enter-room-size']}
                             onChange={(e) => setRoomSize(e.target.value)}
+                        />
+                        <BasicTableInput
+                            type="text"
+                            title={localization['room-return-url']}
+                            value={roomReturnUrl}
+                            placeholder={localization['room-return-url-placeholder']}
+                            onChange={(e) => setRoomReturnUrl(e.target.value)}
                         />
                     </TableBody>
                 </Table>

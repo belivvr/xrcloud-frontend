@@ -5,17 +5,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'PATCH') {
         try {
             const data = await axios.patch(
-                `${process.env.NODE_LOCAL_SERVER}/rooms/${req.query.roomId}`,
+                `${process.env.NODE_LOCAL_SERVER}/console/rooms/${req.body.roomId}`,
                 {
                     name: req.body.roomName,
-                    customData: req.body.customData,
-                    roomSize: req.body.roomSize,
-                    sceneId: req.body.sceneId,
-                    autoScale: req.body.autoScale
+                    size: req.body.roomSize,
+                    returnUrl: req.body.returnUrl
                 },
                 {
                     headers: {
-                        'X-XRCLOUD-PROJECT-ID': req.headers['x-xrcloud-project-id'],
                         Authorization: req.headers.authorization
                     }
                 }

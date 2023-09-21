@@ -48,6 +48,9 @@ export interface Localization {
     [key: string]: string
     'scene-selection': string
     'room-name': string
+    'room-return-url': string
+    'room-return-url-placeholder': string
+    'room-return-url-empty': string
     'custom-data': string
     'room-size': string
     'auto-scale': string
@@ -67,6 +70,7 @@ export interface Localization {
     'scene-select-no-project': string
     'scene-select-alert-no-key': string
     'room-guide': string
+    'room-enter': string
 
     'sign-in': string
     logout: string

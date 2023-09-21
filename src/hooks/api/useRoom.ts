@@ -12,7 +12,7 @@ export function useRoom() {
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()
 
-    const { get, post, deleteRequest } = useRequest()
+    const { get, post, deleteRequest, patch } = useRequest()
 
     const validateProject = (): boolean => {
         const apiKey = localStorage.getItem('apiKey')
@@ -36,7 +36,7 @@ export function useRoom() {
         return true
     }
 
-    const createRoom = async (sceneId: string, name: string, size: number) => {
+    const createRoom = async (sceneId: string, name: string, size: number, returnUrl: string) => {
         if (!validateProject()) {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
@@ -48,13 +48,21 @@ export function useRoom() {
             return Promise.reject(new Error(localization['room-user-limit']))
         }
 
+        if (!returnUrl) {
+            enqueueSnackbar(localization['room-return-url-empty'], {
+                variant: 'error'
+            })
+            return Promise.reject(new Error(localization['room-return-url-empty']))
+        }
+
         try {
             const data = await post<CreateRoom>(
                 '/api/admins/createRoom',
                 {
                     sceneId,
                     name,
-                    size: Math.min(10, Math.max(1, size))
+                    size: Math.min(10, Math.max(1, size)),
+                    returnUrl
                 },
                 {
                     headers: createHeaders(choicedProject as Project)
@@ -65,6 +73,13 @@ export function useRoom() {
             console.log(err)
             if (err.response.status === 403) {
                 enqueueSnackbar(localization['total-room-count-exceed'], {
+                    variant: 'error'
+                })
+                throw err
+            }
+
+            if (err.response.status === 400) {
+                enqueueSnackbar(err.response.data[0], {
                     variant: 'error'
                 })
                 throw err
@@ -111,5 +126,34 @@ export function useRoom() {
         })
     }
 
-    return { getRooms, getRoom, createRoom, deleteRoom }
+    const updateRoom = async ({
+        roomId,
+        roomName,
+        returnUrl,
+        roomSize
+    }: {
+        roomId: string
+        roomName: string
+        roomSize: number
+        returnUrl: string
+    }) => {
+        if (!validateProject()) {
+            return Promise.reject(new Error(localization['scene-select-no-project']))
+        }
+
+        return patch<Room>(
+            '/api/rooms/update',
+            {
+                roomId,
+                roomSize,
+                roomName,
+                returnUrl
+            },
+            {
+                headers: createHeaders(choicedProject as Project)
+            }
+        )
+    }
+
+    return { getRooms, getRoom, createRoom, deleteRoom, updateRoom }
 }
