@@ -59,6 +59,9 @@
 
     "scene-selection": "Scene 선택",
     "room-name": "이름",
+    "room-return-url": "Hubs에서 복귀할 주소",
+    "room-return-url-placeholder": "Hubs에서 복귀할 주소를 입력해주세요.",
+    "room-return-url-empty": "Hubs에서 복귀할 주소를 입력해주세요.",
     "custom-data": "커스텀 데이터",
     "room-size": "사이즈",
     "auto-scale": "자동 크기 조정",
@@ -80,6 +83,7 @@
     "scene-select-alert-no-key": "프로젝트의 API 키가 없습니다. 우측 상단 마이페이지에서 발급 받아주세요.",
     "room-no-scenes": "해당 프로젝트에 Scene이 없습니다. Scene을 추가해주세요.",
     "room-guide": "우측 상단에서 \n Project 선택 후 Scene ID를 선택해주세요.",
+    "room-enter": "방 입장하기",
 
     "sign-in": "로그인",
     "logout": "로그아웃",

@@ -10,7 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     sceneId: req.body.sceneId,
                     projectId: req.headers['x-xrcloud-project-id'],
                     name: req.body.name,
-                    size: req.body.size
+                    size: req.body.size,
+                    returnUrl: req.body.returnUrl
                 },
                 {
                     headers: {

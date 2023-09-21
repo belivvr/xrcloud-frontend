@@ -19,6 +19,8 @@ import { useProject } from 'hooks/api/useProject'
 import { Locale, StaticProps } from 'types/config'
 import Metatag from 'components/custom/common/Metatag'
 import MainCardTrashIcon from 'components/custom/common/MainCardTrashIcon'
+import RoomDetailModal from 'components/custom/room/RoomDetailModal'
+import router from 'next/router'
 
 export const getServerSideProps = async (data: StaticProps) => {
     try {
@@ -43,13 +45,55 @@ const Rooms = ({ locale }: Props) => {
     const [sceneList, setSceneList] = useState<Scene[]>()
     const [loading, setLoading] = useState(true)
     const [isDeleteMode, setIsDeleteMode] = useState(false)
+    const [selectedRoom, setSelectedRoom] = useState<Room>()
+    const [selectedRoomType, setSelectedRoomType] = useState('')
+    const [selectedRoomName, setSelectedRoomName] = useState('')
+    const [selectedRoomReturnUrl, setSelectedRoomReturnUrl] = useState<string>('')
 
     const { projectList } = useProject()
     const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
     const { locale: configLocale } = useConfig()
     const localization = useLocalization(configLocale)
     const { getScenes } = useScenes()
-    const { getRooms } = useRoom()
+    const { getRooms, updateRoom } = useRoom()
+
+    const handleSelectRoomDefault = () => {
+        setSelectedRoomType('')
+        setSelectedRoomReturnUrl('')
+        setSelectedRoom(undefined)
+    }
+
+    const handleSelectRoomType = (event: { target: { value: string } }) => {
+        setSelectedRoomType(event.target.value)
+    }
+
+    const handleEnterRoom = async () => {
+        if (!selectedRoom) return
+        try {
+            const data = await updateRoom({
+                roomId: selectedRoom.id,
+                roomSize: selectedRoom.roomSize,
+                roomName: selectedRoomName,
+                returnUrl: selectedRoomReturnUrl
+            })
+            const { items } = await getRooms()
+            setRoomList(items)
+            setSelectedRoom(data)
+            router.push(data.roomUrl)
+        } catch (err: any) {
+            if (err.response.data[0]) {
+                enqueueSnackbar(err.response.data[0], {
+                    variant: 'error'
+                })
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (!selectedRoom) return
+        setSelectedRoomName(selectedRoom.name)
+        setSelectedRoomReturnUrl(selectedRoom.returnUrl)
+    }, [selectedRoom])
 
     useEffect(() => {
         if (!choicedProject) return
@@ -95,6 +139,17 @@ const Rooms = ({ locale }: Props) => {
 
     return (
         <Page title="Rooms">
+            <RoomDetailModal
+                roomType={selectedRoomType}
+                selectedRoom={selectedRoom}
+                selectedRoomName={selectedRoomName}
+                selectedRoomReturnUrl={selectedRoomReturnUrl}
+                setSelectedRoomName={setSelectedRoomName}
+                handleSelectRoomDefault={handleSelectRoomDefault}
+                handleSelectRoomType={handleSelectRoomType}
+                setRoomReturnUrl={setSelectedRoomReturnUrl}
+                handleEnterRoom={handleEnterRoom}
+            />
             <MainCard
                 title="Rooms"
                 secondary={
@@ -123,7 +178,13 @@ const Rooms = ({ locale }: Props) => {
                 }
             >
                 {roomList ? (
-                    <RoomList isDeleteMode={isDeleteMode} roomList={roomList} sceneId={choicedScene} setRoomList={setRoomList} />
+                    <RoomList
+                        isDeleteMode={isDeleteMode}
+                        roomList={roomList}
+                        sceneId={choicedScene}
+                        setRoomList={setRoomList}
+                        setSelectedRoom={setSelectedRoom}
+                    />
                 ) : (
                     <NeedChoiceProject title={localization['room-guide']} />
                 )}

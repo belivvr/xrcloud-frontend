@@ -28,6 +28,7 @@ export interface Room {
     autoScale: boolean
     roomUrl: URL
     thumbnailUrl: URL
+    returnUrl: URL
 }
 
 export interface RoomField {
