@@ -71,12 +71,12 @@ export function useRoom() {
             return data
         } catch (err: any) {
             console.log(err)
-            if (err.response.status === 403) {
-                enqueueSnackbar(localization['total-room-count-exceed'], {
-                    variant: 'error'
-                })
-                throw err
-            }
+            // if (err.response.status === 403) {
+            //     enqueueSnackbar(localization['total-room-count-exceed'], {
+            //         variant: 'error'
+            //     })
+            //     throw err
+            // }
 
             if (err.response.status === 400) {
                 enqueueSnackbar(err.response.data[0], {
