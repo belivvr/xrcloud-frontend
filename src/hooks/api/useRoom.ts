@@ -42,10 +42,10 @@ export function useRoom() {
         }
 
         if (size > 10) {
-            enqueueSnackbar(localization['room-user-limit'], {
-                variant: 'error'
-            })
-            return Promise.reject(new Error(localization['room-user-limit']))
+            // enqueueSnackbar(localization['room-user-limit'], {
+            //     variant: 'error'
+            // })
+            // return Promise.reject(new Error(localization['room-user-limit']))
         }
 
         try {
@@ -62,7 +62,12 @@ export function useRoom() {
             )
             return data
         } catch (err: any) {
-            console.log(err)
+            if (err.response.status === 400) {
+                enqueueSnackbar(err.response.data[0], {
+                    variant: 'error'
+                })
+                throw err
+            }
             if (err.response.status === 403) {
                 enqueueSnackbar(localization['total-room-count-exceed'], {
                     variant: 'error'
