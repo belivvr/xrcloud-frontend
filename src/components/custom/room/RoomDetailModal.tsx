@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import CloseIcon from '@mui/icons-material/Close'
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery, useTheme } from '@mui/material'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { Room } from 'types/project'
@@ -28,6 +28,7 @@ interface Props {
     handleSelectRoomDefault: () => void
     handleSelectRoomType: (event: { target: { value: string } }) => void
     handleEnterRoom: () => void
+    handleUpdateRoom: () => void
 }
 
 export default function RoomDetailModal({
@@ -39,25 +40,27 @@ export default function RoomDetailModal({
     handleSelectRoomDefault,
     handleSelectRoomType,
     setRoomReturnUrl,
-    handleEnterRoom
+    handleEnterRoom,
+    handleUpdateRoom
 }: Props) {
+    const theme = useTheme()
     const { locale: configLocale } = useConfig()
     const localization = useLocalization(configLocale)
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
         <div
             style={{
-                position: 'absolute',
-                right: selectedRoom ? '0%' : '-25%',
-                width: '30rem',
+                position: 'fixed',
+                right: 0,
+                width: matchDownMd ? '100%' : '30%',
                 height: '80%',
                 backgroundColor: '#fff',
-                zIndex: '1000',
+                zIndex: selectedRoom ? 1000 : 0,
                 padding: '1rem',
                 boxShadow: '0 0 8px 0 rgba(0,0,0,0.2)',
                 opacity: selectedRoom ? 1 : 0,
-                overflow: 'scroll',
-                transition: 'all 0.3s ease'
+                overflow: 'scroll'
             }}
         >
             <div
@@ -70,8 +73,8 @@ export default function RoomDetailModal({
             >
                 <CloseIcon onClick={() => handleSelectRoomDefault()} style={{ cursor: 'pointer' }} fontSize="large" />
             </div>
-            <Image src={selectedRoom?.thumbnailUrl} alt={selectedRoom?.thumbnailUrl} />
-            <div style={{ height: 'calc(100% - 20rem)', display: 'flex', flexDirection: 'column', gap: '16px', overflow: 'scroll' }}>
+            <div style={{ height: 'calc(100% - 15rem)', display: 'flex', flexDirection: 'column', gap: '16px', overflow: 'scroll' }}>
+                <Image src={selectedRoom?.thumbnailUrl} alt={selectedRoom?.thumbnailUrl} />
                 <TextField
                     inputProps={{
                         sx: {
@@ -112,41 +115,32 @@ export default function RoomDetailModal({
                     placeholder="다시 돌아올 Return URL을 입력하세요."
                     onChange={(e) => setRoomReturnUrl(e.target.value)}
                 />
-                {/* <FormControl variant="standard">
-                    <InputLabel id="demo-customized-select-label">Room Type</InputLabel>
-                    <Select
-                        label="Room Type"
-                        labelId="demo-customized-select-label"
-                        id="demo-customized-select"
-                        value={roomType}
-                        onChange={handleSelectRoomType}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={'public'}>Public</MenuItem>
-                        <MenuItem value={'private'}>Private</MenuItem>
-                    </Select>
-                </FormControl> */}
-                <div></div>
+                <Button
+                    onClick={() => handleUpdateRoom()}
+                    style={{
+                        position: 'absolute',
+                        width: 'calc(100% - 32px)',
+                        height: '3rem',
+                        bottom: '100px',
+                        left: '16px',
+                        zIndex: '10',
+                        color: '#fff'
+                    }}
+                    variant="contained"
+                    color="info"
+                    disableElevation
+                >
+                    {localization['room-update']}
+                </Button>
+                <Button
+                    onClick={() => handleEnterRoom()}
+                    style={{ position: 'absolute', width: 'calc(100% - 32px)', height: '3rem', bottom: '32px', left: '16px', zIndex: '10' }}
+                    variant="contained"
+                    disableElevation
+                >
+                    {localization['room-enter']}
+                </Button>
             </div>
-            <div
-                style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '5rem',
-                    bottom: '0',
-                    backgroundColor: '#fff'
-                }}
-            />
-            <Button
-                onClick={() => handleEnterRoom()}
-                style={{ position: 'absolute', width: 'calc(100% - 32px)', height: '3rem', bottom: '32px', left: '16px', zIndex: '10' }}
-                variant="contained"
-                disableElevation
-            >
-                {localization['room-enter']}
-            </Button>
         </div>
     )
 }

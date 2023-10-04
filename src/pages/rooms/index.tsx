@@ -67,8 +67,9 @@ const Rooms = ({ locale }: Props) => {
         setSelectedRoomType(event.target.value)
     }
 
-    const handleEnterRoom = async () => {
-        if (!selectedRoom) return
+    const updateSelectedRoom = async () => {
+        if (!selectedRoom) return null
+
         try {
             const data = await updateRoom({
                 roomId: selectedRoom.id,
@@ -79,14 +80,29 @@ const Rooms = ({ locale }: Props) => {
             const { items } = await getRooms()
             setRoomList(items)
             setSelectedRoom(data)
-            router.push(data.roomUrl)
+            return data
         } catch (err: any) {
-            if (err.response.data[0]) {
+            if (err.response && err.response.data[0]) {
                 enqueueSnackbar(err.response.data[0], {
                     variant: 'error'
                 })
             }
+            return null
         }
+    }
+
+    const handleUpdateRoom = async () => {
+        const data = await updateSelectedRoom()
+        if (data) {
+            enqueueSnackbar(localization['room-update-success'], {
+                variant: 'success'
+            })
+        }
+    }
+
+    const handleEnterRoom = async () => {
+        const data = await updateSelectedRoom()
+        if (data) router.push(data.roomUrl)
     }
 
     useEffect(() => {
@@ -149,6 +165,7 @@ const Rooms = ({ locale }: Props) => {
                 handleSelectRoomType={handleSelectRoomType}
                 setRoomReturnUrl={setSelectedRoomReturnUrl}
                 handleEnterRoom={handleEnterRoom}
+                handleUpdateRoom={handleUpdateRoom}
             />
             <MainCard
                 title="Rooms"
