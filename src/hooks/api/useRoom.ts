@@ -71,9 +71,16 @@ export function useRoom() {
             return data
         } catch (err: any) {
             if (err.response.status === 400) {
-                enqueueSnackbar(err.response.data, {
-                    variant: 'error'
-                })
+                if (Array.isArray(err.response.data)) {
+                    enqueueSnackbar(err.response.data[0], {
+                        variant: 'error'
+                    })
+                } else {
+                    enqueueSnackbar(err.response.data, {
+                        variant: 'error'
+                    })
+                }
+
                 throw err
             }
             if (err.response.status === 403) {
