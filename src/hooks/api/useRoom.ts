@@ -42,10 +42,10 @@ export function useRoom() {
         }
 
         if (size > 10) {
-            enqueueSnackbar(localization['room-user-limit'], {
-                variant: 'error'
-            })
-            return Promise.reject(new Error(localization['room-user-limit']))
+            // enqueueSnackbar(localization['room-user-limit'], {
+            //     variant: 'error'
+            // })
+            // return Promise.reject(new Error(localization['room-user-limit']))
         }
 
         if (!returnUrl) {
@@ -61,7 +61,7 @@ export function useRoom() {
                 {
                     sceneId,
                     name,
-                    size: Math.min(10, Math.max(1, size)),
+                    size,
                     returnUrl
                 },
                 {
@@ -70,15 +70,14 @@ export function useRoom() {
             )
             return data
         } catch (err: any) {
-            // if (err.response.status === 403) {
-            //     enqueueSnackbar(localization['total-room-count-exceed'], {
-            //         variant: 'error'
-            //     })
-            //     throw err
-            // }
-
             if (err.response.status === 400) {
-                enqueueSnackbar(err.response.data[0], {
+                enqueueSnackbar(err.response.data, {
+                    variant: 'error'
+                })
+                throw err
+            }
+            if (err.response.status === 403) {
+                enqueueSnackbar(localization['total-room-count-exceed'], {
                     variant: 'error'
                 })
                 throw err
