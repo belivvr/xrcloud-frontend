@@ -71,6 +71,8 @@ export interface Localization {
     'scene-select-alert-no-key': string
     'room-guide': string
     'room-enter': string
+    'room-update': string
+    'room-update-success': string
 
     'sign-in': string
     logout: string

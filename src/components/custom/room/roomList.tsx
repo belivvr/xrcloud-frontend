@@ -95,15 +95,15 @@ const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, setSelectedRoo
                             >
                                 <div style={{ marginBottom: '5px' }}>
                                     <span>Name ) </span>
-                                    <span style={{ fontWeight: 700 }}>{room.name}</span>
+                                    <span>{room.name}</span>
                                 </div>
                                 <div style={{ marginBottom: '5px' }}>
                                     <span>ID ) </span>
-                                    <span style={{ fontWeight: 700 }}>{room.id}</span>
+                                    <span>{room.id}</span>
                                 </div>
                                 <div style={{ marginBottom: '5px' }}>
                                     <span>URL ) </span>
-                                    <span style={{ fontWeight: 700 }}>{room.roomUrl}</span>
+                                    <span>{room.roomUrl}</span>
                                 </div>
                             </div>
                         </div>

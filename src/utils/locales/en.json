@@ -84,6 +84,8 @@
     "room-no-scenes": "There are no scenes in this project, please add Scene",
     "room-guide": "Please select project in the top right corner \n and then select your scene ID",
     "room-enter": "Enter the Room",
+    "room-update": "Update the Room",
+    "room-update-success": "Room update success",
 
     "sign-in": "Sign In",
     "logout": "Logout",
