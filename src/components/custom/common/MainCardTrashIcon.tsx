@@ -30,7 +30,8 @@ export default function MainCardTrashIcon({ onClick }: Props) {
                 borderRadius: '8px',
                 boxShadow: '0 0 5px rgba(0,0,0,0.3)',
                 marginRight: '1rem',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                zIndex: 999
             }}
         >
             <TrashFillIcon size="1.5rem" />

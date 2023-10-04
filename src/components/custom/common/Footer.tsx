@@ -53,6 +53,8 @@ export function Footer() {
                 <div>{localization['telemarketing-business-license-number']}</div>
                 <div>{localization['belivvr-address-contents']}</div>
                 <div>{localization['company-number']}</div>
+                <div>{localization['company-name']}</div>
+                <div>{localization.copyright}</div>
             </div>
         </div>
     )

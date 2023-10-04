@@ -9,7 +9,10 @@ import { KeyedObject } from 'types'
 
 // constant
 const headerSX = {
-    '& .MuiCardHeader-action': { mr: 0 }
+    position: 'relative',
+    '& .MuiCardHeader-action': { mr: 0 },
+    overflow: 'scroll',
+    gap: '1rem'
 }
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //
