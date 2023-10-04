@@ -41,11 +41,18 @@ export function useRoom() {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }
 
-        if (size > 10) {
-            // enqueueSnackbar(localization['room-user-limit'], {
-            //     variant: 'error'
-            // })
-            // return Promise.reject(new Error(localization['room-user-limit']))
+        if (!name) {
+            enqueueSnackbar(localization['error-create-room2'], {
+                variant: 'error'
+            })
+            return Promise.reject(new Error(localization['error-create-room2']))
+        }
+
+        if (!size) {
+            enqueueSnackbar(localization['error-create-room3'], {
+                variant: 'error'
+            })
+            return Promise.reject(new Error(localization['error-create-room3']))
         }
 
         if (!returnUrl) {
@@ -72,21 +79,23 @@ export function useRoom() {
         } catch (err: any) {
             if (err.response.status === 400) {
                 if (Array.isArray(err.response.data)) {
-                    enqueueSnackbar(err.response.data[0], {
-                        variant: 'error'
-                    })
-                } else {
-                    enqueueSnackbar(err.response.data, {
+                    enqueueSnackbar(localization['error-create-room1'], {
                         variant: 'error'
                     })
                 }
 
-                throw err
-            }
-            if (err.response.status === 403) {
-                enqueueSnackbar(localization['total-room-count-exceed'], {
-                    variant: 'error'
-                })
+                if (err.response.data === 'Room size cannot exceed 10 for this tier.') {
+                    enqueueSnackbar(localization['error-create-room4'], {
+                        variant: 'error'
+                    })
+                }
+
+                if (err.response.data === 'Cannot create more than 1 rooms for this tier.') {
+                    enqueueSnackbar(localization['error-create-room5'], {
+                        variant: 'error'
+                    })
+                }
+
                 throw err
             }
         }

@@ -70,6 +70,13 @@ const Rooms = ({ locale }: Props) => {
     const updateSelectedRoom = async () => {
         if (!selectedRoom) return null
 
+        if (!selectedRoomName) {
+            enqueueSnackbar(localization['error-create-room2'], {
+                variant: 'error'
+            })
+            return null
+        }
+
         try {
             const data = await updateRoom({
                 roomId: selectedRoom.id,
@@ -83,7 +90,7 @@ const Rooms = ({ locale }: Props) => {
             return data
         } catch (err: any) {
             if (err.response && err.response.data[0]) {
-                enqueueSnackbar(err.response.data[0], {
+                enqueueSnackbar(localization['error-create-room1'], {
                     variant: 'error'
                 })
             }
@@ -103,6 +110,13 @@ const Rooms = ({ locale }: Props) => {
     const handleEnterRoom = async () => {
         const data = await updateSelectedRoom()
         if (data) router.push(data.roomUrl)
+    }
+
+    const handleClickRoom = (room: Room) => {
+        if (selectedRoom) {
+            return setSelectedRoom(undefined)
+        }
+        setSelectedRoom(room)
     }
 
     useEffect(() => {
@@ -170,25 +184,27 @@ const Rooms = ({ locale }: Props) => {
             <MainCard
                 title="Rooms"
                 secondary={
-                    <div style={{ width: '500px', display: 'flex', alignItems: 'center' }}>
-                        <MainCardTrashIcon
-                            onClick={() => {
-                                if (!roomList?.length) return
-                                setIsDeleteMode(!isDeleteMode)
-                            }}
-                        />
+                    <div style={{ width: '500px', display: 'flex', alignItems: 'center', zIndex: 1000 }}>
                         {projectList && (
-                            <div style={{ width: '500px', display: 'flex', gap: '12px' }}>
-                                <FormControlSelect
-                                    selected={choicedProject?.id}
-                                    currencies={projectList}
-                                    captionLabel={localization['select-project-id']}
+                            <div style={{ width: '500px', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                <MainCardTrashIcon
+                                    onClick={() => {
+                                        if (!roomList?.length) return
+                                        setIsDeleteMode(!isDeleteMode)
+                                    }}
                                 />
-                                <FormControlSelectScene
-                                    selected={choicedScene}
-                                    currencies={sceneList}
-                                    captionLabel={localization['select-scene-id']}
-                                />
+                                <div style={{ display: 'flex', width: '100%', gap: '1rem' }}>
+                                    <FormControlSelect
+                                        selected={choicedProject?.id}
+                                        currencies={projectList}
+                                        captionLabel={localization['select-project-id']}
+                                    />
+                                    <FormControlSelectScene
+                                        selected={choicedScene}
+                                        currencies={sceneList}
+                                        captionLabel={localization['select-scene-id']}
+                                    />
+                                </div>
                             </div>
                         )}
                     </div>
@@ -200,7 +216,7 @@ const Rooms = ({ locale }: Props) => {
                         roomList={roomList}
                         sceneId={choicedScene}
                         setRoomList={setRoomList}
-                        setSelectedRoom={setSelectedRoom}
+                        handleClickRoom={handleClickRoom}
                     />
                 ) : (
                     <NeedChoiceProject title={localization['room-guide']} />

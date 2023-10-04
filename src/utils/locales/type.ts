@@ -104,14 +104,22 @@ export interface Localization {
     'telemarketing-business-license-number': string
     'belivvr-address-contents': string
     'company-number': string
+    'company-name': string
+    copyright: string
 
     'not-found-rooms': string
     'room-no-scenes': string
     'failed-login': string
     'project-limit': string
-    'total-room-count-exceed': string
+    'total-room-count-exceed1': string
+    'total-room-count-exceed2': string
     'room-user-limit': string
     'permission-not-ready': string
+    'error-create-room1': string
+    'error-create-room2': string
+    'error-create-room3': string
+    'error-create-room4': string
+    'error-create-room5': string
 
     'delete-project-modal': string
     'delete-project-modal-left-button': string

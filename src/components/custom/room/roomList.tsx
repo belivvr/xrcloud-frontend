@@ -31,13 +31,12 @@ interface Props {
     roomList: Room[] | undefined
     sceneId: string | undefined
     setRoomList: React.Dispatch<React.SetStateAction<Room[] | undefined>>
-    setSelectedRoom: React.Dispatch<React.SetStateAction<Room | undefined>>
+    handleClickRoom: (room: Room) => void
 }
 
-const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, setSelectedRoom }: Props) => {
+const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, handleClickRoom }: Props) => {
     const router = useRouter()
     const { getRooms, deleteRoom } = useRoom()
-    // router.push(room.roomUrl)
 
     if (roomList === undefined)
         return (
@@ -71,7 +70,7 @@ const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, setSelectedRoo
                             />
                         )}
                         <div
-                            onClick={() => setSelectedRoom(room)}
+                            onClick={() => handleClickRoom(room)}
                             style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}
                         >
                             <Image

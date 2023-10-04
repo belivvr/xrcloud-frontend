@@ -116,13 +116,22 @@
     "telemarketing-business-license-number": "통신판매업 신고번호 제 2020-전남순천-2995 호",
     "belivvr-address-contents": "57940 Wooseok-ro, Suncheon-si, Jeollanam-do, 7th and 4th floors",
     "company-number": "회사 전화번호 070-4227-9371",
+    "company-name": "Belivvr INC | 양병석 대표",
+    "copyright": "Copyright © 2023 BELIVVR INC All Rights Reserved.",
 
     "not-found-rooms": "만들어진 방이 없습니다.",
     "failed-login": "이메일 혹은 비밀번호가 일치하지 않습니다.",
     "project-limit": "프로젝트는 최대 1개까지 생성 가능합니다.",
-    "total-room-count-exceed": "해당 프로젝트의 Room은 최대 3개까지 생성 가능합니다.",
+    "total-room-count-exceed1": "해당 프로젝트의 Room은 최대 1개까지 생성 가능합니다.",
+    "total-room-count-exceed2": "해당 프로젝트의 Room은 최대 3개까지 생성 가능합니다.",
     "room-user-limit": "무료 상품에서는 이용할 수 없습니다. help@belivvr.com 으로 연락주세요",
     "permission-not-ready": "권한 설정이 곧 지원 될 예정입니다.",
+
+    "error-create-room1": "URL을 정확히 입력해주세요.",
+    "error-create-room2": "룸 이름을 입력해주세요.",
+    "error-create-room3": "룸 사이즈를 입력해주세요.",
+    "error-create-room4": "이 티어의 사이즈는 10을 초과 할 수 없습니다.",
+    "error-create-room5": "이 티어는 룸을 1개를 초과 할 수 없습니다.",
 
     "delete-project-modal": "프로젝트를 삭제하시겠습니까?",
     "delete-project-modal-left-button": "취소",
