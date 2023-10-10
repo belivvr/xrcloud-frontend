@@ -60,7 +60,7 @@ export default async function handler(req: any, res: any) {
             formData.append(`logo`, logoFileStream, { knownLength: logoFileSizeInBytes })
         }
 
-        const api = await fetch(`${process.env.NODE_LOCAL_SERVER}/console/projects/${id}`, {
+        const api = await fetch(`${process.env.NODE_LOCAL_SERVER}/api/projects/${id}`, {
             method: 'PATCH',
             body: formData,
             headers: {
