@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         try {
-            const data = await axios.get(`${process.env.NODE_LOCAL_SERVER}/console/rooms/${req.query.roomId}`, {
+            const data = await axios.get(`${process.env.NODE_LOCAL_SERVER}/api/rooms/${req.query.roomId}`, {
                 headers: {
                     Authorization: req.headers.authorization
                 }

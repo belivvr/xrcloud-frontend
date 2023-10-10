@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'DELETE') {
         try {
-            const data = await axios.delete(`${process.env.NODE_LOCAL_SERVER}/console/scenes/${req.query.sceneId}`, {
+            const data = await axios.delete(`${process.env.NODE_LOCAL_SERVER}/api/scenes/${req.query.sceneId}`, {
                 headers: {
                     Authorization: req.headers.authorization
                 }

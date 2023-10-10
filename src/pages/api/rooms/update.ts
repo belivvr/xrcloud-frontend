@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'PATCH') {
         try {
             const data = await axios.patch(
-                `${process.env.NODE_LOCAL_SERVER}/console/rooms/${req.body.roomId}`,
+                `${process.env.NODE_LOCAL_SERVER}/api/rooms/${req.body.roomId}`,
                 {
                     name: req.body.roomName,
                     size: req.body.roomSize,

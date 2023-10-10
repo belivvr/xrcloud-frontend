@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const data = await axios.post(
-                `${process.env.NODE_LOCAL_SERVER}/console/rooms`,
+                `${process.env.NODE_LOCAL_SERVER}/api/rooms`,
                 {
                     sceneId: req.body.sceneId,
                     projectId: req.headers['x-xrcloud-project-id'],

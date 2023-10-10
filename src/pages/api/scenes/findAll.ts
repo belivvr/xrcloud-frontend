@@ -4,14 +4,11 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         try {
-            const data = await axios.get(
-                `${process.env.NODE_LOCAL_SERVER}/console/scenes?projectId=${req.headers['x-xrcloud-project-id']}`,
-                {
-                    headers: {
-                        Authorization: req.headers.authorization
-                    }
+            const data = await axios.get(`${process.env.NODE_LOCAL_SERVER}/api/scenes?projectId=${req.headers['x-xrcloud-project-id']}`, {
+                headers: {
+                    Authorization: req.headers.authorization
                 }
-            )
+            })
             res.status(data.status).send(data.data)
         } catch (e: any) {
             res.status(e.response.data.statusCode).send(e.response.data.message)
