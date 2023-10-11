@@ -73,6 +73,7 @@ export interface Localization {
     'room-enter': string
     'room-update': string
     'room-update-success': string
+    'room-return-url-validation': string
 
     'sign-in': string
     logout: string

@@ -14,6 +14,8 @@ import useChoicedProject from 'hooks/useChoicedProject'
 import { useProject } from 'hooks/api/useProject'
 import { Scene } from 'types/project'
 import { useRoom } from 'hooks/api/useRoom'
+import { enqueueSnackbar } from 'notistack'
+import { validateURL } from 'utils/validateUrl'
 
 const CreateRoom = () => {
     const router = useRouter()
@@ -35,6 +37,11 @@ const CreateRoom = () => {
     const localization = useLocalization(locale)
 
     const handleCreateRoom = () => {
+        if (validateURL(roomReturnUrl)) {
+            enqueueSnackbar(localization['room-return-url-validation'], { variant: 'error' })
+            return
+        }
+
         createRoom(sceneId, roomName, Number(roomSize), roomReturnUrl)
             .then((res) => {
                 router.push('/rooms')
