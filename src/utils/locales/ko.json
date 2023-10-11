@@ -86,6 +86,7 @@
     "room-enter": "룸 입장하기",
     "room-update": "룸 수정하기",
     "room-update-success": "룸이 수정되었습니다.",
+    "room-return-url-validation": "Return Url은 http://, https://로 시작해야 합니다.",
 
     "sign-in": "로그인",
     "logout": "로그아웃",

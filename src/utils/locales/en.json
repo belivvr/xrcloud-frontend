@@ -86,6 +86,7 @@
     "room-enter": "Enter the Room",
     "room-update": "Update the Room",
     "room-update-success": "Room update success",
+    "room-return-url-validation": "The return Url must start with http://, https://",
 
     "sign-in": "Sign In",
     "logout": "Logout",

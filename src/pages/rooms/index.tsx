@@ -21,6 +21,7 @@ import Metatag from 'components/custom/common/Metatag'
 import MainCardTrashIcon from 'components/custom/common/MainCardTrashIcon'
 import RoomDetailModal from 'components/custom/room/RoomDetailModal'
 import router from 'next/router'
+import { validateURL } from 'utils/validateUrl'
 
 export const getServerSideProps = async (data: StaticProps) => {
     try {
@@ -69,6 +70,11 @@ const Rooms = ({ locale }: Props) => {
 
     const updateSelectedRoom = async () => {
         if (!selectedRoom) return null
+
+        if (validateURL(selectedRoomReturnUrl)) {
+            enqueueSnackbar(localization['room-return-url-validation'], { variant: 'error' })
+            return null
+        }
 
         if (!selectedRoomName) {
             enqueueSnackbar(localization['error-create-room2'], {
