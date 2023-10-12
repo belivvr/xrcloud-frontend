@@ -5,29 +5,22 @@ import { Scene as SceneType } from 'types/project'
 import router from 'next/router'
 import { cacheRemove } from 'utils/cacheRemove'
 import ListDeleteIcon from '../common/ListDeleteIcon'
-import { useScenes } from 'hooks/api/useScenes'
 
 interface Props {
     scene: SceneType
     isDeleteMode: boolean
-    setSceneList: React.Dispatch<React.SetStateAction<SceneType[] | undefined>>
+    handleOpen: () => void
+    setSelectedSceneId: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function Scene({ scene, isDeleteMode, setSceneList }: Props) {
-    const { getScenes, deleteScene } = useScenes()
-
+export default function Scene({ scene, isDeleteMode, handleOpen, setSelectedSceneId }: Props) {
     return (
         <div key={scene.id} style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
             {isDeleteMode && (
                 <ListDeleteIcon
-                    onClick={async () => {
-                        try {
-                            await deleteScene(scene.id)
-                            const scenes = await getScenes()
-                            setSceneList(scenes.items)
-                        } catch (e) {
-                            console.log(e)
-                        }
+                    onClick={() => {
+                        setSelectedSceneId(scene.id)
+                        handleOpen()
                     }}
                 />
             )}

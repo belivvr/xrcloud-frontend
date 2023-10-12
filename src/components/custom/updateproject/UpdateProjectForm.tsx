@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { TableCell, TableRow, Table, TableBody } from '@mui/material'
 import { Project } from 'types/project'
 import { BasicTableRow, CancelButton, DefaultButton, InputFiles, InputName } from '../common'
-import { GenerateProjectKey } from '.'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import BasicModal from '../common/BasicModal'
 
 interface Props {
     project: Project
-    setProject: React.Dispatch<React.SetStateAction<Project | undefined>>
     updateProject: (projectId: string, projectName: string, faviconFile: File | undefined, logoFile: File | undefined) => Promise<void>
     deleteProject: (projectId: string) => Promise<void>
-    getProjectKey: (projectId: string) => Promise<Project | undefined>
 }
 
-export function UpdateProjectForm({ project, setProject, updateProject, deleteProject, getProjectKey }: Props) {
+export function UpdateProjectForm({ project, updateProject, deleteProject }: Props) {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const [projectName, setProjectName] = useState('')

@@ -59,7 +59,7 @@
 
     "scene-selection": "Scene Selection",
     "room-name": "Room Name",
-    "room-return-url": "Address to return to from Hubs",
+    "room-return-url": "Return URL",
     "room-return-url-placeholder": "Please enter the address to return to in Hubs",
     "room-return-url-empty": "Please enter the address to return to in Hubs",
     "custom-data": "Custom Data",
@@ -138,6 +138,10 @@
     "delete-project-modal": "Are you sure you want to delete the project?",
     "delete-project-modal-left-button": "CANCEL",
     "delete-project-modal-right-button": "DELETE",
+
+    "delete-scene-modal": "Are you sure you want to delete the scene?",
+
+    "delete-room-modal": "Are you sure you want to delete the room?",
 
     "landing": "Developers XRCLOUD",
     "landing-title": "Welcome to the XRCLOUD Developers page. \n\n",

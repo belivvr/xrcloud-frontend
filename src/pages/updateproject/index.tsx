@@ -12,7 +12,7 @@ const UpdateProject = () => {
     const [project, setProject] = useState<Project>()
 
     const router = useRouter()
-    const { findById, updateProject, deleteProject, getProjectKey } = useProject()
+    const { findById, updateProject, deleteProject } = useProject()
 
     useEffect(() => {
         const projectId = router.query.id
@@ -28,13 +28,7 @@ const UpdateProject = () => {
     return (
         <Page title="Project">
             <MainCard title="Project">
-                <UpdateProjectForm
-                    project={project}
-                    setProject={setProject}
-                    updateProject={updateProject}
-                    deleteProject={deleteProject}
-                    getProjectKey={getProjectKey}
-                />
+                <UpdateProjectForm project={project} updateProject={updateProject} deleteProject={deleteProject} />
             </MainCard>
         </Page>
     )
