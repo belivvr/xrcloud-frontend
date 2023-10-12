@@ -70,7 +70,8 @@ export interface Localization {
     'scene-select-no-project': string
     'scene-select-alert-no-key': string
     'room-guide': string
-    'room-enter': string
+    'room-enter-guest': string
+    'room-enter-host': string
     'room-update': string
     'room-update-success': string
     'room-return-url-validation': string

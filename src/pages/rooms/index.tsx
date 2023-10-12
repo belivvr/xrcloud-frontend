@@ -113,9 +113,14 @@ const Rooms = ({ locale }: Props) => {
         }
     }
 
-    const handleEnterRoom = async () => {
+    const handleEnterRoomByHost = async () => {
         const data = await updateSelectedRoom()
-        if (data) router.push(data.roomUrl)
+        if (data) router.push(data.roomUrl.host)
+    }
+
+    const handleEnterRoomByGuest = async () => {
+        const data = await updateSelectedRoom()
+        if (data) router.push(data.roomUrl.guest)
     }
 
     const handleClickRoom = (room: Room) => {
@@ -184,8 +189,9 @@ const Rooms = ({ locale }: Props) => {
                 handleSelectRoomDefault={handleSelectRoomDefault}
                 handleSelectRoomType={handleSelectRoomType}
                 setRoomReturnUrl={setSelectedRoomReturnUrl}
-                handleEnterRoom={handleEnterRoom}
+                handleEnterRoomByHost={handleEnterRoomByHost}
                 handleUpdateRoom={handleUpdateRoom}
+                handleEnterRoomByGuest={handleEnterRoomByGuest}
             />
             <MainCard
                 title="Rooms"

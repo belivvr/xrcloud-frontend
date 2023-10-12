@@ -26,7 +26,10 @@ export interface Room {
     customData: any
     roomSize: number
     autoScale: boolean
-    roomUrl: URL
+    roomUrl: {
+        guest: URL
+        host: URL
+    }
     thumbnailUrl: URL
     returnUrl: URL
 }

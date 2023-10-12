@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import CloseIcon from '@mui/icons-material/Close'
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery, useTheme } from '@mui/material'
+import { Button, TextField, useMediaQuery, useTheme } from '@mui/material'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import { Room } from 'types/project'
@@ -27,7 +27,8 @@ interface Props {
     setRoomReturnUrl: React.Dispatch<React.SetStateAction<string>>
     handleSelectRoomDefault: () => void
     handleSelectRoomType: (event: { target: { value: string } }) => void
-    handleEnterRoom: () => void
+    handleEnterRoomByHost: () => void
+    handleEnterRoomByGuest: () => void
     handleUpdateRoom: () => void
 }
 
@@ -40,7 +41,8 @@ export default function RoomDetailModal({
     handleSelectRoomDefault,
     handleSelectRoomType,
     setRoomReturnUrl,
-    handleEnterRoom,
+    handleEnterRoomByHost,
+    handleEnterRoomByGuest,
     handleUpdateRoom
 }: Props) {
     const theme = useTheme()
@@ -96,8 +98,12 @@ export default function RoomDetailModal({
                     <span style={{ fontWeight: 700 }}>{selectedRoom?.id}</span>
                 </div>
                 <div>
-                    <span>URL ) </span>
-                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl}</span>
+                    <span>HOST URL ) </span>
+                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl.host}</span>
+                </div>
+                <div>
+                    <span>GUEST URL ) </span>
+                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl.guest}</span>
                 </div>
                 <TextField
                     inputProps={{
@@ -124,7 +130,9 @@ export default function RoomDetailModal({
                         bottom: '100px',
                         left: '16px',
                         zIndex: '10',
-                        color: '#fff'
+                        color: '#fff',
+                        fontSize: '16px',
+                        fontWeight: 600
                     }}
                     variant="contained"
                     color="info"
@@ -133,12 +141,38 @@ export default function RoomDetailModal({
                     {localization['room-update']}
                 </Button>
                 <Button
-                    onClick={() => handleEnterRoom()}
-                    style={{ position: 'absolute', width: 'calc(100% - 32px)', height: '3rem', bottom: '32px', left: '16px', zIndex: '10' }}
+                    onClick={() => handleEnterRoomByGuest()}
+                    style={{
+                        position: 'absolute',
+                        width: 'calc(50% - 24px)',
+                        height: '3rem',
+                        bottom: '32px',
+                        left: '16px',
+                        zIndex: '10',
+                        fontSize: '16px',
+                        fontWeight: 600
+                    }}
                     variant="contained"
                     disableElevation
                 >
-                    {localization['room-enter']}
+                    {localization['room-enter-guest']}
+                </Button>
+                <Button
+                    onClick={() => handleEnterRoomByHost()}
+                    style={{
+                        position: 'absolute',
+                        width: 'calc(50% - 24px)',
+                        height: '3rem',
+                        bottom: '32px',
+                        right: '16px',
+                        zIndex: '10',
+                        fontSize: '16px',
+                        fontWeight: 600
+                    }}
+                    variant="contained"
+                    disableElevation
+                >
+                    {localization['room-enter-host']}
                 </Button>
             </div>
         </div>
