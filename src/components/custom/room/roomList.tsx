@@ -101,8 +101,12 @@ const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, handleClickRoo
                                     <span>{room.id}</span>
                                 </div>
                                 <div style={{ marginBottom: '5px' }}>
-                                    <span>URL ) </span>
-                                    <span>{room.roomUrl}</span>
+                                    <span>HOST URL ) </span>
+                                    <span>{room.roomUrl.host}</span>
+                                </div>
+                                <div style={{ marginBottom: '5px' }}>
+                                    <span>GUEST URL ) </span>
+                                    <span>{room.roomUrl.guest}</span>
                                 </div>
                             </div>
                         </div>
