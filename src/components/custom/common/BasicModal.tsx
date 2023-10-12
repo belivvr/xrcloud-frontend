@@ -31,6 +31,11 @@ export default function BasicModal({ open, mainText, buttonLeftText, buttonRight
                     backgroundColor: '#f4f4f4',
                     borderRadius: '4px'
                 }}
+                sx={{
+                    ':focus-visible': {
+                        outline: 'none'
+                    }
+                }}
             >
                 <p style={{ marginBottom: '64px', fontSize: '18px', fontWeight: '500', textAlign: 'center', lineHeight: '23px' }}>
                     {mainText}

@@ -150,7 +150,8 @@ export default function RoomDetailModal({
                         left: '16px',
                         zIndex: '10',
                         fontSize: '16px',
-                        fontWeight: 600
+                        fontWeight: 600,
+                        textTransform: 'none'
                     }}
                     variant="contained"
                     disableElevation
@@ -167,7 +168,8 @@ export default function RoomDetailModal({
                         right: '16px',
                         zIndex: '10',
                         fontSize: '16px',
-                        fontWeight: 600
+                        fontWeight: 600,
+                        textTransform: 'none'
                     }}
                     variant="contained"
                     disableElevation

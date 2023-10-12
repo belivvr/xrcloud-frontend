@@ -59,7 +59,7 @@
 
     "scene-selection": "Scene 선택",
     "room-name": "이름",
-    "room-return-url": "Hubs에서 복귀할 주소",
+    "room-return-url": "Return URL",
     "room-return-url-placeholder": "Hubs에서 복귀할 주소를 입력해주세요.",
     "room-return-url-empty": "Hubs에서 복귀할 주소를 입력해주세요.",
     "custom-data": "커스텀 데이터",
@@ -138,6 +138,10 @@
     "delete-project-modal": "프로젝트를 삭제하시겠습니까?",
     "delete-project-modal-left-button": "취소",
     "delete-project-modal-right-button": "삭제",
+
+    "delete-scene-modal": "씬을 삭제하시겠습니까?",
+
+    "delete-room-modal": "룸을 삭제하시겠습니까?",
 
     "landing": "XRCLOUD 개발자 센터",
     "landing-title": "XRCLOUD 개발자 센터에 오신 것을 환영합니다. \n\n",

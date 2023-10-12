@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Room } from 'types/project'
 import { GridWrapper } from '../common'
@@ -8,6 +8,9 @@ import { StyledAddIcon } from '../styles/styled'
 import styled from '@emotion/styled'
 import ListDeleteIcon from '../common/ListDeleteIcon'
 import { useRoom } from 'hooks/api/useRoom'
+import BasicModal from '../common/BasicModal'
+import useConfig from 'hooks/useConfig'
+import { useLocalization } from 'hooks/useLocalization'
 
 export const CreateRoom = styled(Button)`
     display: flex;
@@ -37,6 +40,13 @@ interface Props {
 const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, handleClickRoom }: Props) => {
     const router = useRouter()
     const { getRooms, deleteRoom } = useRoom()
+    const { locale } = useConfig()
+    const localization = useLocalization(locale)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [selectedRoomId, setSelectedRoomId] = useState('')
+
+    const handleOpen = () => setModalOpen(true)
+    const handleClose = () => setModalOpen(false)
 
     if (roomList === undefined)
         return (
@@ -47,6 +57,19 @@ const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, handleClickRoo
 
     return (
         <GridWrapper>
+            <BasicModal
+                mainText={localization['delete-room-modal']}
+                buttonLeftText={localization['delete-project-modal-left-button']}
+                buttonRightText={localization['delete-project-modal-right-button']}
+                open={modalOpen}
+                handleClose={handleClose}
+                handleRightButton={async () => {
+                    await deleteRoom(selectedRoomId)
+                    const rooms = await getRooms()
+                    setRoomList(rooms.items)
+                    handleClose()
+                }}
+            />
             {roomList?.map((room: Room) => {
                 return (
                     <div
@@ -62,10 +85,9 @@ const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, handleClickRoo
                     >
                         {isDeleteMode && (
                             <ListDeleteIcon
-                                onClick={async () => {
-                                    await deleteRoom(room.id)
-                                    const rooms = await getRooms()
-                                    setRoomList(rooms.items)
+                                onClick={() => {
+                                    handleOpen()
+                                    setSelectedRoomId(room.id)
                                 }}
                             />
                         )}
