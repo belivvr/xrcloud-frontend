@@ -183,11 +183,13 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const updateProfile = () => {}
 
-    const updatePassword = (oldPassword: string, newPassword: string) => {
+    const updatePassword = async (oldPassword: string, newPassword: string) => {
+        const { id } = await getProfile()
         const accessToken = window.localStorage.getItem('accessToken')
         return post<void>(
             '/api/auth/updatePassword',
             {
+                id,
                 oldPassword,
                 newPassword
             },

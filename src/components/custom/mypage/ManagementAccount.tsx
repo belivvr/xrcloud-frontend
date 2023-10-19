@@ -39,6 +39,7 @@ export default function ManagementAccount() {
             resetPasswords()
             return alert(localization['alert-change-password'])
         } catch (e: any) {
+            console.log(e.response)
             if (e.response.status === 401) {
                 return alert(localization['error-alert-change-password3'])
             }
