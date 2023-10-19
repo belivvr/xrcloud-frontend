@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const data = await axios.post(
-                `${process.env.NODE_LOCAL_SERVER}/admins/update-password`,
+                `${process.env.NODE_LOCAL_SERVER}/admins/${req.body.id}/update-password`,
                 {
                     oldPassword: req.body.oldPassword,
                     newPassword: req.body.newPassword
