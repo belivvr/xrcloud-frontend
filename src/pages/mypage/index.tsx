@@ -9,7 +9,7 @@ import TabContentsWrapper from 'components/custom/mypage/TabContentsWrapper'
 
 const Mypage = () => {
     const [email, setEmail] = useState('')
-    const { receivedApiKey, getProfile, generateApiKey } = useAuth()
+    const { receivedApiKey, getProfile } = useAuth()
     const [loading, setLoading] = useState(true)
 
     const [value, setValue] = useState(0)
@@ -35,7 +35,7 @@ const Mypage = () => {
             <MainCard style={{ height: '100%' }} title="My page">
                 <Grid container style={{ marginBottom: '1.5rem' }}>
                     <TabsWrapper value={value} handleChange={handleChange} />
-                    <TabContentsWrapper value={value} email={email} receivedApiKey={receivedApiKey} generateApiKey={generateApiKey} />
+                    <TabContentsWrapper value={value} email={email} receivedApiKey={receivedApiKey} />
                 </Grid>
                 {/* <Divider /> */}
             </MainCard>

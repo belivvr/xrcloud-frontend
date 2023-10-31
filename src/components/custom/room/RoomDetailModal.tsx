@@ -141,28 +141,10 @@ export default function RoomDetailModal({
                     {localization['room-update']}
                 </Button>
                 <Button
-                    onClick={() => handleEnterRoomByGuest()}
-                    style={{
-                        position: 'absolute',
-                        width: 'calc(50% - 24px)',
-                        height: '3rem',
-                        bottom: '32px',
-                        left: '16px',
-                        zIndex: '10',
-                        fontSize: '16px',
-                        fontWeight: 600,
-                        textTransform: 'none'
-                    }}
-                    variant="contained"
-                    disableElevation
-                >
-                    {localization['room-enter-guest']}
-                </Button>
-                <Button
                     onClick={() => handleEnterRoomByHost()}
                     style={{
                         position: 'absolute',
-                        width: 'calc(50% - 24px)',
+                        width: 'calc(100% - 32px)',
                         height: '3rem',
                         bottom: '32px',
                         right: '16px',

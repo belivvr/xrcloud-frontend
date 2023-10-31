@@ -7,7 +7,7 @@ import { useLocalization } from '../useLocalization'
 import { useRequest } from '../useRequest'
 
 export function useRoom() {
-    const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
+    const { choicedProject, choicedScene } = useChoicedProject()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const { enqueueSnackbar } = useSnackbar()
@@ -15,21 +15,10 @@ export function useRoom() {
     const { get, post, deleteRequest, patch } = useRequest()
 
     const validateProject = (): boolean => {
-        const apiKey = localStorage.getItem('apiKey')
-
         if (!choicedProject) {
             enqueueSnackbar(localization['scene-select-no-project'], {
                 variant: 'error'
             })
-            return false
-        }
-
-        if (!apiKey) {
-            enqueueSnackbar(localization['scene-select-alert-no-key'], {
-                variant: 'error'
-            })
-            setChoicedScene(undefined)
-
             return false
         }
 

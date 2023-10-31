@@ -15,16 +15,8 @@ export function useScenes() {
     const { get, deleteRequest } = useRequest()
 
     const validateProject = (): boolean => {
-        const apiKey = localStorage.getItem('apiKey')
         if (!choicedProject) {
             enqueueSnackbar(localization['scene-select-no-project'], {
-                variant: 'error'
-            })
-            return false
-        }
-
-        if (!apiKey) {
-            enqueueSnackbar(localization['scene-select-alert-no-key'], {
                 variant: 'error'
             })
             return false

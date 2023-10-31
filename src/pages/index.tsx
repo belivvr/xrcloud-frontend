@@ -10,6 +10,7 @@ import fs from 'fs'
 import { MarkdownView } from 'components/custom/common/MarkdownView'
 import Metatag from 'components/custom/common/Metatag'
 import { Locale, StaticProps } from 'types/config'
+import { useRouter } from 'next/router'
 
 interface Props {
     post: string
@@ -36,20 +37,22 @@ const Landing = ({ post, locale }: Props) => {
     const { onChangePresetColor, locale: configLocale, onChangeLocale } = useConfig()
     const localization = useLocalization(locale)
     const [loading, setLoading] = useState(true)
+    const router = useRouter()
 
     useEffect(() => {
+        router.push('/projects')
         onChangePresetColor('theme6')
         onChangeLocale(locale)
     }, [])
 
     useEffect(() => {
-        fetch(`landing-${locale}.md`)
-            .then((response) => response.blob())
-            .then((blob) => blob.text())
-            .then((data) => {
-                setMarkdown(data)
-                setLoading(false)
-            })
+        // fetch(`landing-${locale}.md`)
+        //     .then((response) => response.blob())
+        //     .then((blob) => blob.text())
+        //     .then((data) => {
+        //         setMarkdown(data)
+        //         setLoading(false)
+        //     })
     }, [])
 
     if (loading) {

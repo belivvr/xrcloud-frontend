@@ -59,7 +59,7 @@ const Projects = ({ locale }: Props) => {
 }
 
 Projects.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>
+    return <Layout variant="landing">{page}</Layout>
 }
 
 export default Projects

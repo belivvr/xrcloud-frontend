@@ -98,27 +98,11 @@ const Sidebar = () => {
                 >
                     {matchDownMd && logo}
                     {drawer}
-                    <Link
-                        href="https://github.com/belivvr"
-                        target="_blank"
-                        style={{ position: 'absolute', bottom: '10%', left: '40px', fontWeight: '600' }}
-                    >
-                        GITHUB
-                    </Link>
                 </Drawer>
             ) : (
                 <MiniDrawerStyled variant="permanent" open={drawerOpen}>
                     {logo}
                     {drawer}
-                    {drawerOpen && (
-                        <Link
-                            href="https://github.com/belivvr"
-                            target="_blank"
-                            style={{ position: 'absolute', bottom: '10%', left: '40px', fontWeight: '600' }}
-                        >
-                            GITHUB
-                        </Link>
-                    )}
                 </MiniDrawerStyled>
             )}
         </Box>

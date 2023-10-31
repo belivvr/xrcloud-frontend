@@ -54,7 +54,11 @@ const Login = () => {
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
                                         <Grid item sx={{ mb: 1 }}>
-                                            <LinkTitle href="/" aria-label="theme-logo" sx={{ textDecoration: 'none', color: '#000' }}>
+                                            <LinkTitle
+                                                href="/projects"
+                                                aria-label="theme-logo"
+                                                sx={{ textDecoration: 'none', color: '#000' }}
+                                            >
                                                 {/* <Logo /> */}
                                                 <Box
                                                     component="span"

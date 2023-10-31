@@ -69,7 +69,7 @@ const Header = () => {
                     }}
                 >
                     {/* <LogoSection /> */}
-                    XRCLOUD
+                    XRCLOUD 1.0
                 </Box>
                 {layout === LAYOUT_CONST.VERTICAL_LAYOUT}
                 {(layout === LAYOUT_CONST.VERTICAL_LAYOUT || (layout === LAYOUT_CONST.HORIZONTAL_LAYOUT && matchDownMd)) && (
@@ -95,67 +95,10 @@ const Header = () => {
                 )}
             </Box>
 
-            <Box sx={{ display: matchDownMd ? 'none' : 'flex', gap: '50px' }}>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                    component={Link}
-                    href="/news"
-                >
-                    {localization['header-news']}
-                </Button>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                    component={Link}
-                    href="/price-plan"
-                >
-                    {localization['header-price']}
-                </Button>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                    component={Link}
-                    href={`https://api.xrcloud.app/docs/${locale}`}
-                    target="_blank"
-                >
-                    {localization['header-api']}
-                </Button>
-                <Button
-                    sx={{
-                        alignItems: 'center',
-                        transition: 'all .2s ease-in-out',
-                        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-                        fontWeight: 600
-                    }}
-                    component={Link}
-                    href="https://discord.gg/h7wr75AuDd"
-                    target="_blank"
-                >
-                    {localization['header-community']}
-                </Button>
-            </Box>
             {/* live customization & localization */}
             <Box sx={{ display: { xs: 'flex', sm: 'flex' }, alignItems: 'center', marginRight: '24px', gap: '20px' }}>
                 {!matchDownSm && (
                     <>
-                        {window.location.pathname === '/ko' ||
-                        window.location.pathname === '/en' ||
-                        window.location.pathname === '/' ? null : (
-                            <LocalizationSection />
-                        )}
                         {user ? (
                             <ProfileSection />
                         ) : (

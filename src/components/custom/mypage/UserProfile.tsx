@@ -5,10 +5,9 @@ import React, { useEffect, useState } from 'react'
 interface Props {
     email: string
     receivedApiKey: string | undefined
-    generateApiKey: () => Promise<void>
 }
 
-export function UserProfile({ email, receivedApiKey, generateApiKey }: Props) {
+export function UserProfile({ email, receivedApiKey }: Props) {
     const [value, setValue] = useState(receivedApiKey)
 
     useEffect(() => {
@@ -30,12 +29,6 @@ export function UserProfile({ email, receivedApiKey, generateApiKey }: Props) {
                         </Grid>
                     </Grid>
                 </Grid>
-                <div style={{ display: 'flex', alignItems: 'center', height: '50px', marginTop: '20px', gap: '10px' }}>
-                    <TextField disabled value={value} fullWidth />
-                    <Button onClick={generateApiKey} variant="contained" style={{ width: '200px', height: '100%' }}>
-                        GENERATE API KEY
-                    </Button>
-                </div>
             </Grid>
         </Grid>
     )
