@@ -164,15 +164,13 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
     const generateApiKey = async () => {
         const accessToken = window.localStorage.getItem('accessToken')
-        const { apiKey } = await post<GenerateApiKey>(
-            `/api/admins/generateApiKey`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
+        const { id } = await getProfile()
+
+        const { apiKey } = await post<GenerateApiKey>(`/api/admins/generateApiKey?adminId=${id}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
             }
-        )
+        })
         setReceivedApiKey(apiKey)
         if (apiKey) {
             localStorage.setItem('apiKey', apiKey)

@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const data = await axios.post(
-                `${process.env.NODE_LOCAL_SERVER}/admins/generate-api-key`,
+                `${process.env.NODE_LOCAL_SERVER}/admins/${req.query.adminId}/generate-api-key`,
                 {},
                 {
                     headers: {
