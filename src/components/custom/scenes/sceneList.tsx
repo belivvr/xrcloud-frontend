@@ -60,7 +60,7 @@ const SceneList = ({ project, sceneList, isDeleteMode, setSceneList }: Props) =>
             <EnterServiceButton
                 onClick={async () => {
                     if (project) {
-                        router.push(`${project.sceneCreationUrl}&callback=${window.location.host}${window.location.pathname}`)
+                        window.open(`${project.sceneCreationUrl}&callback=${window.location.host}${window.location.pathname}`)
                     }
                 }}
             >

@@ -115,12 +115,12 @@ const Rooms = ({ locale }: Props) => {
 
     const handleEnterRoomByHost = async () => {
         const data = await updateSelectedRoom()
-        if (data) router.push(data.roomUrl.host)
+        if (data) window.open(data.roomUrl.host)
     }
 
     const handleEnterRoomByGuest = async () => {
         const data = await updateSelectedRoom()
-        if (data) router.push(data.roomUrl.guest)
+        if (data) window.open(data.roomUrl.guest)
     }
 
     const handleClickRoom = (room: Room) => {
