@@ -72,15 +72,15 @@ export const ThumbnailInputBox = styled.div<{ htmlFor?: string }>`
     margin-right: 8px;
 `
 
-export const ImagePreview = styled.img<{ src?: string }>`
+export const ImagePreview = styled.img<{ src?: string; isHeight?: boolean }>`
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
     object-fit: contain;
     border-radius: 8px;
     margin: 8px;
+    height: ${({ isHeight }) => (isHeight ? '100%' : 'auto')};
 `
 
 export const UploadName = styled.input`

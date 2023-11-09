@@ -8,15 +8,17 @@ import { ImagePreview, ThumbnailBox } from '../styles/styled'
 interface Props extends UploaderProps {
     tableName: string
     thumbnailUrl: string
+    isHeight?: boolean
 }
 
-export function InputFiles({ htmlFor, tableName, thumbnailUrl, setFile, setThumbnailUrl }: Props) {
+export function InputFiles({ htmlFor, tableName, isHeight, thumbnailUrl, setFile, setThumbnailUrl }: Props) {
     return (
         <TableRow>
             <TableCell>{tableName}</TableCell>
             <TableCell>
                 <ThumbnailBox>
                     <ImagePreview
+                        isHeight={true}
                         src={cacheRemove(thumbnailUrl)}
                         alt="Favicon Preview"
                         onError={(props) => {

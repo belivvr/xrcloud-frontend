@@ -31,7 +31,7 @@ export const FileUploader: React.FC<UploaderProps> = ({ htmlFor, setThumbnailUrl
                 <InputFile
                     type="file"
                     name="file"
-                    accept="image/jpg"
+                    accept="*"
                     id={htmlFor}
                     style={{ display: 'flex', flexDirection: 'row-reverse' }}
                     onChange={onFileChange}

@@ -44,6 +44,7 @@ export const AddProjectForm = () => {
                     thumbnailUrl={logoThumbnailUrl}
                     setFile={setLogoFile}
                     setThumbnailUrl={setLogoThumbnailUrl}
+                    isHeight={true}
                 />
                 <TableRow>
                     <TableCell sx={{ borderBottom: 'none', textAlign: 'center' }} colSpan={2}>

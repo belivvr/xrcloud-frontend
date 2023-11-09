@@ -5,6 +5,16 @@ import Layout from 'layout'
 import { AddProjectForm } from 'components/custom/addprojectForm'
 
 const AddProject = () => {
+    const [loading, setLoading] = React.useState(true)
+
+    React.useEffect(() => {
+        setLoading(false)
+    }, [])
+
+    if (loading) {
+        return <></>
+    }
+
     return (
         <Page title="Add project">
             <MainCard title="Add project">

@@ -54,6 +54,20 @@ export function useProject() {
         formData.append('favicon', faviconFile)
         formData.append('logo', logoFile)
 
+        if (logoFile.size > 1000000) {
+            enqueueSnackbar(`${locale === 'en' ? 'Logo' : '로고'} ${localization['file-size-error']}`, {
+                variant: 'error'
+            })
+            return
+        }
+
+        if (faviconFile.size > 1000000) {
+            enqueueSnackbar(`${locale === 'en' ? 'Favicon' : '파비콘'} ${localization['file-size-error']}`, {
+                variant: 'error'
+            })
+            return
+        }
+
         let requestOptions = createRequestOptions('POST', accessToken, formData)
 
         const data = await fetch('/api/projects/create', requestOptions)
