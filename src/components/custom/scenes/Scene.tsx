@@ -33,7 +33,7 @@ export default function Scene({ scene, isDeleteMode, handleOpen, setSelectedScen
                     overflow: 'hidden'
                 }}
                 onClick={async () => {
-                    router.push(`${scene.sceneModificationUrl}&callback=${window.location.host}${window.location.pathname}`)
+                    window.open(`${scene.sceneModificationUrl}&callback=${window.location.host}${window.location.pathname}`)
                 }}
             >
                 <img
