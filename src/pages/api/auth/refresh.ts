@@ -5,9 +5,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const data = await axios.post(`${process.env.NODE_LOCAL_SERVER}/auth/refresh`, {
-                refreshToken: req.body.refreshToken
+                refreshToken: req.body.params.refreshToken
             })
-
             res.status(data.status).send(data.data)
         } catch (e: any) {
             res.status(e.response.data.statusCode).send(e.response.data.message)
