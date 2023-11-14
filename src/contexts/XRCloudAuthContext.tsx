@@ -1,25 +1,14 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react'
 
-// third-party
-import jwtDecode from 'jwt-decode'
-
-// constant
-
-// reducer - state management
 import { LOGIN, LOGOUT } from 'store/actions'
 import accountReducer from 'store/accountReducer'
 
 // project imports
-import Loader from 'ui-component/Loader'
 import axios from 'utils/axios'
-import { InitialLoginContextProps, KeyedObject } from 'types'
+import { InitialLoginContextProps } from 'types'
 import { AuthProfileResponse, AuthResponseToken, CreateUser, GenerateApiKey, XRCloudAuthContextType } from 'types/auth'
-import { Tokens, useRefresh } from 'hooks/useRefresh'
 import { useRequest } from 'hooks/useRequest'
 
-type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
-
-// constant
 const initialState: InitialLoginContextProps = {
     isLoggedIn: false,
     isInitialized: false,
@@ -29,26 +18,6 @@ const initialState: InitialLoginContextProps = {
 const user = {
     email: 'admin@admin.com',
     role: 'admin'
-}
-
-const verifyToken: VerifyToken = async (accessToken, renewToken) => {
-    if (!accessToken) {
-        return false
-    }
-    const decoded: KeyedObject = jwtDecode(accessToken)
-    /**
-     * Property 'exp' does not exist on type '<T = unknown>(token: string, options?: JwtDecodeOptions | undefined) => T'.
-     */
-    if (decoded.exp > Date.now() / 1000) {
-        return true
-    } else {
-        try {
-            await renewToken()
-            return true
-        } catch (err) {
-            return false
-        }
-    }
 }
 
 const setSession = (accessToken?: string | null, refreshToken?: string | null) => {
@@ -70,40 +39,25 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
     const [receivedApiKey, setReceivedApiKey] = useState<string>()
     const [adminId, setAdminId] = useState<string>('')
-    const { renewTokens } = useRefresh()
     const { get, post, patch, deleteRequest } = useRequest()
 
     useEffect(() => {
         const init = async () => {
-            try {
-                const checkToken = window.localStorage.getItem('accessToken')
-                if (checkToken) {
-                    const isTokenValid = await verifyToken(checkToken, renewTokens)
-                    if (!isTokenValid) throw new Error('Invalid token')
-                    const accessToken = window.localStorage.getItem('accessToken')
-                    const refreshToken = window.localStorage.getItem('refreshToken')
-
-                    setSession(accessToken, refreshToken)
-                    dispatch({
-                        type: LOGIN,
-                        payload: {
-                            isLoggedIn: true,
-                            user
-                        }
-                    })
-                } else {
-                    dispatch({
-                        type: LOGOUT
-                    })
-                }
-            } catch (err) {
-                setSession(null, null)
+            const checkToken = window.localStorage.getItem('accessToken')
+            if (checkToken) {
+                dispatch({
+                    type: LOGIN,
+                    payload: {
+                        isLoggedIn: true,
+                        user
+                    }
+                })
+            } else {
                 dispatch({
                     type: LOGOUT
                 })
             }
         }
-
         init()
     }, [])
 
@@ -150,7 +104,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         const accessToken = window.localStorage.getItem('accessToken')
         const profile = await get<AuthProfileResponse>(`/api/auth/profile`, {
             headers: {
-                Authorization: `Bearer ${accessToken}`
+                Authorization: `bearer ${accessToken}`
             }
         })
 

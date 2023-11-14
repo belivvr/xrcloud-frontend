@@ -22,12 +22,19 @@ export function useRequest() {
         } catch (err: any) {
             if (err.response?.status === 401) {
                 const { accessToken } = await renewTokens()
-                const newParams = Object.assign(init?.params, { accessToken })
                 if (method === 'get' || method === 'delete') {
-                    const response = await axios[method](path, { ...init, params: newParams })
+                    const response = await axios[method](path, {
+                        ...init,
+                        params: init?.params,
+                        headers: { Authorization: `bearer ${accessToken}` }
+                    })
                     return response.data
                 } else {
-                    const response = await axios[method](path, body, { ...init, params: newParams })
+                    const response = await axios[method](path, body, {
+                        ...init,
+                        params: init?.params,
+                        headers: { Authorization: `bearer ${accessToken}` }
+                    })
                     return response.data
                 }
             }
