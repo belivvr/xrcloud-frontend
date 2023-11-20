@@ -27,8 +27,8 @@ export interface Room {
     roomSize: number
     autoScale: boolean
     roomUrl: {
-        guest: URL
-        host: URL
+        static: { guest: URL; host: URL }
+        public: { guest: URL; host: URL }
     }
     thumbnailUrl: URL
     returnUrl: URL
