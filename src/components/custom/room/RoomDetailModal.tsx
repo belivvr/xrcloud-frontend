@@ -99,11 +99,11 @@ export default function RoomDetailModal({
                 </div>
                 <div>
                     <span>HOST URL ) </span>
-                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl.host}</span>
+                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl.public.host}</span>
                 </div>
                 <div>
                     <span>GUEST URL ) </span>
-                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl.guest}</span>
+                    <span style={{ fontWeight: 700 }}>{selectedRoom?.roomUrl.public.guest}</span>
                 </div>
                 <TextField
                     inputProps={{
