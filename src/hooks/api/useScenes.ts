@@ -42,7 +42,7 @@ export function useScenes() {
         })
     }
 
-    const createScene = () => {
+    const createScene = (projectId: string) => {
         if (!validateProject() || !choicedProject) {
             return Promise.reject(new Error(localization['scene-select-no-project']))
         }

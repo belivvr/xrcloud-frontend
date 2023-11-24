@@ -1,9 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { RouteKind } from 'next/dist/server/future/route-kind'
+import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { useRefresh } from './useRefresh'
 
 export function useRequest() {
     const { renewTokens } = useRefresh()
+    const router = useRouter()
 
     const request = useCallback(async function <T>(
         method: 'get' | 'post' | 'patch' | 'delete',
@@ -21,21 +24,25 @@ export function useRequest() {
             }
         } catch (err: any) {
             if (err.response?.status === 401) {
-                const { accessToken } = await renewTokens()
-                if (method === 'get' || method === 'delete') {
-                    const response = await axios[method](path, {
-                        ...init,
-                        params: init?.params,
-                        headers: { Authorization: `bearer ${accessToken}` }
-                    })
-                    return response.data
-                } else {
-                    const response = await axios[method](path, body, {
-                        ...init,
-                        params: init?.params,
-                        headers: { Authorization: `bearer ${accessToken}` }
-                    })
-                    return response.data
+                try {
+                    const { accessToken } = await renewTokens()
+                    if (method === 'get' || method === 'delete') {
+                        const response = await axios[method](path, {
+                            ...init,
+                            params: init?.params,
+                            headers: { Authorization: `bearer ${accessToken}` }
+                        })
+                        return response.data
+                    } else {
+                        const response = await axios[method](path, body, {
+                            ...init,
+                            params: init?.params,
+                            headers: { Authorization: `bearer ${accessToken}` }
+                        })
+                        return response.data
+                    }
+                } catch {
+                    // router.push('/login')
                 }
             }
             throw err

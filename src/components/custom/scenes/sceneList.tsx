@@ -22,7 +22,7 @@ const SceneList = ({ project, sceneList, isDeleteMode, setSceneList }: Props) =>
     const localization = useLocalization(locale)
     const [modalOpen, setModalOpen] = useState(false)
     const [selectedSceneId, setSelectedSceneId] = useState('')
-    const { getScenes, deleteScene } = useScenes()
+    const { getScenes, deleteScene, createScene } = useScenes()
 
     const handleOpen = () => setModalOpen(true)
     const handleClose = () => setModalOpen(false)
@@ -60,7 +60,8 @@ const SceneList = ({ project, sceneList, isDeleteMode, setSceneList }: Props) =>
             <EnterServiceButton
                 onClick={async () => {
                     if (project) {
-                        router.push(`${project.sceneCreationUrl}&callback=${window.location.host}${window.location.pathname}`)
+                        const { sceneCreationUrl } = await createScene(project.id)
+                        router.push(`${sceneCreationUrl}&callback=${window.location.host}${window.location.pathname}`)
                     }
                 }}
             >
