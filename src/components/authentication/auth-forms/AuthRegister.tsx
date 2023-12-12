@@ -86,7 +86,7 @@ const JWTRegister = ({ ...others }) => {
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required']),
                     password: Yup.string()
-                        .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/, localization['password-validity'])
+                        .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*+=-])[A-Za-z\d!@#$%^&*+=-]{8,}$/, localization['password-validity'])
                         .max(255)
                         .required(localization['password-required'])
                 })}
