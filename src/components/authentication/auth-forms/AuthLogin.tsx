@@ -95,9 +95,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
                     <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-login">
-                            {localization['email-address']} / {localization.username}
-                        </InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-email-login">{localization['email-address']}</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-email-login"
                             type="email"
