@@ -191,5 +191,6 @@
     "withdraw-contents": "If you withdraw your membership, all Project, Scene, and Room information you have will be lost, \n and you will not be able to recover the data.",
     "withdraw-contents2": "Are you sure you want to withdraw your membership?",
 
-    "file-size-error": "The file cannot be larger than 1 MB in size."
+    "file-size-error": "The file cannot be larger than 1 MB in size.",
+    "file-must-image": "This file is not an image file."
 }

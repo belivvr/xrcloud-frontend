@@ -139,7 +139,7 @@ const AuthForgotPassword = ({ ...others }) => {
                     </FormControl>
 
                     <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-password-forgot">{localization['password']}</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-password-forgot">{localization.password}</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password-forgot"
                             type="password"
@@ -166,7 +166,7 @@ const AuthForgotPassword = ({ ...others }) => {
                                 variant="contained"
                                 color="secondary"
                             >
-                                {localization['modify']}
+                                {localization.modify}
                             </Button>
                         </AnimateButton>
                     </Box>

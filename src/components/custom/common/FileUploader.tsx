@@ -15,6 +15,13 @@ export const FileUploader: React.FC<UploaderProps> = ({ htmlFor, setThumbnailUrl
         const file = e.target.files?.[0]
 
         if (!file) return
+
+        const fileType = file.type
+        if (!fileType.includes('image')) {
+            alert(localization['file-must-image'])
+            return
+        }
+
         setFile(file)
 
         setThumbnailUrl(URL.createObjectURL(file))
