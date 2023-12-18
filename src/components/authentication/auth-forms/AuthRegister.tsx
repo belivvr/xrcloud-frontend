@@ -207,7 +207,7 @@ const JWTRegister = ({ ...others }) => {
                                             variant="subtitle1"
                                             component={Link}
                                             target="_blank"
-                                            href="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80%20%EB%B0%8F%20%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%20%EC%9D%B4%EC%9A%A9%EC%95%88%EB%82%B4.pdf"
+                                            href="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80%20%EB%B0%8F%20%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%20%EC%9D%B4%EC%9A%A9%EC%95%88%EB%82%B4_231218.pdf"
                                         >
                                             {localization['agree-term']}
                                         </Typography>

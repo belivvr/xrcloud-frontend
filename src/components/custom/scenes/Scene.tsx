@@ -57,7 +57,7 @@ export default function Scene({ scene, isDeleteMode, handleOpen, setSelectedScen
                 }}
             >
                 <div style={{ marginBottom: '5px' }}>
-                    <span>Name ) </span>
+                    <span>이름 ) </span>
                     <span style={{ fontWeight: 700 }}>{scene.name}</span>
                 </div>
                 <div style={{ marginBottom: '5px' }}>
