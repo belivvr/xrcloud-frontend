@@ -118,6 +118,14 @@ const Login = () => {
                                                 >
                                                     {localization['dont-account']}
                                                 </Typography>
+                                                <Typography
+                                                    component={Link}
+                                                    href="/forgot"
+                                                    variant="subtitle1"
+                                                    sx={{ textDecoration: 'none' }}
+                                                >
+                                                    {localization['forgot-password']}
+                                                </Typography>
                                             </Grid>
                                         </Grid>
                                     </Grid>

@@ -15,6 +15,12 @@ import { openSnackbar } from 'store/slices/snackbar'
 
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+
+import { useRequest } from 'hooks/useRequest'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useRef } from 'react'
+
 // ========================|| FIREBASE - FORGOT PASSWORD ||======================== //
 
 const AuthForgotPassword = ({ ...others }) => {
@@ -23,41 +29,37 @@ const AuthForgotPassword = ({ ...others }) => {
     const dispatch = useDispatch()
     const { locale } = useConfig()
     const localization = useLocalization(locale)
-
+    const { post } = useRequest()
     const { resetPassword } = useAuth()
+    const router = useRouter()
+
+    const otpInputRef = useRef<HTMLLabelElement>(null)
 
     return (
         <Formik
             initialValues={{
                 email: '',
+                otp: '',
                 password: '',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required'])
+                email: Yup.string().email(localization['valid-email']).max(255).required(localization['email-required']),
+                otp: Yup.string().required(),
+                password: Yup.string()
+                    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*+=-])[A-Za-z\d!@#$%^&*+=-]{9,}$/, localization['password-validity'])
+                    .max(255)
+                    .required(localization['password-required'])
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
-                    await resetPassword(values.email)
+                    await axios.post(`/api/admins/reset-password`, {
+                        code: values.otp,
+                        email: values.email,
+                        password: values.password
+                    })
 
-                    if (scriptedRef.current) {
-                        setStatus({ success: true })
-                        setSubmitting(false)
-                        dispatch(
-                            openSnackbar({
-                                open: true,
-                                message: localization['check-reset-link'],
-                                variant: 'alert',
-                                alert: {
-                                    color: 'success'
-                                },
-                                close: false
-                            })
-                        )
-                        setTimeout(() => {
-                            window.location.replace('/login')
-                        }, 1500)
-                    }
+                    router.push(`/login`)
                 } catch (err: any) {
                     console.error(err)
                     if (scriptedRef.current) {
@@ -71,9 +73,7 @@ const AuthForgotPassword = ({ ...others }) => {
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
                     <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-forgot">
-                            {localization['email-address']} / {localization.username}
-                        </InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-email-forgot">{localization['email-address']}</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-email-forgot"
                             type="email"
@@ -100,6 +100,65 @@ const AuthForgotPassword = ({ ...others }) => {
                         <AnimateButton>
                             <Button
                                 disableElevation
+                                disabled={Boolean(errors.email)}
+                                fullWidth
+                                size="large"
+                                variant="contained"
+                                color="secondary"
+                                onClick={async () => {
+                                    try {
+                                        await axios.post(`/api/admins/find-password`, { email: values.email })
+
+                                        otpInputRef.current?.focus()
+                                    } catch (err: any) {}
+                                }}
+                            >
+                                {localization['send-mail']}
+                            </Button>
+                        </AnimateButton>
+                    </Box>
+
+                    <FormControl fullWidth error={Boolean(touched.otp && errors.otp)} sx={{ ...theme.typography.customInput }}>
+                        <InputLabel htmlFor="outlined-adornment-otp-forgot" ref={otpInputRef}>
+                            OTP
+                        </InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-otp-forgot"
+                            type="text"
+                            value={values.otp}
+                            name="otp"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            inputProps={{}}
+                        />
+                        {touched.otp && errors.otp && (
+                            <FormHelperText error id="standard-weight-helper-text-email-forgot">
+                                {errors.otp}
+                            </FormHelperText>
+                        )}
+                    </FormControl>
+
+                    <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
+                        <InputLabel htmlFor="outlined-adornment-password-forgot">{localization['password']}</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password-forgot"
+                            type="password"
+                            value={values.password}
+                            name="password"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            inputProps={{}}
+                        />
+                        {touched.password && errors.password && (
+                            <FormHelperText error id="standard-weight-helper-text-email-forgot">
+                                {errors.password}
+                            </FormHelperText>
+                        )}
+                    </FormControl>
+                    <Box sx={{ mt: 2 }}>
+                        <AnimateButton>
+                            <Button
+                                disableElevation
                                 disabled={isSubmitting}
                                 fullWidth
                                 size="large"
@@ -107,7 +166,7 @@ const AuthForgotPassword = ({ ...others }) => {
                                 variant="contained"
                                 color="secondary"
                             >
-                                {localization['send-mail']}
+                                {localization['modify']}
                             </Button>
                         </AnimateButton>
                     </Box>

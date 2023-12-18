@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Link from 'Link'
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -16,6 +16,7 @@ import AuthFooter from 'ui-component/cards/AuthFooter'
 
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import useChoicedProject from 'hooks/useChoicedProject'
 
 // ============================|| AUTH3 - FORGOT PASSWORD ||============================ //
 
@@ -24,6 +25,19 @@ const ForgotPassword = () => {
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'))
     const { locale } = useConfig()
     const localization = useLocalization(locale)
+
+    const { choicedProject, choicedScene, setChoicedProject, setChoicedScene } = useChoicedProject()
+
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        if (choicedProject) setChoicedProject(undefined)
+        if (choicedScene) setChoicedScene(undefined)
+        if (loading) setLoading(false)
+        localStorage.removeItem('adminId')
+    }, [])
+
+    if (loading) return <></>
 
     return (
         <Page title="Forgot Password">
