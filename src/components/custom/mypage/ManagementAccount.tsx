@@ -34,6 +34,10 @@ export default function ManagementAccount() {
             return alert(localization['error-alert-change-password2'])
         }
 
+        if (checkSamePassword(oldPassword, newPassword)) {
+            return alert(localization['error-alert-change-password5'])
+        }
+
         try {
             await updatePassword(oldPassword, newPassword)
             resetPasswords()

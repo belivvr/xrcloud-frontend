@@ -100,7 +100,7 @@
 
     "valid-email": "Must be a valid email",
     "email-required": "Email is required",
-    "password-validity": "Please enter a combination of at least 8 alphanumeric characters, numbers, and special characters",
+    "password-validity": "Please enter a combination of at least 9 alphanumeric characters, numbers, and special characters",
     "password-required": "Password is required",
     "already-have-email": "This is the email address you are already signed up with",
 
@@ -184,7 +184,8 @@
     "error-alert-change-password": "Please enter your password",
     "error-alert-change-password2": "Please enter the same password to change.",
     "error-alert-change-password3": "Password does not match.",
-    "error-alert-change-password4": "Password must be at least 6 characters long",
+    "error-alert-change-password4": "Please enter a combination of at least 9 letters, numbers, and special characters",
+    "error-alert-change-password5": "New password must be different from the old password.",
 
     "withdraw": "Member Withdrawal",
     "withdraw-contents": "If you withdraw your membership, all Project, Scene, and Room information you have will be lost, \n and you will not be able to recover the data.",

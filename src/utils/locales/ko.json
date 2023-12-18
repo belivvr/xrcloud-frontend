@@ -100,7 +100,7 @@
 
     "valid-email": "유효한 이메일 형식이어야 합니다",
     "email-required": "이메일은 필수 입력 사항입니다",
-    "password-validity": "8글자 이상 염문자, 숫자, 특수문자를 조합해서 입력하세요",
+    "password-validity": "9글자 이상 염문자, 숫자, 특수문자를 조합해서 입력하세요",
     "password-required": "비밀번호는 필수 입력 사항입니다",
     "already-have-email": "이미 가입된 이메일 주소입니다",
     "sign-up": "회원가입",
@@ -184,7 +184,8 @@
     "error-alert-change-password": "비밀번호를 입력해주세요.",
     "error-alert-change-password2": "변경할 비밀번호를 동일하게 입력해주세요.",
     "error-alert-change-password3": "비밀번호가 일치하지 않습니다.",
-    "error-alert-change-password4": "비밀번호는 6자 이상이어야 합니다.",
+    "error-alert-change-password4": "9글자 이상 염문자, 숫자, 특수문자를 조합해서 입력하세요.",
+    "error-alert-change-password5": "새 암호는 이전 암호와 달라야 합니다.",
 
     "withdraw": "회원탈퇴",
     "withdraw-contents": "회원 탈퇴를 하게되면, 가지고 있는 모든 Project, Scene, Room 정보가 사라지게 되고, \n 데이터를 복구할 수 없습니다.",
