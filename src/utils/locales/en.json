@@ -192,5 +192,6 @@
     "withdraw-contents2": "Are you sure you want to withdraw your membership?",
 
     "file-size-error": "The file cannot be larger than 1 MB in size.",
-    "file-must-image": "This file is not an image file."
+    "file-must-image": "This file is not an image file.",
+    "manual": "User Manual"
 }

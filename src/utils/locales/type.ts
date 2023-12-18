@@ -177,4 +177,5 @@ export interface Localization {
     'error-alert-change-password5': string
 
     'withdraw-contents2': string
+    manual: string
 }
