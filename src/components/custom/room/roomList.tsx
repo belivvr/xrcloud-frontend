@@ -115,7 +115,7 @@ const RoomList = ({ isDeleteMode, roomList, sceneId, setRoomList, handleClickRoo
                                 }}
                             >
                                 <div style={{ marginBottom: '5px' }}>
-                                    <span>Name ) </span>
+                                    <span>이름 ) </span>
                                     <span>{room.name}</span>
                                 </div>
                                 <div style={{ marginBottom: '5px' }}>
