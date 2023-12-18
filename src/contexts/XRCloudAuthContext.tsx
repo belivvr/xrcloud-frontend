@@ -16,6 +16,7 @@ import { InitialLoginContextProps, KeyedObject } from 'types'
 import { AuthProfileResponse, AuthResponseToken, CreateUser, GenerateApiKey, XRCloudAuthContextType } from 'types/auth'
 import { Tokens, useRefresh } from 'hooks/useRefresh'
 import { useRequest } from 'hooks/useRequest'
+import { useRouter } from 'next/router'
 
 type VerifyToken = (st: string, renewToken: () => Promise<Tokens>) => Promise<boolean>
 
@@ -70,6 +71,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState)
     const [receivedApiKey, setReceivedApiKey] = useState<string>()
     const [adminId, setAdminId] = useState<string>('')
+    const router = useRouter()
     const { renewTokens } = useRefresh()
     const { get, post, patch, deleteRequest } = useRequest()
 
@@ -78,8 +80,12 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             try {
                 const checkToken = window.localStorage.getItem('accessToken')
                 if (checkToken) {
-                    const isTokenValid = await verifyToken(checkToken, renewTokens)
-                    if (!isTokenValid) throw new Error('Invalid token')
+                    await get<AuthProfileResponse>(`/api/auth/profile`, {
+                        headers: {
+                            Authorization: `Bearer ${checkToken}`
+                        }
+                    })
+
                     const accessToken = window.localStorage.getItem('accessToken')
                     const refreshToken = window.localStorage.getItem('refreshToken')
 
@@ -98,6 +104,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                 }
             } catch (err) {
                 setSession(null, null)
+                router.push('/login')
                 dispatch({
                     type: LOGOUT
                 })

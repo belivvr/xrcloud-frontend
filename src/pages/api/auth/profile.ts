@@ -9,11 +9,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     Authorization: req.headers.authorization
                 }
             })
-            res.status(data.status).send(data.data)
+            return res.status(data.status).send(data.data)
         } catch (e: any) {
-            res.status(e.response.data.statusCode).send(e.response.data.message)
+            return res.status(e.response.data.statusCode).send(e.response.data.message)
         }
     } else {
-        res.status(500).send('Wrong method')
+        return res.status(500).send('Wrong method')
     }
 }
