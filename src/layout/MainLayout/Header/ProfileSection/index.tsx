@@ -62,7 +62,10 @@ const ProfileSection = () => {
     const anchorRef = useRef<any>(null)
     const handleLogout = async () => {
         try {
-            await logout()
+            logout()
+            window.localStorage.removeItem('accessToken')
+            window.localStorage.removeItem('refreshToken')
+            router.push('/login')
         } catch (err) {
             console.error(err)
         }
