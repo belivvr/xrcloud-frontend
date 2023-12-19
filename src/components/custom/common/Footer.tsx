@@ -37,14 +37,14 @@ export function Footer() {
                     <Link
                         style={{ textDecoration: 'none' }}
                         target={'_blank'}
-                        href="https://belivvr.notion.site/578e4cc99c4b4127a1a789be096786c4?pvs=4"
+                        href="https://belivvr.notion.site/XRCLOUD-1-0-9505c89fe1cf480f83e1b5a2fb3512eb"
                     >
                         {localization['terms-of-use']}
                     </Link>
                     <Link
                         style={{ textDecoration: 'none' }}
                         target={'_blank'}
-                        href="https://belivvr.notion.site/18ef753bf75342acb85637310a24d9c7?pvs=4"
+                        href="https://www.notion.so/belivvr/3d4b078619904e51b3a9f44d844f4e79"
                     >
                         {localization['privacy-policy']}
                     </Link>
