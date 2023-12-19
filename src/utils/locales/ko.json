@@ -185,7 +185,7 @@
     "error-alert-change-password2": "변경할 비밀번호를 동일하게 입력해주세요.",
     "error-alert-change-password3": "비밀번호가 일치하지 않습니다.",
     "error-alert-change-password4": "9글자 이상 영문자, 숫자, 특수문자를 조합해서 입력하세요.",
-    "error-alert-change-password5": "새 암호는 이전 암호와 달라야 합니다.",
+    "error-alert-change-password5": "새 비밀번호는 이전 비밀번호와 달라야 합니다.",
 
     "withdraw": "회원탈퇴",
     "withdraw-contents": "회원 탈퇴를 하게되면, 가지고 있는 모든 Project, Scene, Room 정보가 사라지게 되고, \n 데이터를 복구할 수 없습니다.",

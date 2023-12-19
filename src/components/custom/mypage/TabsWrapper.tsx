@@ -18,11 +18,6 @@ export default function TabsWrapper({ value, handleChange }: Props) {
 
     const tabsOption = [
         {
-            label: localization.profile,
-            icon: <PersonOutlineTwoToneIcon />,
-            caption: localization['profile-caption']
-        },
-        {
             label: localization.account,
             icon: <TuneIcon />,
             caption: localization['account-caption']

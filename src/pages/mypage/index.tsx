@@ -12,10 +12,10 @@ const Mypage = () => {
     const { receivedApiKey, getProfile } = useAuth()
     const [loading, setLoading] = useState(true)
 
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState(1)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue)
+        setValue(1)
     }
 
     useEffect(() => {

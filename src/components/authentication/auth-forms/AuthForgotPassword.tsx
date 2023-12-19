@@ -80,7 +80,10 @@ const AuthForgotPassword = ({ ...others }) => {
                             value={values.email}
                             name="email"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                if (e.target.value.length > 50) return
+                                handleChange(e)
+                            }}
                             inputProps={{}}
                         />
                         {touched.email && errors.email && (
@@ -128,7 +131,10 @@ const AuthForgotPassword = ({ ...others }) => {
                             value={values.otp}
                             name="otp"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                if (e.target.value.length > 50) return
+                                handleChange(e)
+                            }}
                             inputProps={{}}
                         />
                         {touched.otp && errors.otp && (
@@ -146,7 +152,10 @@ const AuthForgotPassword = ({ ...others }) => {
                             value={values.password}
                             name="password"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                if (e.target.value.length > 50) return
+                                handleChange(e)
+                            }}
                             inputProps={{}}
                         />
                         {touched.password && errors.password && (

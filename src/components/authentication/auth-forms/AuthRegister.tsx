@@ -122,7 +122,10 @@ const JWTRegister = ({ ...others }) => {
                                 value={values.email}
                                 name="email"
                                 onBlur={handleBlur}
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    if (e.target.value.length > 50) return
+                                    handleChange(e)
+                                }}
                                 inputProps={{}}
                             />
                             {touched.email && errors.email && (
@@ -146,6 +149,7 @@ const JWTRegister = ({ ...others }) => {
                                 label={localization.password}
                                 onBlur={handleBlur}
                                 onChange={(e) => {
+                                    if (e.target.value.length > 50) return
                                     handleChange(e)
                                     changePassword(e.target.value)
                                 }}

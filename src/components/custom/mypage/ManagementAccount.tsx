@@ -87,7 +87,10 @@ export default function ManagementAccount() {
                 <div style={{ fontSize: '24px', fontWeight: '700' }}>{localization['change-password']}</div>
                 <TextField
                     value={oldPassword}
-                    onChange={(e) => setOldPassword(e.target.value)}
+                    onChange={(e) => {
+                        if (e.target.value.length > 50) return
+                        setOldPassword(e.target.value)
+                    }}
                     type="password"
                     fullWidth
                     placeholder={localization['change-password-ex']}
@@ -95,7 +98,10 @@ export default function ManagementAccount() {
                 />
                 <TextField
                     value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    onChange={(e) => {
+                        if (e.target.value.length > 50) return
+                        setNewPassword(e.target.value)
+                    }}
                     type="password"
                     fullWidth
                     placeholder={localization['enter-change-password']}
@@ -103,7 +109,10 @@ export default function ManagementAccount() {
                 />
                 <TextField
                     value={repeatPassword}
-                    onChange={(e) => setRepeatPassword(e.target.value)}
+                    onChange={(e) => {
+                        if (e.target.value.length > 50) return
+                        setRepeatPassword(e.target.value)
+                    }}
                     type="password"
                     fullWidth
                     placeholder={localization['re-enter-change-password']}

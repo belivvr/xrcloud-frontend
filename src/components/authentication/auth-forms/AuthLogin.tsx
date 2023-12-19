@@ -102,7 +102,10 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                             value={values.email}
                             name="email"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                if (e.target.value.length > 50) return
+                                handleChange(e)
+                            }}
                             inputProps={{}}
                         />
                         {touched.email && errors.email && (
@@ -120,7 +123,10 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                             value={values.password}
                             name="password"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                if (e.target.value.length > 50) return
+                                handleChange(e)
+                            }}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
