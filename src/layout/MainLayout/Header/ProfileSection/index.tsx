@@ -38,6 +38,8 @@ import useAuth from 'hooks/useAuth'
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons'
 import useConfig from 'hooks/useConfig'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { useRequest } from 'hooks/useRequest'
 
 const User1 = '/assets/images/users/user-round.svg'
 
@@ -53,6 +55,7 @@ const ProfileSection = () => {
     const [notification, setNotification] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState(-1)
     const { logout, user } = useAuth()
+    const { post } = useRequest()
     const [open, setOpen] = useState(false)
     const router = useRouter()
 
@@ -62,6 +65,15 @@ const ProfileSection = () => {
     const anchorRef = useRef<any>(null)
     const handleLogout = async () => {
         try {
+            await post(
+                '/api/auth/logout',
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.accessToken}`
+                    }
+                }
+            )
             logout()
             window.localStorage.removeItem('accessToken')
             window.localStorage.removeItem('refreshToken')
