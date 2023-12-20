@@ -67,12 +67,20 @@ export function useProject() {
         let requestOptions = createRequestOptions('POST', accessToken, formData)
 
         const data = await fetch('/api/projects/create', requestOptions)
+
         if (data.status === 401) {
             const retoken = await renewTokens()
             requestOptions = createRequestOptions('POST', retoken.accessToken, formData)
             await fetch('/api/projects/create', requestOptions)
         }
 
+        const { statusCode } = await data.json()
+        if (statusCode === 400) {
+            enqueueSnackbar('Webhook URL 주소가 정확하지 않습니다.', {
+                variant: 'error'
+            })
+            return
+        }
         router.push(`/projects`)
     }
 
@@ -108,6 +116,14 @@ export function useProject() {
             const retoken = await renewTokens()
             requestOptions = createRequestOptions('PATCH', retoken.accessToken, formData)
             await fetch('/api/projects/update', requestOptions)
+        }
+
+        const { statusCode } = await data.json()
+        if (statusCode === 400) {
+            enqueueSnackbar('Webhook URL 주소가 정확하지 않습니다.', {
+                variant: 'error'
+            })
+            return
         }
 
         router.push(`/projects`)

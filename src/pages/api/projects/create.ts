@@ -76,7 +76,7 @@ export default async function handler(req: any, res: any) {
         if (status === 201) {
             return res.status(status).send(data)
         } else {
-            throw res.status(status).send(data)
+            return res.status(status).send(data)
         }
     } else {
         res.status(500).send('Wrong method')
