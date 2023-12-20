@@ -145,7 +145,7 @@ export const KO_JSON = {
     'price-warning': 'XRCLOUD는 현재 데모 기간으로 예기치 않은 오류로 사용자 데이터의 유실이 일어날 수 있습니다.',
     'terms-of-use': '이용약관',
     'privacy-policy': '개인정보 처리방침',
-    manual: '사용자 메뉴얼'
+    'user-instruction-manual': '사용자 취급 설명서'
 }
 
 export const EN_JSON = {
@@ -296,5 +296,5 @@ export const EN_JSON = {
     'price-warning': 'XRCLOUD is currently in a demo period, and unexpected errors can cause user data loss.',
     'terms-of-use': 'Terms of Use',
     'privacy-policy': 'Privacy Policy',
-    manual: 'User Manual'
+    'user-instruction-manual': 'User Instruction Manual'
 }

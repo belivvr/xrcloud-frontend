@@ -48,8 +48,8 @@ export function Footer() {
                     >
                         {localization['privacy-policy']}
                     </Link>
-                    <a style={{ color: '#3f51b5' }} href="/assets/XRCLOUD1.0_GS인증_제품설명서_1120.hwp" download>
-                        {localization.manual}
+                    <a style={{ color: '#3f51b5' }} href="/assets/XRCLOUD1.0_GS인증_사용자취급설명서.hwp" download>
+                        {localization['user-instruction-manual']}
                     </a>
                 </div>
                 <div>{localization['business-license']}</div>

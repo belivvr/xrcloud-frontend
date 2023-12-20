@@ -193,5 +193,5 @@
 
     "file-size-error": "The file cannot be larger than 1 MB in size.",
     "file-must-image": "This file is not an image file.",
-    "manual": "User Manual"
+    "user-instruction-manual": "User Instruction Manual"
 }
