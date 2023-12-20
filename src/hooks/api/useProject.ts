@@ -31,7 +31,13 @@ export function useProject() {
         return response
     }
 
-    const createsProject = async (faviconFile: File | undefined, logoFile: File | undefined, projectName: string, productName: string) => {
+    const createsProject = async (
+        faviconFile: File | undefined,
+        logoFile: File | undefined,
+        projectName: string,
+        productName: string,
+        webhookUrl: string | null
+    ) => {
         const accessToken = localStorage.getItem('accessToken')
 
         if (!projectName) {
@@ -54,6 +60,10 @@ export function useProject() {
         formData.append('favicon', faviconFile)
         formData.append('logo', logoFile)
 
+        if (webhookUrl) {
+            formData.append('webhookUrl', webhookUrl)
+        }
+
         let requestOptions = createRequestOptions('POST', accessToken, formData)
 
         const data = await fetch('/api/projects/create', requestOptions)
@@ -66,7 +76,13 @@ export function useProject() {
         router.push(`/projects`)
     }
 
-    const updateProject = async (projectId: string, projectName: string, faviconFile: File | undefined, logoFile: File | undefined) => {
+    const updateProject = async (
+        projectId: string,
+        projectName: string,
+        webhookUrl: string | null,
+        faviconFile: File | undefined,
+        logoFile: File | undefined
+    ) => {
         const accessToken = localStorage.getItem('accessToken')
 
         const formData = new FormData()
@@ -79,6 +95,10 @@ export function useProject() {
 
         if (logoFile) {
             formData.append('logo', logoFile)
+        }
+
+        if (webhookUrl) {
+            formData.append('webhookUrl', webhookUrl)
         }
 
         let requestOptions = createRequestOptions('PATCH', accessToken, formData)

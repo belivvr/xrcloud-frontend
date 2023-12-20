@@ -23,11 +23,13 @@ export default async function handler(req: any, res: any) {
                 let data: any = {}
                 const id = fields.projectId as string
                 const name = fields.projectName as string
+                const webhookUrl = fields.webhookUrl as string
                 const favicon = files.favicon as any
                 const logo = files.logo as any
 
                 data.id = id
                 data.name = name
+                data.webhookUrl = webhookUrl
                 data.favicon = favicon
                 data.logo = logo
 
@@ -39,10 +41,13 @@ export default async function handler(req: any, res: any) {
 
         const id = fileData.id
         const name = fileData.name
+        const webhookUrl = fileData.webhookUrl
         const favicon = fileData.favicon
         const logo = fileData.logo
 
         formData.append('name', name)
+
+        if (webhookUrl) formData.append('webhookUrl', webhookUrl)
 
         if (favicon) {
             const faviconFilepath = favicon.filepath

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table, TableBody, TableRow, TableCell, SelectChangeEvent } from '@mui/material'
 import { useProject } from 'hooks/api/useProject'
 import { SelectProducts } from '.'
@@ -8,12 +8,14 @@ import { DefaultButton } from '../common/DefaultButton'
 import { InputFiles, InputName } from '../common'
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
+import { InputURL } from '../common/InputURL'
 
 export const AddProjectForm = () => {
     const { locale } = useConfig()
     const localization = useLocalization(locale)
     const [productName, setProductName] = useState<string>('hubs')
     const [projectName, setProjectName] = useState<string>('')
+    const [webhookURL, setWebhookURL] = useState<string | null>(null)
 
     const [faviconThumbnailUrl, setFaviconThumbnailUrl] = useState('')
     const [faviconFile, setFaviconFile] = useState<File | undefined>(undefined)
@@ -25,6 +27,14 @@ export const AddProjectForm = () => {
     const selectProduct = (event: SelectChangeEvent) => {
         setProductName(event.target.value)
     }
+
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        if (loading) setLoading(false)
+    }, [])
+
+    if (loading) return <></>
 
     return (
         <Table>
@@ -45,12 +55,14 @@ export const AddProjectForm = () => {
                     setFile={setLogoFile}
                     setThumbnailUrl={setLogoThumbnailUrl}
                 />
+                <InputURL url={webhookURL} setUrl={setWebhookURL} />
+
                 <TableRow>
                     <TableCell sx={{ borderBottom: 'none', textAlign: 'center' }} colSpan={2}>
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
                             <DefaultButton
                                 text={localization.add}
-                                onClick={() => createsProject(faviconFile, logoFile, projectName, productName)}
+                                onClick={() => createsProject(faviconFile, logoFile, projectName, productName, webhookURL)}
                             />
                             <CancelButton text={localization.cancel} onClick={() => router.back()} />
                         </div>
