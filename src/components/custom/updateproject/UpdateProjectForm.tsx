@@ -5,10 +5,17 @@ import { BasicTableRow, CancelButton, DefaultButton, InputFiles, InputName } fro
 import useConfig from 'hooks/useConfig'
 import { useLocalization } from 'hooks/useLocalization'
 import BasicModal from '../common/BasicModal'
+import { InputURL } from '../common/InputURL'
 
 interface Props {
     project: Project
-    updateProject: (projectId: string, projectName: string, faviconFile: File | undefined, logoFile: File | undefined) => Promise<void>
+    updateProject: (
+        projectId: string,
+        projectName: string,
+        webhookUrl: string | null,
+        faviconFile: File | undefined,
+        logoFile: File | undefined
+    ) => Promise<void>
     deleteProject: (projectId: string) => Promise<void>
 }
 
@@ -21,6 +28,7 @@ export function UpdateProjectForm({ project, updateProject, deleteProject }: Pro
     const [logoThumbnailUrl, setLogoThumbnailUrl] = useState('')
     const [logoFile, setLogoFile] = useState<File | undefined>(undefined)
     const [modalOpen, setModalOpen] = useState(false)
+    const [webhookUrl, setWebhookUrl] = useState<string | null>(null)
     const handleOpen = () => setModalOpen(true)
     const handleClose = () => setModalOpen(false)
 
@@ -29,6 +37,7 @@ export function UpdateProjectForm({ project, updateProject, deleteProject }: Pro
             setProjectName(project.name)
             setLogoThumbnailUrl(project.logoUrl)
             setFaviconThumbnailUrl(project.faviconUrl)
+            setWebhookUrl(project.webhookUrl)
         }
     }, [project])
 
@@ -62,6 +71,7 @@ export function UpdateProjectForm({ project, updateProject, deleteProject }: Pro
                     setFile={setLogoFile}
                     setThumbnailUrl={setLogoThumbnailUrl}
                 />
+                <InputURL url={webhookUrl} setUrl={setWebhookUrl} />
                 <BasicTableRow tableName={localization['creation-date']} value={project.createdAt} />
                 <BasicTableRow tableName={localization['last-update']} value={project.updatedAt} />
                 <TableRow>
@@ -69,7 +79,7 @@ export function UpdateProjectForm({ project, updateProject, deleteProject }: Pro
                         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
                             <DefaultButton
                                 text={localization.update}
-                                onClick={() => updateProject(project.id, projectName, faviconFile, logoFile)}
+                                onClick={() => updateProject(project.id, projectName, webhookUrl, faviconFile, logoFile)}
                             />
                             <CancelButton
                                 text={localization.delete}

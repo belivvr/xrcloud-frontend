@@ -7,6 +7,7 @@ export interface Project {
     logoUrl: URL
     faviconUrl: URL
     sceneCreationUrl: URL
+    webhookUrl: URL | null
 }
 
 export interface Scene {
