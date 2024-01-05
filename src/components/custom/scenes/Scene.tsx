@@ -57,11 +57,11 @@ export default function Scene({ scene, isDeleteMode, handleOpen, setSelectedScen
                 }}
             >
                 <div style={{ marginBottom: '5px' }}>
-                    <span>이름 ) </span>
+                    <span>Scene 이름 ) </span>
                     <span style={{ fontWeight: 700 }}>{scene.name}</span>
                 </div>
                 <div style={{ marginBottom: '5px' }}>
-                    <span>ID ) </span>
+                    <span>Scene ID ) </span>
                     <span style={{ fontWeight: 700 }}>{scene.id}</span>
                 </div>
             </div>

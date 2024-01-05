@@ -17,7 +17,7 @@ const AddProject = () => {
 
     return (
         <Page title="Add project">
-            <MainCard title="프로젝트 추가">
+            <MainCard title="Project 추가">
                 <AddProjectForm />
             </MainCard>
         </Page>

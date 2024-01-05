@@ -89,12 +89,12 @@ export default function RoomDetailModal({
                     focused
                     variant="standard"
                     value={selectedRoomName}
-                    label="Name"
-                    placeholder="Room Name"
+                    label="Room 이름"
+                    placeholder="Room 이름"
                     onChange={(e) => setSelectedRoomName(e.target.value)}
                 />
                 <div>
-                    <span>ID ) </span>
+                    <span>Room ID ) </span>
                     <span style={{ fontWeight: 700 }}>{selectedRoom?.id}</span>
                 </div>
                 <div>

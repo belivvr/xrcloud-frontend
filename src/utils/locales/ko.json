@@ -18,15 +18,15 @@
     "permissons-cardtitle": "Permissons",
 
     "product": "제품",
-    "project-id": "프로젝트 ID",
-    "project-name": "프로젝트 이름",
+    "project-id": "Project ID",
+    "project-name": "Project 이름",
     "favicon": "파비콘",
     "logo": "로고",
     "project-key": "프로젝트 키",
     "creation-date": "생성시간",
     "last-update": "마지막 업데이트",
 
-    "add-project": "프로젝트 추가",
+    "add-project": "Project 추가",
     "browse": "파일찾기",
     "add": "확인",
     "cancel": "취소",
@@ -49,7 +49,7 @@
     "camera-creation": "카메라 생성",
     "emoji-creation": "이모지 생성",
 
-    "create-project": "프로젝트 추가",
+    "create-project": "Project 추가",
 
     "click-project": "우측 상단에서\n 프로젝트를 선택해주세요.",
     "select-project-id": "Project 이름 선택",
@@ -85,7 +85,7 @@
     "room-guide": "우측 상단에서 \n Project 선택 후 Scene ID를 선택해주세요.",
     "room-enter-guest": "게스트로 입장하기",
     "room-enter-host": "입장하기",
-    "room-update": "룸 수정하기",
+    "room-update": "Room 수정하기",
     "room-update-success": "룸이 수정되었습니다.",
     "room-return-url-validation": "Return Url은 http://, https://로 시작해야 합니다.",
 
