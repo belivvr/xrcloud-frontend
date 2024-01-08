@@ -79,7 +79,7 @@ export const KO_JSON = {
     'scene-select-no-project': '프로젝트를 선택해주세요',
     'scene-select-alert-no-key': '프로젝트의 API 키가 없습니다. 우측 상단 마이페이지에서 발급 받아주세요.',
     'room-no-scenes': '해당 프로젝트에 Scene이 없습니다. Scene을 추가해주세요.',
-    'room-guide': '우측 상단에서 \n Project 선택 후 Scene ID를 선택해주세요.',
+    'room-guide': '우측 상단에서 \n Project 이름 선택 후 Scene 이름을 선택해주세요.',
 
     'sign-in': '로그인',
     logout: '로그아웃',
