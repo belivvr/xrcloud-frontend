@@ -1,11 +1,13 @@
-cd /home/benny/xrcloud-frontend
+#!/bin/bash
+set -e
+cd "$(dirname "$0")"
 
-git pull
-docker build -t frontend .
-docker system prune -f
-if ! docker network ls | grep -q xrcloud; then
-   docker network create --subnet=172.18.0.0/16 xrcloud
-fi
-docker rm -f frontend
-docker run -d --restart=always --name frontend --network xrcloud frontend
-docker logs frontend -f
+DOCKER_CONTAINER=$(basename "$PWD")
+DOCKER_IMAGE="$DOCKER_CONTAINER:$(date +%s)"
+
+docker build -t "$DOCKER_IMAGE" .
+docker rm -f "$DOCKER_CONTAINER"
+docker run -d --restart=always --log-opt max-size=10m --log-opt max-file=3 \
+    --name "$DOCKER_CONTAINER" \
+    --network xrcloud \
+    "$DOCKER_IMAGE"
