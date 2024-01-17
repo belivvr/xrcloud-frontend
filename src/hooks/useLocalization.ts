@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { Localization } from 'utils/locales/type'
 
-export function useLocalization(langs: 'ko' | 'en' = 'en'): Localization {
+export function useLocalization(langs: string): Localization {
     const texts = useMemo(() => {
-        const data = require(`../utils/locales/${langs}.json`) as Localization
+        const data = require(`../utils/locales/ko.json`) as Localization
         return data
     }, [langs])
 

@@ -58,7 +58,7 @@ export interface MediumPost {
     title: string
 }
 
-export type Locale = 'en' | 'ko'
+export type Locale = 'ko'
 
 export interface StaticProps {
     locales: Locale[]
