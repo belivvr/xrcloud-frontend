@@ -100,9 +100,7 @@ const MobileSection = () => {
                                     >
                                         <Toolbar sx={{ pt: 2.75, pb: 2.75 }}>
                                             <Grid container gap={4} alignItems="center">
-                                                {window.location.pathname === '/ko' ||
-                                                window.location.pathname === '/en' ||
-                                                window.location.pathname === '/' ? null : (
+                                                {window.location.pathname === '/ko' || window.location.pathname === '/' ? null : (
                                                     <LocalizationSection />
                                                 )}
                                                 {user ? (
