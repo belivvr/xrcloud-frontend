@@ -8,7 +8,6 @@ import { Container, AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mu
 import Header from './Header'
 import Sidebar from './Sidebar'
 import HorizontalBar from './HorizontalBar'
-import AuthGuard from 'utils/route-guard/AuthGuard'
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs'
 
 import navigation from 'menu-items'

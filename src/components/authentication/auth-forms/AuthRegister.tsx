@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'store'
+import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'Link'
 // material-ui
