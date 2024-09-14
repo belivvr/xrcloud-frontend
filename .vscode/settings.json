@@ -1,3 +1,15 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+     "editor.defaultFormatter": "esbenp.prettier-vscode",  // Prettier를 기본 포맷터로 설정
+  "editor.formatOnSave": true,  // 저장 시 자동으로 포맷팅 적용
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true  // 저장 시 ESLint 규칙에 맞게 자동 수정
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "prettier.requireConfig": true  // Prettier 설정 파일을 반드시 사용
 }
