@@ -4,7 +4,6 @@ import { Link as MuiLink } from '@mui/material'
 
 // project imports
 import { DASHBOARD_PATH } from 'config'
-import Logo from 'ui-component/Logo'
 
 // ==============================|| MAIN LOGO ||============================== //
 
@@ -27,7 +26,7 @@ const LogoSection = () => (
         }}
     >
         {/* <Logo /> */}
-        XRCloud
+        WEVENT
     </MuiLink>
 )
 

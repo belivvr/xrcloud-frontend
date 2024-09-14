@@ -67,7 +67,7 @@ const Login = () => {
                                                     }}
                                                 >
                                                     {/* <LogoSection /> */}
-                                                    XRCLOUD
+                                                    WEVENT
                                                 </Box>
                                             </LinkTitle>
                                         </Grid>

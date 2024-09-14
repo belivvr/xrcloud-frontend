@@ -48,7 +48,7 @@ const ForgotPassword = () => {
                                                     }}
                                                 >
                                                     {/* <LogoSection /> */}
-                                                    XRCloud
+                                                    WEVENT
                                                 </Box>
                                             </Link>
                                         </Grid>
