@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import Link from 'Link'
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -25,7 +24,6 @@ import { Formik } from 'formik'
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton'
 import useAuth from 'hooks/useAuth'
-import useScriptRef from 'hooks/useScriptRef'
 import { strengthColor, strengthIndicator } from 'utils/password-strength'
 
 // assets
@@ -40,8 +38,6 @@ import { useLocalization } from 'hooks/useLocalization'
 
 const JWTRegister = ({ ...others }) => {
     const theme = useTheme()
-    const scriptedRef = useScriptRef()
-    const router = useRouter()
     const [showPassword, setShowPassword] = React.useState(false)
     const [checked, setChecked] = React.useState(true)
 

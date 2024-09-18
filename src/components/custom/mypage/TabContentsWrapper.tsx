@@ -1,4 +1,4 @@
-import { CardContent, Grid, useTheme } from '@mui/material'
+import { CardContent, Grid } from '@mui/material'
 import React from 'react'
 import { TabPanel, UserProfile } from '.'
 import ManagementAccount from './ManagementAccount'

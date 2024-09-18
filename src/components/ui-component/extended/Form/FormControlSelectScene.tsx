@@ -32,7 +32,7 @@ const FormControlSelectScene = ({
     textPrimary,
     textSecondary
 }: FormControlSelectProps) => {
-    const { choicedProject, choicedScene, setChoicedScene } = useChoicedProject()
+    const { choicedProject, setChoicedScene } = useChoicedProject()
 
     const theme = useTheme()
     const IconPrimary = iconPrimary!

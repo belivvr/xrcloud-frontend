@@ -10,7 +10,6 @@ interface Props {
 
 export function InputURL({ url, setUrl }: Props) {
     const { locale } = useConfig()
-    const localization = useLocalization(locale)
     return (
         <TableRow>
             <TableCell> Webhook URL </TableCell>

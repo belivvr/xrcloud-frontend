@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { Checkbox, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
+//import { Checkbox, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
+import { Checkbox, TextField } from '@mui/material'
 import React from 'react'
 import { Room, Scene } from 'types/project'
 import useConfig from 'hooks/useConfig'

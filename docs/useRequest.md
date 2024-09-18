@@ -48,8 +48,7 @@ const request = useCallback(async function <T>(
         }
         throw err
     }
-},
-[])
+}, [])
 ```
 
 ```typescript

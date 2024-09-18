@@ -1,10 +1,8 @@
-import { buttonGroupClasses, popoverClasses } from '@mui/material'
-import { IconButterfly } from '@tabler/icons'
 import { LAYOUT_CONST } from 'constant'
 
 // types
 import { ConfigProps } from 'types/config'
-import { Room, RoomField, Scene, Permission, PermissionCheckField } from 'types/project'
+import { RoomField, Permission, PermissionCheckField } from 'types/project'
 import { v4 } from 'uuid'
 
 // basename: only at build time to set, and Don't add '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,

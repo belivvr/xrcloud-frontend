@@ -5,9 +5,10 @@
 Use XRCLOUD to create a low-cost, easy-to-access, powerful features 3D space web metaverse.
 You can create a website bus faster and cheaper like making a homepage.
 It provides all the features of the proven Mozilla Hub opensource, and provides additional features necessary for site operation and development.
-Prepare your web services for the XR Spatial Computing era with XRCLOUD.  
+Prepare your web services for the XR Spatial Computing era with XRCLOUD.
 
 ---
+
 > **Create your own metaverse in 15 minutes with no app install required.**
 
 Have you ever wanted to create a metaverse space but didn't know where to start?
@@ -17,6 +18,7 @@ Say goodbye to the complexity of creating your own metaverse with XRCLOUD.
 Customize your space with web editors, share it with links, and easily integrate it with existing web services with web APIs.
 
 ---
+
 > **What can you do with a metaverse space? There's a lot more to it than just the examples we'll show you.**
 
 -   **Classroom** : A place to focus on the lesson, an experience where students are engaged with each other.
@@ -25,6 +27,7 @@ Customize your space with web editors, share it with links, and easily integrate
 -   **Event Hall** : You can make a speech using a large screen in a large event hall.
 
 ---
+
 > **Check out the more features that XRCLOUD which based world best most used web metaverse open source project**
 
 -   **XR Standard Open Metaverse**
@@ -37,6 +40,7 @@ Customize your space with web editors, share it with links, and easily integrate
     Supports real-time voice and chat communication for large-scale events with dozens, hundreds, or more participants.
 
 ---
+
 > **User Data Security and privacy are protected in the XRCLOUD.**
 
 -   XRCLOUD is Korean Goverment validated cloud based reliable Metaverse infrastructure
@@ -44,6 +48,7 @@ Customize your space with web editors, share it with links, and easily integrate
 -   Deliver only the information you need and expand easily with certified API integration development
 
 ---
+
 > **XRCLOUD Subscription Fee Guide**
 
 -   [Starter : **Free**](https://xrcloud.app/price-plan)
@@ -53,4 +58,4 @@ Customize your space with web editors, share it with links, and easily integrate
 -   [Professional : **$77/month**](https://xrcloud.app/price-plan)
     -   Plans for commercial development
 -   [Business 요금제 : **Contact us**](https://xrcloud.app/price-plan)
-    -   Dedicated infrastructure, various customizations separate, Korean Goverment validated cloud 
+    -   Dedicated infrastructure, various customizations separate, Korean Goverment validated cloud
