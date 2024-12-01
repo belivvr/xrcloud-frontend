@@ -22,7 +22,7 @@ import { FollowerCardProps } from 'types/user'
 const FollowerCard = ({ avatar, follow, location, name }: FollowerCardProps) => {
     const theme = useTheme()
     const avatarImage = `/assets/images/users/${avatar}`
-    const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null)
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null)
     const handleClick = (event: SyntheticEvent) => {
         setAnchorEl(event?.currentTarget)
     }

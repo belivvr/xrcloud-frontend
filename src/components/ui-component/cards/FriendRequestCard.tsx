@@ -29,9 +29,9 @@ const FriendRequestCard = ({ avatar, name, mutual }: FriendRequestCardProps) => 
         background: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.background.paper
     }
 
-    const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null)
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement> | undefined) => {
-        setAnchorEl(event?.currentTarget)
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null)
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget as Element)
     }
 
     const handleClose = () => {
@@ -83,7 +83,7 @@ const FriendRequestCard = ({ avatar, name, mutual }: FriendRequestCardProps) => 
                             {anchorEl && (
                                 <Menu
                                     id="menu-friend-card"
-                                    anchorEl={anchorEl}
+                                    anchorEl={anchorEl as Element | null}
                                     keepMounted
                                     open={Boolean(anchorEl)}
                                     onClose={handleClose}

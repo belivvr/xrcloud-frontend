@@ -27,9 +27,9 @@ const ContactCard = ({ avatar, contact, email, name, location, onActive, role }:
 
     const avatarProfile = avatar && `${avatarImage}/${avatar}`
 
-    const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null)
-    const handleClick = (event: React.MouseEvent<SVGSVGElement> | undefined) => {
-        setAnchorEl(event?.currentTarget)
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null)
+    const handleClick = (event: React.MouseEvent<SVGSVGElement> | null) => {
+        setAnchorEl(event?.currentTarget || null)
     }
 
     const handleClose = () => {

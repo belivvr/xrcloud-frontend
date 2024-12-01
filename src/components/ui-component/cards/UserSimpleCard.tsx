@@ -68,7 +68,7 @@ const UserSimpleCard = ({ avatar, name, status }: UserSimpleCardProps) => {
     const theme = useTheme()
     const avatarProfile = avatar && `${avatarImage}/${avatar}`
 
-    const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null)
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null)
     const handleClick = (event: React.MouseEvent) => {
         setAnchorEl(event.currentTarget)
     }

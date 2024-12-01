@@ -46,14 +46,7 @@ const ComingSoonSlider = ({ handleClickOpen }: { handleClickOpen: (slideIndex: n
     return (
         <Slider {...settings}>
             {items.map((item, index) => (
-                <Link
-                    key={index}
-                    href="#"
-                    variant="inherit"
-                    component="div"
-                    sx={{ cursor: 'pointer' }}
-                    onClick={() => handleClickOpen(index)}
-                >
+                <Link key={index} variant="inherit" component="div" sx={{ cursor: 'pointer' }} onClick={() => handleClickOpen(index)}>
                     <Item item={item} />
                 </Link>
             ))}

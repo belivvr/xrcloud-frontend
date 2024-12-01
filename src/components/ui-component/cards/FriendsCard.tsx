@@ -33,9 +33,9 @@ const FriendsCard = ({ avatar, location, name }: FriendsCardProps) => {
         background: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.background.paper
     }
 
-    const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null)
+    const [anchorEl, setAnchorEl] = useState<Element | null>(null)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement> | undefined) => {
-        setAnchorEl(event?.currentTarget)
+        setAnchorEl(event?.currentTarget || null)
     }
 
     const handleClose = () => {
