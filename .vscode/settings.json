@@ -11,5 +11,11 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "prettier.requireConfig": true  // Prettier 설정 파일을 반드시 사용
+  "prettier.requireConfig": true,  // Prettier 설정 파일을 반드시 사용
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
