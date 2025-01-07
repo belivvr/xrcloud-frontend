@@ -41,10 +41,10 @@ export default function Metatag({ locale }: Props) {
             <meta property="og:description" content={meta.description} />
             <meta property="twitter:title" content={meta.title} />
             <meta property="twitter:description" content={meta.description} />
-            <meta property="og:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" />
-            <meta property="og:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" />
-            <meta property="twitter:url" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" />
-            <meta property="twitter:image" content="https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png" />
+            <meta property="og:url" content="/assets/images/logo_og2.png" />
+            <meta property="og:image" content="/assets/images/logo_og2.png" />
+            <meta property="twitter:url" content="/assets/images/logo_og2.png" />
+            <meta property="twitter:image" content="/assets/images/logo_og2.png" />
         </Head>
     )
 }

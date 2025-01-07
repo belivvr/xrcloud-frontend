@@ -1,6 +1,6 @@
 ## 저렴한 비용, 빠른 접근, 강력한 기능 3D공간 웹, 메타버스를 이용해보세요.
 
-![main-banner](https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png)
+![main-banner](/assets/imagesimages/logo_og2.png)
 
 > **별도의 설치 프로그램없이 나만의 메타버스를 15분만에 제작해보세요.**
 >

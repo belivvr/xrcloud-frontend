@@ -1,6 +1,6 @@
 > **Use XRCLOUD to create a low-cost, easy-to-access, powerful features 3D space web metaverse.**
 
-![main-banner](https://kr.object.ncloudstorage.com/xrcloud-prod-frontend/images/logo_og2.png)
+![main-banner](/assets/imagesimages/logo_og2.png)
 
 Use XRCLOUD to create a low-cost, easy-to-access, powerful features 3D space web metaverse.
 You can create a website bus faster and cheaper like making a homepage.
