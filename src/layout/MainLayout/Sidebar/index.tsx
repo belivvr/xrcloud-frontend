@@ -112,7 +112,7 @@ const Sidebar = () => {
                     {drawer}
                     {drawerOpen && (
                         <Link
-                            href="https://github.com/belivvr"
+                            href="https://github.com/belivvr/xrcloud"
                             target="_blank"
                             style={{ position: 'absolute', bottom: '10%', left: '40px', fontWeight: '600' }}
                         >

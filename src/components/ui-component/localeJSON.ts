@@ -103,10 +103,6 @@ export const KO_JSON = {
     'send-mail': '메일 요청하기',
 
     'check-reset-link': '비밀번호 재설정 링크를 확인해주세요',
-    'business-license': '사업자 등록번호 846-88-00665',
-    'telemarketing-business-license-number': '통신판매업 신고번호 제 2020-전남순천-2995 호',
-    'belivvr-address-contents': '57940 전라남도 순천시 우석로 7, 4층',
-    'company-number': '회사 전화번호 070-4227-9371',
 
     'not-found-rooms': '만들어진 방이 없습니다.',
     'failed-login': '이메일 혹은 비밀번호가 일치하지 않습니다.',
@@ -251,13 +247,7 @@ export const EN_JSON = {
     'forgot-password': 'Forgot password?',
     'reset-otp': "Enter your email address below and we'll send you password reset OTP",
     'send-mail': 'Send Mail',
-
     'check-reset-link': 'Check mail for reset password link',
-    'business-license': 'Business License 846-88-00665',
-    'telemarketing-business-license-number': 'Telemarketing business license number No.2020-Jeonnam Suncheon-2995-Republic-of-Korea',
-    'belivvr-address-contents': '57940 Wooseok-ro, Suncheon-si, Jeollanam-do, 7th and 4th floors',
-    'company-number': 'Company number 070-4227-9371',
-
     'not-found-rooms': 'No rooms were created',
     'failed-login': "Email or password doesn't match.",
     'project-limit': 'You can create a maximum of 1 project.',
